@@ -1,0 +1,145 @@
+.item {
+  position: relative;
+  background: #FFFFFF;
+  border: 1px solid #E0E0E0;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  height: 66px;
+  width: 100%;
+  transition: all .3s;
+
+  @include hover {
+    border-color: transparent;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 20px 33px 33px 20px;
+
+    .button {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .name {
+      width: 100%;
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .price {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+
+  @include respond-to(m) {
+    height: auto;
+  }
+
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  padding: 10px 30px 10px 10px;
+  gap: 20px;
+  width: 100%;
+  @include respond-to(m) {
+    display: grid;
+    gap: 10px;
+    padding: 20px;
+    grid-template-areas:
+            "photo name price"
+            "title title title";
+    grid-template-columns: min-content auto auto;
+  }
+}
+
+.photo {
+  width: 46px;
+  height: 46px;
+  border-radius: 15px;
+  flex: 0 0 auto;
+  grid-area: photo;
+  position: relative;
+  overflow: hidden;
+}
+
+.name {
+  font-weight: 400;
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  visibility: hidden;
+  width: 0;
+  transition: all .3s;
+  flex: 1;
+  grid-area: name;
+  @include respond-to(m) {
+    opacity: 1;
+    visibility: visible;
+    width: auto;
+    font-weight: 400;
+    font-size: 13px;
+    font-family: var(--font-open-sans);
+  }
+
+}
+
+.title {
+  font-weight: 400;
+  font-size: 21px;
+  color: var(--color-black);
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  position: relative;
+  grid-area: title;
+
+  @include respond-to(m) {
+    font-weight: 400;
+    font-size: 16px;
+    overflow: visible;
+    white-space: normal;
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    width: 100px;
+    height: 100%;
+    right: 0;
+    top: 0;
+    background: linear-gradient(270deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);
+    @include respond-to(m) {
+      display: none;
+    }
+  }
+}
+
+.price {
+  font-weight: 700;
+  font-size: 21px;
+  text-align: right;
+  color: var(--color-black);
+  min-width: 150px;
+  transition: all .3s;
+  grid-area: price;
+  @include respond-to(m) {
+    min-width: auto;
+  }
+}
+
+.button {
+  @extend %button;
+  position: absolute;
+  right: 3px;
+  top: 3px;
+  height: calc(100% - 6px);
+  transition: all .3s;
+  opacity: 0;
+  visibility: hidden;
+  @include respond-to(m) {
+    display: none;
+  }
+}

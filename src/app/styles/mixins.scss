@@ -1,0 +1,120 @@
+$mobile: 750px;
+$tablet: 1200px;
+$desktop: 1800px;
+
+@mixin respond-to($media) {
+  @if $media == m {
+    @media only screen and (max-width: $mobile) {
+      @content;
+    }
+  } @else if $media == mm {
+    @media only screen and (max-width: 359px) {
+      @content;
+    }
+  } @else if $media == ls-m {
+    @media only screen and (max-width: $mobile) and (orientation: landscape) {
+      @content;
+    }
+  } @else if $media == p-m {
+    @media only screen and (max-width: $mobile) and (orientation: portrait) {
+      @content;
+    }
+  } @else if $media == t {
+    @media only screen and (max-width: $tablet) {
+      @content;
+    }
+  } @else if $media == ls-t {
+    @media only screen and (max-width: $tablet) and (orientation: landscape) {
+      @content;
+    }
+  } @else if $media == p-t {
+    @media only screen and (max-width: $tablet) and (orientation: portrait) {
+      @content;
+    }
+  } @else if $media == only-t {
+    @media only screen and (max-width: $tablet) and (min-width: $mobile) {
+      @content;
+    }
+
+  } @else if $media == d {
+    @media only screen and (min-width: $tablet) {
+      @content;
+    }
+  } @else if $media == dt {
+    @media only screen and (min-width: $mobile) {
+      @content;
+    }
+  } @else if $media == db {
+    @media only screen and (min-width: $desktop) {
+      @content;
+    }
+  } @else if $media == dm {
+    @media only screen and (max-width: $desktop) {
+      @content;
+    }
+
+  } @else if $media == 1440 {
+    @media only screen and (max-width: 1380px) and (orientation: landscape) {
+      @content;
+    }
+
+  } @else if $media == hover {
+    @media only screen and (min-width: $tablet + 1) {
+
+      @content;
+
+    }
+
+  }
+}
+
+@mixin hover {
+  @media only screen and (min-width: $tablet + 1) {
+    &:hover {
+      @content;
+    }
+  }
+}
+
+
+%button {
+  height: 60px;
+  width: fit-content;
+  font-weight: 700;
+  font-size: 16px;
+  text-align: center;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-white);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 30px;
+  background: linear-gradient(47.33deg, #F12711 -4.41%, #F5AF19 100%);
+  border-radius: 100px;
+  @include respond-to(m) {
+    height: 34px;
+    font-size: 11px;
+  }
+}
+
+%buttonWhite {
+  height: 60px;
+  font-weight: 700;
+  font-size: 16px;
+  text-align: center;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 30px;
+  background: var(--color-white);
+  border-radius: 100px;
+  width: fit-content;
+  @include respond-to(m) {
+    height: 34px;
+    font-size: 11px;
+  }
+}

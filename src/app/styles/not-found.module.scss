@@ -1,0 +1,36 @@
+.notFoundPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+
+  .title {
+    font-weight: 700;
+    font-size: 233px;
+    @include respond-to(m) {
+      font-size: 89px;
+    }
+
+    span {
+      background: linear-gradient(47.33deg, #F12711 -4.41%, #F5AF19 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-fill-color: transparent;
+    }
+  }
+
+  .text {
+    font-size: 21px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    @include respond-to(m) {
+      font-size: 16px;
+    }
+  }
+
+  .link {
+    @extend %button;
+  }
+}

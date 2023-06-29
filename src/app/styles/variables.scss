@@ -1,0 +1,17 @@
+:root {
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-text: #4F4F4F;
+  --color-grey: #BDBDBD;
+  --color-button-grey: #F2F2F2;
+  --color-gradient: linear-gradient(47.33deg, #F12711 -4.41%, #F5AF19 100%);
+
+  --width-wrapper: 1130px;
+  --width-wrapper-large: 1130px;
+  @include respond-to(t) {
+    --width-wrapper: 100%;
+    --width-wrapper-large: 100%;
+  }
+}
+
+

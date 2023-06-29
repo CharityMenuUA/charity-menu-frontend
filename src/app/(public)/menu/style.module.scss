@@ -1,0 +1,13 @@
+.orders {
+  width: var(--width-wrapper-large);
+  @include respond-to(m) {
+    padding: 0 10px;
+  }
+
+
+  &_list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+}

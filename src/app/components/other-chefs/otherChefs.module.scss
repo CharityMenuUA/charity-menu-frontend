@@ -1,0 +1,36 @@
+.chefs {
+  margin-top: 100px;
+  width: var(--width-wrapper);
+
+  h2 {
+    text-align: center;
+  }
+
+  &_list {
+    display: flex;
+    margin-top: 60px;
+    margin-bottom: 40px;
+    gap: 20px;
+    justify-content: center;
+    @include respond-to(t) {
+      flex-wrap: wrap;
+    }
+
+    & > a:nth-child(n+6) {
+      @include respond-to(dt) {
+        display: none;
+      }
+    }
+
+    & > a:nth-child(n+7) {
+      @include respond-to(m) {
+        display: none;
+      }
+    }
+  }
+}
+
+.button {
+  @extend %buttonWhite;
+  margin: 40px auto 100px;
+}

@@ -1,0 +1,128 @@
+.header {
+  max-width: var(--width-wrapper);
+  width: 100%;
+  background: var(--color-white);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.05);
+  padding: 10px;
+  border-radius: 0 0 40px 40px;
+  @include respond-to(m) {
+    border-radius: 0 0 20px 20px;
+  }
+}
+
+.left {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+  font-size: 34px;
+
+  .rotate {
+    transform: rotate(180deg);
+  }
+
+  .gradient {
+    background: linear-gradient(47.33deg, #F12711 -4.41%, #F5AF19 100%);
+    background-clip: text;
+    text-fill-color: transparent;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .header & {
+    @include respond-to(m) {
+      width: 140px;
+      font-size: 24px;
+    }
+  }
+}
+
+.right {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+}
+
+.menu {
+  width: 60px;
+  height: 60px;
+  border-radius: 100%;
+  border: 1px solid var(--color-button-grey);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @include respond-to(m) {
+    width: 40px;
+    height: 40px;
+  }
+
+  svg {
+    width: 40px;
+    height: 40px;
+    stroke: var(--color-black);
+    fill: none;
+  }
+}
+
+.login {
+  width: 60px;
+  height: 60px;
+  border-radius: 100%;
+  border: 1px solid var(--color-button-grey);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @include respond-to(m) {
+    width: 40px;
+    height: 40px;
+  }
+
+  svg {
+    width: 40px;
+    height: 40px;
+    stroke: var(--color-black);
+    fill: none;
+  }
+}
+
+
+.support_button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--color-button-grey);
+  border-radius: 100px;
+  font-weight: 700;
+  font-size: 11px;
+  text-transform: uppercase;
+  height: 34px;
+  padding: 0 20px;
+  letter-spacing: 0.04em;
+
+  .header & {
+    @include respond-to(m) {
+      display: none;
+    }
+  }
+}
+
+.offers {
+  @extend %button;
+  @include respond-to(m) {
+    display: none;
+  }
+}

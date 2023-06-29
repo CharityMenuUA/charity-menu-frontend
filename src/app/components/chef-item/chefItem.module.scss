@@ -1,0 +1,78 @@
+.chefs {
+  padding: 20px;
+  background: #FFFFFF;
+  border: 1px solid #E0E0E0;
+  border-radius: 40px;
+  transition: all 0.3s;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  @include hover {
+    border-radius: 40px;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    border-color: inherit;
+    .button {
+      visibility: visible;
+      opacity: 1;
+    }
+    .content {
+      opacity: 0;
+    }
+  }
+  @include respond-to(m) {
+    padding: 10px;
+  }
+}
+
+.photo {
+  width: 170px;
+  height: 170px;
+  border-radius: 30px;
+  flex: 0 0 auto;
+  position: relative;
+  overflow: hidden;
+  @include respond-to(m) {
+    width: 148px;
+    height: 148px;
+  }
+}
+
+.name {
+  font-weight: 700;
+  font-size: 21px;
+  text-align: center;
+  color: var(--color-black);
+  margin-top: 10px;
+  margin-bottom: 20px;
+  height: 100%;
+  @include respond-to(m) {
+    font-size: 16px;
+  }
+}
+
+.count {
+  font-family: var(--font-open-sans);
+  font-style: normal;
+  font-weight: 700;
+  font-size: 13px;
+  text-align: center;
+  color:var(--color-black);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  transition: all .3s;
+}
+
+.button {
+  @extend %button;
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  width: calc(100% - 40px);
+  visibility: hidden;
+  opacity: 0;
+  transition: all .3s;
+}
