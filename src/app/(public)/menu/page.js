@@ -3,19 +3,22 @@ import {getList} from '@/helpers/dataProvider';
 import MenuItem from "@/app/components/menu-item/MenuItem";
 
 const getMenu = async () => {
-    return getList(`/menu`).then(data => data.json()).catch(console.error)
+    try {
+        return await getList(`/menu`).then(data => data.json())
+    } catch {
+        return {menuItems: []}
+    }
 }
 
 
-const Page = async (props) => {
-    const {params} = props;
-    const menu = await getMenu(params);
+const Page = async () => {
+    const {menuItems} = await getMenu();
     return (
         <div>
             <section className={style.orders}>
                 <h1>Всі лоти</h1>
                 <div className={style.orders_list}>
-                    {menu.map(({menuItem, chef}) => (
+                    {menuItems.map(({menuItem, chef}) => (
                         <MenuItem key={menuItem.id} {...menuItem} chefName={chef.name} chefPhoto={chef.photo}/>
                     ))}
                 </div>

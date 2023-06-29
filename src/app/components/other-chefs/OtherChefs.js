@@ -5,11 +5,17 @@ import Link from "next/link";
 import PropTypes from "prop-types";
 
 const getChefs = async () => {
-    return getList('/chefs', {
-        params: {
-            pageSize: 7,
+    try {
+        return  await getList('/chefs', {
+            params: {
+                pageSize: 7,
+            }
+        }).then((e) => e.json())
+    } catch {
+        return {
+            chefs: []
         }
-    }).then((e) => e.json()).catch(console.error)
+    }
 }
 const OtherChefs = async (props) => {
     const {chefs} = await getChefs();

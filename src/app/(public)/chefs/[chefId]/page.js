@@ -9,7 +9,7 @@ import Accumulated from "@/app/components/accumulated/Accumulated";
 const getChef = async (params) => {
     const {chefId} = params;
     try {
-        return getOne(`chefs`, chefId).then(data => data.json())
+        return await getOne(`chefs`, chefId).then(data => data.json())
     } catch {
         return notFound()
     }
@@ -17,7 +17,7 @@ const getChef = async (params) => {
 const getMenu = async (params) => {
     const {chefId} = params;
     try {
-        return getList(`/chefs/${chefId}/menu`).then(data => data.json())
+        return await getList(`/chefs/${chefId}/menu`).then(data => data.json())
     } catch {
         return notFound()
     }
@@ -25,7 +25,7 @@ const getMenu = async (params) => {
 const getAccumulated = async (params) => {
     const {chefId} = params;
     try {
-        return getList(`/chefs/${chefId}/accumulated`).then(data => data.json())
+        return await getList(`/chefs/${chefId}/accumulated`).then(data => data.json())
     } catch {
         return {
             amount: 0

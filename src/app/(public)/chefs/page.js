@@ -2,7 +2,11 @@ import {getList} from '@/helpers/dataProvider';
 import Link from "next/link";
 
 const getChef = async () => {
-    return getList(`/chefs`).then(data => data.json()).catch(console.error);
+    try {
+        return await getList(`/chefs`).then(data => data.json())
+    } catch {
+        return {chefs: []}
+    }
 }
 
 const Page = async (props) => {

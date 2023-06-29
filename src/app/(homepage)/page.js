@@ -4,7 +4,7 @@ import {getList} from "@/helpers/dataProvider";
 
 const getAccumulated = async () => {
     try {
-        return getList(`/chefs/accumulated`).then(data => data.json())
+        return await getList(`/chefs/accumulated`).then(data => data.json())
     } catch {
         return {
             amount: 0
