@@ -10,7 +10,7 @@
   @include hover {
     border-radius: 40px;
     box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-    border-color: inherit;
+    border-color: transparent;
     .button {
       visibility: visible;
       opacity: 1;
