@@ -4,10 +4,19 @@ import style from './headerMenu.module.scss'
 import ReactPortal from '../portal/ReactPortal'
 import SupportButton from './SupportButton'
 import HeaderLogo from './HeaderLogo'
+import {usePathname} from 'next/navigation'
+import {useEffect} from 'react'
 
 
 const HeaderMenu = (props) => {
+    const pathname = usePathname()
+
     const {isOpen, setOpen} = props
+
+    useEffect(() => {
+        setOpen(false)
+    }, [pathname, setOpen])
+
     if (!isOpen) return false
 
     const handleCloseMenu = () => setOpen(false)
@@ -41,8 +50,8 @@ const HeaderMenu = (props) => {
                             <Link href={'/partners'}>
                                 Партнери
                             </Link>
-                            <Link href={'/faq'} >
-                               FAQ
+                            <Link href={'/faq'}>
+                                FAQ
                             </Link>
                         </div>
 
