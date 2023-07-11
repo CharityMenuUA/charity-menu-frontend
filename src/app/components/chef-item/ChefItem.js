@@ -1,10 +1,10 @@
-import style from "./chefItem.module.scss";
-import PropTypes from "prop-types";
-import Link from "next/link";
-import Image from "next/image";
+import style from './chefItem.module.scss'
+import PropTypes from 'prop-types'
+import Link from 'next/link'
+import Image from 'next/image'
 
 const ChefItem = (props) => {
-    const {id, photo, menuItemsNumber, name} = props;
+    const {id, photo, menuItemsNumber, name} = props
     return (
         <Link href={`/chefs/${id}`} className={style.chefs}>
             <div className={style.photo}>
@@ -40,4 +40,4 @@ ChefItem.propTypes = {
     photo: PropTypes.string.isRequired,
     menuItemsNumber: PropTypes.number.isRequired,
 }
-export default ChefItem;
+export default ChefItem

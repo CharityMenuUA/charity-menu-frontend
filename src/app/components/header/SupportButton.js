@@ -1,8 +1,8 @@
-import style from "./header.module.scss";
+import style from './header.module.scss'
 
 const SupportButton = () => {
     return (
-        <button type={"button"} className={style.support_button}>
+        <button type={'button'} className={style.support_button}>
             Підтримати проект
         </button>
     )

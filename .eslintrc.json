@@ -43,7 +43,8 @@
     "no-console": "error",
     "@next/next/no-img-element": "off",
     "semi": ["error", "never"],
-    "indent": ["error", 4]
+    "indent": ["error", 4],
+    "quotes": ["error", "single", { "allowTemplateLiterals": true }]
   },
   "overrides": [
     {

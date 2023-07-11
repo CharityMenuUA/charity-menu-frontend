@@ -1,6 +1,6 @@
-"use client"
-import style from "@/app/(public)/chefs/[chefId]/[menuId]/style.module.scss";
-import {FacebookShareButton, TelegramShareButton, TwitterShareButton} from "react-share";
+'use client'
+import style from '@/app/(public)/chefs/[chefId]/[menuId]/style.module.scss'
+import {FacebookShareButton, TelegramShareButton, TwitterShareButton} from 'react-share'
 
 const ShareButtons = () => {
     return (
@@ -19,7 +19,7 @@ const ShareButtons = () => {
                     />
                 </svg>
             </FacebookShareButton>
-            <TelegramShareButton target={"_blank"} className={style.link}>
+            <TelegramShareButton target={'_blank'} className={style.link}>
                 <svg width="40" height="40" viewBox="0 0 40 40">
                     <path
                         d="M28.303 12.0896L9.01298 19.5296C7.69298 20.0496 7.71298 20.7796 8.78298 21.1196L13.723 22.6596L25.173 15.4496C25.703 15.0996 26.203 15.2996 25.793 15.6496L16.523 24.0196L16.173 29.1096C16.693 29.1096 16.913 28.8896 17.183 28.6196L19.593 26.2996L24.593 29.9796C25.503 30.4996 26.153 30.2296 26.403 29.1296L29.683 13.6596C29.973 12.3096 29.193 11.7696 28.293 12.0896H28.303Z"
@@ -30,4 +30,4 @@ const ShareButtons = () => {
     )
 }
 
-export default ShareButtons;
+export default ShareButtons

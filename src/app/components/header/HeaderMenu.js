@@ -1,9 +1,9 @@
-"use client"
-import Link from "next/link"
+'use client'
+import Link from 'next/link'
 import style from './headerMenu.module.scss'
-import ReactPortal from "../portal/ReactPortal"
-import SupportButton from "./SupportButton"
-import HeaderLogo from "./HeaderLogo"
+import ReactPortal from '../portal/ReactPortal'
+import SupportButton from './SupportButton'
+import HeaderLogo from './HeaderLogo'
 
 
 const HeaderMenu = (props) => {
@@ -17,7 +17,7 @@ const HeaderMenu = (props) => {
             <div className={style.headerMenu}>
                 <div className={style.mask} onClick={handleCloseMenu} />
                 <div className={style.content}>
-                    <button type={"button"} className={style.close} onClick={handleCloseMenu}>
+                    <button type={'button'} className={style.close} onClick={handleCloseMenu}>
                         <svg viewBox="0 0 40 40">
                             <path d="M12.9287 12.929L27.0708 27.0711" />
                             <path d="M12.9287 27.071L27.0708 12.9289" />
@@ -32,17 +32,17 @@ const HeaderMenu = (props) => {
                         </div>
                         <SupportButton />
                         <div className={style.navigate}>
-                            <Link href={"/team"} legacyBehavior>
-                                <a onClick={handleCloseMenu}>Команда</a>
+                            <Link href={'/team'}>
+                                Команда
                             </Link>
-                            <Link href={"/contacts"} legacyBehavior>
-                                <a onClick={handleCloseMenu}>Контакти</a>
+                            <Link href={'/contacts'}>
+                                Контакти
                             </Link>
-                            <Link href={"/partners"} legacyBehavior>
-                                <a onClick={handleCloseMenu}>Партнери</a>
+                            <Link href={'/partners'}>
+                                Партнери
                             </Link>
-                            <Link href={"/faq"} legacyBehavior>
-                                <a onClick={handleCloseMenu}>FAQ</a>
+                            <Link href={'/faq'} >
+                               FAQ
                             </Link>
                         </div>
 

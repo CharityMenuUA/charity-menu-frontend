@@ -1,5 +1,5 @@
 import style from './homepage.module.scss'
-import HomeChefsAndOffers from "@/app/(homepage)/HomeChefsAndOffers";
+import HomeChefsAndOffers from '@/app/(homepage)/HomeChefsAndOffers'
 
 const Home = () => {
     return (
@@ -12,7 +12,7 @@ const Home = () => {
                     Благодійний проект, гроші з якого йдуть на допомогу Україні.
                 </div>
             </section>
-            <HomeChefsAndOffers/>
+            <HomeChefsAndOffers />
         </div>
     )
 }

@@ -1,6 +1,6 @@
-import normalizeUrl from 'normalize-url';
+import normalizeUrl from 'normalize-url'
 
-const BACKEND_API = process.env.BACKEND_API;
+const BACKEND_API = process.env.BACKEND_API
 
 export const dynamic = 'force-dynamic'
 
@@ -11,17 +11,17 @@ const createUrl = (path, options) => {
             url.searchParams.set(key, options.params[key])
         })
     }
-    return url;
+    return url
 }
 // get a list of records based on sort, filter, and pagination
 export const getList = async (resource, options) => {
-    const url = createUrl(`${BACKEND_API}/${resource}`, options);
+    const url = createUrl(`${BACKEND_API}/${resource}`, options)
     try {
         return await fetch(url, {options, next: {revalidate: 60}})
     } catch (err) {
         throw new Error(err.message)
     }
-};
+}
 
 // get a single record by id
 export const getOne = async (resource, id, options) => {
@@ -31,7 +31,7 @@ export const getOne = async (resource, id, options) => {
     } catch (err) {
         throw new Error(err.message)
     }
-};
+}
 
 const dataProvider = {
     getList,
@@ -45,4 +45,4 @@ const dataProvider = {
     deleteMany: () => Promise, // delete a list of records based on an array of ids
 }
 
-export default dataProvider;
+export default dataProvider

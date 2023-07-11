@@ -1,5 +1,5 @@
-import {getList} from '@/helpers/dataProvider';
-import Link from "next/link";
+import {getList} from '@/helpers/dataProvider'
+import Link from 'next/link'
 
 const getChef = async () => {
     try {
@@ -11,7 +11,7 @@ const getChef = async () => {
 
 const ChefsPage = async (props) => {
     const {params} = props
-    const {chefs} = await getChef(params);
+    const {chefs} = await getChef(params)
     return (
         <div>
             {chefs.map((chef) => (
@@ -24,4 +24,4 @@ const ChefsPage = async (props) => {
         </div>
     )
 }
-export default ChefsPage;
+export default ChefsPage

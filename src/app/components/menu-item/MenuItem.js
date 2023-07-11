@@ -1,12 +1,12 @@
-"use client";
+'use client'
 import style from './menuItem.module.scss'
-import PropTypes from 'prop-types';
-import Link from "next/link";
-import Image from "next/image";
-import ByLink from "@/app/(public)/chefs/[chefId]/[menuId]/ByLink";
+import PropTypes from 'prop-types'
+import Link from 'next/link'
+import Image from 'next/image'
+import ByLink from '@/app/(public)/chefs/[chefId]/[menuId]/ByLink'
 
 const MenuItem = (props) => {
-    const {id, chefId, chefName, chefPhoto, title, price} = props;
+    const {id, chefId, chefName, chefPhoto, title, price} = props
     return (
         <div className={style.item}>
             <Link href={`/chefs/${chefId}/${id}`} className={style.link}>
@@ -31,9 +31,9 @@ const MenuItem = (props) => {
                     ₴{price}
                 </div>
             </Link>
-            <ByLink chefId={chefId} menuId={id} className={style.button}/>
+            <ByLink chefId={chefId} menuId={id} className={style.button} />
         </div>
-    );
+    )
 }
 
 MenuItem.propTypes = {

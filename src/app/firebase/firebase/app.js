@@ -1,5 +1,5 @@
-import {initializeApp} from "firebase/app";
-import {getAuth} from "firebase/auth";
+import {initializeApp} from 'firebase/app'
+import {getAuth} from 'firebase/auth'
 
 const firebaseConfig = {
     apiKey: process.env.FIREBASE_APIKEY,
@@ -9,10 +9,10 @@ const firebaseConfig = {
     messagingSenderId: process.env.FIREBASE_MESSAGINGSENDERID,
     appId: process.env.FIREBASE_APPID,
     measurementId: process.env.FIREBASE_MEASUREMENTID,
-};
+}
 
-export const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app);
+export const app = initializeApp(firebaseConfig)
+export const auth = getAuth(app)
 
 
 

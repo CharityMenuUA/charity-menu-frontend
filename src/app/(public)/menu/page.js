@@ -1,6 +1,6 @@
 import style from './style.module.scss'
-import {getList} from '@/helpers/dataProvider';
-import MenuItem from "@/app/components/menu-item/MenuItem";
+import {getList} from '@/helpers/dataProvider'
+import MenuItem from '@/app/components/menu-item/MenuItem'
 
 const getMenu = async () => {
     try {
@@ -12,18 +12,18 @@ const getMenu = async () => {
 
 
 const MenuPage = async () => {
-    const {menuItems} = await getMenu();
+    const {menuItems} = await getMenu()
     return (
         <div>
             <section className={style.orders}>
                 <h1>Всі лоти</h1>
                 <div className={style.orders_list}>
                     {menuItems.map(({menuItem, chef}) => (
-                        <MenuItem key={menuItem.id} {...menuItem} chefName={chef.name} chefPhoto={chef.photo}/>
+                        <MenuItem key={menuItem.id} {...menuItem} chefName={chef.name} chefPhoto={chef.photo} />
                     ))}
                 </div>
             </section>
         </div>
     )
 }
-export default MenuPage;
+export default MenuPage
