@@ -1,8 +1,8 @@
-const Page = () => {
+const TeamPage = () => {
     return (
         <div>
             team
         </div>
     )
 }
-export default Page
+export default TeamPage

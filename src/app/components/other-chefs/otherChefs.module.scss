@@ -1,7 +1,6 @@
 .chefs {
-  margin-top: 100px;
-  width: var(--width-wrapper);
-
+  margin: 100px auto auto;
+  width: min(100%, var(--width-wrapper));
   h2 {
     text-align: center;
   }

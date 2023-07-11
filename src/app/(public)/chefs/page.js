@@ -9,7 +9,7 @@ const getChef = async () => {
     }
 }
 
-const Page = async (props) => {
+const ChefsPage = async (props) => {
     const {params} = props
     const {chefs} = await getChef(params);
     return (
@@ -24,4 +24,4 @@ const Page = async (props) => {
         </div>
     )
 }
-export default Page;
+export default ChefsPage;

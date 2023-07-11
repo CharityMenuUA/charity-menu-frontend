@@ -11,7 +11,7 @@ const getMenu = async () => {
 }
 
 
-const Page = async () => {
+const MenuPage = async () => {
     const {menuItems} = await getMenu();
     return (
         <div>
@@ -26,4 +26,4 @@ const Page = async () => {
         </div>
     )
 }
-export default Page;
+export default MenuPage;

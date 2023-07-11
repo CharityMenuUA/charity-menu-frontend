@@ -1,0 +1,14 @@
+
+.button {
+  @extend %button;
+  position: absolute;
+  right: 3px;
+  top: 3px;
+  height: calc(100% - 6px);
+  transition: all .3s;
+  opacity: 0;
+  visibility: hidden;
+  @include respond-to(m) {
+    display: none;
+  }
+}

@@ -1,7 +1,7 @@
 import style from './homepage.module.scss'
 import HomeChefsAndOffers from "@/app/(homepage)/HomeChefsAndOffers";
 
-const HomePage = () => {
+const Home = () => {
     return (
         <div className={style.homepage}>
             <section className={style.head}>
@@ -17,4 +17,4 @@ const HomePage = () => {
     )
 }
 
-export default HomePage
+export default Home

@@ -1,8 +1,8 @@
-const Page = () => {
+const PartnersPage = () => {
     return (
         <div>
             partners
         </div>
     )
 }
-export default Page
+export default PartnersPage

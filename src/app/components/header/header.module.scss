@@ -1,6 +1,6 @@
 .header {
-  max-width: var(--width-wrapper);
-  width: 100%;
+  width: min(100%, var(--width-wrapper));
+  margin: auto;
   background: var(--color-white);
   display: flex;
   justify-content: center;
@@ -28,18 +28,24 @@
   align-items: center;
   font-weight: 700;
   font-size: 34px;
-
-  .rotate {
-    transform: rotate(180deg);
+  svg {
+    width: 230px;
+    @include respond-to(m) {
+      width: 168px;
+    }
   }
-
-  .gradient {
-    background: linear-gradient(47.33deg, #F12711 -4.41%, #F5AF19 100%);
-    background-clip: text;
-    text-fill-color: transparent;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
+  //
+  //.rotate {
+  //  transform: rotate(180deg);
+  //}
+  //
+  //.gradient {
+  //  background: linear-gradient(47.33deg, #F12711 -4.41%, #F5AF19 100%);
+  //  background-clip: text;
+  //  text-fill-color: transparent;
+  //  -webkit-background-clip: text;
+  //  -webkit-text-fill-color: transparent;
+  //}
 
   .header & {
     @include respond-to(m) {

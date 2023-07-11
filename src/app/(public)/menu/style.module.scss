@@ -1,5 +1,6 @@
 .orders {
-  width: var(--width-wrapper-large);
+  width: min(100%, var(--width-wrapper));
+  margin: auto;
   @include respond-to(m) {
     padding: 0 10px;
   }

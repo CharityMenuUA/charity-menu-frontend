@@ -2,6 +2,8 @@ import normalizeUrl from 'normalize-url';
 
 const BACKEND_API = process.env.BACKEND_API;
 
+export const dynamic = 'force-dynamic'
+
 const createUrl = (path, options) => {
     const url = new URL(normalizeUrl(path))
     if (options?.params) {
@@ -12,15 +14,23 @@ const createUrl = (path, options) => {
     return url;
 }
 // get a list of records based on sort, filter, and pagination
-export const getList = (resource, options) => {
+export const getList = async (resource, options) => {
     const url = createUrl(`${BACKEND_API}/${resource}`, options);
-    return fetch(url, {options, next: {revalidate: 60}})
+    try {
+        return await fetch(url, {options, next: {revalidate: 60}})
+    } catch (err) {
+        throw new Error(err.message)
+    }
 };
 
 // get a single record by id
-export const getOne = (resource, id, options) => {
+export const getOne = async (resource, id, options) => {
     const url = createUrl(`${BACKEND_API}/${resource}/${id}`, options)
-    return fetch(url, {options, next: {revalidate: 60}})
+    try {
+        return await fetch(url, {options, next: {revalidate: 60}})
+    } catch (err) {
+        throw new Error(err.message)
+    }
 };
 
 const dataProvider = {

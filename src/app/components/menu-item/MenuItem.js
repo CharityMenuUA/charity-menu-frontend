@@ -2,13 +2,11 @@
 import style from './menuItem.module.scss'
 import PropTypes from 'prop-types';
 import Link from "next/link";
-import {useUserContext} from "@/app/firebase/firebase/UserProvider";
 import Image from "next/image";
+import ByLink from "@/app/(public)/chefs/[chefId]/[menuId]/ByLink";
 
 const MenuItem = (props) => {
-    const {user} = useUserContext();
     const {id, chefId, chefName, chefPhoto, title, price} = props;
-    const linkToCreateOrder = `/chefs/${chefId}/${id}`;
     return (
         <div className={style.item}>
             <Link href={`/chefs/${chefId}/${id}`} className={style.link}>
@@ -33,15 +31,7 @@ const MenuItem = (props) => {
                     ₴{price}
                 </div>
             </Link>
-            {user ? (
-                <Link href={linkToCreateOrder} className={style.button}>
-                    купити
-                </Link>
-            ) : (
-                <Link href={`/login?next=${linkToCreateOrder}`} className={style.button}>
-                    купити
-                </Link>
-            )}
+            <ByLink chefId={chefId} menuId={id} className={style.button}/>
         </div>
     );
 }

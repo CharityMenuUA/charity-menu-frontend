@@ -1,5 +1,6 @@
 .orders {
-  width: var(--width-wrapper-large);
+  width: min(100%, var(--width-wrapper));
+  margin: auto;
   @include respond-to(m) {
     padding: 0 10px;
   }
@@ -28,11 +29,7 @@
 }
 
 .h1 {
-  margin: 34px auto 40px;
-  text-align: center;
-  @include respond-to(t) {
-    margin: 35px auto 20px;
-  }
+  @extend %h1-title;
 }
 
 .head {
@@ -43,7 +40,8 @@
 }
 
 .content {
-  width: var(--width-wrapper-large);
+  width: min(100%, var(--width-wrapper));
+  margin: auto;
   display: flex;
   align-items: center;
   gap: 68px;
@@ -105,19 +103,39 @@
   @include respond-to(t) {
     order: 3
   }
+
   .links {
     display: flex;
     gap: 10px;
 
     .link {
+      background: #C2C2C2;
+      position: relative;
+      border-radius: 100%;
+      overflow: hidden;
+
+      &:before {
+        content: '';
+        background: linear-gradient(47.33deg, #F12711 -4.41%, #F5AF19 100%);
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        transition: all .3s;
+      }
+
       svg {
         width: 40px;
-        fill: #C2C2C2;
+        fill: white;
+        position: relative;
+        z-index: 1;
       }
 
       @include hover {
-        svg {
-          fill: var(--color-text);
+        &:before {
+          opacity: 1;
         }
       }
     }
@@ -139,12 +157,12 @@
 }
 
 
-
 .tdn {
   @include respond-to(t) {
     display: none;
   }
 }
+
 .tdb {
   display: none;
 

@@ -31,6 +31,7 @@
   flex: 0 0 auto;
   position: relative;
   overflow: hidden;
+  margin: auto;
   @include respond-to(m) {
     width: 148px;
     height: 148px;

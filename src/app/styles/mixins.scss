@@ -76,6 +76,14 @@ $desktop: 1800px;
   }
 }
 
+%h1-title {
+  margin: 34px auto 40px;
+  text-align: center;
+  @include respond-to(t) {
+    margin: 35px auto 20px;
+    padding: 10px;
+  }
+}
 
 %button {
   height: 60px;

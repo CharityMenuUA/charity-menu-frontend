@@ -1,4 +1,4 @@
-import HomePage from "./HomePage";
+import Home from "./Home";
 import Accumulated from "@/app/components/accumulated/Accumulated";
 import {getList} from "@/helpers/dataProvider";
 
@@ -11,14 +11,14 @@ const getAccumulated = async () => {
         }
     }
 }
-const Home = async () => {
+const HomePage = async () => {
     const accumulated = await getAccumulated()
     return (
         <>
             <Accumulated amount={accumulated.amount}/>
-            <HomePage/>
+            <Home/>
         </>
     )
 }
 
-export default Home
+export default HomePage
