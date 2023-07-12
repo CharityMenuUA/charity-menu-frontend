@@ -19,7 +19,9 @@ const Header = () => {
                         <path d="M10 25H30" />
                     </svg>
                 </button>
+
                 <HeaderMenu isOpen={isOpenMenuState} setOpen={setOpenMenuState} />
+
                 <SupportButton />
             </div>
 

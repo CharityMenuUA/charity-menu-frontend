@@ -1,6 +1,6 @@
 'use client'
 import {createPortal} from 'react-dom'
-
+import PropTypes from "prop-types"
 
 function createWrapperAndAppendToBody(wrapperId) {
     const wrapperElement = document.createElement('div')
@@ -9,7 +9,7 @@ function createWrapperAndAppendToBody(wrapperId) {
     return wrapperElement
 }
 
-function ReactPortal({children, wrapperId}) {
+const ReactPortal = ({children, wrapperId}) => {
     let element = document.getElementById(wrapperId)
 
     if (!element) {
@@ -17,6 +17,10 @@ function ReactPortal({children, wrapperId}) {
     }
 
     return createPortal(children, element)
+}
+
+ReactPortal.propTypes = {
+    wrapperId: PropTypes.string.isRequired
 }
 
 export default ReactPortal

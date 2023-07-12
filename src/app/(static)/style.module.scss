@@ -1,7 +1,0 @@
-.static {
-  width: min(100%, var(--width-wrapper));
-  margin: 30px auto;
-  @include respond-to(m) {
-    padding: 0 10px;
-  }
-}
