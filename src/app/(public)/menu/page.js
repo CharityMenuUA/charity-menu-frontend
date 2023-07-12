@@ -4,7 +4,7 @@ import MenuItem from '@/app/components/menu-item/MenuItem'
 
 const getMenu = async () => {
     try {
-        return await getList(`/menu`).then(data => data.json())
+        return await getList(`/menu-items`).then(data => data.json())
     } catch {
         return {menuItems: []}
     }
