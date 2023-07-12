@@ -1,6 +1,7 @@
 'use client'
 import {createPortal} from 'react-dom'
 import PropTypes from "prop-types"
+import {useEffect, useRef} from "react"
 
 function createWrapperAndAppendToBody(wrapperId) {
     const wrapperElement = document.createElement('div')
@@ -10,13 +11,19 @@ function createWrapperAndAppendToBody(wrapperId) {
 }
 
 const ReactPortal = ({children, wrapperId}) => {
-    let element = document.getElementById(wrapperId)
+    let element = useRef()
 
-    if (!element) {
-        element = createWrapperAndAppendToBody(wrapperId)
-    }
+    useEffect(() => {
+        element.current = document.getElementById(wrapperId)
 
-    return createPortal(children, element)
+        if (!element.current) {
+            element.current = createWrapperAndAppendToBody(wrapperId)
+        }
+    }, [wrapperId])
+
+    if (!element.current) return
+
+    return createPortal(children, element.current)
 }
 
 ReactPortal.propTypes = {
