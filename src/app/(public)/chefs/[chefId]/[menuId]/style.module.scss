@@ -249,3 +249,15 @@
     margin: 20px auto 80px;
   }
 }
+
+.popularRandom {
+  width: min(100%, var(--width-wrapper-large));
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  gap: 55px;
+  @include respond-to(t) {
+    flex-direction: column;
+   align-items: center;
+  }
+}

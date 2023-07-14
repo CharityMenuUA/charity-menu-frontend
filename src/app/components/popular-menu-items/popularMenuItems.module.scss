@@ -1,0 +1,37 @@
+.popular {
+  width: 635px;
+  padding: 60px 0 40px;
+  border: 1px solid #BDBDBD;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+  border-radius: 40px;
+  overflow: hidden;
+
+
+  @include respond-to(m) {
+    width: 100%;
+    padding: 60px 10px 40px;
+  }
+
+  h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    @include respond-to(m) {
+      font-size: 26px;
+    }
+  }
+  .content {
+    padding: 0 40px;
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+    height: 374px;
+    @include respond-to(m) {
+      height: auto;
+      padding: 0;
+
+    }
+  }
+}
+
+
+

@@ -22,3 +22,15 @@
   margin: 0 auto;
   width: fit-content;
 }
+
+.popularRandom {
+  width: min(100%, var(--width-wrapper-large));
+  display: flex;
+  justify-content: center;
+  gap: 55px;
+  margin: 100px auto;
+  @include respond-to(t) {
+    flex-direction: column;
+    align-items: center;
+  }
+}

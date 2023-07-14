@@ -36,19 +36,6 @@
     }
   }
 
-  //
-  //.rotate {
-  //  transform: rotate(180deg);
-  //}
-  //
-  //.gradient {
-  //  background: linear-gradient(47.33deg, #F12711 -4.41%, #F5AF19 100%);
-  //  background-clip: text;
-  //  text-fill-color: transparent;
-  //  -webkit-background-clip: text;
-  //  -webkit-text-fill-color: transparent;
-  //}
-
   .header & {
     @include respond-to(m) {
       width: 140px;
@@ -192,7 +179,7 @@
   font-size: 11px;
 
   .header & {
-    @include respond-to(m) {
+    @include respond-to(t) {
       display: none;
     }
   }
@@ -200,7 +187,7 @@
 
 .offers {
   @extend %button;
-  @include respond-to(m) {
+  @include respond-to(t) {
     display: none;
   }
 }

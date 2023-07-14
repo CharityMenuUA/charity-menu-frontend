@@ -1,6 +1,6 @@
 'use client'
 import Link from 'next/link'
-import {useUserContext} from '@/app/firebase/firebase/UserProvider'
+import {useUserContext} from '@/app/providers/firebase/UserProvider'
 import {linkToCreateOrder} from '@/app/components/helpers/links'
 import PropTypes from 'prop-types'
 
