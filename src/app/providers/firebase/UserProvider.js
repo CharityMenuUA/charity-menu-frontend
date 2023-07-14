@@ -1,7 +1,7 @@
 'use client'
 
 import {createContext, useContext, useEffect, useMemo, useState} from 'react'
-import {auth} from '@/app/firebase/firebase/app'
+import {auth} from '@/app/providers/firebase/app'
 
 
 

@@ -1,5 +1,6 @@
+import style from './chef.module.scss'
 import {getList} from '@/helpers/dataProvider'
-import Link from 'next/link'
+import ChefItem from "@/app/components/chef-item/ChefItem"
 
 const getChef = async () => {
     try {
@@ -13,13 +14,9 @@ const ChefsPage = async (props) => {
     const {params} = props
     const {chefs} = await getChef(params)
     return (
-        <div>
+        <div className={style.chefList}>
             {chefs.map((chef) => (
-                <div key={chef.id}>
-                    <Link href={`/chefs/${chef.id}`}>
-                        {chef.name}
-                    </Link>
-                </div>
+                <ChefItem  key={chef.id} {...chef}/>
             ))}
         </div>
     )

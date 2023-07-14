@@ -1,40 +1,67 @@
-import style from './style.module.scss'
+"use client"
 
-const contactItems = [
-    {
-        id: 1,
-        label: 'Телефон',
-        text: <a href={'tel:+380635891339'}>+380635891339</a>
-    },
-    {
-        id: 2,
-        label: 'Email',
-        text: <a href={'mailto:donatemenu@hello.com.ua'}>donatemenu@hello.com.ua</a>
-    },
-    {
-        id: 3,
-        label: 'Telegram',
-        text: <a href={'https://t.me/donatemenu'} target="_blank">@donatemenu</a>
-    },
-]
+import style from './style.module.scss'
+import {useConfigContext} from "@/app/providers/config/ConfigProvider"
+
 
 const ContactsPage = () => {
+    const {config: {contacts: {phone, telegram, email, instagram, twitter, facebook}}} = useConfigContext()
+
     return (
         <div className={style.contacts}>
             <h1>Контакти</h1>
             <div className={style.items_wrap}>
-                {
-                    contactItems.map((item) => {
-                        return (
-                            <div className={style.item} key={item.id}>
-                                <div className={style.label}>{item.label}</div>
-                                <div className={style.text}>{item.text}</div>
-                            </div>
-                        )
-                    })
-                }
+                {phone && (
+                    <div className={style.item}>
+                        <div className={style.label}>Телефон</div>
+                        <div className={style.text}>
+                            <a href={`tel:${phone}`} target="_blank">{phone}</a>
+                        </div>
+                    </div>
+                )}
+                {email && (
+                    <div className={style.item}>
+                        <div className={style.label}>Email</div>
+                        <div className={style.text}>
+                            <a href={`mailto:${email}`} target="_blank">{email}</a>
+                        </div>
+                    </div>
+                )}
+                {telegram && (
+                    <div className={style.item}>
+                        <div className={style.label}>Telegram</div>
+                        <div className={style.text}>
+                            <a href={telegram} target="_blank">{new URL(telegram).host}</a>
+                        </div>
+                    </div>
+                )}
+                {instagram && (
+                    <div className={style.item}>
+                        <div className={style.label}>Instagram</div>
+                        <div className={style.text}>
+                            <a href={instagram} target="_blank">{new URL(instagram).host}</a>
+                        </div>
+                    </div>
+                )}
+                {twitter && (
+                    <div className={style.item}>
+                        <div className={style.label}>Twitter</div>
+                        <div className={style.text}>
+                            <a href={twitter} target="_blank">{new URL(twitter).host}</a>
+                        </div>
+                    </div>
+                )}
+                {facebook && (
+                    <div className={style.item}>
+                        <div className={style.label}>Facebook</div>
+                        <div className={style.text}>
+                            <a href={facebook} target="_blank">{new URL(facebook).host}</a>
+                        </div>
+                    </div>
+                )}
             </div>
         </div>
     )
 }
-export default ContactsPage
+
+export default ContactsPage;

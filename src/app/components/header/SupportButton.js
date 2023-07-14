@@ -1,10 +1,10 @@
 import style from './header.module.scss'
 
-const SupportButton = () => {
+const SupportButton = ({link}) => {
     return (
-        <button type={'button'} className={style.support_button}>
+        <a href={link} target={"_blank"} type={'button'} className={style.support_button}>
             Підтримати проект
-        </button>
+        </a>
     )
 }
 

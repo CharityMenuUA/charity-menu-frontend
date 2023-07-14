@@ -17,7 +17,17 @@ const createUrl = (path, options) => {
 export const getList = async (resource, options) => {
     const url = createUrl(`${BACKEND_API}/${resource}`, options)
     try {
-        return await fetch(url, {options, next: {revalidate: 60}})
+        return await fetch(url, {next: {revalidate: 60}, ...options})
+    } catch (err) {
+        throw new Error(err.message)
+    }
+}
+
+// get a list of records based on sort, filter, and pagination
+export const get = async (resource, options) => {
+    const url = createUrl(`${BACKEND_API}/${resource}`, options)
+    try {
+        return await fetch(url, {next: {revalidate: 60}, ...options})
     } catch (err) {
         throw new Error(err.message)
     }
@@ -27,13 +37,14 @@ export const getList = async (resource, options) => {
 export const getOne = async (resource, id, options) => {
     const url = createUrl(`${BACKEND_API}/${resource}/${id}`, options)
     try {
-        return await fetch(url, {options, next: {revalidate: 60}})
+        return await fetch(url, {next: {revalidate: 60}, ...options})
     } catch (err) {
         throw new Error(err.message)
     }
 }
 
 const dataProvider = {
+    get,
     getList,
     getOne,
     getMany: () => Promise, // get a list of records based on an array of ids
