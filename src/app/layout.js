@@ -22,7 +22,7 @@ const getConfig = async () => {
     }
 }
 
-export default async function RootLayout({children}) {
+const RootLayout = async ({children}) => {
     const config = await getConfig()
 
     return (
@@ -41,3 +41,5 @@ export default async function RootLayout({children}) {
         </html>
     )
 }
+
+export default RootLayout;

@@ -11,13 +11,20 @@ const createUrl = (path, options) => {
             url.searchParams.set(key, options.params[key])
         })
     }
-    return url
+    return url.toString()
 }
 // get a list of records based on sort, filter, and pagination
 export const getList = async (resource, options) => {
     const url = createUrl(`${BACKEND_API}/${resource}`, options)
     try {
-        return await fetch(url, {next: {revalidate: 60}, ...options})
+        return await fetch(url, {
+            next: {revalidate: 60},
+            ...options,
+            headers: {
+                "Content-Type": "application/json",
+                ...options.headers,
+            }
+        })
     } catch (err) {
         throw new Error(err.message)
     }
@@ -26,8 +33,47 @@ export const getList = async (resource, options) => {
 // get a list of records based on sort, filter, and pagination
 export const get = async (resource, options) => {
     const url = createUrl(`${BACKEND_API}/${resource}`, options)
+
     try {
-        return await fetch(url, {next: {revalidate: 60}, ...options})
+        return await fetch(url, {
+            next: {revalidate: 60},
+            ...options,
+        })
+    } catch (err) {
+        throw new Error(err.message)
+    }
+}
+
+export const create = async (resource, options) => {
+    const url = createUrl(`${BACKEND_API}/${resource}`, options)
+    options.headers = {...options.headers, "Content-Type": "application/json"}
+    try {
+        return await fetch(url, {
+            method: 'POST',
+            ...options,
+            body: JSON.stringify(options.body),
+            headers: {
+                "Content-Type": "application/json",
+                ...options.headers,
+            }
+        })
+    } catch (err) {
+        throw new Error(err.message)
+    }
+}
+
+export const update = async (resource, options) => {
+    const url = createUrl(`${BACKEND_API}/${resource}`, options)
+    try {
+        return await fetch(url, {
+            method: 'PUT',
+            ...options,
+            body: JSON.stringify(options.body),
+            headers: {
+                "Content-Type": "application/json",
+                ...options.headers,
+            }
+        })
     } catch (err) {
         throw new Error(err.message)
     }
@@ -37,7 +83,10 @@ export const get = async (resource, options) => {
 export const getOne = async (resource, id, options) => {
     const url = createUrl(`${BACKEND_API}/${resource}/${id}`, options)
     try {
-        return await fetch(url, {next: {revalidate: 60}, ...options})
+        return await fetch(url, {
+            next: {revalidate: 60},
+            ...options,
+        })
     } catch (err) {
         throw new Error(err.message)
     }
@@ -49,8 +98,8 @@ const dataProvider = {
     getOne,
     getMany: () => Promise, // get a list of records based on an array of ids
     getManyReference: () => Promise, // get the records referenced to another record, e.g. comments for a post
-    create: () => Promise, // create a record
-    update: () => Promise, // update a record based on a patch
+    create, // create a record
+    update, // update a record based on a patch
     updateMany: () => Promise, // update a list of records based on an array of ids and a common patch
     delete: () => Promise, // delete a record by id
     deleteMany: () => Promise, // delete a list of records based on an array of ids

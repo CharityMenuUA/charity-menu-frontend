@@ -3,10 +3,13 @@ import style from '@/app/(public)/chefs/[chefId]/[menuId]/style.module.scss'
 import {FacebookShareButton, TelegramShareButton, TwitterShareButton} from 'react-share'
 import PropTypes from "prop-types"
 import {useMemo} from "react"
+import {usePathname} from "next/navigation"
 
 const ShareButtons = (props) => {
     const {url} = props;
-    const shareUrl = useMemo(() => url || (typeof location !== "undefined" && location?.href), [url])
+    const pathname = usePathname()
+
+    const shareUrl = useMemo(() => url || pathname, [pathname, url])
     return (
         <div className={style.links}>
             <TwitterShareButton className={style.link} url={shareUrl}>

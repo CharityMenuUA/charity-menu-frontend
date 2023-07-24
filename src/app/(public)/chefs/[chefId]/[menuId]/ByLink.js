@@ -6,9 +6,9 @@ import PropTypes from 'prop-types'
 
 const ByLink = (props) => {
     const {chefId, menuId, className} = props
-    const {user} = useUserContext()
+    const {profile} = useUserContext()
 
-    return user ? (
+    return profile ? (
         <Link href={linkToCreateOrder({chefId, menuId})} className={className}>
             купити
         </Link>
