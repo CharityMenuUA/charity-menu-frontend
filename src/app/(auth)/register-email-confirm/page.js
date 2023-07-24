@@ -4,16 +4,30 @@ import style from '../auth.module.scss'
 import {useUserContext} from "@/app/providers/firebase/UserProvider"
 import {auth} from "@/app/providers/firebase/app"
 import {sendEmailVerification} from "firebase/auth"
-import {useState} from "react"
+import {useEffect, useState} from "react"
 
 const RegisterEmailConfirmPage = () => {
     const [isSend, setIsSend] = useState(false)
-    const {updateUser} = useUserContext()
-
-
+    const [time, setTime] = useState(0)
+    const {user, updateUser} = useUserContext()
+    const minutes = 5
+    useEffect(() => {
+        if (isSend) {
+            const timer = setInterval(() => {
+                if (time > 0) {
+                    setTime(time - 3)
+                    updateUser(true).catch(console.error)
+                } else {
+                    setIsSend(false)
+                }
+            }, 3000)
+            return () => clearInterval(timer)
+        }
+    }, [isSend, time, updateUser])
     const onClick = () => {
         sendEmailVerification(auth.currentUser)
             .then(() => {
+                setTime(60 * minutes)
                 setIsSend(true)
             })
     }
@@ -24,27 +38,14 @@ const RegisterEmailConfirmPage = () => {
             </h1>
             <div className={style.wrap}>
                 <div className={style.block}>
+                    <div className={style.text}>
+                        На <b>{user?.email}</b> буде надіслано лист з посиланням, за яким треба перейти, щоб
+                        підтвердити, що ви є власником цієї пошти
+                    </div>
 
-                    {!isSend ? (
-                        <>
-                            <div className={style.text}>
-                                Вам на пошту прийде лист
-                            </div>
-
-                            <div className={style.submit} onClick={onClick}>
-                                Відправити листа
-                            </div>
-                        </>
-                    ) : (
-                        <>
-                            <div className={style.text}>
-                                Вам надіслано листа для підтвердження пошти. Перевірте пошу.
-                            </div>
-                            <div className={style.submit} onClick={updateUser}>
-                                Оновити статус
-                            </div>
-                        </>
-                    )}
+                    <button type={"button"} className={style.submit} onClick={onClick} disabled={isSend}>
+                        Надіслати
+                    </button>
                 </div>
             </div>
         </div>
