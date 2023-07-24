@@ -9,6 +9,9 @@
 
   --width-wrapper: 1130px;
   --width-wrapper-large: 1360px;
+
+  --font-open-sans: --font-open-sans;
+  --font-unbounded: --font-unbounded;
   @include respond-to(t) {
     --width-wrapper: 100%;
     --width-wrapper-large: 100%;

@@ -1,0 +1,118 @@
+.page {
+  margin: 50px 0 100px;
+  padding: 0 10px;
+}
+
+.h1 {
+  text-align: center;
+  margin-bottom: 60px;
+  @include respond-to(m) {
+    margin-bottom: 35px;
+  }
+}
+
+.wrap {
+  margin: auto;
+  width: min(100%, 670px);
+  background: var(--color-white);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+  border-radius: 40px;
+  padding-bottom: 20px;
+}
+
+.block {
+  padding: 40px 115px;
+  border-top: 1px solid #E0E0E0;
+  @include respond-to(m) {
+    padding: 30px 20px;
+  }
+
+  &:first-child {
+    border-top: none;
+  }
+}
+
+.otherVariant {
+  border-bottom: 1px solid #E0E0E0;
+  padding-bottom: 40px;
+
+  .buttons {
+    display: flex;
+    gap: 20px;
+
+    .button {
+      @extend %buttonWhite;
+      width: 100%;
+      border: 1px solid #808080;
+      @include respond-to(t) {
+        height: 60px;
+      }
+
+      path {
+        transition: all .5s;
+      }
+
+      @include hover {
+        border-color: transparent;
+        path {
+          fill: #fff !important;
+        }
+      }
+    }
+  }
+}
+
+.form {
+  padding-top: 40px;
+}
+
+
+.text {
+  font-family: var(--font-open-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  text-align: center;
+  color: var(--color-black);
+  margin-bottom: 20px;
+}
+
+.forgot {
+  @extend %button;
+  color: #C2C2C2;
+  margin: -10px auto 0;
+
+  &:before {
+    background: var(--color-white);
+  }
+
+  @include hover {
+    color: var(--color-white);
+  }
+  height: 34px;
+  font-size: 11px;
+}
+
+.submit {
+  @extend %button;
+  width: 100%;
+  margin-top: 30px;
+  @include respond-to(t) {
+    height: 60px;
+    font-size: 16px;
+  }
+}
+
+.buttonWhite {
+  @extend %buttonWhite;
+  margin: auto;
+  min-width: 210px;
+  color: var(--color-black);
+  border: 1px solid #C2C2C2;
+  @include respond-to(t) {
+    height: 60px;
+    font-size: 16px;
+  }
+  @include hover {
+    border-color: transparent;
+  }
+}

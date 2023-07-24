@@ -1,0 +1,47 @@
+.h1 {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.layout {
+  margin: 0 auto;
+  width: min(100%, var(--width-wrapper));
+  display: flex;
+  justify-content: space-between;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  .link {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 20px;
+    color: #808080;
+    padding: 10px 20px;
+    transition: all .3s;
+    border-radius: 20px;
+    border: 1px solid transparent;
+
+    &.active {
+      color: var(--color-black);
+      background: #FFFFFF;
+      border: 1px solid #E0E0E0;
+    }
+
+    @include hover {
+      color: var(--color-black);
+      background: #FFFFFF;
+      border: 1px solid #E0E0E0;
+    }
+  }
+}
+
+.content {
+  width: 785px;
+}

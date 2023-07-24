@@ -1,0 +1,63 @@
+'use client'
+
+import style from './profile.module.scss'
+import {useUserContext} from "@/app/providers/firebase/UserProvider"
+import {usePathname, useRouter} from "next/navigation"
+import {auth} from "@/app/providers/firebase/app"
+import {signOut} from "firebase/auth"
+import {useEffect} from "react"
+import Link from "next/link"
+
+const ProfileLayout = (props) => {
+    const {children} = props
+    const {user, profile, loading} = useUserContext()
+    const router = useRouter()
+    const pathname = usePathname()
+
+    const signOutClick = async () => {
+        await signOut(auth)
+    }
+
+    useEffect(() => {
+        if (!loading && !user) {
+            router.push(`/login?next=${pathname}`)
+        } else if (!loading && (user && !profile)) {
+            router.push(`/register-complete?${next.toString()}`)
+        }
+    }, [loading, pathname, profile, router, user])
+
+    if (loading) return "Loading..."
+
+    if (!user) return "User not found!"
+
+    return (
+        <>
+            <h1 className={style.h1}>Мiй профіль</h1>
+            <div className={style.layout}>
+                <div className={style.menu}>
+                    <Link href={'/profile'} className={`${style.link} ${pathname === "/profile" ? style.active : ""}`}>
+                        Що я замовляв
+                    </Link>
+                    <Link href={'/profile/ordered'}
+                          className={`${style.link} ${pathname === "/profile/ordered" ? style.active : ""}`}>
+                        Замовили в мене
+                    </Link>
+                    <Link
+                        href={'/profile/settings'}
+                        className={`${style.link} ${pathname === "/profile/settings" ? style.active : ""}`}
+                    >
+                        Контактні дані
+                    </Link>
+                    <div onClick={signOutClick} className={style.link}>
+                        Вийти
+                    </div>
+                </div>
+                <div className={style.content}>
+                    {children}
+                </div>
+            </div>
+        </>
+    )
+}
+
+export default ProfileLayout

@@ -102,7 +102,12 @@ $desktop: 1800px;
   position: relative;
   overflow: hidden;
   z-index: 1;
+  cursor: pointer;
 
+  &:disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
 
   &:before, &:after {
     content: '';
