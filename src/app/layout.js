@@ -5,6 +5,7 @@ import Footer from './components/footer/Footer'
 import UserProvider from '@/app/providers/firebase/UserProvider'
 import ConfigProvider from "@/app/providers/config/ConfigProvider"
 import {get} from "@/helpers/dataProvider"
+import Breadcrumbs from "@/app/components/breadcrumbs/Breadcrumbs"
 
 const unbounded = Unbounded({subsets: ['cyrillic', 'latin'], variable: '--font-unbounded'})
 const openSans = Open_Sans({subsets: ['cyrillic', 'latin'], variable: '--font-open-sans'})
@@ -22,9 +23,9 @@ const getConfig = async () => {
     }
 }
 
-const RootLayout = async ({children}) => {
+const RootLayout = async (props) => {
+    const {children} = props
     const config = await getConfig()
-
     return (
         <html lang="en">
         <body className={`${unbounded.variable} ${openSans.variable}`}>
@@ -32,6 +33,7 @@ const RootLayout = async ({children}) => {
             <UserProvider>
                 <Header/>
                 <main>
+                    <Breadcrumbs/>
                     {children}
                 </main>
                 <Footer/>
@@ -42,4 +44,4 @@ const RootLayout = async ({children}) => {
     )
 }
 
-export default RootLayout;
+export default RootLayout

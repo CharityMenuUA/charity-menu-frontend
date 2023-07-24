@@ -17,13 +17,15 @@ const UserProvider = ({children}) => {
     const [user, setUser] = useState(null)
     const [profile, setProfile] = useState(null)
     const [loading, setLoading] = useState(true)
-    const updateUser = async () => {
+    const reloadUser = async () => {
+        await auth.currentUser.reload()
+    }
+    const updateUser = async (reload) => {
+        if (reload) await reloadUser();
         if (auth.currentUser) {
             const profile = await getProfile(auth.currentUser?.accessToken).catch(console.error)
+            if (profile.email) setProfile(profile)
             setUser(auth.currentUser)
-            if (profile.email) {
-                setProfile(profile)
-            }
             setLoading(false)
         } else {
             setUser(null)
@@ -32,7 +34,7 @@ const UserProvider = ({children}) => {
     }
 
     useEffect(() => {
-        auth.onAuthStateChanged(updateUser)
+        auth.onAuthStateChanged(() => updateUser())
     }, [])
 
     const value = useMemo(() => ({loading, user, profile, updateUser}), [loading, profile, user])

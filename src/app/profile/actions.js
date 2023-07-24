@@ -5,7 +5,7 @@ import {create, update, get} from "@/helpers/dataProvider"
 export const setProfile = async (accessToken, data) => {
     try {
         return await create(`/profile`, {
-            body: JSON.stringify(data),
+            body: data,
             cache: 'no-store',
             headers: {
                 "Authorization": `Bearer ${accessToken}`

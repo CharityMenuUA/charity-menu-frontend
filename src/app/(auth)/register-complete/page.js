@@ -28,7 +28,7 @@ const RegisterCompletePage = () => {
         } else if ((user && profile) && next) {
             return router.push(next)
         } else if ((user && profile) && !next) {
-            router.push('/profile')
+            router.push('/profile/settings')
         }
     }, [next, profile, router, search, user])
 

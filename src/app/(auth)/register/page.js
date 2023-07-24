@@ -6,11 +6,13 @@ import Input from "@/app/components/input/Input"
 import Link from "next/link"
 import OtherSignInMethods from "@/app/(auth)/OtherSignInMethods"
 import {auth} from "@/app/providers/firebase/app"
-import {createUserWithEmailAndPassword, updateProfile} from 'firebase/auth'
+import {createUserWithEmailAndPassword} from 'firebase/auth'
 import Checkbox from "@/app/components/input/Checkbox"
 import {setProfile} from "@/app/profile/actions"
+import {useUserContext} from "@/app/providers/firebase/UserProvider"
 
 const RegisterPage = () => {
+    const {updateUser} = useUserContext()
     const {handleSubmit, register, watch} = useForm()
 
     const userAgreeToTerms = watch("user_agree_to_terms", false)
@@ -20,16 +22,10 @@ const RegisterPage = () => {
 
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
-                updateProfile(userCredential.user, {
-                    displayName: name
-                }).then(() => {
-                    const {accessToken} = userCredential.user
-                    setProfile(accessToken, {name}).catch((err) => {
-                        console.error({...err})
-                    })
-                }).catch((err) => {
+                const {accessToken} = userCredential.user
+                setProfile(accessToken, {name}).catch((err) => {
                     console.error({...err})
-                })
+                }).then(() => updateUser())
             })
             .catch((err) => {
                 console.error({...err})
