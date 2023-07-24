@@ -46,10 +46,8 @@ const RegisterEmailConfirmPage = () => {
                     <button type={"button"} className={style.submit} onClick={onClick} disabled={isSend}>
                         Надіслати
                     </button>
-                </div>
-                <div className={style.block}>
                     {isSend && (
-                        <div className={style.text}>
+                        <div className={style.minitext}>
                             Повторна відправка буде доступна через 5 хвилин
                         </div>
                     )}
