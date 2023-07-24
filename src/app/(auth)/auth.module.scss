@@ -75,7 +75,12 @@
   color: var(--color-black);
   margin-bottom: 20px;
 }
-
+.minitext {
+  @extend .text;
+  font-size: 12px;
+  margin-top: 20px;
+  margin-bottom: 0;
+}
 .forgot {
   @extend %button;
   color: #C2C2C2;
