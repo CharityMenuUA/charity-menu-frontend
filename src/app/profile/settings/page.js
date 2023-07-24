@@ -13,7 +13,7 @@ const SettingsPage = () => {
     const {handleSubmit, register} = useForm({defaultValues: profile})
 
     const onSubmit = async (data) => {
-        await updateProfile(user.accessToken, data).then(updateUser)
+        await updateProfile(user.accessToken, data).then(() => updateUser())
     }
     return (
         <div className={style.wrap}>
