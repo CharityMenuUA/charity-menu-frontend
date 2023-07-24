@@ -20,10 +20,6 @@ export const getList = async (resource, options) => {
         return await fetch(url, {
             next: {revalidate: 60},
             ...options,
-            headers: {
-                "Content-Type": "application/json",
-                ...options.headers,
-            }
         })
     } catch (err) {
         throw new Error(err.message)
