@@ -1,6 +1,7 @@
 import style from './chef.module.scss'
 import {getList} from '@/helpers/dataProvider'
 import ChefItem from "@/app/components/chef-item/ChefItem"
+import Switcher from "@/app/components/switcher/Switcher"
 
 const getChef = async () => {
     try {
@@ -13,11 +14,16 @@ const getChef = async () => {
 const ChefsPage = async (props) => {
     const {params} = props
     const {chefs} = await getChef(params)
+
     return (
-        <div className={style.chefList}>
-            {chefs.map((chef) => (
-                <ChefItem  key={chef.id} {...chef}/>
-            ))}
+        <div>
+            <h1>Всі автори</h1>
+            <Switcher/>
+            <div className={style.chefList}>
+                {chefs.map((chef) => (
+                    <ChefItem key={chef.id} {...chef}/>
+                ))}
+            </div>
         </div>
     )
 }

@@ -24,7 +24,7 @@ const getConfig = async () => {
 }
 
 const RootLayout = async (props) => {
-    const {children} = props
+    const {children, params} = props
     const config = await getConfig()
     return (
         <html lang="en">
@@ -33,7 +33,7 @@ const RootLayout = async (props) => {
             <UserProvider>
                 <Header/>
                 <main>
-                    <Breadcrumbs/>
+                    <Breadcrumbs params={params}/>
                     {children}
                 </main>
                 <Footer/>
