@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 
 const getChefs = async () => {
     try {
-        return  await getList('/chefs', {
+        return await getList('/chefs', {
             params: {
                 pageSize: 7,
             }
@@ -37,6 +37,7 @@ const OtherChefs = async (props) => {
 }
 
 OtherChefs.propTypes = {
-    excludeId: PropTypes.number
+    excludeId: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
 }
+
 export default OtherChefs
