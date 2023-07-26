@@ -9,7 +9,7 @@ const pages = {
     },
     menu: {
         name: 'Всі пропозиції',
-        href: 'menu'
+        href: 'chefs?menu=1'
     },
     profile: {
         name: 'Мiй профіль',

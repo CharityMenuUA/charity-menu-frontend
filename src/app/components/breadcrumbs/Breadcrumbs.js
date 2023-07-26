@@ -5,9 +5,16 @@ import Link from "next/link"
 import {useEffect, useState} from "react"
 import {getChef, getMenuItem} from "@/app/components/breadcrumbs/actions"
 import pages from "@/app/components/breadcrumbs/routing"
+import {useSwitcherContext} from "@/app/components/switcher/Switcher"
 
 
-const getLink = (cur) => {
+const getLink = (cur, value) => {
+    if (cur === pages.chefs.href && value) {
+        return {
+            name: pages.menu.name,
+            href: `${pages.menu.href}`
+        }
+    }
     if (pages[cur]) {
         return {
             name: pages[cur].name,
@@ -23,10 +30,10 @@ const getLink = (cur) => {
 const Breadcrumbs = () => {
     const pathname = usePathname()
     const params = useParams()
+    const {value} = useSwitcherContext()
     const [chef, setChef] = useState()
     const [menu, setMenu] = useState()
-
-    const {chefId, menuId} = params;
+    const {chefId, menuId} = params
 
     useEffect(() => {
         if (chefId) getChef({chefId}).then((e) => setChef(e))
@@ -35,9 +42,9 @@ const Breadcrumbs = () => {
 
     const pathList = pathname.split('/')
 
-    const links = pathList.reduce((acc, cur, key) => {
+    const links = pathList.reduce((acc, cur) => {
         const prevLink = acc[acc.length - 1]
-        const link = getLink(cur, key, {chef, menu})
+        const link = getLink(cur, value)
         link.href = `${prevLink?.href || ''}${link.href}`
         return [...acc, link]
     }, [])

@@ -6,6 +6,7 @@ import UserProvider from '@/app/providers/firebase/UserProvider'
 import ConfigProvider from "@/app/providers/config/ConfigProvider"
 import {get} from "@/helpers/dataProvider"
 import Breadcrumbs from "@/app/components/breadcrumbs/Breadcrumbs"
+import SwitcherProvider from "@/app/components/switcher/Switcher"
 
 const unbounded = Unbounded({subsets: ['cyrillic', 'latin'], variable: '--font-unbounded'})
 const openSans = Open_Sans({subsets: ['cyrillic', 'latin'], variable: '--font-open-sans'})
@@ -34,12 +35,14 @@ const RootLayout = async (props) => {
         <body className={`${unbounded.variable} ${openSans.variable}`}>
         <ConfigProvider config={config}>
             <UserProvider>
-                <Header/>
-                <main>
-                    <Breadcrumbs params={params}/>
-                    {children}
-                </main>
-                <Footer/>
+                <SwitcherProvider>
+                    <Header/>
+                    <main>
+                        <Breadcrumbs params={params}/>
+                        {children}
+                    </main>
+                    <Footer/>
+                </SwitcherProvider>
             </UserProvider>
         </ConfigProvider>
         </body>
