@@ -77,7 +77,7 @@ const ChefIdPage = async (props) => {
                             />
                         </div>
                         <div className={`${style.count} ${style.tdb}`}>
-                            {pluralize(chef.menuItemsNumber, ['лот', 'лота', 'лотів'])}
+                            {pluralize(chef.menuItemsNumber, ['пропозиція', 'пропозиції', 'пропозицій'])}
                         </div>
                     </div>
                     <div className={style.right}>
@@ -155,7 +155,7 @@ const ChefIdPage = async (props) => {
                     </div>
                 </div>
                 <div className={`${style.count} ${style.tdn}`}>
-                    {pluralize(chef.menuItemsNumber, ['лот', 'лота', 'лотів'])}
+                    {pluralize(chef.menuItemsNumber, ['пропозиція', 'пропозиції', 'пропозицій'])}
                 </div>
             </section>
             <section className={style.orders}>

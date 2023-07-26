@@ -25,7 +25,7 @@ const ChefItem = (props) => {
                     {name}
                 </div>
                 <div className={style.count}>
-                    {pluralize(menuItemsNumber, ['лот', 'лота', 'лотів'])}
+                    {pluralize(menuItemsNumber, ['пропозиція', 'пропозиції', 'пропозицій'])}
                 </div>
             </div>
             <div className={style.button}>

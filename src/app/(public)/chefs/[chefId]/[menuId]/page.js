@@ -77,7 +77,7 @@ const MenuIdPage = async (props) => {
                             {chef.name}
                         </div>
                         <div className={style.count}>
-                            {pluralize(chef.menuItemsNumber, ['лот', 'лота', 'лотів'])}
+                            {pluralize(chef.menuItemsNumber, ['пропозиція', 'пропозиції', 'пропозицій'])}
                         </div>
                     </div>
                 </Link>
