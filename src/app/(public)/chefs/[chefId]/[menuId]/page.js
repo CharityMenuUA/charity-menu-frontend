@@ -29,6 +29,17 @@ const getChef = async (params) => {
     }
 }
 
+export const generateMetadata = async (props) => {
+    const {params: {menuId, chefId}} = props
+    const menu = await getMenuItem({menuId})
+    const chef = await getChef({chefId})
+
+    return {
+        title: `${chef.name} пропонує "${menu.title}" за ₴${menu.price} для ЗСУ`,
+        description: menu.description
+    }
+}
+
 const MenuIdPage = async (props) => {
     const {params: {chefId, menuId}} = props
     const menu = await getMenuItem({menuId})

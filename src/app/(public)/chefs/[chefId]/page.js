@@ -7,6 +7,7 @@ import Image from 'next/image'
 import Accumulated from '@/app/components/accumulated/Accumulated'
 import {pluralize} from "@/app/components/helpers/pluralLots"
 
+
 const getChef = async (params) => {
     const {chefId} = params
     try {
@@ -34,6 +35,14 @@ const getAccumulated = async (params) => {
     }
 }
 
+export const generateMetadata = async (props) => {
+    const {params: {chefId}} = props
+    const chef = await getChef({chefId})
+    return {
+        title: `${chef.name} має для вас ${pluralize(chef.menuItemsNumber, ['пропозиція', 'пропозиції', 'пропозицій'])}.`
+    }
+}
+
 
 const ChefIdPage = async (props) => {
     const {params: {chefId}} = props
@@ -49,16 +58,16 @@ const ChefIdPage = async (props) => {
             <section className={style.head}>
                 <h1 className={style.h1}>{name}</h1>
                 <div className={style.tdb}>
-                    <Accumulated amount={accumulated.amount} />
+                    <Accumulated amount={accumulated.amount}/>
                 </div>
                 <div className={style.content}>
                     {description && (
                         <div className={style.left}>
                             <svg viewBox="0 0 44 31">
                                 <path
-                                    d="M0.866211 18.1146H9.92353L3.88527 30.191H12.9426L18.9808 18.1146V0H0.866211V18.1146Z" />
+                                    d="M0.866211 18.1146H9.92353L3.88527 30.191H12.9426L18.9808 18.1146V0H0.866211V18.1146Z"/>
                                 <path
-                                    d="M25.0192 0V18.1146H34.0765L28.0382 30.191H37.0955L43.1338 18.1146V0H25.0192Z" />
+                                    d="M25.0192 0V18.1146H34.0765L28.0382 30.191H37.0955L43.1338 18.1146V0H25.0192Z"/>
                             </svg>
                             {description}
                         </div>
@@ -160,16 +169,16 @@ const ChefIdPage = async (props) => {
             </section>
             <section className={style.orders}>
                 <div className={style.tdn}>
-                    <Accumulated amount={accumulated.amount} />
+                    <Accumulated amount={accumulated.amount}/>
                 </div>
                 <h2 className="h2">Що може зробити {chef.name}</h2>
                 <div className={style.orders_list}>
                     {menu.map((item) => (
-                        <MenuItem key={item.id} {...item} chefName={chef.name} chefPhoto={chef.photo} />
+                        <MenuItem key={item.id} {...item} chefName={chef.name} chefPhoto={chef.photo}/>
                     ))}
                 </div>
             </section>
-            <OtherChefs excludeId={chefId} />
+            <OtherChefs excludeId={chefId}/>
         </div>
     )
 }
