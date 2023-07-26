@@ -1,0 +1,80 @@
+.h1 {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.chefList {
+  width: min(100%, var(--width-wrapper));
+  margin: 20px auto 40px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  @include respond-to(m) {
+    padding: 0 10px;
+  }
+}
+
+.menuList {
+  width: min(100%, var(--width-wrapper));
+  margin: 20px auto 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  @include respond-to(m) {
+    padding: 0 10px;
+  }
+}
+
+.buttonMore {
+  @extend %buttonWhite;
+  margin: 40px auto 0;
+}
+
+.search {
+  margin: 40px auto 0;
+  display: flex;
+  width: min(100%, var(--width-wrapper));
+  border-top: 1px solid #E0E0E0;
+  border-bottom: 1px solid #E0E0E0;
+  padding: 8px 0;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+
+  &:before {
+    content: "";
+    display: block;
+    width: 1px;
+    height: 100%;
+    flex: 1;
+  }
+  @include respond-to(t) {
+    padding: 8px 10px;
+    justify-content: center;
+    &:before {
+      display: none;
+    }
+  }
+  @include respond-to(m) {
+    flex-direction: column;
+    margin-bottom: 100px;
+
+  }
+
+  .sort {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    @include respond-to(t) {
+      justify-content: center;
+      flex: 0;
+    }
+    @include respond-to(m) {
+      margin-bottom: -70px;
+      margin-top: 20px;
+    }
+  }
+}

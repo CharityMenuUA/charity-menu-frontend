@@ -1,11 +1,15 @@
 import style from './homepage.module.scss'
-import HomeChefsAndOffers from '@/app/(homepage)/HomeChefsAndOffers'
+import HomeChefsAndOffers from '@/app/(public)/HomeChefsAndOffers'
 import PopularMenuItems from "@/app/components/popular-menu-items/PopularMenuItems"
 import RandomMenuItem from "@/app/components/random-menu-item/RandomMenuItem"
 import {getPopularMenuItem} from "@/app/components/popular-menu-items/actions"
+import {getChef, getMenu} from "@/app/(public)/actions"
 
 const Home = async () => {
-    const {menuItems} = await getPopularMenuItem()
+    const {chefs} = await getChef()
+    const {menuItems} = await getMenu()
+    const {menuItems: menuPopularItems} = await getPopularMenuItem()
+
     return (
         <div className={style.homepage}>
             <section className={style.head}>
@@ -16,9 +20,9 @@ const Home = async () => {
                     Благодійний проект, гроші з якого йдуть на допомогу Україні.
                 </div>
             </section>
-            <HomeChefsAndOffers/>
+            <HomeChefsAndOffers chefs={chefs} menuItems={menuItems}/>
             <div className={style.popularRandom}>
-                <PopularMenuItems menuItems={menuItems}/>
+                <PopularMenuItems menuItems={menuPopularItems}/>
                 <RandomMenuItem/>
             </div>
         </div>

@@ -58,7 +58,7 @@ const Header = () => {
                 )}
 
 
-                <Link href={'/menu'} type={'button'} className={style.offers}>
+                <Link href={'/chefs?menu=1'} type={'button'} className={style.offers}>
                     Пропозиції
                 </Link>
             </div>

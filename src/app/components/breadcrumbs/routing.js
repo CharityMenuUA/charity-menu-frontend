@@ -4,7 +4,7 @@ const pages = {
         href: '',
     },
     chefs: {
-        name: 'Всі виконавці',
+        name: 'Всі автори',
         href: 'chefs'
     },
     menu: {

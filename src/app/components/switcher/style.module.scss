@@ -1,0 +1,55 @@
+.switch {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+
+  .switcher {
+    width: 80px;
+    //height: 50px;
+    border: 1px solid #E0E0E0;
+    border-radius: 84px;
+    position: relative;
+    background: #FFFFFF;
+    padding: 5px;
+    cursor: pointer;
+
+    svg {
+      transition: all .3s;
+      display: block;
+      width: 40px;
+      height: 40px;
+      border-radius: 100%;
+      background: linear-gradient(47.33deg, #F12711 -4.41%, #F5AF19 100%);
+      box-shadow: 0 13.3333px 26.6667px rgba(0, 0, 0, 0.1);
+    }
+
+    &.active {
+      svg {
+        transform: translateX(27px)
+      }
+    }
+  }
+}
+
+.text {
+  font-weight: 400;
+  font-size: 21px;
+  line-height: 26px;
+  color: #000000;
+  width: 100%;
+  cursor: pointer;
+  @include respond-to(t) {
+    font-size: 13px;
+  }
+
+  &:first-child {
+    text-align: right;
+  }
+
+  &.active {
+    font-weight: 700;
+    pointer-events: none;
+  }
+}
