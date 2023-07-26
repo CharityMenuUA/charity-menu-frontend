@@ -1,29 +1,18 @@
-import style from './chef.module.scss'
-import {getList} from '@/helpers/dataProvider'
-import ChefItem from "@/app/components/chef-item/ChefItem"
-import Switcher from "@/app/components/switcher/Switcher"
+import Chefs from "./Chefs"
+import Menu from "./Menu"
+import {getChef, getMenu} from "@/app/(public)/chefs/actions"
+import Title from "@/app/(public)/chefs/Title"
 
-const getChef = async () => {
-    try {
-        return await getList(`/chefs`).then(data => data.json())
-    } catch {
-        return {chefs: []}
-    }
-}
 
-const ChefsPage = async (props) => {
-    const {params} = props
-    const {chefs} = await getChef(params)
+const ChefsPage = async () => {
+    const chefs = await getChef({})
+    const menu = await getMenu({})
 
     return (
         <div>
-            <h1>Всі автори</h1>
-            <Switcher/>
-            <div className={style.chefList}>
-                {chefs.map((chef) => (
-                    <ChefItem key={chef.id} {...chef}/>
-                ))}
-            </div>
+            <Title/>
+            <Chefs data={chefs}/>
+            <Menu data={menu}/>
         </div>
     )
 }
