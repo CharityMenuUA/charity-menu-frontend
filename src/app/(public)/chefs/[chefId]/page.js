@@ -5,6 +5,7 @@ import OtherChefs from '@/app/components/other-chefs/OtherChefs'
 import {notFound} from 'next/navigation'
 import Image from 'next/image'
 import Accumulated from '@/app/components/accumulated/Accumulated'
+import {pluralize} from "@/app/components/helpers/pluralLots"
 
 const getChef = async (params) => {
     const {chefId} = params
@@ -76,7 +77,7 @@ const ChefIdPage = async (props) => {
                             />
                         </div>
                         <div className={`${style.count} ${style.tdb}`}>
-                            {chef.menuItemsNumber} лотів
+                            {pluralize(chef.menuItemsNumber, ['лот', 'лота', 'лотів'])}
                         </div>
                     </div>
                     <div className={style.right}>
@@ -154,7 +155,7 @@ const ChefIdPage = async (props) => {
                     </div>
                 </div>
                 <div className={`${style.count} ${style.tdn}`}>
-                    {chef.menuItemsNumber} лотів
+                    {pluralize(chef.menuItemsNumber, ['лот', 'лота', 'лотів'])}
                 </div>
             </section>
             <section className={style.orders}>

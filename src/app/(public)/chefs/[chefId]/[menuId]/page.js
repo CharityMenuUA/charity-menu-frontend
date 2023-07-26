@@ -9,6 +9,7 @@ import Image from 'next/image'
 import PopularMenuItems from "@/app/components/popular-menu-items/PopularMenuItems"
 import RandomMenuItem from "@/app/components/random-menu-item/RandomMenuItem"
 import {getPopularMenuItem} from "@/app/components/popular-menu-items/actions"
+import {pluralize} from "@/app/components/helpers/pluralLots"
 
 const getMenuItem = async (params) => {
     const {menuId} = params
@@ -76,7 +77,7 @@ const MenuIdPage = async (props) => {
                             {chef.name}
                         </div>
                         <div className={style.count}>
-                            {chef.menuItemsNumber} лотів
+                            {pluralize(chef.menuItemsNumber, ['лот', 'лота', 'лотів'])}
                         </div>
                     </div>
                 </Link>

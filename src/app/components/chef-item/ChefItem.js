@@ -2,6 +2,7 @@ import style from './chefItem.module.scss'
 import PropTypes from 'prop-types'
 import Link from 'next/link'
 import Image from 'next/image'
+import {pluralize} from "@/app/components/helpers/pluralLots"
 
 const ChefItem = (props) => {
     const {id, photo, menuItemsNumber, name} = props
@@ -24,7 +25,7 @@ const ChefItem = (props) => {
                     {name}
                 </div>
                 <div className={style.count}>
-                    {menuItemsNumber} лотів
+                    {pluralize(menuItemsNumber, ['лот', 'лота', 'лотів'])}
                 </div>
             </div>
             <div className={style.button}>
