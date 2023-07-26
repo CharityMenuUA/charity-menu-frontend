@@ -4,7 +4,7 @@ import style from './style.module.scss'
 import MenuItem from '@/app/components/menu-item/MenuItem'
 import {useSwitcherContext} from "@/app/components/switcher/Switcher"
 import {useEffect, useState} from "react"
-import {getMenu} from "@/app/(public)/chefs/actions"
+import {getMenu} from "@/app/(public)/chefs/(chefs-and-menu)/actions"
 import SearchInput from "@/app/components/input/SearchInput"
 import Select from "@/app/components/input/Select"
 

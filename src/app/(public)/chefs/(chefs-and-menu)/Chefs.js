@@ -1,10 +1,10 @@
 "use client"
 
 import {useSwitcherContext} from "@/app/components/switcher/Switcher"
-import style from "@/app/(public)/chefs/style.module.scss"
+import style from "@/app/(public)/chefs/(chefs-and-menu)/style.module.scss"
 import ChefItem from "@/app/components/chef-item/ChefItem"
 import {useEffect, useState} from "react"
-import {getChef} from "@/app/(public)/chefs/actions"
+import {getChef} from "@/app/(public)/chefs/(chefs-and-menu)/actions"
 import SearchInput from "@/app/components/input/SearchInput"
 import Select from "@/app/components/input/Select"
 
