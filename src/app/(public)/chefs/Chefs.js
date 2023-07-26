@@ -40,9 +40,6 @@ const Chefs = (props) => {
                 setCurrentPage(0)
             })
         } else {
-            if (data.chefs) {
-                setChefItems(data.chefs)
-            }
             setCurrentPage(0)
             setSearch('')
         }

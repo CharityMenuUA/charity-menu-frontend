@@ -1,16 +1,15 @@
 'use client'
 import style from './homepage.module.scss'
 import Link from 'next/link'
-import {Switcher, useSwitcherContext} from "@/app/components/switcher/Switcher"
-import HomeChefs from "@/app/(public)/HomeChefs"
-import HomeMenu from "@/app/(public)/HomeMenu"
+import {useSwitcherContext} from "@/app/components/switcher/Switcher"
+import HomeChefs from "@/app/(public)/(Homepage)/HomeChefs"
+import HomeMenu from "@/app/(public)/(Homepage)/HomeMenu"
 
 const HomeChefsAndOffers = (props) => {
     const {chefs, menuItems} = props
     const {value} = useSwitcherContext()
     return (
         <>
-            <Switcher/>
             <div className={style.content}>
                 <HomeChefs chefs={chefs}/>
                 <HomeMenu menuItems={menuItems}/>
