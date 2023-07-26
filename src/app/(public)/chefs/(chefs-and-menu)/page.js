@@ -1,6 +1,6 @@
 import Chefs from "./Chefs"
 import Menu from "./Menu"
-import {getChef, getMenu} from "@/app/(public)/chefs/actions"
+import {getChef, getMenu} from "@/app/(public)/chefs/(chefs-and-menu)/actions"
 
 const ChefsPage = async () => {
     const chefs = await getChef({})
