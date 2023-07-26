@@ -42,9 +42,6 @@ const Menu = (props) => {
 
             })
         } else {
-            if (data.menuItems) {
-                setMenuItems(data.menuItems)
-            }
             setCurrentPage(0)
             setSearch('')
         }
