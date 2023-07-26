@@ -2,7 +2,7 @@
 
 import style from './style.module.scss'
 import {createContext, useContext} from "react"
-import {usePathname, useRouter, useSearchParams} from "next/navigation"
+import {usePathname, useSearchParams, useRouter} from "next/navigation"
 
 const SwitcherContext = createContext({
     value: false,
@@ -31,10 +31,10 @@ export const Switcher = () => {
         const search = new URLSearchParams(location.search)
         if (value) {
             search.delete('menu')
-            router.push(`${pathname}?${search.toString()}`)
+            router.replace(`${pathname}?${search.toString()}`, {scroll: false})
         } else {
-            search.set('menu', 1)
-            router.push(`${pathname}?${search.toString()}`)
+            search.set('menu', "1")
+            router.replace(`${pathname}?${search.toString()}`, {scroll: false})
         }
     }
     return (
@@ -42,7 +42,7 @@ export const Switcher = () => {
             <div onClick={onClick} className={`${style.text} ${!value ? style.active : ''}`}>
                 Автори
             </div>
-            <div onClick={onClick} >
+            <div onClick={onClick}>
                 <div className={`${style.switcher} ${value ? style.active : ''}`}>
                     {!value ? (
                         <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
