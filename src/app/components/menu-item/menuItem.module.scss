@@ -85,6 +85,7 @@
   height: 66px;
 
   @include respond-to(m) {
+    height: auto;
     display: grid;
     gap: 10px;
     padding: 20px;
