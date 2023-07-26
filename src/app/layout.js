@@ -11,7 +11,10 @@ const unbounded = Unbounded({subsets: ['cyrillic', 'latin'], variable: '--font-u
 const openSans = Open_Sans({subsets: ['cyrillic', 'latin'], variable: '--font-open-sans'})
 
 export const metadata = {
-    title: 'Донат меню',
+    title: {
+        template: '%s - Донат меню - платформа донатів на ЗСУ',
+        default: 'Донат меню - платформа донатів на ЗСУ',
+    },
     description: 'Донат меню - платформа донатів на ЗСУ',
 }
 

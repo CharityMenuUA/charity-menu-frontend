@@ -9,6 +9,7 @@ import Image from 'next/image'
 import PopularMenuItems from "@/app/components/popular-menu-items/PopularMenuItems"
 import RandomMenuItem from "@/app/components/random-menu-item/RandomMenuItem"
 import {getPopularMenuItem} from "@/app/components/popular-menu-items/actions"
+import {pluralize} from "@/app/components/helpers/pluralLots"
 
 const getMenuItem = async (params) => {
     const {menuId} = params
@@ -25,6 +26,17 @@ const getChef = async (params) => {
         return await getOne(`chefs`, chefId).then(data => data.json())
     } catch {
         return notFound()
+    }
+}
+
+export const generateMetadata = async (props) => {
+    const {params: {menuId, chefId}} = props
+    const menu = await getMenuItem({menuId})
+    const chef = await getChef({chefId})
+
+    return {
+        title: `${chef.name} пропонує "${menu.title}" за ₴${menu.price} для ЗСУ`,
+        description: menu.description
     }
 }
 
@@ -76,7 +88,7 @@ const MenuIdPage = async (props) => {
                             {chef.name}
                         </div>
                         <div className={style.count}>
-                            {chef.menuItemsNumber} лотів
+                            {pluralize(chef.menuItemsNumber, ['пропозиція', 'пропозиції', 'пропозицій'])}
                         </div>
                     </div>
                 </Link>
