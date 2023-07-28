@@ -8,6 +8,8 @@
   padding: 0 20px;
   transition: all .2s;
   font-size: 16px;
+  font-family: var(--font-unbounded);
+  font-weight: 700;
 
   &_fieldset {
     display: block;
@@ -48,6 +50,17 @@
       opacity: 1;
       visibility: visible;
     }
+  }
+}
+
+.textarea {
+  @extend .input;
+  min-height: 73px;
+  padding-top: 27px;
+
+  &:not(:placeholder-shown) {
+    padding-top: 37px;
+    padding-bottom: 10px;
   }
 }
 
@@ -127,6 +140,7 @@
   @include respond-to(m) {
     width: 100%;
   }
+
   svg {
     position: absolute;
     top: 10px;
@@ -206,6 +220,7 @@
       min-width: 100%;
       white-space: nowrap;
       padding: 10px 0;
+      overflow: hidden;
     }
 
     .option {
@@ -223,6 +238,91 @@
       justify-content: center;
       align-items: center;
       cursor: pointer;
+
+      @include hover {
+        background: #F2F2F2;
+        color: #000;
+      }
+    }
+  }
+
+  .selectForm {
+    width: 100%;
+    border: 1px solid #808080;
+    border-radius: 20px;
+    height: 73px;
+    padding: 0 20px;
+    transition: all .2s;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 16px;
+    text-align: center;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #000000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    background: #FFFFFF;
+    margin-bottom: 20px;
+    @include respond-to(t) {
+      pointer-events: none;
+    }
+
+    &.open {
+      svg {
+        transform: rotate(180deg);
+      }
+    }
+
+    svg {
+      width: 40px;
+      flex: 0 0 auto;
+    }
+
+    span {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      position: relative;
+      font-family: var(--font-unbounded);
+    }
+
+    .optionsForm {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-top: 5px;
+      transform: translateX(-50%);
+      z-index: 99;
+      background: #FFFFFF;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid #BDBDBD;
+      filter: drop-shadow(0px 2px 20px rgba(0, 0, 0, 0.05));
+      border-radius: 18px;
+      min-width: 100%;
+      white-space: nowrap;
+      padding: 10px 0;
+      overflow: hidden;
+    }
+
+    .optionForm {
+      font-style: normal;
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 16px;
+      text-align: center;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #808080;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      cursor: pointer;
+      padding: 20px 20px;
 
       @include hover {
         background: #F2F2F2;

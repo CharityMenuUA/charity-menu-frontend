@@ -7,7 +7,7 @@ const SearchInput = (props) => {
         <div className={style.searchWrap}>
             <input
                 value={value}
-                type={'search'}
+                type={'text'}
                 id={name}
                 name={name}
                 onChange={onChange}
