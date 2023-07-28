@@ -6,7 +6,8 @@ import ChefItem from "@/app/components/chef-item/ChefItem"
 import {useEffect, useState} from "react"
 import {getChef} from "@/app/(public)/chefs/(chefs-and-menu)/actions"
 import SearchInput from "@/app/components/input/SearchInput"
-import Select from "@/app/components/input/Select"
+import SelectSort from "@/app/components/input/SelectSort"
+import {chefsSortValues} from "@/app/(public)/chefs/(chefs-and-menu)/sortValues"
 
 
 const Chefs = (props) => {
@@ -16,17 +17,8 @@ const Chefs = (props) => {
     const [currentPage, setCurrentPage] = useState(0)
     const [totalPages, setTotalPages] = useState(data.totalPages)
     const [search, setSearch] = useState('')
+    const sortValues = chefsSortValues
 
-    const sortValues = [
-        {name: "За популярністю від більшого", value: 'POPULARITY-DESC'},
-        {name: "За популярністю від меншого", value: 'POPULARITY-ASC'},
-        {name: "За кількістю пропозицій від більшого", value: 'MENU_ITEMS_NUMBER-DESC'},
-        {name: "За кількістю пропозицій від меншого", value: 'MENU_ITEMS_NUMBER-ASC'},
-        {name: "За зборами від більшого", value: 'ALIAS-DESC'},
-        {name: "За зборами від меншого", value: 'ALIAS-ASC'},
-        {name: "За ім'ям А-Я", value: 'NAME-ASC'},
-        {name: "За ім'ям Я-А", value: 'NAME-DESC'},
-    ]
     const [sort, setSort] = useState(sortValues[0].value)
 
     useEffect(() => {
@@ -75,7 +67,7 @@ const Chefs = (props) => {
                     onClear={() => setSearch('')}
                 />
                 <div className={style.sort}>
-                    <Select name={"sort"} value={sort} options={sortValues} onChange={onChangeSort}/>
+                    <SelectSort name={"sort"} value={sort} options={sortValues} onChange={onChangeSort}/>
                 </div>
             </div>
             {chefItems.length ? (

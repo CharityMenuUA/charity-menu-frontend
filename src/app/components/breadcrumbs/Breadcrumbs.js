@@ -3,7 +3,7 @@ import style from './breadcrumbs.module.scss'
 import {useParams, usePathname} from "next/navigation"
 import Link from "next/link"
 import {useEffect, useState} from "react"
-import {getChef, getMenuItem} from "@/app/components/breadcrumbs/actions"
+import {getChef, getMenuItem} from "@/app/components/actions"
 import pages from "@/app/components/breadcrumbs/routing"
 import {useSwitcherContext} from "@/app/components/switcher/Switcher"
 

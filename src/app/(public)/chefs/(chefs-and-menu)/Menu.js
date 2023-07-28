@@ -6,7 +6,8 @@ import {useSwitcherContext} from "@/app/components/switcher/Switcher"
 import {useEffect, useState} from "react"
 import {getMenu} from "@/app/(public)/chefs/(chefs-and-menu)/actions"
 import SearchInput from "@/app/components/input/SearchInput"
-import Select from "@/app/components/input/Select"
+import SelectSort from "@/app/components/input/SelectSort"
+import {menuSortValues} from "@/app/(public)/chefs/(chefs-and-menu)/sortValues"
 
 
 const Menu = (props) => {
@@ -16,17 +17,7 @@ const Menu = (props) => {
     const [currentPage, setCurrentPage] = useState(0)
     const [totalPages, setTotalPages] = useState(data.totalPages)
     const [search, setSearch] = useState('')
-
-    const sortValues = [
-        {name: "За популярністю від більшого", value: 'POPULARITY-DESC'},
-        {name: "За популярністю від меншого", value: 'POPULARITY-ASC'},
-        {name: "За ціною від більшого", value: 'PRICE-DESC'},
-        {name: "За ціною від меншого", value: 'PRICE-ASC'},
-        {name: "За автором А-Я", value: 'CHEF-ASC'},
-        {name: "За автором Я-А", value: 'CHEF-DESC'},
-        {name: "За назвою А-Я", value: 'TITLE-ASC'},
-        {name: "За назвою Я-А", value: 'TITLE-DESC'},
-    ]
+    const sortValues = menuSortValues
 
     const [sort, setSort] = useState(sortValues[0].value)
 
@@ -53,6 +44,8 @@ const Menu = (props) => {
         const [sortBy, direction] = sort.split('-')
         getMenu({pageNumber: currentPage + 1, ...(search ? {name: search} : {}), sortBy, direction}).then((data) => {
             if (data.menuItems) {
+                console.log(data.menuItems.map((e) => e.menuItem.id))
+
                 setMenuItems((prevState) => [...prevState, ...data.menuItems])
             }
             setCurrentPage(currentPage + 1)
@@ -77,7 +70,7 @@ const Menu = (props) => {
                     onClear={() => setSearch('')}
                 />
                 <div className={style.sort}>
-                    <Select name={"sort"} value={sort} options={sortValues} onChange={onChangeSort}/>
+                    <SelectSort name={"sort"} value={sort} options={sortValues} onChange={onChangeSort}/>
                 </div>
             </div>
             {menuItems.length ? (

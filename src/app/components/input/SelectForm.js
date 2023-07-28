@@ -4,7 +4,7 @@ import style from './input.module.scss'
 import PropTypes from "prop-types"
 import {useEffect, useMemo, useState} from "react"
 
-const Select = (props) => {
+const SelectForm = (props) => {
     const {placeholder, name, onChange, onBlur, disabled, value, required, options = []} = props
     const [isOpen, setIsOpen] = useState(false)
     const [isHover, setIsHover] = useState(false)
@@ -35,27 +35,20 @@ const Select = (props) => {
                     <option value={value} key={value}>{name}</option>
                 ))}
             </select>
-            <div className={`${style.select} ${isOpen ? style.open : ''}`} onClick={() => setIsOpen(!isOpen)}>
+            <div className={`${style.selectForm} ${isOpen ? style.open : ''}`} onClick={() => setIsOpen(!isOpen)}>
                <span>
-                    {active.name}
+                    {active?.name}
                </span>
-                <svg width="16" height="10" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M2 2L7.29289 7.29289C7.68342 7.68342 8.31658 7.68342 8.70711 7.29289L14 2"
-                          stroke="url(#paint0_linear_103_307)" strokeWidth="3"/>
-                    <defs>
-                        <linearGradient id="paint0_linear_103_307" x1="0.983051" y1="8" x2="6.45638" y2="-2.09145"
-                                        gradientUnits="userSpaceOnUse">
-                            <stop stopColor="#F12711"/>
-                            <stop offset="1" stopColor="#F5AF19"/>
-                        </linearGradient>
-                    </defs>
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                    <path d="M10 16L17.1716 23.1716C18.7337 24.7337 21.2663 24.7337 22.8284 23.1716L30 16" stroke="black" strokeWidth="2"/>
                 </svg>
+
                 {isOpen && (
-                    <div className={style.options}>
+                    <div className={style.optionsForm}>
                         {options.map(({value, name}) => (
                             <div
                                 onClick={() => onChange({target: {value}})}
-                                className={style.option}
+                                className={style.optionForm}
                                 key={value}
                             >
                                 {name}
@@ -67,7 +60,7 @@ const Select = (props) => {
         </div>
     )
 }
-Select.propTypes = {
+SelectForm.propTypes = {
     name: PropTypes.string.isRequired,
     value: PropTypes.string,
     placeholder: PropTypes.string,
@@ -82,4 +75,4 @@ Select.propTypes = {
         value: PropTypes.string,
     })),
 }
-export default Select
+export default SelectForm
