@@ -1,23 +1,53 @@
 import style from './input.module.scss'
-import TextareaAutosize from 'react-textarea-autosize';
+import PropTypes from "prop-types"
+import Textarea from "react-textarea-autosize"
 
 const Input = (props) => {
-    const {label, name, register, onChange, onBlur, type = 'text', value} = props;
+    const {label, name, register, onChange, onBlur, type = 'text', disabled, value, required} = props
     return (
         <fieldset className={style.input_fieldset}>
+            {register ? (
+                <Textarea
+                    type={type}
+                    id={name}
+                    name={name}
+                    className={style.textarea}
+                    placeholder={label}
+                    disabled={disabled}
+                    required={required}
+                    {...register(name, {value: value})}
+                />
+            ) : (
+                <Textarea
+                    value={value}
+                    type={type}
+                    id={name}
+                    name={name}
+                    onChange={onChange}
+                    onBlur={onBlur}
+                    className={style.input}
+                    placeholder={label}
+                    disabled={disabled}
+                    required={required}
+                />
+            )}
             {label && (
                 <label htmlFor={name} className={style.input_label}>
                     {label}
                 </label>
             )}
-            {register ? (
-                <TextareaAutosize value={value} type={type} id={name} {...register(name)} className={style.input}/>
-            ) : (
-                <TextareaAutosize value={value} type={type} id={name} name={name} onChange={onChange} onBlur={onBlur}
-                                  className={style.input}/>
-            )}
         </fieldset>
     )
 }
-
+Input.propTypes = {
+    name: PropTypes.string.isRequired,
+    value: PropTypes.string,
+    label: PropTypes.string,
+    register: PropTypes.func,
+    onChange: PropTypes.func,
+    onBlur: PropTypes.func,
+    type: PropTypes.string,
+    disabled: PropTypes.bool,
+    required: PropTypes.bool,
+}
 export default Input
