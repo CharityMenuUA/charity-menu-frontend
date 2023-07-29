@@ -4,7 +4,6 @@ import {createContext, useContext, useEffect, useMemo, useState} from 'react'
 import {auth} from '@/app/providers/firebase/app'
 import {getProfile} from "@/app/profile/actions"
 
-
 export const UserContext = createContext({
     loading: true,
     user: null,
@@ -18,10 +17,12 @@ const UserProvider = ({children}) => {
     const [profile, setProfile] = useState(null)
     const [loading, setLoading] = useState(true)
     const reloadUser = async () => {
-        await auth.currentUser.reload()
+        if (auth.currentUser) {
+            await auth.currentUser.reload()
+        }
     }
     const updateUser = async (reload) => {
-        if (reload) await reloadUser();
+        if (reload) await reloadUser()
         if (auth.currentUser) {
             const profile = await getProfile(auth.currentUser?.accessToken).catch(console.error)
             if (profile.email) setProfile(profile)
