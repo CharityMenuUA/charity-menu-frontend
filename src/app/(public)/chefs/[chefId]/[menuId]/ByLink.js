@@ -13,7 +13,7 @@ const ByLink = (props) => {
     const [open, setOpen] = useState(false)
     return (
         <>
-            {profile && user.emailVerified ? (
+            {profile && user?.emailVerified ? (
                 <div onClick={() => setOpen(true)} className={className}>
                     купити
                 </div>
