@@ -6,17 +6,15 @@ import Input from "@/app/components/input/Input"
 import {useForm} from "react-hook-form"
 import OtherSignInMethods from "@/app/(auth)/OtherSignInMethods"
 import {auth} from "@/app/providers/firebase/app"
-import {
-    signInWithEmailAndPassword,
-    updateProfile
-} from "firebase/auth"
+import {updateProfile} from "@/app/profile/actions"
+
 
 const LoginPage = () => {
     const {handleSubmit, register} = useForm()
 
     const onSubmit = (data) => {
         const {email, password, name} = data
-        signInWithEmailAndPassword(auth, email, password).then(() => {
+        auth.signInWithEmailAndPassword(email, password).then(() => {
             updateProfile(auth.currentUser, {
                 displayName: name
             }).catch((err) => {
