@@ -33,11 +33,10 @@ export const updateProfile = async (accessToken, data) => {
 export const getProfile = async (accessToken) => {
     try {
         return await get(`/profile`, {
+            cache: 'no-store',
             headers: {
                 "Authorization": `Bearer ${accessToken}`
             },
-            cache: 'no-store',
-            next: {revalidate: 0,}
         }).then(data => data.json())
     } catch (err) {
         return {}
