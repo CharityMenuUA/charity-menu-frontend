@@ -4,7 +4,6 @@ import style from './profile.module.scss'
 import {useUserContext} from "@/app/providers/firebase/UserProvider"
 import {usePathname, useRouter} from "next/navigation"
 import {auth} from "@/app/providers/firebase/app"
-import {signOut} from "firebase/auth"
 import {useEffect} from "react"
 import Link from "next/link"
 
@@ -15,7 +14,7 @@ const ProfileLayout = (props) => {
     const pathname = usePathname()
 
     const signOutClick = async () => {
-        await signOut(auth)
+        await auth.signOut()
     }
 
     useEffect(() => {

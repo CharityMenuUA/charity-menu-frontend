@@ -24,10 +24,13 @@ const UserProvider = ({children}) => {
     const updateUser = async (reload) => {
         if (reload) await reloadUser()
         if (auth.currentUser) {
-            const profile = await getProfile(auth.currentUser?.accessToken).catch(console.error)
-            if (profile.email) setProfile(profile)
-            setUser(auth.currentUser)
-            setLoading(false)
+            await auth.currentUser.getIdToken().then(async (accessToken) => {
+                console.log(accessToken)
+                const profile = await getProfile(accessToken).catch(console.error)
+                if (profile.email) setProfile(profile)
+                setUser({...auth.currentUser, accessToken})
+                setLoading(false)
+            })
         } else {
             setUser(null)
             setLoading(false)

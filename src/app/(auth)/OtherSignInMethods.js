@@ -1,26 +1,24 @@
 'use client'
 
 import style from "@/app/(auth)/auth.module.scss"
-import {FacebookAuthProvider, GoogleAuthProvider, signInWithPopup} from "firebase/auth"
 import {auth} from "@/app/providers/firebase/app"
+import firebase from "firebase"
 
 const OtherSignInMethods = ({callback}) => {
     const signInWithGoogle = () => {
-        const provider = new GoogleAuthProvider()
-        signInWithPopup(auth, provider)
+        const provider = new firebase.auth.GoogleAuthProvider()
+        auth.signInWithPopup(provider)
             .then((result) => {
-                const credential = GoogleAuthProvider.credentialFromResult(result)
-                if (typeof callback === "function") callback(credential)
+                if (typeof callback === "function") callback(result.credential)
             }).catch((err) => {
             console.error({...err})
         })
     }
     const signInWithFacebook = () => {
-        const provider = new FacebookAuthProvider()
-        signInWithPopup(auth, provider)
+        const provider = new firebase.auth.FacebookAuthProvider()
+        auth.signInWithPopup(provider)
             .then((result) => {
-                const credential = FacebookAuthProvider.credentialFromResult(result)
-                if (typeof callback === "function") callback(credential)
+                if (typeof callback === "function") callback(result.credential)
             }).catch((err) => {
             console.error({...err})
         })
@@ -29,7 +27,7 @@ const OtherSignInMethods = ({callback}) => {
         <div className={style.buttons}>
             <button type={'button'} className={style.button} onClick={signInWithFacebook}>
                 <svg width="15" height="30" viewBox="0 0 15 30" fill="none"
-                      >
+                >
                     <path
                         d="M14.396 14.9711H9.94681V30H3.20597V14.9711H0V9.68936H3.20597V6.27146C3.20597 3.8273 4.46515 0 10.0068 0L15 0.0192611V5.1461H11.3771C10.7829 5.1461 9.94726 5.41986 9.94726 6.58579V9.69427H14.9849L14.396 14.9711Z"
                         fill="#3B5998"/>
@@ -37,7 +35,7 @@ const OtherSignInMethods = ({callback}) => {
             </button>
             <button type={'button'} className={style.button} onClick={signInWithGoogle}>
                 <svg width="30" height="30" viewBox="0 0 30 30" fill="none"
-                      >
+                >
                     <path
                         d="M7 18.0228L5.90056 21.9193L1.88211 22C0.681185 19.8854 0 17.466 0 14.895C0 12.4088 0.636891 10.0644 1.76582 8H1.76669L5.34423 8.62266L6.91141 11.9986C6.58341 12.9064 6.40463 13.8809 6.40463 14.895C6.40475 15.9955 6.61474 17.05 7 18.0228Z"
                         fill="#FBBB00"/>

@@ -3,7 +3,6 @@
 import style from '../auth.module.scss'
 import {useUserContext} from "@/app/providers/firebase/UserProvider"
 import {auth} from "@/app/providers/firebase/app"
-import {sendEmailVerification} from "firebase/auth"
 import {useEffect, useState} from "react"
 
 const RegisterEmailConfirmPage = () => {
@@ -25,7 +24,7 @@ const RegisterEmailConfirmPage = () => {
         }
     }, [isSend, time, updateUser])
     const onClick = () => {
-        sendEmailVerification(auth.currentUser)
+        auth.sendEmailVerification(auth.currentUser)
             .then(() => {
                 setTime(60 * minutes)
                 setIsSend(true)

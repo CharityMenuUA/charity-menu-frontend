@@ -5,13 +5,12 @@ import Link from "next/link"
 import {useForm} from "react-hook-form"
 import Input from "@/app/components/input/Input"
 import {auth} from "@/app/providers/firebase/app"
-import {sendPasswordResetEmail} from "firebase/auth"
 
 const ForgotPasswordPage = () => {
     const {handleSubmit, register} = useForm()
     const onSubmit = (data) => {
         const {email} = data
-        sendPasswordResetEmail(auth, email)
+        auth.sendPasswordResetEmail(email)
             .then(() => {
                 // Password reset email sent!
                 // ..
