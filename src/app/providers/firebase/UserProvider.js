@@ -4,7 +4,6 @@ import {createContext, useContext, useEffect, useMemo, useState} from 'react'
 import {auth} from '@/app/providers/firebase/app'
 import {getProfile} from "@/app/profile/actions"
 
-
 export const UserContext = createContext({
     loading: true,
     user: null,
