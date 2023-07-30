@@ -25,7 +25,6 @@ const UserProvider = ({children}) => {
         if (reload) await reloadUser()
         if (auth.currentUser) {
             await auth.currentUser.getIdToken().then(async (accessToken) => {
-                console.log(accessToken)
                 const profile = await getProfile(accessToken).catch(console.error)
                 if (profile.email) setProfile(profile)
                 setUser({...auth.currentUser, accessToken})

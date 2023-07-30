@@ -16,15 +16,16 @@ const RegisterPage = () => {
 
     const userAgreeToTerms = watch("user_agree_to_terms", false)
 
-    const onSubmit = (data) => {
+    const onSubmit = async (data) => {
         const {email, password, name} = data
+        await auth.createUserWithEmailAndPassword(email, password)
+            .then(async (userCredential) => {
+                await userCredential.user.getIdToken().then(async (accessToken) => {
+                    setProfile(accessToken, {name}).catch((err) => {
+                        console.error({...err})
+                    }).then(() => updateUser())
+                })
 
-        auth.createUserWithEmailAndPassword(email, password)
-            .then((userCredential) => {
-                const {accessToken} = userCredential.user
-                setProfile(accessToken, {name}).catch((err) => {
-                    console.error({...err})
-                }).then(() => updateUser())
             })
             .catch((err) => {
                 console.error({...err})

@@ -24,7 +24,7 @@ const RegisterEmailConfirmPage = () => {
         }
     }, [isSend, time, updateUser])
     const onClick = () => {
-        auth.sendEmailVerification(auth.currentUser)
+        auth.currentUser.sendEmailVerification()
             .then(() => {
                 setTime(60 * minutes)
                 setIsSend(true)
