@@ -4,12 +4,28 @@ import style from '../auth.module.scss'
 import {useUserContext} from "@/app/providers/firebase/UserProvider"
 import {auth} from "@/app/providers/firebase/app"
 import {useEffect, useState} from "react"
+import {useRouter, useSearchParams} from "next/navigation"
 
 const RegisterEmailConfirmPage = () => {
     const [isSend, setIsSend] = useState(false)
     const [time, setTime] = useState(0)
-    const {user, updateUser} = useUserContext()
+    const {user, loading, updateUser} = useUserContext()
+    const router = useRouter()
+    const search = useSearchParams()
+    const next = search.get('next') || '/profile'
     const minutes = 5
+
+
+    useEffect(() => {
+        if (!loading) {
+            if (!user) {
+                router.push(`/login?${search.toString()}`)
+            } else if ((user && user?.emailVerified) && next) {
+                return router.push(next)
+            }
+        }
+    }, [loading, next, router, search, user])
+
     useEffect(() => {
         if (isSend) {
             const timer = setInterval(() => {

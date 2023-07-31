@@ -44,8 +44,6 @@ const Menu = (props) => {
         const [sortBy, direction] = sort.split('-')
         getMenu({pageNumber: currentPage + 1, ...(search ? {name: search} : {}), sortBy, direction}).then((data) => {
             if (data.menuItems) {
-                console.log(data.menuItems.map((e) => e.menuItem.id))
-
                 setMenuItems((prevState) => [...prevState, ...data.menuItems])
             }
             setCurrentPage(currentPage + 1)

@@ -1,6 +1,6 @@
 'use client'
 
-import {createContext, useContext, useEffect, useMemo, useState} from 'react'
+import {createContext, useCallback, useContext, useEffect, useState} from 'react'
 import {auth} from '@/app/providers/firebase/app'
 import {getProfile} from "@/app/profile/actions"
 
@@ -21,7 +21,8 @@ const UserProvider = ({children}) => {
             await auth.currentUser.reload()
         }
     }
-    const updateUser = async (reload) => {
+    const updateUser = useCallback(async (reload) => {
+        setLoading(true)
         if (reload) await reloadUser()
         if (auth.currentUser) {
             await auth.currentUser.getIdToken().then(async (accessToken) => {
@@ -34,13 +35,15 @@ const UserProvider = ({children}) => {
             setUser(null)
             setLoading(false)
         }
-    }
-
-    useEffect(() => {
-        auth.onAuthStateChanged(() => updateUser())
     }, [])
 
-    const value = useMemo(() => ({loading, user, profile, updateUser}), [loading, profile, user])
+    useEffect(() => {
+        console.log(123)
+        const unsubscribe = auth.onAuthStateChanged(updateUser)
+        return () => unsubscribe()
+    }, [updateUser])
+
+    const value = {loading, user, profile, updateUser}
 
     return (
         <UserContext.Provider value={value}>
