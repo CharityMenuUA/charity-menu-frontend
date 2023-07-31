@@ -12,25 +12,22 @@ import {useRouter, useSearchParams} from "next/navigation"
 
 const RegisterCompletePage = () => {
     const router = useRouter()
-    const {user, profile, updateUser} = useUserContext()
+    const {user, loading, profile, updateUser} = useUserContext()
     const search = useSearchParams()
-    const next = search.get('next')
-
+    const next = search.get('next') || '/profile'
     const {handleSubmit, register, watch} = useForm()
 
     const userAgreeToTerms = watch("user_agree_to_terms", false)
 
     useEffect(() => {
-        if (!user && next) {
-            router.push(`/login?${search.toString()}`)
-        } else if ((!user) && !next) {
-            router.push('/login')
-        } else if ((user && profile) && next) {
-            return router.push(next)
-        } else if ((user && profile) && !next) {
-            router.push('/profile/settings')
+        if (!loading) {
+            if (!user) {
+                router.push(`/login?${search.toString()}`)
+            } else if ((user && profile) && next) {
+                return router.push(next)
+            }
         }
-    }, [next, profile, router, search, user])
+    }, [loading, next, profile, router, search, user])
 
     const onSubmit = (data) => {
         const {name} = data

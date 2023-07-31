@@ -6,30 +6,18 @@ import {useEffect} from "react"
 
 const LoginLayout = (props) => {
     const search = useSearchParams()
-    const next = search.get('next')
+    const next = search.get('next') || '/profile'
     const {children} = props
     const {user, profile} = useUserContext()
     const router = useRouter()
 
     useEffect(() => {
         if (user && !user?.emailVerified) {
-            if (next) {
-                router.push(`/register-email-confirm?${next.toString()}`)
-            } else {
-                router.push(`/register-email-confirm`)
-            }
+            router.push(`/register-email-confirm?${next.toString()}`)
         } else if (user && !profile) {
-            if (next) {
-                router.push(`/register-complete?${next.toString()}`)
-            } else {
-                router.push(`/register-complete`)
-            }
+            router.push(`/register-complete?${next.toString()}`)
         } else if (user && profile) {
-            if (next) {
-                router.push(next)
-            } else {
-                router.push('/profile/settings')
-            }
+            router.push(next)
         }
     }, [next, profile, router, user])
 

@@ -25,9 +25,24 @@ const ProfileLayout = (props) => {
         }
     }, [loading, pathname, profile, router, user])
 
-    if (loading) return "Loading..."
+    if (loading) return (
+        <>
+            <h1 className={style.h1}>Мiй профіль</h1>
+            <div className={style.layout}>
+                Loading...
+            </div>
+        </>
+    )
 
-    if (!user) return "User not found!"
+
+    if (!user) return (
+        <>
+            <h1 className={style.h1}>Мiй профіль</h1>
+            <div className={style.layout}>
+                User not found!
+            </div>
+        </>
+    )
 
     return (
         <>
