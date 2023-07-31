@@ -6,21 +6,16 @@ import Input from "@/app/components/input/Input"
 import {useForm} from "react-hook-form"
 import OtherSignInMethods from "@/app/(auth)/OtherSignInMethods"
 import {auth} from "@/app/providers/firebase/app"
-import {updateProfile} from "@/app/profile/actions"
+import {useUserContext} from "@/app/providers/firebase/UserProvider"
 
 
 const LoginPage = () => {
+    const {loading} = useUserContext()
     const {handleSubmit, register} = useForm()
 
     const onSubmit = (data) => {
-        const {email, password, name} = data
-        auth.signInWithEmailAndPassword(email, password).then(() => {
-            updateProfile(auth.currentUser, {
-                displayName: name
-            }).catch((err) => {
-                console.error({...err})
-            })
-        }).catch((err) => {
+        const {email, password} = data
+        auth.signInWithEmailAndPassword(email, password).catch((err) => {
             switch (err.code) {
             case "auth/user-not-found" : {
                 console.error('auth/user-not-found')
@@ -59,7 +54,7 @@ const LoginPage = () => {
                         <Link href={"/forgot-password"} className={style.forgot}>
                             Я забув пароль
                         </Link>
-                        <button type={"submit"} className={style.submit}>
+                        <button type={"submit"} className={style.submit} disabled={loading}>
                             Вхід
                         </button>
                     </form>
