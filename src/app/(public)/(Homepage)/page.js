@@ -11,8 +11,8 @@ const HomePage = async () => {
 
     const [chefsSortBy, chefsDirection] = chefsSortValues[0].value.split('-')
     const [menuSortBy, menuDirection] = menuSortValues[0].value.split('-')
-    const {chefs} = await getChef({sortBy: chefsSortBy, direction: chefsDirection})
-    const {menuItems} = await getMenu({sortBy: menuSortBy, direction: menuDirection})
+    const {chefs} = await getChef({pageSize: 10, sortBy: chefsSortBy, direction: chefsDirection})
+    const {menuItems} = await getMenu({pageSize: 7, sortBy: menuSortBy, direction: menuDirection})
     const {menuItems: menuPopularItems} = await getPopularMenuItem()
 
     return (

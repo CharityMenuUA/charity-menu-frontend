@@ -9,14 +9,21 @@ import ByPopup from "@/app/components/by-popup/ByPopup"
 
 const ByLink = (props) => {
     const {chefId, menuId, className} = props
-    const {profile, user} = useUserContext()
+    const {profile, user, loading} = useUserContext()
     const [open, setOpen] = useState(false)
+    if (loading) {
+        return (
+            <button type={"button"} className={className} disabled={loading}>
+                купити
+            </button>
+        )
+    }
     return (
         <>
             {profile && user?.emailVerified ? (
-                <div onClick={() => setOpen(true)} className={className}>
+                <button type={"button"} onClick={() => setOpen(true)} className={className}>
                     купити
-                </div>
+                </button>
             ) : (
                 <Link href={`/login?next=${linkToCreateOrder({chefId, menuId})}`} className={className}>
                     купити

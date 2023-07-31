@@ -40,7 +40,7 @@ const Input = (props) => {
 }
 Input.propTypes = {
     name: PropTypes.string.isRequired,
-    value: PropTypes.string,
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     label: PropTypes.string,
     register: PropTypes.func,
     onChange: PropTypes.func,
