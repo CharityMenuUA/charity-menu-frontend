@@ -1,5 +1,5 @@
 "use client"
-// import './customScroll.scss';
+
 import style from "@/app/components/popular-menu-items/popularMenuItems.module.scss"
 import MenuItem from "@/app/components/menu-item/MenuItem"
 

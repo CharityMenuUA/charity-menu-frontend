@@ -7,6 +7,7 @@ import ConfigProvider from "@/app/providers/config/ConfigProvider"
 import {get} from "@/helpers/dataProvider"
 import Breadcrumbs from "@/app/components/breadcrumbs/Breadcrumbs"
 import SwitcherProvider from "@/app/components/switcher/Switcher"
+import SuccessProvider from "@/app/providers/success/SuccessProvider"
 
 const unbounded = Unbounded({subsets: ['cyrillic', 'latin'], variable: '--font-unbounded'})
 const openSans = Open_Sans({subsets: ['cyrillic', 'latin'], variable: '--font-open-sans'})
@@ -35,14 +36,16 @@ const RootLayout = async (props) => {
         <body className={`${unbounded.variable} ${openSans.variable}`}>
         <ConfigProvider config={config}>
             <UserProvider>
-                <SwitcherProvider>
-                    <Header/>
-                    <main>
-                        <Breadcrumbs params={params}/>
-                        {children}
-                    </main>
-                    <Footer/>
-                </SwitcherProvider>
+                <SuccessProvider>
+                    <SwitcherProvider>
+                        <Header/>
+                        <main>
+                            <Breadcrumbs params={params}/>
+                            {children}
+                        </main>
+                        <Footer/>
+                    </SwitcherProvider>
+                </SuccessProvider>
             </UserProvider>
         </ConfigProvider>
         </body>
