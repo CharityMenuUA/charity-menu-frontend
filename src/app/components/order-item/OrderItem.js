@@ -7,11 +7,9 @@ import {useConfigContext} from "@/app/providers/config/ConfigProvider"
 import PropTypes from "prop-types"
 import {setCompleted} from "@/app/profile/actions"
 import {useUserContext} from "@/app/providers/firebase/UserProvider"
-import {useRouter} from "next/navigation"
 
 const OrderItem = (props) => {
-    const {order, ordered} = props
-    const router = useRouter()
+    const {order, ordered, loadData} = props
     const {user} = useUserContext()
     const {config} = useConfigContext()
     const [isOpen, setIsOpen] = useState(false)
@@ -19,7 +17,7 @@ const OrderItem = (props) => {
 
     const onSetCompleted = async () => {
         await setCompleted(user.accessToken, order.id)
-        router.refresh()
+        await loadData()
     }
 
     return (
@@ -106,6 +104,7 @@ const OrderItem = (props) => {
 }
 
 OrderItem.propTypes = {
-    ordered: PropTypes.bool
+    ordered: PropTypes.bool,
+    loadData: PropTypes.func,
 }
 export default OrderItem
