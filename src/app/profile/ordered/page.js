@@ -1,7 +1,7 @@
 'use client'
 import style from '../profile.module.scss'
 import {getOrderedOrders} from "@/app/profile/actions"
-import {useEffect, useState} from "react"
+import {useCallback, useEffect, useState} from "react"
 import {useUserContext} from "@/app/providers/firebase/UserProvider"
 import OrderItem from "@/app/components/order-item/OrderItem"
 import Empty from "@/app/profile/empty"
@@ -12,7 +12,7 @@ const OrderedPage = () => {
     const [isLoading, setLoading] = useState(true)
     const [orders, setOrders] = useState({})
 
-    useEffect(() => {
+    const loadData = useCallback(() => {
         if (user?.accessToken) getOrderedOrders(user.accessToken).then((orders) => {
             if (orders) {
                 setOrders(orders)
@@ -20,6 +20,9 @@ const OrderedPage = () => {
             setLoading(false)
         })
     }, [user.accessToken])
+    useEffect(() => {
+        loadData()
+    }, [loadData])
 
     if (isLoading) return "..loading"
     if (!orders?.paid?.orders?.length && !orders?.completed?.orders?.length) {
@@ -34,7 +37,7 @@ const OrderedPage = () => {
                     </div>
                     <div className={style.orders}>
                         {orders.paid.orders.map((order) => (
-                            <OrderItem order={order} key={order.id} ordered={true}/>
+                            <OrderItem order={order} key={order.id} loadData={loadData} ordered={true}/>
                         ))}
                     </div>
                 </>
