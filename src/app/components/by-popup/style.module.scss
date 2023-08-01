@@ -90,7 +90,13 @@
   .button_left {
     @extend %buttonWhite;
     border: 1px solid #C2C2C2;
-
+    transition: all .3s;
+    &:before, &:after {
+      display: none;
+    }
+    @include hover {
+      background: #000;
+    }
   }
 
   .button_right {

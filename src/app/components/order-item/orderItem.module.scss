@@ -1,0 +1,81 @@
+.order {
+  background: #FFFFFF;
+  border: 1px solid #E0E0E0;
+  border-radius: 20px;
+}
+
+.title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  padding: 13px 13px 13px 30px;
+}
+
+.content {
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 0 30px 0 30px;
+}
+
+.amount {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 21px;
+  line-height: 26px;
+  color: #000000;
+}
+
+.chef {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.photo {
+  width: 46px;
+  height: 46px;
+  border-radius: 15px;
+  flex: 0 0 auto;
+  grid-area: photo;
+  position: relative;
+  overflow: hidden;
+}
+
+.text {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  color: #000000;
+}
+
+.label {
+  font-family: var(--font-open-sans);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  color: #808080;
+  margin-bottom: 5px;
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.button {
+  @extend %button;
+}
+
+.buttonBlack {
+  @extend %buttonWhite;
+  color: #fff;
+
+  &:before {
+    background: #000;
+  }
+}
