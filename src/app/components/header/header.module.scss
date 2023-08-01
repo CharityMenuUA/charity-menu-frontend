@@ -191,3 +191,10 @@
     display: none;
   }
 }
+.offersMob {
+  @extend %button;
+  margin-top: 10px;
+  @include respond-to(d) {
+    display: none;
+  }
+}
