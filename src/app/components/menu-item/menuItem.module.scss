@@ -194,3 +194,9 @@
     display: none;
   }
 }
+
+.mob {
+  @include respond-to(d) {
+    display: none;
+  }
+}

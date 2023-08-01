@@ -26,6 +26,11 @@ const MenuItem = (props) => {
                         {chefName}
                     </div>
                 )}
+                {chefNameAlt && (
+                    <div className={`${style.name} ${style.mob}`}>
+                        {chefNameAlt}
+                    </div>
+                )}
                 <div className={style.title}>
                     {title}
                 </div>
