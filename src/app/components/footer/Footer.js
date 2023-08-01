@@ -1,4 +1,6 @@
 import style from './footer.module.scss'
+import Link from "next/link"
+import pages from "@/app/components/breadcrumbs/routing"
 
 const Footer = () => {
     return (
@@ -7,15 +9,15 @@ const Footer = () => {
                 © 2023
             </div>
             <div className={style.center}>
-                <div>
+                <Link href={pages.contacts.href}>
                     Контакти
-                </div>
-                <div>
+                </Link>
+                <Link href={pages.team.href}>
                     Команда
-                </div>
-                <div>
+                </Link>
+                <Link href={pages.faq.href}>
                     FAQ
-                </div>
+                </Link>
             </div>
             <div className={style.right}>
                 <div>

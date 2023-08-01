@@ -51,8 +51,6 @@ const ChefIdPage = async (props) => {
     const menu = await getMenu({chefId})
     const accumulated = await getAccumulated({chefId})
     const {instagram, facebook, twitter, tiktok, youtube, telegram, name, description, photo} = chef
-
-
     return (
         <div>
             <section className={style.head}>
