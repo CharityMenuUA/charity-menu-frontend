@@ -7,6 +7,7 @@ import HeaderLogo from './HeaderLogo'
 import {usePathname} from 'next/navigation'
 import {useEffect} from 'react'
 import {useConfigContext} from "@/app/providers/config/ConfigProvider"
+import pages from "@/app/components/breadcrumbs/routing"
 
 
 const HeaderMenu = (props) => {
@@ -47,19 +48,19 @@ const HeaderMenu = (props) => {
                             <SupportButton link={config.supportLink}/>
                         )}
                         <div className={style.navigate}>
-                            <Link href={'/team'} className={style.link}>
+                            <Link href={pages.team.href} className={style.link}>
                                 Команда
                             </Link>
-                            <Link href={'/contacts'} className={style.link}>
+                            <Link href={pages.contacts.href} className={style.link}>
                                 Контакти
                             </Link>
-                            <Link href={'/partners'} className={style.link}>
+                            <Link href={pages.partners.href} className={style.link}>
                                 Партнери
                             </Link>
-                            <Link href={'/reporting'} className={style.link}>
+                            <Link href={pages.reporting.href} className={style.link}>
                                 Звітність
                             </Link>
-                            <Link href={'/faq'} className={style.link}>
+                            <Link href={pages.faq.href} className={style.link}>
                                 FAQ
                             </Link>
                         </div>

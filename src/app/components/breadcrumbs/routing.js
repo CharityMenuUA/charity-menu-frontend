@@ -19,9 +19,25 @@ const pages = {
         name: 'Команда',
         href: 'team'
     },
+    contacts: {
+        name: 'Контакти',
+        href: 'contacts'
+    },
+    faq: {
+        name: 'FAQ',
+        href: 'faq'
+    },
     register: {
         name: 'Реєстрація',
         href: 'register'
+    },
+    partners: {
+        name: 'Партнери',
+        href: 'partners'
+    } ,
+    reporting: {
+        name: 'Звітність',
+        href: 'reporting'
     }
 }
 
