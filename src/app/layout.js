@@ -18,6 +18,7 @@ export const metadata = {
         default: 'Донат меню - платформа донатів на ЗСУ',
     },
     description: 'Донат меню - платформа донатів на ЗСУ',
+    viewport: "width=device-width, initial-scale=1"
 }
 
 const getConfig = async () => {
