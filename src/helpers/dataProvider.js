@@ -18,7 +18,7 @@ export const getList = async (resource, options) => {
     const url = createUrl(`${BACKEND_API}/${resource}`, options)
     try {
         return await fetch(url, {
-            next: {revalidate: 60},
+            next: {revalidate: 0},
             ...options,
         })
     } catch (err) {
@@ -32,7 +32,7 @@ export const get = async (resource, options) => {
 
     try {
         return await fetch(url, {
-            next: {revalidate: 60},
+            next: {revalidate: 0},
             ...options,
         })
     } catch (err) {
@@ -80,7 +80,7 @@ export const getOne = async (resource, id, options) => {
     const url = createUrl(`${BACKEND_API}/${resource}/${id}`, options)
     try {
         return await fetch(url, {
-            next: {revalidate: 60},
+            next: {revalidate: 0},
             ...options,
         })
     } catch (err) {

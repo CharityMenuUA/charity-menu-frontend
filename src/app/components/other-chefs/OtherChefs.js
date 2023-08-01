@@ -1,22 +1,10 @@
 import style from './otherChefs.module.scss'
 import ChefItem from '@/app/components/chef-item/ChefItem'
-import {getList} from '@/helpers/dataProvider'
 import Link from 'next/link'
 import PropTypes from 'prop-types'
+import {getChefs} from "@/app/components/actions"
 
-const getChefs = async () => {
-    try {
-        return await getList('/chefs', {
-            params: {
-                pageSize: 7,
-            }
-        }).then((e) => e.json())
-    } catch {
-        return {
-            chefs: []
-        }
-    }
-}
+
 const OtherChefs = async (props) => {
     const {chefs} = await getChefs()
     const {excludeId} = props
