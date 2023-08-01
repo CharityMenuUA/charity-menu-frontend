@@ -65,7 +65,9 @@ const OrderItem = (props) => {
                                         }}
                                     />
                                 </div>
-                                <div className={style.text}>{order.chefName || 'ДАНТЕС'}</div>
+                                <div className={style.text}>
+                                    {order.chefName || `${order.chefFirstName} ${order.chefLastName}`}
+                                </div>
                             </Link>
                         </div>
                     )}
