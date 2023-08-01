@@ -8,6 +8,9 @@
   width: min(100%, var(--width-wrapper));
   display: flex;
   justify-content: space-between;
+  @include respond-to(t) {
+    flex-direction: column;
+  }
 }
 
 .menu {
@@ -28,6 +31,9 @@
     border-radius: 20px;
     border: 1px solid transparent;
 
+    @include respond-to(t) {
+      margin: auto;
+    }
     &.active {
       color: var(--color-black);
       background: #FFFFFF;
@@ -44,6 +50,11 @@
 
 .content {
   width: 785px;
+  @include respond-to(t) {
+    width: 100%;
+    padding: 10px;
+    margin-top: 60px;
+  }
 }
 
 .orders {
@@ -51,6 +62,9 @@
   flex-direction: column;
   gap: 10px;
   margin-bottom: 60px;
+  @include respond-to(t) {
+    margin-bottom: 40px;
+  }
 }
 
 .subtitle {
@@ -60,6 +74,9 @@
   line-height: 26px;
   color: #000000;
   margin-bottom: 20px;
+  @include respond-to(t) {
+    margin-left: 20px;
+  }
 }
 
 .empty {
