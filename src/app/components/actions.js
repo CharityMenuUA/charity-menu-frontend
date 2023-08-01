@@ -45,3 +45,16 @@ export const createOrder = async (chefId, menuId, params, accessToken) => {
 }
 
 
+export const getChefs = async () => {
+    try {
+        return await getList('/chefs', {
+            params: {
+                pageSize: 7,
+            }
+        }).then((e) => e.json())
+    } catch {
+        return {
+            chefs: []
+        }
+    }
+}
