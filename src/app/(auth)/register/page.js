@@ -9,10 +9,11 @@ import {auth} from "@/app/providers/firebase/app"
 import Checkbox from "@/app/components/input/Checkbox"
 import {setProfile} from "@/app/profile/actions"
 import {useUserContext} from "@/app/providers/firebase/UserProvider"
+import validate from "@/app/components/input/validate"
 
 const RegisterPage = () => {
     const {updateUser} = useUserContext()
-    const {handleSubmit, register, watch} = useForm()
+    const {handleSubmit, register, watch, formState: {errors}} = useForm()
 
     const userAgreeToTerms = watch("user_agree_to_terms", false)
 
@@ -49,10 +50,17 @@ const RegisterPage = () => {
                         <div className={style.text}>
                             Або з Email і Паролем
                         </div>
-                        <Input name={"name"} register={register} label="Ім'я" required/>
-                        <Input name={"email"} register={register} label="Email" type="email" required/>
-                        <Input name={"password"} register={register} label="Пароль" type="password" required/>
-                        <Checkbox name={"user_agree_to_terms"} register={register} required>
+                        <Input name={"name"} register={register} errors={errors} label="Ім'я" required/>
+                        <Input name={"email"} register={register} errors={errors} label="Email" type="email"
+                               required
+                        />
+                        <Input name={"password"} register={register} errors={errors} label="Пароль" type="password"
+                               required
+                               pattern={{
+                                   value: validate.password,
+                               }}
+                        />
+                        <Checkbox name={"user_agree_to_terms"} register={register} errors={errors} required>
                             Ознайомлений з <Link href={'/'}>Політиками</Link> та <Link href={'/'}>Офертами</Link>
                         </Checkbox>
                         <button type={"submit"} className={style.submit} disabled={!userAgreeToTerms}>

@@ -7,7 +7,7 @@ import Input from "@/app/components/input/Input"
 import {auth} from "@/app/providers/firebase/app"
 
 const ForgotPasswordPage = () => {
-    const {handleSubmit, register} = useForm()
+    const {handleSubmit, register, formState: {errors}} = useForm()
     const onSubmit = (data) => {
         const {email} = data
         auth.sendPasswordResetEmail(email)
@@ -29,7 +29,7 @@ const ForgotPasswordPage = () => {
                     Введіть свій Email, <br/> туди прийде посилання на скидання пароля.
                 </div>
                 <form onSubmit={handleSubmit(onSubmit)}>
-                    <Input name={"email"} register={register} label="Email" type="email" required/>
+                    <Input name={"email"} register={register} errors={errors} label="Email" type="email" required/>
                     <button type={"submit"} className={style.submit}>
                         Відправити
                     </button>

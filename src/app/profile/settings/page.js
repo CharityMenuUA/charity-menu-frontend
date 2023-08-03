@@ -10,7 +10,7 @@ import {updateProfile} from "@/app/profile/actions"
 const SettingsPage = () => {
     const {user, profile, updateUser} = useUserContext()
 
-    const {handleSubmit, register} = useForm({defaultValues: profile})
+    const {handleSubmit, register, formState: {errors}} = useForm({defaultValues: profile})
 
     const onSubmit = async (data) => {
         await updateProfile(user?.accessToken, data).then(async () => await updateUser()).catch(console.error)
@@ -23,19 +23,23 @@ const SettingsPage = () => {
                     <div className={style.text}>
                         Контактні дані
                     </div>
-                    <Input name={"name"} register={register} label="Ім'я"/>
-                    <Input name={"email"} register={register} label="Email" type="email" disabled/>
-                    <Input name={"dateOfBirth"} register={register} label="Дата народження" type="date"/>
-                    <Input name={"phoneNumber"} register={register} label="Телефон" type="tel"/>
-                    <Input name={"city"} register={register} label="Місто"/>
-                    <Input name={"novaPoshta"} register={register} label="Відділення Нової пошти"/>
+                    <Input name={"name"} register={register} errors={errors} label="Ім'я" required/>
+                    <Input name={"email"} register={register} errors={errors} label="Email" type="email"
+                           required
+                           disabled
+                    />
+                    <Input name={"dateOfBirth"} register={register} errors={errors} label="Дата народження"
+                           type="date"/>
+                    <Input name={"phoneNumber"} register={register} errors={errors} label="Телефон" type="tel"/>
+                    <Input name={"city"} register={register} errors={errors} label="Місто"/>
+                    <Input name={"novaPoshta"} register={register} errors={errors} label="Відділення Нової пошти"/>
                     <div className={style.text}>
                         Соціальні мережі
                     </div>
-                    <Input name={"instagram"} register={register} label="Instagram"/>
-                    <Input name={"facebook"} register={register} label="Facebook"/>
-                    <Input name={"twitter"} register={register} label="Twitter"/>
-                    <Input name={"tiktok"} register={register} label="Tiktok"/>
+                    <Input name={"instagram"} register={register} errors={errors} label="Instagram"/>
+                    <Input name={"facebook"} register={register} errors={errors} label="Facebook"/>
+                    <Input name={"twitter"} register={register} errors={errors} label="Twitter"/>
+                    <Input name={"tiktok"} register={register} errors={errors} label="Tiktok"/>
                     <button type={"submit"} className={style.submit}>
                         Відправити
                     </button>

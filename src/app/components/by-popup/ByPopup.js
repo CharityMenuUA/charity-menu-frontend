@@ -27,7 +27,7 @@ const ByPopup = (props) => {
     }, [config?.deliveryFields, deliveryType])
 
 
-    const {handleSubmit, register, unregister} = useForm({
+    const {handleSubmit, register, unregister, formState: {errors}} = useForm({
         shouldUnregister: true,
     })
 
@@ -89,15 +89,18 @@ const ByPopup = (props) => {
                     {deliveryFields?.fields?.length && (
                         deliveryFields?.fields.map((e) => (
                             <div key={e.field}>
-                                <Input value={profile[e.profileField]}
-                                       register={register}
-                                       name={`deliveryDetails.${e.field}`}
-                                       label={e.label || e.field}
+                                <Input
+                                    value={profile[e.profileField]}
+                                    register={register}
+                                    errors={errors}
+                                    name={`deliveryDetails.${e.field}`}
+                                    label={e.label || e.field}
+                                    required
                                 />
                             </div>
                         ))
                     )}
-                    <Textarea name={'comment'} register={register} label={'КОМЕНТАР ДО ЗАМОВЛЕННЯ'}/>
+                    <Textarea name={'comment'} register={register} errors={errors} label={'КОМЕНТАР ДО ЗАМОВЛЕННЯ'}/>
                     <button type={"submit"} className={style.submit}>
                         продовжити
                     </button>

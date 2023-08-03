@@ -3,7 +3,8 @@ import PropTypes from "prop-types"
 import Textarea from "react-textarea-autosize"
 
 const Input = (props) => {
-    const {label, name, register, onChange, onBlur, type = 'text', disabled, value, required} = props
+    const {label, name, register, onChange, onBlur, type = 'text', disabled, value, required,errors} = props;
+    const error = errors?.[name]
     return (
         <fieldset className={style.input_fieldset}>
             {register ? (
@@ -15,7 +16,10 @@ const Input = (props) => {
                     placeholder={label}
                     disabled={disabled}
                     required={required}
-                    {...register(name, {value: value})}
+                    {...register(name, {
+                        value: value,
+                        required: required,
+                    })}
                 />
             ) : (
                 <Textarea
@@ -36,6 +40,11 @@ const Input = (props) => {
                     {label}
                 </label>
             )}
+            {error && (
+                <div className={style.error}>
+                    {error.message}
+                </div>
+            )}
         </fieldset>
     )
 }
@@ -48,6 +57,7 @@ Input.propTypes = {
     onBlur: PropTypes.func,
     type: PropTypes.string,
     disabled: PropTypes.bool,
-    required: PropTypes.bool,
+    required: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+    errors: PropTypes.shape({}),
 }
 export default Input

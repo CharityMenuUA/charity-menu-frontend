@@ -334,3 +334,18 @@
     }
   }
 }
+
+.error {
+  font-family: var(--font-open-sans);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 160%;
+  background: linear-gradient(47.33deg, #F12711 -4.41%, #F5AF19 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  margin-left: 30px;
+  margin-top: 5px;
+}

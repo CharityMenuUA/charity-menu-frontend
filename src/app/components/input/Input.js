@@ -1,8 +1,15 @@
 import style from './input.module.scss'
 import PropTypes from "prop-types"
+import {useConfigContext} from "@/app/providers/config/ConfigProvider"
+import _ from 'lodash'
+
 
 const Input = (props) => {
-    const {label, name, register, onChange, onBlur, type = 'text', disabled, value, required} = props
+    const {fields} = useConfigContext()
+    const {label, name, register, onChange, onBlur, type = 'text', disabled, value, required, errors, pattern} = props
+    const error = _.get(errors, name);
+    const regexName = name.split('.').slice(-1)[0]
+    const regex = fields?.[regexName]?.regex
     return (
         <fieldset className={style.input_fieldset}>
             {register ? (
@@ -13,8 +20,14 @@ const Input = (props) => {
                     className={style.input}
                     placeholder={label}
                     disabled={disabled}
-                    required={required}
-                    {...register(name, {value: value})}
+                    {...register(name, {
+                        value: value,
+                        required: required && (typeof required === "string" ? required : `Заповніть поле ${label ? `"${label}"` : ""}`),
+                        pattern: (pattern?.value || regex) && {
+                            value: pattern?.value || (regex && new RegExp(regex)),
+                            message: pattern?.message || `Невірно вказані дані поля ${label ? `"${label}"` : ""}`
+                        },
+                    })}
                 />
             ) : (
                 <input
@@ -35,6 +48,11 @@ const Input = (props) => {
                     {label}
                 </label>
             )}
+            {error && (
+                <div className={style.error}>
+                    {error.message}
+                </div>
+            )}
         </fieldset>
     )
 }
@@ -47,6 +65,11 @@ Input.propTypes = {
     onBlur: PropTypes.func,
     type: PropTypes.string,
     disabled: PropTypes.bool,
-    required: PropTypes.bool,
+    required: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+    errors: PropTypes.shape({}),
+    pattern: PropTypes.shape({
+        value: PropTypes.instanceOf(RegExp),
+        message: PropTypes.string,
+    }),
 }
 export default Input

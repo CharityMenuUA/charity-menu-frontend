@@ -15,6 +15,7 @@
     "eslint-config-next": "13.4.4",
     "firebase": "^8.6.8",
     "firebase-admin": "^11.9.0",
+    "lodash": "^4.17.21",
     "next": "13.4.4",
     "normalize-url": "^8.0.0",
     "postcss": "8.4.24",
