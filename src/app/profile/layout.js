@@ -12,7 +12,6 @@ const ProfileLayout = (props) => {
     const {user, profile, loading} = useUserContext()
     const router = useRouter()
     const pathname = usePathname()
-
     const signOutClick = async () => {
         await auth.signOut()
     }
@@ -52,10 +51,12 @@ const ProfileLayout = (props) => {
                     <Link href={'/profile'} className={`${style.link} ${pathname === "/profile" ? style.active : ""}`}>
                         Що я замовляв
                     </Link>
-                    <Link href={'/profile/ordered'}
-                          className={`${style.link} ${pathname === "/profile/ordered" ? style.active : ""}`}>
-                        Замовили в мене
-                    </Link>
+                    {profile?.chef && (
+                        <Link href={'/profile/ordered'}
+                              className={`${style.link} ${pathname === "/profile/ordered" ? style.active : ""}`}>
+                            Замовили в мене
+                        </Link>
+                    )}
                     <Link
                         href={'/profile/settings'}
                         className={`${style.link} ${pathname === "/profile/settings" ? style.active : ""}`}

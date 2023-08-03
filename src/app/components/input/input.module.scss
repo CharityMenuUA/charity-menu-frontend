@@ -1,7 +1,6 @@
 
 .input {
   width: 100%;
-  display: block;
   border: 1px solid #808080;
   border-radius: 20px;
   height: 73px;
@@ -10,6 +9,13 @@
   font-size: 16px;
   font-family: var(--font-unbounded);
   font-weight: 700;
+  background: #fff;
+  appearance: none;
+  text-align: left;
+
+  &::-webkit-date-and-time-value {
+    text-align: left;
+  }
 
   &_fieldset {
     display: block;
@@ -62,6 +68,7 @@
     padding-top: 37px;
     padding-bottom: 10px;
   }
+
   &::placeholder {
     white-space: nowrap;
   }
