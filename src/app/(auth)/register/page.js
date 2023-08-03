@@ -10,26 +10,39 @@ import Checkbox from "@/app/components/input/Checkbox"
 import {setProfile} from "@/app/profile/actions"
 import {useUserContext} from "@/app/providers/firebase/UserProvider"
 import validate from "@/app/components/input/validate"
+import {useState} from "react"
+import Loader from "@/app/components/loader/Loader"
 
 const RegisterPage = () => {
     const {updateUser} = useUserContext()
-    const {handleSubmit, register, watch, formState: {errors}} = useForm()
+    const {handleSubmit, register, watch, formState: {errors}, setError} = useForm()
+    const [loading, setLoading] = useState(false)
 
     const userAgreeToTerms = watch("user_agree_to_terms", false)
 
     const onSubmit = async (data) => {
         const {email, password, name} = data
+        setLoading(true)
         await auth.createUserWithEmailAndPassword(email, password)
             .then(async (userCredential) => {
                 await userCredential.user.getIdToken().then(async (accessToken) => {
                     setProfile(accessToken, {name}).catch((err) => {
                         console.error({...err})
+                        setLoading(false)
                     }).then(() => updateUser())
                 })
-
             })
             .catch((err) => {
-                console.error({...err})
+                setLoading(false)
+                switch (err.code) {
+                case "auth/email-already-in-use" : {
+                    setError('email', {type: 'email-already-in-use', message: 'Користувач з цією поштою вже існує'})
+                    break
+                }
+                default: {
+                    console.error({...err})
+                }
+                }
             })
     }
     return (
@@ -64,7 +77,7 @@ const RegisterPage = () => {
                             Ознайомлений з <Link href={'/'}>Політиками</Link> та <Link href={'/'}>Офертами</Link>
                         </Checkbox>
                         <button type={"submit"} className={style.submit} disabled={!userAgreeToTerms}>
-                            Реєстрація
+                            {loading ? <Loader/> : 'Реєстрація'}
                         </button>
                     </form>
                 </div>

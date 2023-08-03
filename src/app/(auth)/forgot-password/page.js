@@ -5,18 +5,35 @@ import Link from "next/link"
 import {useForm} from "react-hook-form"
 import Input from "@/app/components/input/Input"
 import {auth} from "@/app/providers/firebase/app"
+import Loader from "@/app/components/loader/Loader"
+import {useState} from "react"
 
 const ForgotPasswordPage = () => {
-    const {handleSubmit, register, formState: {errors}} = useForm()
+    const {handleSubmit, register, formState: {errors}, setError} = useForm()
+    const [loading, setLoading] = useState(false)
+    const [success, setSuccess] = useState(false)
+
     const onSubmit = (data) => {
         const {email} = data
+        setLoading(true)
         auth.sendPasswordResetEmail(email)
             .then(() => {
-                // Password reset email sent!
-                // ..
+                setLoading(false)
+                setSuccess(true)
             })
             .catch((err) => {
-                console.error({...err})
+                setLoading(false)
+
+
+                switch (err.code) {
+                case "auth/user-not-found" : {
+                    setError('email', {type: 'user-not-found', message: 'Невірний email'})
+                    break
+                }
+                default: {
+                    console.error({...err})
+                }
+                }
             })
     }
     return (<div className={style.page}>
@@ -25,15 +42,25 @@ const ForgotPasswordPage = () => {
         </h1>
         <div className={style.wrap}>
             <div className={style.block}>
-                <div className={style.text}>
-                    Введіть свій Email, <br/> туди прийде посилання на скидання пароля.
-                </div>
-                <form onSubmit={handleSubmit(onSubmit)}>
-                    <Input name={"email"} register={register} errors={errors} label="Email" type="email" required/>
-                    <button type={"submit"} className={style.submit}>
-                        Відправити
-                    </button>
-                </form>
+                {success ? (
+                    <div className={style.text}>
+                        Перевірте свій Email, <br/> туди має прийти посилання на скидання пароля.
+                    </div>
+                ) : (
+                    <>
+                        <div className={style.text}>
+                            Введіть свій Email, <br/> туди прийде посилання на скидання пароля.
+                        </div>
+                        <form onSubmit={handleSubmit(onSubmit)}>
+                            <Input name={"email"} register={register} errors={errors} label="Email" type="email"
+                                   required/>
+                            <button type={"submit"} className={style.submit}>
+                                {loading ? <Loader/> : 'Відправити'}
+                            </button>
+                        </form>
+                    </>
+                )}
+
             </div>
             <div className={style.block}>
                 <div className={style.text}>

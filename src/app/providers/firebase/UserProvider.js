@@ -22,7 +22,6 @@ const UserProvider = ({children}) => {
         }
     }
     const updateUser = useCallback(async (reload) => {
-        setLoading(true)
         if (reload) await reloadUser()
         if (auth.currentUser) {
             await auth.currentUser.getIdToken().then(async (accessToken) => {

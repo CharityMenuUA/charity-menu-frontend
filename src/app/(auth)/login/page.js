@@ -8,15 +8,21 @@ import OtherSignInMethods from "@/app/(auth)/OtherSignInMethods"
 import {auth} from "@/app/providers/firebase/app"
 import {useUserContext} from "@/app/providers/firebase/UserProvider"
 import validate from "@/app/components/input/validate"
+import Loader from "@/app/components/loader/Loader"
+import {useState} from "react"
 
 
 const LoginPage = () => {
-    const {loading} = useUserContext()
+    const {loading: userLoading} = useUserContext()
+    const [loading, setLoading] = useState(false)
     const {handleSubmit, register, setError, formState: {errors}} = useForm()
 
     const onSubmit = (data) => {
         const {email, password} = data
+        setLoading(true)
         auth.signInWithEmailAndPassword(email, password).catch((err) => {
+            setLoading(false)
+
             switch (err.code) {
             case "auth/user-not-found" : {
                 setError('email', {type: 'user-not-found', message: 'Невірний email'})
@@ -34,6 +40,9 @@ const LoginPage = () => {
         })
     }
 
+    if (userLoading) {
+        return <Loader/>
+    }
     return (<div className={style.page}>
         <h1 className={style.h1}>
             Вхід
@@ -63,7 +72,7 @@ const LoginPage = () => {
                         Я забув пароль
                     </Link>
                     <button type={"submit"} className={style.submit} disabled={loading}>
-                        Вхід
+                        {loading ? <Loader/> : 'Вхід'}
                     </button>
                 </form>
             </div>

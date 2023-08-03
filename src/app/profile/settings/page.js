@@ -5,17 +5,33 @@ import Input from "@/app/components/input/Input"
 import style from "@/app/(auth)/auth.module.scss"
 import {useUserContext} from "@/app/providers/firebase/UserProvider"
 import {updateProfile} from "@/app/profile/actions"
+import {useEffect, useState} from "react"
+import Loader from "@/app/components/loader/Loader"
 
 
 const SettingsPage = () => {
     const {user, profile, updateUser} = useUserContext()
-
+    const [loading, setLoading] = useState(false)
+    const [success, setSuccess] = useState(false)
     const {handleSubmit, register, formState: {errors}} = useForm({defaultValues: profile})
 
     const onSubmit = async (data) => {
-        await updateProfile(user?.accessToken, data).then(async () => await updateUser()).catch(console.error)
+        setLoading(true)
+        await updateProfile(user?.accessToken, data).then(async () => {
+            setLoading(false)
+            setSuccess(true)
+            await updateUser()
+        }).catch(console.error)
     }
 
+    useEffect(() => {
+        if (success) {
+            const timer = setTimeout(() => {
+                setSuccess(false)
+            }, 5000)
+            return () => clearTimeout(timer)
+        }
+    }, [success])
     return (
         <div className={style.wrap}>
             <div className={style.block}>
@@ -30,9 +46,6 @@ const SettingsPage = () => {
                     />
                     <Input name={"dateOfBirth"} register={register} errors={errors} label="Дата народження"
                            type="date"/>
-                    <Input name={"phoneNumber"} register={register} errors={errors} label="Телефон" type="tel"/>
-                    <Input name={"city"} register={register} errors={errors} label="Місто"/>
-                    <Input name={"novaPoshta"} register={register} errors={errors} label="Відділення Нової пошти"/>
                     <div className={style.text}>
                         Соціальні мережі
                     </div>
@@ -40,9 +53,23 @@ const SettingsPage = () => {
                     <Input name={"facebook"} register={register} errors={errors} label="Facebook"/>
                     <Input name={"twitter"} register={register} errors={errors} label="Twitter"/>
                     <Input name={"tiktok"} register={register} errors={errors} label="Tiktok"/>
-                    <button type={"submit"} className={style.submit}>
-                        Відправити
+                    <div className={style.text}>
+                        Дані Нової пошти
+                    </div>
+                    <Input name={"fullName"} register={register} errors={errors} label="ПІБ"/>
+                    <Input name={"phoneNumber"} register={register} errors={errors} label="Телефон" type="tel"/>
+                    <Input name={"city"} register={register} errors={errors} label="Місто"/>
+                    <Input name={"novaPoshta"} register={register} errors={errors} label="Відділення Нової пошти"/>
+
+                    <button type={"submit"} className={style.submit} disabled={loading}>
+                        {loading ? <Loader/> : "Відправити"}
                     </button>
+
+                    {success && (
+                        <div className={style.success}>
+                            Дані збережено
+                        </div>
+                    )}
                 </form>
             </div>
         </div>

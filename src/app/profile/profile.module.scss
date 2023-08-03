@@ -13,6 +13,14 @@
   }
 }
 
+.loader {
+  max-height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
 .menu {
   display: flex;
   flex-direction: column;
@@ -34,6 +42,7 @@
     @include respond-to(t) {
       margin: auto;
     }
+
     &.active {
       color: var(--color-black);
       background: #FFFFFF;

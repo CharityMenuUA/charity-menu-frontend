@@ -5,6 +5,7 @@ import {useCallback, useEffect, useState} from "react"
 import {useUserContext} from "@/app/providers/firebase/UserProvider"
 import OrderItem from "@/app/components/order-item/OrderItem"
 import Empty from "@/app/profile/empty"
+import Loader from "@/app/components/loader/Loader"
 
 const OrderedPage = () => {
     const {user} = useUserContext()
@@ -14,20 +15,21 @@ const OrderedPage = () => {
 
     const loadData = useCallback(() => {
         if (user?.accessToken) getOrderedOrders(user.accessToken).then((orders) => {
-            if (orders) {
-                setOrders(orders)
-            }
+            if (orders) setOrders(orders)
             setLoading(false)
         })
     }, [user.accessToken])
+
     useEffect(() => {
         loadData()
     }, [loadData])
 
-    if (isLoading) return "..loading"
+    if (isLoading) return <Loader/>
+
     if (!orders?.paid?.orders?.length && !orders?.completed?.orders?.length) {
         return (<Empty/>)
     }
+
     return (
         <div>
             {!!orders?.paid?.orders?.length && (
@@ -44,7 +46,6 @@ const OrderedPage = () => {
 
             )}
             {!!orders?.completed?.orders?.length && (
-                // {!!orders?.paid?.orders?.length && (
                 <>
                     <div className={style.subtitle}>
                         Виконані

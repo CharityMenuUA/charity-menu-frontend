@@ -7,7 +7,7 @@ import _ from 'lodash'
 const Input = (props) => {
     const {fields} = useConfigContext()
     const {label, name, register, onChange, onBlur, type = 'text', disabled, value, required, errors, pattern} = props
-    const error = _.get(errors, name);
+    const error = _.get(errors, name)
     const regexName = name.split('.').slice(-1)[0]
     const regex = fields?.[regexName]?.regex
     return (

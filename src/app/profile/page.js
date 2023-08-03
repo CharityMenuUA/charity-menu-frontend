@@ -5,6 +5,7 @@ import {useEffect, useState} from "react"
 import {useUserContext} from "@/app/providers/firebase/UserProvider"
 import OrderItem from "@/app/components/order-item/OrderItem"
 import Empty from "@/app/profile/empty"
+import Loader from "@/app/components/loader/Loader"
 
 const ProfilePage = () => {
     const {user} = useUserContext()
@@ -21,7 +22,7 @@ const ProfilePage = () => {
         })
     }, [user.accessToken])
 
-    if (isLoading) return "..loading"
+    if (isLoading) return <Loader/>
 
     if (!orders?.paid?.orders?.length && !orders?.completed?.orders?.length) {
         return (<Empty/>)
