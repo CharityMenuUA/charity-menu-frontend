@@ -62,7 +62,7 @@ const SettingsPage = () => {
                     <Input name={"novaPoshta"} register={register} errors={errors} label="Відділення Нової пошти"/>
 
                     <button type={"submit"} className={style.submit} disabled={loading}>
-                        {loading ? <Loader/> : "Відправити"}
+                        {loading ? <Loader/> : "Зберегти"}
                     </button>
 
                     {success && (

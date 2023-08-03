@@ -15,6 +15,14 @@ const pages = {
         name: 'Мiй профіль',
         href: 'profile'
     },
+    settings: {
+        name: 'Налаштування',
+        href: 'profile/settings'
+    },
+    ordered: {
+        name: 'Замовили в мене',
+        href: 'profile/ordered'
+    },
     team: {
         name: 'Команда',
         href: 'team'
