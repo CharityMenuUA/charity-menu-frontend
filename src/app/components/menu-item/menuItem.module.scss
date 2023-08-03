@@ -17,6 +17,7 @@
       .button {
         opacity: 1;
         visibility: visible;
+
         &:disabled {
           opacity: 0.5;
         }
@@ -199,4 +200,8 @@
   @include respond-to(d) {
     display: none;
   }
+}
+
+.available {
+  opacity: 0.5;
 }

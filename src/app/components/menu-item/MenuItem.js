@@ -6,9 +6,9 @@ import Image from 'next/image'
 import ByLink from '@/app/(public)/chefs/[chefId]/[menuId]/ByLink'
 
 const MenuItem = (props) => {
-    const {id, chefId, chefNameAlt, chefName, chefPhoto, title, price, min} = props
+    const {id, chefId, chefNameAlt, chefName, chefPhoto, title, price, min, available} = props
     return (
-        <div className={`${style.item} ${min ? style.min : ''}`}>
+        <div className={`${style.item} ${min ? style.min : ''} ${available ? '' : style.available}`}>
             <Link href={`/chefs/${chefId}/${id}`} className={style.link}>
                 <div className={style.photo}>
                     <Image
@@ -38,7 +38,7 @@ const MenuItem = (props) => {
                     ₴{price}
                 </div>
             </Link>
-            {!min && (
+            {!min && available && (
                 <ByLink chefId={chefId} menuId={id} className={style.button}/>
             )}
         </div>
