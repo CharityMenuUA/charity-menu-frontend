@@ -1,18 +1,23 @@
 'use client' // Error components must be Client Components
 
 import {useEffect} from 'react'
+import style from "@/app/styles/not-found.module.scss"
 
 export default function Error({error, reset}) {
     useEffect(() => {
         // Log the error to an error reporting service
         console.error(error)
     }, [error])
-    // TODO CREATE ERROR PAGE
     return (
-        <div>
-            <h2>Something went wrong!</h2>
-            <button onClick={() => reset()}>
-                Try again
+        <div className={style.notFoundPage}>
+            <h2 className={style.title}>
+                Упс..
+            </h2>
+            <div className={style.text}>
+                Щось пішло не так.
+            </div>
+            <button onClick={() => reset()} className={style.link}>
+                Оновити сторінку
             </button>
         </div>
     )
