@@ -8,6 +8,17 @@
   width: min(100%, var(--width-wrapper));
   display: flex;
   justify-content: space-between;
+  @include respond-to(t) {
+    flex-direction: column;
+  }
+}
+
+.loader {
+  max-height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
 .menu {
@@ -28,6 +39,10 @@
     border-radius: 20px;
     border: 1px solid transparent;
 
+    @include respond-to(t) {
+      margin: auto;
+    }
+
     &.active {
       color: var(--color-black);
       background: #FFFFFF;
@@ -44,4 +59,39 @@
 
 .content {
   width: 785px;
+  @include respond-to(t) {
+    width: 100%;
+    padding: 10px;
+    margin-top: 60px;
+  }
+}
+
+.orders {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 60px;
+  @include respond-to(t) {
+    margin-bottom: 40px;
+  }
+}
+
+.subtitle {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 21px;
+  line-height: 26px;
+  color: #000000;
+  margin-bottom: 20px;
+  @include respond-to(t) {
+    margin-left: 20px;
+  }
+}
+
+.empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  flex-direction: column;
 }

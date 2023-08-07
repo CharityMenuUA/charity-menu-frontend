@@ -9,26 +9,40 @@ import {auth} from "@/app/providers/firebase/app"
 import Checkbox from "@/app/components/input/Checkbox"
 import {setProfile} from "@/app/profile/actions"
 import {useUserContext} from "@/app/providers/firebase/UserProvider"
+import validate from "@/app/components/input/validate"
+import {useState} from "react"
+import Loader from "@/app/components/loader/Loader"
 
 const RegisterPage = () => {
     const {updateUser} = useUserContext()
-    const {handleSubmit, register, watch} = useForm()
+    const {handleSubmit, register, watch, formState: {errors}, setError} = useForm()
+    const [loading, setLoading] = useState(false)
 
     const userAgreeToTerms = watch("user_agree_to_terms", false)
 
     const onSubmit = async (data) => {
         const {email, password, name} = data
+        setLoading(true)
         await auth.createUserWithEmailAndPassword(email, password)
             .then(async (userCredential) => {
                 await userCredential.user.getIdToken().then(async (accessToken) => {
                     setProfile(accessToken, {name}).catch((err) => {
                         console.error({...err})
+                        setLoading(false)
                     }).then(() => updateUser())
                 })
-
             })
             .catch((err) => {
-                console.error({...err})
+                setLoading(false)
+                switch (err.code) {
+                case "auth/email-already-in-use" : {
+                    setError('email', {type: 'email-already-in-use', message: 'Користувач з цією поштою вже існує'})
+                    break
+                }
+                default: {
+                    console.error({...err})
+                }
+                }
             })
     }
     return (
@@ -49,14 +63,21 @@ const RegisterPage = () => {
                         <div className={style.text}>
                             Або з Email і Паролем
                         </div>
-                        <Input name={"name"} register={register} label="Ім'я" required/>
-                        <Input name={"email"} register={register} label="Email" type="email" required/>
-                        <Input name={"password"} register={register} label="Пароль" type="password" required/>
-                        <Checkbox name={"user_agree_to_terms"} register={register} required>
+                        <Input name={"name"} register={register} errors={errors} label="Ім'я" required/>
+                        <Input name={"email"} register={register} errors={errors} label="Email" type="email"
+                               required
+                        />
+                        <Input name={"password"} register={register} errors={errors} label="Пароль" type="password"
+                               required
+                               pattern={{
+                                   value: validate.password,
+                               }}
+                        />
+                        <Checkbox name={"user_agree_to_terms"} register={register} errors={errors} required>
                             Ознайомлений з <Link href={'/'}>Політиками</Link> та <Link href={'/'}>Офертами</Link>
                         </Checkbox>
                         <button type={"submit"} className={style.submit} disabled={!userAgreeToTerms}>
-                            Реєстрація
+                            {loading ? <Loader/> : 'Реєстрація'}
                         </button>
                     </form>
                 </div>

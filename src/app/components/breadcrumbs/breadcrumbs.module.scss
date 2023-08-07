@@ -8,4 +8,7 @@
   color: #808080;
   margin-top: 30px;
   margin-bottom: 30px;
+  @include respond-to(m) {
+    margin-top: 20px;
+  }
 }

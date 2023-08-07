@@ -11,16 +11,25 @@ import {useForm} from "react-hook-form"
 import Textarea from "@/app/components/input/Textarea"
 import {useUserContext} from "@/app/providers/firebase/UserProvider"
 import {usePathname} from "next/navigation"
+import Popup from "@/app/components/popup/Popup"
 
 const ByPopup = (props) => {
     const {menuId, onClose} = props
-    const {user} = useUserContext()
+    const {user, profile} = useUserContext()
     const pathname = usePathname()
     const [menuItem, setMenuItem] = useState()
     const {config} = useConfigContext()
     const [deliveryType, setDeliveryType] = useState()
 
-    const {handleSubmit, register, unregister} = useForm({shouldUnregister: true})
+
+    const deliveryFields = useMemo(() => {
+        return config?.deliveryFields.find(e => e?.deliveryType === deliveryType)
+    }, [config?.deliveryFields, deliveryType])
+
+
+    const {handleSubmit, register, unregister, formState: {errors}} = useForm({
+        shouldUnregister: true,
+    })
 
     useEffect(() => {
         getMenuItem({menuId}).then((data) => {
@@ -35,9 +44,6 @@ const ByPopup = (props) => {
         unregister('deliveryDetails')
     }, [menuItem, unregister])
 
-    const deliveryFields = useMemo(() => {
-        return config?.deliveryFields.find(e => e?.deliveryType === deliveryType)
-    }, [config.deliveryFields, deliveryType])
 
     const deliveryOptions = useMemo(() => config?.deliveryFields
         .filter(({deliveryType}) => menuItem?.deliveryTypes.includes(deliveryType))
@@ -50,7 +56,7 @@ const ByPopup = (props) => {
     const onSubmit = async (data) => {
         const {id: menuId, chefId} = menuItem
         const search = new URLSearchParams(window.location.search)
-        search.set("success", true)
+        search.set("success", "true")
         const body = {
             "deliveryType": deliveryType,
             redirectUrl: `${window.location.origin}${pathname}?${search.toString()}`,
@@ -61,10 +67,10 @@ const ByPopup = (props) => {
             if (paymentUrl) window.location.href = paymentUrl
         })
     }
+
     return (
-        <div className={style.popupWrap}>
-            <div className={style.popupMask} onClick={onClose}/>
-            <form className={`${style.popup} ${style.wrap}`} onSubmit={handleSubmit(onSubmit)}>
+        <Popup onClose={onClose}>
+            <form onSubmit={handleSubmit(onSubmit)}>
                 <div className={style.block}>
                     <h1 className={style.h1_inside}>
                         Оформлення замовлення
@@ -83,19 +89,24 @@ const ByPopup = (props) => {
                     {deliveryFields?.fields?.length && (
                         deliveryFields?.fields.map((e) => (
                             <div key={e.field}>
-                                <Input register={register} name={`deliveryDetails.${e.field}`}
-                                       label={e.label || e.field}/>
+                                <Input
+                                    value={profile[e.profileField]}
+                                    register={register}
+                                    errors={errors}
+                                    name={`deliveryDetails.${e.field}`}
+                                    label={e.label || e.field}
+                                    required
+                                />
                             </div>
                         ))
                     )}
-                    <Textarea name={'comment'} register={register} label={'КОМЕНТАР ДО ЗАМОВЛЕННЯ'}/>
+                    <Textarea name={'comment'} register={register} errors={errors} label={'КОМЕНТАР ДО ЗАМОВЛЕННЯ'}/>
                     <button type={"submit"} className={style.submit}>
                         продовжити
                     </button>
                 </div>
             </form>
-
-        </div>
+        </Popup>
     )
 }
 ByPopup.propTypes = {

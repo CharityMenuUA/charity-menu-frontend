@@ -15,7 +15,7 @@ const RegisterCompletePage = () => {
     const {user, loading, profile, updateUser} = useUserContext()
     const search = useSearchParams()
     const next = search.get('next') || '/profile'
-    const {handleSubmit, register, watch} = useForm()
+    const {handleSubmit, register, watch, formState: {errors}} = useForm()
 
     const userAgreeToTerms = watch("user_agree_to_terms", false)
 
@@ -46,8 +46,8 @@ const RegisterCompletePage = () => {
             <div className={style.wrap}>
                 <div className={style.block}>
                     <form onSubmit={handleSubmit(onSubmit)} className={style.form}>
-                        <Input name={"name"} register={register} label="Ім'я" required/>
-                        <Checkbox name={"user_agree_to_terms"} register={register} required>
+                        <Input name={"name"} register={register} errors={errors} label="Ім'я" required/>
+                        <Checkbox name={"user_agree_to_terms"} register={register} errors={errors} required>
                             Ознайомлений з <Link href={'/'}>Політиками</Link> та <Link href={'/'}>Офертами</Link>
                         </Checkbox>
                         <button type={"submit"} className={style.submit} disabled={!userAgreeToTerms}>

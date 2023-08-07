@@ -1,7 +1,6 @@
 
 .input {
   width: 100%;
-  display: block;
   border: 1px solid #808080;
   border-radius: 20px;
   height: 73px;
@@ -10,6 +9,13 @@
   font-size: 16px;
   font-family: var(--font-unbounded);
   font-weight: 700;
+  background: #fff;
+  appearance: none;
+  text-align: left;
+
+  &::-webkit-date-and-time-value {
+    text-align: left;
+  }
 
   &_fieldset {
     display: block;
@@ -61,6 +67,10 @@
   &:not(:placeholder-shown) {
     padding-top: 37px;
     padding-bottom: 10px;
+  }
+
+  &::placeholder {
+    white-space: nowrap;
   }
 }
 
@@ -330,4 +340,19 @@
       }
     }
   }
+}
+
+.error {
+  font-family: var(--font-open-sans);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 160%;
+  background: linear-gradient(47.33deg, #F12711 -4.41%, #F5AF19 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  margin-left: 30px;
+  margin-top: 5px;
 }

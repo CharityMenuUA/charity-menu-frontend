@@ -22,7 +22,6 @@ const UserProvider = ({children}) => {
         }
     }
     const updateUser = useCallback(async (reload) => {
-        setLoading(true)
         if (reload) await reloadUser()
         if (auth.currentUser) {
             await auth.currentUser.getIdToken().then(async (accessToken) => {
@@ -38,7 +37,6 @@ const UserProvider = ({children}) => {
     }, [])
 
     useEffect(() => {
-        console.log(123)
         const unsubscribe = auth.onAuthStateChanged(updateUser)
         return () => unsubscribe()
     }, [updateUser])

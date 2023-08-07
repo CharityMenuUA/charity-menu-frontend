@@ -17,6 +17,10 @@
       .button {
         opacity: 1;
         visibility: visible;
+
+        &:disabled {
+          opacity: 0.5;
+        }
       }
 
       .name {
@@ -125,7 +129,6 @@
     font-size: 13px;
     font-family: var(--font-open-sans);
   }
-
 }
 
 .title {
@@ -183,7 +186,22 @@
   transition: all .3s;
   opacity: 0;
   visibility: hidden;
-  @include respond-to(m) {
+
+  &:disabled {
+    opacity: 0;
+  }
+
+  @include respond-to(t) {
     display: none;
   }
+}
+
+.mob {
+  @include respond-to(d) {
+    display: none;
+  }
+}
+
+.available {
+  opacity: 0.5;
 }

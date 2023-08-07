@@ -5,10 +5,12 @@ import PropTypes from "prop-types"
 import {useEffect, useMemo, useState} from "react"
 
 const SelectForm = (props) => {
-    const {placeholder, name, onChange, onBlur, disabled, value, required, options = []} = props
+    const {placeholder, name, onChange, onBlur, disabled, value, required, options = [], errors} = props
     const [isOpen, setIsOpen] = useState(false)
     const [isHover, setIsHover] = useState(false)
-    const active = useMemo(() => options.find((e) => e.value === value),[options, value])
+    const active = useMemo(() => options.find((e) => e.value === value), [options, value])
+    const error = errors?.[name]
+
     useEffect(() => {
         const close = () => {
             if (!isHover) setIsOpen(false)
@@ -40,7 +42,8 @@ const SelectForm = (props) => {
                     {active?.name}
                </span>
                 <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                    <path d="M10 16L17.1716 23.1716C18.7337 24.7337 21.2663 24.7337 22.8284 23.1716L30 16" stroke="black" strokeWidth="2"/>
+                    <path d="M10 16L17.1716 23.1716C18.7337 24.7337 21.2663 24.7337 22.8284 23.1716L30 16"
+                          stroke="black" strokeWidth="2"/>
                 </svg>
 
                 {isOpen && (
@@ -57,6 +60,11 @@ const SelectForm = (props) => {
                     </div>
                 )}
             </div>
+            {error && (
+                <div className={style.error}>
+                    {error.message}
+                </div>
+            )}
         </div>
     )
 }
@@ -69,10 +77,11 @@ SelectForm.propTypes = {
     onBlur: PropTypes.func,
     type: PropTypes.string,
     disabled: PropTypes.bool,
-    required: PropTypes.bool,
+    required: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
     options: PropTypes.arrayOf(PropTypes.shape({
         name: PropTypes.string,
         value: PropTypes.string,
     })),
+    errors: PropTypes.shape({})
 }
 export default SelectForm

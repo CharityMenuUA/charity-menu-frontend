@@ -6,13 +6,13 @@ import {usePathname, useRouter} from "next/navigation"
 import {auth} from "@/app/providers/firebase/app"
 import {useEffect} from "react"
 import Link from "next/link"
+import Loader from "@/app/components/loader/Loader"
 
 const ProfileLayout = (props) => {
     const {children} = props
     const {user, profile, loading} = useUserContext()
     const router = useRouter()
     const pathname = usePathname()
-
     const signOutClick = async () => {
         await auth.signOut()
     }
@@ -29,7 +29,9 @@ const ProfileLayout = (props) => {
         <>
             <h1 className={style.h1}>Мiй профіль</h1>
             <div className={style.layout}>
-                Loading...
+                <div className={style.loader}>
+                    <Loader/>
+                </div>
             </div>
         </>
     )
@@ -39,7 +41,9 @@ const ProfileLayout = (props) => {
         <>
             <h1 className={style.h1}>Мiй профіль</h1>
             <div className={style.layout}>
-                User not found!
+                <div className={style.loader}>
+                    <Loader/>
+                </div>
             </div>
         </>
     )
@@ -52,10 +56,12 @@ const ProfileLayout = (props) => {
                     <Link href={'/profile'} className={`${style.link} ${pathname === "/profile" ? style.active : ""}`}>
                         Що я замовляв
                     </Link>
-                    <Link href={'/profile/ordered'}
-                          className={`${style.link} ${pathname === "/profile/ordered" ? style.active : ""}`}>
-                        Замовили в мене
-                    </Link>
+                    {profile?.chef && (
+                        <Link href={'/profile/ordered'}
+                              className={`${style.link} ${pathname === "/profile/ordered" ? style.active : ""}`}>
+                            Замовили в мене
+                        </Link>
+                    )}
                     <Link
                         href={'/profile/settings'}
                         className={`${style.link} ${pathname === "/profile/settings" ? style.active : ""}`}

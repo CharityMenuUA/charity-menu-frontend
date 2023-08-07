@@ -34,7 +34,13 @@ const MenuIdPage = async (props) => {
             <div className={style.menu_info}>
                 <div className={style.price}>
                     <span>₴{menu.price}</span>
-                    <ByLink menuId={menuId} chefId={chefId} className={style.button}/>
+                    {menu.available ? (
+                        <ByLink menuId={menuId} chefId={chefId} className={style.button}/>
+                    ) : (
+                        <button className={style.button} disabled={true}>
+                            Недоступно
+                        </button>
+                    )}
                 </div>
                 <div className={style.description}
                      style={{backgroundImage: `url("${menu.image || '/menu-def-image.png'}")`}}>

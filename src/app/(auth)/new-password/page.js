@@ -4,9 +4,10 @@ import style from '../auth.module.scss'
 import {useForm} from "react-hook-form"
 import Input from "@/app/components/input/Input"
 import Link from "next/link"
+import validate from "@/app/components/input/validate"
 
 const NewPasswordPage = () => {
-    const {handleSubmit, register} = useForm()
+    const {handleSubmit, register, formState: {errors}} = useForm()
     const onSubmit = (data) => {
         console.log(data)
     }
@@ -18,9 +19,19 @@ const NewPasswordPage = () => {
             <div className={style.wrap}>
                 <div className={style.block}>
                     <form onSubmit={handleSubmit(onSubmit)}>
-                        <Input name={"password"} register={register} label="Новий пароль" type="password"/>
-                        <Input name={"repeat_password"} register={register} label="Повторiть новий пароль"
-                               type="password"/>
+                        <Input required name={"password"} register={register} errors={errors} label="Новий пароль"
+                               type="password"
+                               pattern={{
+                                   value: validate.password,
+                               }}
+                        />
+                        <Input required name={"repeat_password"} register={register} errors={errors}
+                               label="Повторiть новий пароль"
+                               type="password"
+                               pattern={{
+                                   value: validate.password,
+                               }}
+                        />
                         <button type={"submit"} className={style.submit}>
                             ОНОВИТИ ПАРОЛЬ
                         </button>

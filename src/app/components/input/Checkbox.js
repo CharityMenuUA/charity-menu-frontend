@@ -2,7 +2,8 @@ import style from './input.module.scss'
 import PropTypes from "prop-types"
 
 const Checkbox = (props) => {
-    const {label = props.children, name, register, onChange, onBlur, disabled, value} = props
+    const {label = props.children, name, register, onChange, onBlur, disabled, value, required, errors} = props
+    const error = errors?.[name]
     return (
         <fieldset className={style.input_fieldset}>
             {register ? (
@@ -12,7 +13,10 @@ const Checkbox = (props) => {
                     name={name}
                     className={style.checkbox}
                     disabled={disabled}
-                    {...register(name, {value: value})}
+                    {...register(name, {
+                        value: value,
+                        required: required,
+                    })}
                 />
             ) : (
                 <input
@@ -32,6 +36,11 @@ const Checkbox = (props) => {
                     <span>{label}</span>
                 </label>
             )}
+            {error && (
+                <div className={style.error}>
+                    {error.message}
+                </div>
+            )}
         </fieldset>
     )
 }
@@ -44,5 +53,8 @@ Checkbox.propTypes = {
     onBlur: PropTypes.func,
     type: PropTypes.string,
     disabled: PropTypes.bool,
+    required: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+    errors: PropTypes.shape({})
+
 }
 export default Checkbox

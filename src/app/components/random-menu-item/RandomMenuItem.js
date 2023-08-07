@@ -5,6 +5,7 @@ import {getRandom} from "@/app/components/random-menu-item/actions"
 import Image from "next/image"
 import {SwitchTransition, CSSTransition} from "react-transition-group"
 import Link from "next/link"
+import Loader from "@/app/components/loader/Loader"
 
 
 const RandomMenuItem = () => {
@@ -68,7 +69,7 @@ const RandomMenuItem = () => {
                                 </Link>
                             ) : item.animate ? (
                                 <div className={style.firstScreen}>
-                                    ...
+                                    <Loader/>
                                 </div>
                             ) : (
                                 <div className={style.firstScreen}>
