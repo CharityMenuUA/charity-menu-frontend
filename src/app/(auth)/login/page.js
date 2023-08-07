@@ -25,16 +25,18 @@ const LoginPage = () => {
 
             switch (err.code) {
             case "auth/user-not-found" : {
+                console.error({...err})
                 setError('email', {type: 'user-not-found', message: 'Невірний email'})
                 break
             }
             case "auth/wrong-password": {
-                console.error('auth/wrong-password')
+                console.error({...err})
                 setError('password', {type: 'auth/wrong-password', message: 'Невірно невірний'})
                 break
             }
             default: {
                 console.error({...err})
+                setError('common', {type: err.code, message: err.code})
             }
             }
         })
@@ -71,6 +73,11 @@ const LoginPage = () => {
                     <Link href={"/forgot-password"} className={style.forgot}>
                         Я забув пароль
                     </Link>
+                    {errors.common && (
+                        <div className={style.error}>
+                            {errors.common.message}
+                        </div>
+                    )}
                     <button type={"submit"} className={style.submit} disabled={loading}>
                         {loading ? <Loader/> : 'Вхід'}
                     </button>

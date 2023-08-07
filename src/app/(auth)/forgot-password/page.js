@@ -24,14 +24,15 @@ const ForgotPasswordPage = () => {
             .catch((err) => {
                 setLoading(false)
 
-
                 switch (err.code) {
                 case "auth/user-not-found" : {
+                    console.error({...err})
                     setError('email', {type: 'user-not-found', message: 'Невірний email'})
                     break
                 }
                 default: {
                     console.error({...err})
+                    setError('common', {type: err.code, message: err.code})
                 }
                 }
             })
@@ -54,6 +55,11 @@ const ForgotPasswordPage = () => {
                         <form onSubmit={handleSubmit(onSubmit)}>
                             <Input name={"email"} register={register} errors={errors} label="Email" type="email"
                                    required/>
+                            {errors.common && (
+                                <div className={style.error}>
+                                    {errors.common.message}
+                                </div>
+                            )}
                             <button type={"submit"} className={style.submit}>
                                 {loading ? <Loader/> : 'Відправити'}
                             </button>

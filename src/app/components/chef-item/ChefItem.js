@@ -1,11 +1,37 @@
+"use client"
+
 import style from './chefItem.module.scss'
 import PropTypes from 'prop-types'
 import Link from 'next/link'
 import Image from 'next/image'
 import {pluralize} from "@/app/components/helpers/pluralLots"
+import {Fragment, useEffect, useRef} from "react"
 
 const ChefItem = (props) => {
     const {id, photo, menuItemsNumber, name} = props
+
+    const Span = ({children}) => {
+        const ref = useRef()
+
+        useEffect(() => {
+            const minText = (FS = 21) => {
+                if (FS < 5) return
+                if (ref.current.clientWidth > ref.current.parentElement.clientWidth) {
+                    ref.current.style.fontSize = `${FS - 1}px`
+                    minText(FS - 1)
+                }
+            }
+            minText()
+        }, [])
+        return (
+            <span ref={ref}>
+                {children}
+            </span>
+        )
+    }
+
+    const names = name.split(' ')
+
     return (
         <Link href={`/chefs/${id}`} className={style.chefs}>
             <div className={style.photo}>
@@ -22,7 +48,14 @@ const ChefItem = (props) => {
             </div>
             <div className={style.content}>
                 <div className={style.name}>
-                    {name}
+                    {names.map((name, key) => (
+                        <Fragment key={key}>
+                            {!!key && (<>&nbsp;</>)}
+                            <Span>
+                                {name}
+                            </Span>
+                        </Fragment>
+                    ))}
                 </div>
                 <div className={style.count}>
                     {pluralize(menuItemsNumber, ['пропозиція', 'пропозиції', 'пропозицій'])}

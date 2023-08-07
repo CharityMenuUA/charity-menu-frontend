@@ -9,12 +9,13 @@ import {auth} from "@/app/providers/firebase/app"
 import Checkbox from "@/app/components/input/Checkbox"
 import {setProfile} from "@/app/profile/actions"
 import {useUserContext} from "@/app/providers/firebase/UserProvider"
-import validate from "@/app/components/input/validate"
 import {useState} from "react"
 import Loader from "@/app/components/loader/Loader"
+import {useConfigContext} from "@/app/providers/config/ConfigProvider"
 
 const RegisterPage = () => {
     const {updateUser} = useUserContext()
+    const {config} = useConfigContext()
     const {handleSubmit, register, watch, formState: {errors}, setError} = useForm()
     const [loading, setLoading] = useState(false)
 
@@ -39,8 +40,14 @@ const RegisterPage = () => {
                     setError('email', {type: 'email-already-in-use', message: 'Користувач з цією поштою вже існує'})
                     break
                 }
+                case "auth/weak-password" : {
+                    setError('password', {type: 'weak-password', message: 'Слабкий пароль'})
+                    break
+                }
+
                 default: {
                     console.error({...err})
+                    setError('common', {type: err.code, message: err.code})
                 }
                 }
             })
@@ -70,12 +77,18 @@ const RegisterPage = () => {
                         <Input name={"password"} register={register} errors={errors} label="Пароль" type="password"
                                required
                                pattern={{
-                                   value: validate.password,
+                                   value: new RegExp(config?.password?.regex),
+                                   message: config?.password?.warnLabel,
                                }}
                         />
                         <Checkbox name={"user_agree_to_terms"} register={register} errors={errors} required>
                             Ознайомлений з <Link href={'/'}>Політиками</Link> та <Link href={'/'}>Офертами</Link>
                         </Checkbox>
+                        {errors.common && (
+                            <div className={style.error}>
+                                {errors.common.message}
+                            </div>
+                        )}
                         <button type={"submit"} className={style.submit} disabled={!userAgreeToTerms}>
                             {loading ? <Loader/> : 'Реєстрація'}
                         </button>

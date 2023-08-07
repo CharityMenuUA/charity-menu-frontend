@@ -18,7 +18,7 @@ const DropdownList = ({list}) => {
         <div className={style.dropdownList}>
             <ul className={style.dropdownList_list}>
                 {list.map((item, itemIndex) => {
-                    const {itemHead, itemBody} = item;
+                    const {question, answer} = item;
                     return (
                         <li className={[
                             style.dropdownList_item,
@@ -30,13 +30,13 @@ const DropdownList = ({list}) => {
                                 onClick={() => toggleQuestion(itemIndex)}
                             >
                                 <span>
-                                    {itemHead}
+                                    {question}
                                 </span>
                             </button>
 
                             <div className={style.dropdownList_item_body}>
                                 <div>
-                                    {itemBody}
+                                    {answer}
                                 </div>
                             </div>
                         </li>
