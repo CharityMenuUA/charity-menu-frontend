@@ -8,6 +8,7 @@
   flex-direction: column;
   position: relative;
   width: 210px;
+
   @include hover {
     border-radius: 40px;
     box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
@@ -50,6 +51,8 @@
   margin-top: 10px;
   margin-bottom: 20px;
   height: 100%;
+  text-overflow: ellipsis;
+  overflow: hidden;
   @include respond-to(m) {
     font-size: 16px;
   }
