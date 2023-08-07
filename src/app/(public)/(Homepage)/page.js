@@ -5,6 +5,8 @@ import RandomMenuItem from "@/app/components/random-menu-item/RandomMenuItem"
 import {getPopularMenuItem} from "@/app/components/actions"
 import {chefsSortValues, menuSortValues} from "@/app/(public)/chefs/(chefs-and-menu)/sortValues"
 import {getChef, getMenu} from "@/app/(public)/chefs/(chefs-and-menu)/actions"
+import StepsSlider from "@/app/components/steps-slider/StepsSlider";
+import HomeFaq from "@/app/(public)/(Homepage)/HomeFaq";
 
 
 const HomePage = async () => {
@@ -18,10 +20,13 @@ const HomePage = async () => {
     return (
         <>
             <HomeChefsAndOffers chefs={chefs} menuItems={menuItems}/>
+            <StepsSlider/>
             <div className={style.popularRandom}>
                 <PopularMenuItems menuItems={menuPopularItems}/>
                 <RandomMenuItem/>
             </div>
+
+            <HomeFaq/>
         </>
     )
 }

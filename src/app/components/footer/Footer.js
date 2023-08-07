@@ -20,9 +20,9 @@ const Footer = () => {
                 </Link>
             </div>
             <div className={style.right}>
-                <div>
+                <Link href={pages.policy.href}>
                     Оферта
-                </div>
+                </Link>
             </div>
         </div>
     )

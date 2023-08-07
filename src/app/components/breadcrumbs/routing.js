@@ -46,6 +46,10 @@ const pages = {
     reporting: {
         name: 'Звітність',
         href: 'reporting'
+    },
+    policy: {
+        name: 'Оферта',
+        href: '/policy'
     }
 }
 
