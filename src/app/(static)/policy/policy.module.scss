@@ -1,0 +1,84 @@
+.policyPage {
+  margin: 30px auto;
+
+  @include respond-to(t) {
+    padding: 0 20px;
+    margin: 10px auto;
+  }
+
+  &_inner {
+    width: calc(var(--width-wrapper) - 345px);
+
+    @include respond-to(t) {
+      width: var(--width-wrapper);
+    }
+  }
+
+  &_head {
+    text-align: center;
+    margin-bottom: 70px;
+
+    @include respond-to(m) {
+      margin-bottom: 50px;
+    }
+  }
+
+  &_cont {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    line-height: 1.6;
+    font-family: var(--font-open-sans);
+
+    @include respond-to(m) {
+      font-size: 13px;
+      gap: 20px;
+    }
+
+    h2 {
+      font-size: 26px;
+      line-height: normal;
+
+      @include respond-to(m) {
+        font-size: 21px;
+      }
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: var(--font-unbounded);
+    }
+
+    p {
+      padding-bottom: 30px;
+
+      @include respond-to(m) {
+        padding-bottom: 20px;
+      }
+    }
+
+    a {
+      background: linear-gradient(47deg, #F12711 0%, #F5AF19 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      transition: .3s ease-out;
+
+      @include hover {
+        opacity: .6;
+      }
+    }
+
+    ul,
+    ol {
+      padding-left: 1.2em;
+    }
+
+    ul {
+      list-style-type: disc;
+    }
+
+    ol {
+      list-style-type: decimal;
+    }
+  }
+}

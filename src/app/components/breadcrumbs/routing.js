@@ -22,6 +22,10 @@ const pages = {
     register: {
         name: 'Реєстрація',
         href: 'register'
+    },
+    policy: {
+        name: 'Оферта',
+        href: '/policy'
     }
 }
 

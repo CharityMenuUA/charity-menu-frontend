@@ -1,0 +1,27 @@
+.teamPage {
+  &_inner {
+    margin: 0 auto;
+    width: var(--width-wrapper);
+
+    @include respond-to(m) {
+      padding: 0 10px;
+    }
+  }
+
+  &_head {
+    text-align: center;
+    margin-bottom: 80px;
+
+    @include respond-to(m) {
+      margin-bottom: 40px;
+    }
+  }
+
+  &_grid {
+    display: flex;
+    justify-content: center;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+}
