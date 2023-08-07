@@ -9,8 +9,6 @@ const TeamPage = () => {
     const { config } = configContext;
     const { team } = config;
 
-    console.log('team', team);
-
     return (
         <div className={style.teamPage}>
             <div className={style.teamPage_inner}>

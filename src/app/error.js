@@ -1,9 +1,9 @@
-'use client' // Error components must be Client Components
+'use client'
 
 import {useEffect} from 'react'
 import style from "@/app/styles/not-found.module.scss"
 
-export default function Error({error, reset}) {
+export default function Error({error, reset = () => location.reload()}) {
     useEffect(() => {
         // Log the error to an error reporting service
         console.error(error)
