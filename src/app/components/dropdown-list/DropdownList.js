@@ -26,7 +26,7 @@ const DropdownList = ({list}) => {
                         ].join(' ')} key={itemIndex}>
                             <button
                                 type="button"
-                                className={style.dropdownList_item_question}
+                                className={style.dropdownList_item_head}
                                 onClick={() => toggleQuestion(itemIndex)}
                             >
                                 <span>
@@ -34,7 +34,7 @@ const DropdownList = ({list}) => {
                                 </span>
                             </button>
 
-                            <div className={style.dropdownList_item_answer}>
+                            <div className={style.dropdownList_item_body}>
                                 <div>
                                     {itemBody}
                                 </div>

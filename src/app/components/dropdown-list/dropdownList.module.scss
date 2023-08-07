@@ -13,12 +13,12 @@
     box-shadow: 0 2px 20px 0 rgba(#000000, 0.05);
     position: relative;
 
-    &.open &_answer {
+    &.open &_body {
       grid-template-rows: 1fr;
       padding: 0 30px 30px;
     }
 
-    &.open &_question::after {
+    &.open &_head::after {
       opacity: 0;
     }
 
@@ -31,12 +31,12 @@
       position: absolute;
     }
 
-    &_question,
-    &_answer {
+    &_head,
+    &_body {
       position: relative;
     }
 
-    &_question {
+    &_head {
       padding: 20px 30px;
       display: flex;
       align-items: center;
@@ -90,7 +90,7 @@
       }
     }
 
-    &_answer {
+    &_body {
       display: grid;
       grid-template-rows: 0fr;
       transition: .3s ease-out;
