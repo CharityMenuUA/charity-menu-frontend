@@ -7,6 +7,7 @@ import {useConfigContext} from "@/app/providers/config/ConfigProvider"
 import PropTypes from "prop-types"
 import {setCompleted} from "@/app/profile/actions"
 import {useUserContext} from "@/app/providers/firebase/UserProvider"
+import pages from "@/app/components/breadcrumbs/routing"
 
 const OrderItem = (props) => {
     const {order, ordered, loadData} = props
@@ -52,7 +53,7 @@ const OrderItem = (props) => {
                             <div className={style.label}>
                                 Автор
                             </div>
-                            <Link href={`/chefs/${order.chefId}`} className={style.chef}>
+                            <Link href={`${pages.chefs.href}/${order.chefId}`} className={style.chef}>
                                 <div className={style.photo}>
                                     <Image
                                         alt={order.chefName || ''}
@@ -91,7 +92,7 @@ const OrderItem = (props) => {
                     </div>
 
                     {!ordered ? (
-                        <Link href={`/chefs/${order.chefId}/${order.menuItemId}`} className={style.button}>
+                        <Link href={`${pages.chefs.href}/${order.chefId}/${order.menuItemId}`} className={style.button}>
                             Сторінка пропозиції
                         </Link>
                     ) : (

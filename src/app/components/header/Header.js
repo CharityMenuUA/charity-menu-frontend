@@ -50,7 +50,7 @@ const Header = () => {
                             )}
                         </Link>
                     ) : (
-                        <Link href={'/login'} className={style.login}>
+                        <Link href={pages.login.href} className={style.login}>
                             <svg viewBox="0 0 40 40">
                                 <path
                                     d="M11 31.3335V31.3335C11 28.0198 13.6863 25.3335 17 25.3335H23C26.3137 25.3335 29 28.0198 29 31.3335V31.3335"/>
@@ -60,12 +60,12 @@ const Header = () => {
                     )}
 
 
-                    <Link href={'/chefs?menu=1'} type={'button'} className={style.offers}>
+                    <Link href={`${pages.chefs.href}?menu=1`} type={'button'} className={style.offers}>
                         Пропозиції
                     </Link>
                 </div>
             </header>
-            <Link href={'/chefs?menu=1'} type={'button'} className={style.offersMob}>
+            <Link href={`${pages.chefs.href}?menu=1`} type={'button'} className={style.offersMob}>
                 Пропозиції
             </Link>
         </>

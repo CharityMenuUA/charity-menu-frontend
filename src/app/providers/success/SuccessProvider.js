@@ -6,6 +6,7 @@ import ReactPortal from "@/app/components/portal/ReactPortal"
 import {useEffect, useState} from "react"
 import style from "@/app/components/by-popup/style.module.scss"
 import Link from "next/link"
+import pages from "@/app/components/breadcrumbs/routing"
 
 const SuccessProvider = ({children}) => {
     const search = useSearchParams()
@@ -72,7 +73,7 @@ const SuccessProvider = ({children}) => {
                                 Статус вашого замовлення доступний у профілі
                             </div>
                             <div className={style.buttons_success}>
-                                <Link href={'/profile'} onClick={onClose} className={style.button_left}>
+                                <Link href={pages.profile.href} onClick={onClose} className={style.button_left}>
                                     В профiль
                                 </Link>
                                 <button type={'button'} onClick={onClose} className={style.button_right}>

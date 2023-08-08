@@ -2,37 +2,23 @@
 import {getList, getOne, create} from "@/helpers/dataProvider"
 
 export const getPopularMenuItem = async () => {
-    try {
-        return await getList(`/menu-items`, {
-            params: {
-                pageSize: 4,
-                sortBy: "POPULARITY"
-            },
-            next: {revalidate: 0}
-        }).then(data => data.json())
-    } catch {
-        return {
-            menuItems: []
-        }
-    }
+    return getList(`/menu-items`, {
+        params: {
+            pageSize: 4,
+            sortBy: "POPULARITY"
+        },
+        next: {revalidate: 0}
+    })
 }
 
 export const getMenuItem = async (params) => {
     const {menuId} = params
-    try {
-        return await getOne(`/menu-items/`, menuId).then(data => data.json())
-    } catch {
-        return {}
-    }
+    return getOne(`/menu-items/`, menuId)
 }
 
 export const getChef = async (params) => {
     const {chefId} = params
-    try {
-        return await getOne(`chefs`, chefId).then(data => data.json())
-    } catch {
-        return {}
-    }
+    return getOne(`chefs`, chefId)
 }
 
 export const createOrder = async (chefId, menuId, params, accessToken) => {
@@ -41,20 +27,14 @@ export const createOrder = async (chefId, menuId, params, accessToken) => {
         headers: {
             "Authorization": `Bearer ${accessToken}`
         },
-    }).then(data => data.json())
+    })
 }
 
 
 export const getChefs = async () => {
-    try {
-        return await getList('/chefs', {
-            params: {
-                pageSize: 7,
-            }
-        }).then((e) => e.json())
-    } catch {
-        return {
-            chefs: []
+    return getList('/chefs', {
+        params: {
+            pageSize: 7,
         }
-    }
+    })
 }

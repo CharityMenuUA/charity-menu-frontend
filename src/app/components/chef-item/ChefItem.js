@@ -6,6 +6,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import {pluralize} from "@/app/components/helpers/pluralLots"
 import {Fragment, useEffect, useRef} from "react"
+import pages from "@/app/components/breadcrumbs/routing"
 
 const ChefItem = (props) => {
     const {id, photo, menuItemsNumber, name} = props
@@ -33,7 +34,7 @@ const ChefItem = (props) => {
     const names = name.split(' ')
 
     return (
-        <Link href={`/chefs/${id}`} className={style.chefs}>
+        <Link href={`${pages.chefs.href}/${id}`} className={style.chefs}>
             <div className={style.photo}>
                 <Image
                     alt={name}

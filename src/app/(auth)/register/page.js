@@ -12,6 +12,7 @@ import {useUserContext} from "@/app/providers/firebase/UserProvider"
 import {useState} from "react"
 import Loader from "@/app/components/loader/Loader"
 import {useConfigContext} from "@/app/providers/config/ConfigProvider"
+import pages from "@/app/components/breadcrumbs/routing"
 
 const RegisterPage = () => {
     const {updateUser} = useUserContext()
@@ -82,7 +83,7 @@ const RegisterPage = () => {
                                }}
                         />
                         <Checkbox name={"user_agree_to_terms"} register={register} errors={errors} required>
-                            Ознайомлений з <Link href={'/'}>Політиками</Link> та <Link href={'/'}>Офертами</Link>
+                            Ознайомлений з <Link href={pages.policy.href}>Політиками</Link> та <Link href={pages.policy.href}>Офертами</Link>
                         </Checkbox>
                         {errors.common && (
                             <div className={style.error}>
@@ -98,7 +99,7 @@ const RegisterPage = () => {
                     <div className={style.text}>
                         Вже є акаунт?
                     </div>
-                    <Link href={'/login'} className={style.buttonWhite}>
+                    <Link href={pages.login.href} className={style.buttonWhite}>
                         Вхід
                     </Link>
                 </div>

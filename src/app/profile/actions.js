@@ -3,45 +3,24 @@
 import {create, update, get} from "@/helpers/dataProvider"
 
 export const setProfile = async (accessToken, data) => {
-    try {
-        return await create(`/profile`, {
-            body: data,
-            // cache: 'no-store',
-            headers: {
-                "Authorization": `Bearer ${accessToken}`
-            },
-        }).then(data => data.json())
-    } catch {
-        return {}
-    }
+    return create(`/profile`, {
+        body: data,
+        headers: {"Authorization": `Bearer ${accessToken}`},
+    }).catch((err) => console.error(err))
 }
 
 
 export const updateProfile = async (accessToken, data) => {
-    try {
-        return await update(`/profile`, {
-            body: data,
-            // cache: 'no-store',
-            headers: {
-                "Authorization": `Bearer ${accessToken}`
-            },
-        }).then(data => data.json())
-    } catch {
-        return {}
-    }
+    return update(`/profile`, {
+        body: data,
+        headers: {"Authorization": `Bearer ${accessToken}`},
+    }).catch((err) => console.error(err))
 }
 
 export const getProfile = async (accessToken) => {
-    try {
-        return await get(`/profile`, {
-            // cache: 'no-store',
-            headers: {
-                "Authorization": `Bearer ${accessToken}`
-            },
-        }).then(data => data.json())
-    } catch (err) {
-        return {}
-    }
+    return  get(`/profile`, {
+        headers: {"Authorization": `Bearer ${accessToken}`},
+    }).catch((err) => console.error(err))
 }
 export const getOrders = async (accessToken) => {
     try {
@@ -52,7 +31,7 @@ export const getOrders = async (accessToken) => {
             headers: {
                 "Authorization": `Bearer ${accessToken}`
             },
-        }).then(data => data.json())
+        })
         const completed = await get(`/profile/orders`, {
             params: {
                 state: "COMPLETED"
@@ -60,7 +39,7 @@ export const getOrders = async (accessToken) => {
             headers: {
                 "Authorization": `Bearer ${accessToken}`
             },
-        }).then(data => data.json())
+        })
         return {
             paid,
             completed,
@@ -83,7 +62,7 @@ export const getOrderedOrders = async (accessToken) => {
             headers: {
                 "Authorization": `Bearer ${accessToken}`
             },
-        }).then(data => data.json())
+        })
         const completed = await get(`/profile/chef/orders`, {
             params: {
                 state: "COMPLETED"
@@ -91,7 +70,7 @@ export const getOrderedOrders = async (accessToken) => {
             headers: {
                 "Authorization": `Bearer ${accessToken}`
             },
-        }).then(data => data.json())
+        })
         return {
             paid,
             completed,
@@ -105,13 +84,9 @@ export const getOrderedOrders = async (accessToken) => {
 }
 
 export const setCompleted = async (accessToken, orderId) => {
-    try {
-        return await create(`/profile/chef/orders/${orderId}`, {
-            headers: {
-                "Authorization": `Bearer ${accessToken}`
-            },
-        }).then(data => data.json())
-    } catch {
-        return {}
-    }
+    return  create(`/profile/chef/orders/${orderId}`, {
+        headers: {
+            "Authorization": `Bearer ${accessToken}`
+        },
+    }).catch((err) => console.error(err))
 }

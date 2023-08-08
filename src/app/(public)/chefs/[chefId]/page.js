@@ -11,7 +11,7 @@ import {pluralize} from "@/app/components/helpers/pluralLots"
 const getChef = async (params) => {
     const {chefId} = params
     try {
-        return await getOne(`chefs`, chefId).then(data => data.json())
+        return getOne(`chefs`, chefId)
     } catch {
         return notFound()
     }
@@ -19,20 +19,14 @@ const getChef = async (params) => {
 const getMenu = async (params) => {
     const {chefId} = params
     try {
-        return await getList(`/chefs/${chefId}/menu`).then(data => data.json())
+        return getList(`/chefs/${chefId}/menu`)
     } catch {
         return notFound()
     }
 }
-const getAccumulated = async (params) => {
+const getChefIdAccumulated = async (params) => {
     const {chefId} = params
-    try {
-        return await getList(`/chefs/${chefId}/accumulated`).then(data => data.json())
-    } catch {
-        return {
-            amount: 0
-        }
-    }
+    return getList(`/chefs/${chefId}/accumulated`)
 }
 
 export const generateMetadata = async (props) => {
@@ -49,7 +43,7 @@ const ChefIdPage = async (props) => {
     const chef = await getChef({chefId})
     if (!chef.id) return notFound()
     const menu = await getMenu({chefId})
-    const accumulated = await getAccumulated({chefId})
+    const accumulated = await getChefIdAccumulated({chefId})
     const {instagram, facebook, twitter, tiktok, youtube, telegram, name, description, photo} = chef
     return (
         <div>

@@ -6,6 +6,7 @@ import PropTypes from 'prop-types'
 import ReactPortal from "@/app/components/portal/ReactPortal"
 import {useState} from "react"
 import ByPopup from "@/app/components/by-popup/ByPopup"
+import pages from "@/app/components/breadcrumbs/routing"
 
 const ByLink = (props) => {
     const {chefId, menuId, className} = props
@@ -25,7 +26,7 @@ const ByLink = (props) => {
                     купити
                 </button>
             ) : (
-                <Link href={`/login?next=${linkToCreateOrder({chefId, menuId})}`} className={className}>
+                <Link href={`${pages.login.href}?next=${linkToCreateOrder({chefId, menuId})}`} className={className}>
                     купити
                 </Link>
             )}

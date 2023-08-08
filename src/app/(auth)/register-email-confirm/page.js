@@ -5,6 +5,7 @@ import {useUserContext} from "@/app/providers/firebase/UserProvider"
 import {auth} from "@/app/providers/firebase/app"
 import {useEffect, useState} from "react"
 import {useRouter, useSearchParams} from "next/navigation"
+import pages from "@/app/components/breadcrumbs/routing"
 
 const RegisterEmailConfirmPage = () => {
     const [isSend, setIsSend] = useState(false)
@@ -66,6 +67,17 @@ const RegisterEmailConfirmPage = () => {
                             Повторна відправка буде доступна через 5 хвилин
                         </div>
                     )}
+                </div>
+                <div className={style.block}>
+                    <div className={style.text}>
+                        Якщо ви невірно ввели електронну пошту, поверніться до реєстрації.
+                    </div>
+                    <button onClick={async () => {
+                        await auth.signOut()
+                        router.push(pages.register.href)
+                    }} className={style.buttonWhite}>
+                        Реєстрація
+                    </button>
                 </div>
             </div>
         </div>

@@ -4,12 +4,13 @@ import PropTypes from 'prop-types'
 import Link from 'next/link'
 import Image from 'next/image'
 import ByLink from '@/app/(public)/chefs/[chefId]/[menuId]/ByLink'
+import pages from "@/app/components/breadcrumbs/routing"
 
 const MenuItem = (props) => {
     const {id, chefId, chefNameAlt, chefName, chefPhoto, title, price, min, available} = props
     return (
         <div className={`${style.item} ${min ? style.min : ''} ${available ? '' : style.available}`}>
-            <Link href={`/chefs/${chefId}/${id}`} className={style.link}>
+            <Link href={`${pages.chefs.href}/${chefId}/${id}`} className={style.link}>
                 <div className={style.photo}>
                     <Image
                         alt={chefName || chefNameAlt}

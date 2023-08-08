@@ -7,6 +7,7 @@ import Input from "@/app/components/input/Input"
 import {auth} from "@/app/providers/firebase/app"
 import Loader from "@/app/components/loader/Loader"
 import {useState} from "react"
+import pages from "@/app/components/breadcrumbs/routing"
 
 const ForgotPasswordPage = () => {
     const {handleSubmit, register, formState: {errors}, setError} = useForm()
@@ -72,7 +73,7 @@ const ForgotPasswordPage = () => {
                 <div className={style.text}>
                     Пригадали пароль?
                 </div>
-                <Link href={'/login'} className={style.buttonWhite}>
+                <Link href={pages.login.href} className={style.buttonWhite}>
                     Вхід
                 </Link>
             </div>

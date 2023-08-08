@@ -4,6 +4,7 @@ import Link from 'next/link'
 import {useSwitcherContext} from "@/app/components/switcher/Switcher"
 import HomeChefs from "@/app/(public)/(Homepage)/HomeChefs"
 import HomeMenu from "@/app/(public)/(Homepage)/HomeMenu"
+import pages from "@/app/components/breadcrumbs/routing"
 
 const HomeChefsAndOffers = (props) => {
     const {chefs, menuItems} = props
@@ -14,7 +15,7 @@ const HomeChefsAndOffers = (props) => {
                 <HomeChefs chefs={chefs}/>
                 <HomeMenu menuItems={menuItems}/>
             </div>
-            <Link href={value ? '/chefs?menu=1' : '/chefs'} className={style.button_more}>
+            <Link href={value ? `${pages.chefs.href}?menu=1` : pages.chefs.href} className={style.button_more}>
                 {value ? 'Усі пропозиції' : 'Усі автори'} &nbsp;
                 <svg width="13" height="12" viewBox="0 0 13 12" fill="none">
                     <path

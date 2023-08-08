@@ -42,9 +42,7 @@ const HeaderMenu = (props) => {
                     <div className={style.container}>
                         <HeaderLogo className={style.logo}/>
                         <div className={style.text}>
-                            Благодійний проект, гроші з якого йдуть на допомогу Україні. Благодійний проект, гроші з
-                            якого
-                            йдуть на допомогу Україні
+                            Платформа, на якій ти змжеш отримати приємні емоції, а Україна реальну допомогу.
                         </div>
                         {config?.supportLink && (
                             <SupportButton link={config.supportLink}/>
@@ -56,9 +54,6 @@ const HeaderMenu = (props) => {
                             <Link href={pages.contacts.href} className={style.link}>
                                 Контакти
                             </Link>
-                            <Link href={pages.partners.href} className={style.link}>
-                                Партнери
-                            </Link>
                             <Link href={pages.reporting.href} className={style.link}>
                                 Звітність
                             </Link>
@@ -66,7 +61,9 @@ const HeaderMenu = (props) => {
                                 FAQ
                             </Link>
                         </div>
-
+                        <Link href={pages.policy.href} className={style.oferta}>
+                            Оферта
+                        </Link>
                     </div>
                     <div className={style.socials}>
                         {instagram && (
@@ -114,6 +111,7 @@ const HeaderMenu = (props) => {
                     </div>
 
                 </div>
+
             </div>
         </ReactPortal>
     )
