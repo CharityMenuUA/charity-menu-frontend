@@ -155,7 +155,7 @@ const StepsSlider = () => {
                     </Link>
                     <div className={style.line}/>
                     <div className={style.sponsor_info}>
-                        <p>Партнер цього місяця</p>
+                        <p>{sponsor?.title}</p>
                         <div className={style.socials}>
                             {sponsor?.contacts?.instagram && (
                                 <a href={sponsor?.contacts?.instagram} className={style.socials_icon} target="_blank">
