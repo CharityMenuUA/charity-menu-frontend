@@ -1,0 +1,18 @@
+.reportingPage {
+  margin: 0 auto;
+
+  &_inner {
+    width: calc(var(--width-wrapper) - 230px);
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+
+    @include respond-to(t) {
+      width: var(--width-wrapper);
+    }
+  }
+
+  &_head {
+    text-align: center;
+  }
+}

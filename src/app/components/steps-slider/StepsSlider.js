@@ -168,8 +168,8 @@ const StepsSlider = () => {
                         <Image
                             alt="fund-logo"
                             src={fund?.logo}
-                            width={150}
-                            height={150}
+                            width={220}
+                            height={220}
                             quality={100}
                             style={{
                                 objectFit: 'contain',
