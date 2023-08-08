@@ -1,0 +1,28 @@
+.reportingFunds {
+  border-top: 1px solid #E0E0E0;
+  width: calc(var(--width-wrapper) - 230px);
+
+  @include respond-to(t) {
+    width: var(--width-wrapper);
+  }
+
+  &_item {
+    padding: 30px 0;
+    border-bottom: 1px solid #E0E0E0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+
+    @include respond-to(t) {
+      flex-direction: column;
+      padding: 26px 0;
+    }
+
+    &_count {
+      font-size: 26px;
+      line-height: 32px;
+      font-weight: 700;
+    }
+  }
+}
