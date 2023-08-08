@@ -10,6 +10,7 @@ import {useUserContext} from "@/app/providers/firebase/UserProvider"
 import validate from "@/app/components/input/validate"
 import Loader from "@/app/components/loader/Loader"
 import {useState} from "react"
+import pages from "@/app/components/breadcrumbs/routing"
 
 
 const LoginPage = () => {

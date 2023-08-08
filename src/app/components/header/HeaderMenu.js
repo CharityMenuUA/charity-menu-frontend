@@ -59,7 +59,9 @@ const HeaderMenu = (props) => {
                                 FAQ
                             </Link>
                         </div>
-
+                        <Link href={pages.policy.href} className={style.oferta}>
+                            Оферта
+                        </Link>
                     </div>
                     <div className={style.socials}>
                         {instagram && (
@@ -107,6 +109,7 @@ const HeaderMenu = (props) => {
                     </div>
 
                 </div>
+
             </div>
         </ReactPortal>
     )

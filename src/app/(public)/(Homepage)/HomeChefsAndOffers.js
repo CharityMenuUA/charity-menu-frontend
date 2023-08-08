@@ -4,6 +4,7 @@ import Link from 'next/link'
 import {useSwitcherContext} from "@/app/components/switcher/Switcher"
 import HomeChefs from "@/app/(public)/(Homepage)/HomeChefs"
 import HomeMenu from "@/app/(public)/(Homepage)/HomeMenu"
+import pages from "@/app/components/breadcrumbs/routing"
 
 const HomeChefsAndOffers = (props) => {
     const {chefs, menuItems} = props

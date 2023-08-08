@@ -8,6 +8,7 @@ import PopularMenuItems from "@/app/components/popular-menu-items/PopularMenuIte
 import RandomMenuItem from "@/app/components/random-menu-item/RandomMenuItem"
 import {pluralize} from "@/app/components/helpers/pluralLots"
 import {getChef, getMenuItem, getPopularMenuItem} from "@/app/components/actions"
+import pages from "@/app/components/breadcrumbs/routing"
 
 
 export const generateMetadata = async (props) => {

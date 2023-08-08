@@ -7,6 +7,7 @@ import {useConfigContext} from "@/app/providers/config/ConfigProvider"
 import PropTypes from "prop-types"
 import {setCompleted} from "@/app/profile/actions"
 import {useUserContext} from "@/app/providers/firebase/UserProvider"
+import pages from "@/app/components/breadcrumbs/routing"
 
 const OrderItem = (props) => {
     const {order, ordered, loadData} = props

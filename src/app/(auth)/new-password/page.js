@@ -5,6 +5,7 @@ import {useForm} from "react-hook-form"
 import Input from "@/app/components/input/Input"
 import Link from "next/link"
 import validate from "@/app/components/input/validate"
+import pages from "@/app/components/breadcrumbs/routing"
 
 const NewPasswordPage = () => {
     const {handleSubmit, register, formState: {errors}} = useForm()

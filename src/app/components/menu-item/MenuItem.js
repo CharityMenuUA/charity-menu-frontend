@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import Link from 'next/link'
 import Image from 'next/image'
 import ByLink from '@/app/(public)/chefs/[chefId]/[menuId]/ByLink'
+import pages from "@/app/components/breadcrumbs/routing"
 
 const MenuItem = (props) => {
     const {id, chefId, chefNameAlt, chefName, chefPhoto, title, price, min, available} = props
