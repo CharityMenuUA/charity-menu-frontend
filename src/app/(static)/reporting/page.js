@@ -1,21 +1,17 @@
-import ReportingFunds from "./reporting-funds/ReportingFunds";
-import {get} from "@/helpers/dataProvider";
-import ReportingTotal from "@/app/(static)/reporting/reporting-total/ReportingTotal";
+import ReportingFunds from "./reporting-funds/ReportingFunds"
+import {get} from "@/helpers/dataProvider"
+import ReportingTotal from "@/app/(static)/reporting/reporting-total/ReportingTotal"
 
-import style from './reporting.module.scss';
+import style from './reporting.module.scss'
 
 const getStatistics = async () => {
-    try {
-        return await get('/statistics').then(data => data.json())
-    } catch {
-        return {}
-    }
+    return get('/statistics').catch((err) => console.error(err))
 }
 
 const ReportingPage = async () => {
     const statistics = await getStatistics()
-    const { reports } = statistics
-    const { authorsQuantity, clientsQuantity, totalAmount } = statistics
+    const {reports} = statistics
+    const {authorsQuantity, clientsQuantity, totalAmount} = statistics
 
     return (
         <div className={style.reportingPage}>
