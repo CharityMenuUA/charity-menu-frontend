@@ -35,9 +35,29 @@ const pages = {
         name: 'FAQ',
         href: 'faq'
     },
+    login: {
+        name: 'Вхід',
+        href: 'login'
+    },
     register: {
         name: 'Реєстрація',
         href: 'register'
+    },
+    "register-email-confirm": {
+        name: 'Підтвердження пошти',
+        href: 'register-email-confirm'
+    },
+    "register-complete": {
+        name: 'Завершення реєстрації',
+        href: 'register-complete'
+    },
+    "new-password": {
+        name: 'Новий пароль',
+        href: 'new-password'
+    },
+    "forgot-password": {
+        name: 'Забули пароль?',
+        href: 'forgot-password'
     },
     reporting: {
         name: 'Звітність',
@@ -45,7 +65,7 @@ const pages = {
     },
     policy: {
         name: 'Оферта',
-        href: '/policy'
+        href: 'policy'
     }
 }
 

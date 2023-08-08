@@ -40,9 +40,7 @@ const HeaderMenu = (props) => {
                     <div className={style.container}>
                         <HeaderLogo className={style.logo}/>
                         <div className={style.text}>
-                            Благодійний проект, гроші з якого йдуть на допомогу Україні. Благодійний проект, гроші з
-                            якого
-                            йдуть на допомогу Україні
+                            Благодійний проект, гроші з якого йдуть на допомогу Україні.
                         </div>
                         {config?.supportLink && (
                             <SupportButton link={config.supportLink}/>
