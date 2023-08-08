@@ -166,15 +166,19 @@
 .fund {
   width: min(100%, 900px);
   margin: 0 auto 100px;
-
+  display: block;
+  border-radius: 40px;
+  border: 1px solid #BDBDBD;
+  transition: all .5s;
+  @include hover {
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+  }
   @include respond-to(m) {
     margin: 0 auto 80px;
     width: var(--width-wrapper);
   }
 
   &_inner {
-    border-radius: 40px;
-    border: 1px solid #BDBDBD;
     padding: 40px;
     display: flex;
     flex-direction: column;

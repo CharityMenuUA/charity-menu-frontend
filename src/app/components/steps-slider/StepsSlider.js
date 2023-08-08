@@ -136,7 +136,7 @@ const StepsSlider = () => {
 
     const configContext = useConfigContext()
     const {config: {fund, sponsor}} = configContext
-console.log(sponsor)
+    console.log(sponsor)
     return (
         <>
             {sponsor && (
@@ -264,10 +264,10 @@ console.log(sponsor)
                 </div>
             </div>
 
-            <div className={style.fund}>
+            <Link href={fund.link} className={style.fund}>
                 <div className={style.fund_inner}>
 
-                    <Link href={fund.link} className={style.fund_logo}>
+                    <div className={style.fund_logo}>
                         <Image
                             alt={fund?.name}
                             src={fund?.logo}
@@ -278,15 +278,14 @@ console.log(sponsor)
                                 objectFit: 'contain',
                             }}
                         />
-                    </Link>
+                    </div>
 
                     <div className={style.fund_info}>
                         {fund?.title}
                     </div>
 
                 </div>
-            </div>
-
+            </Link>
         </>
 
     )
