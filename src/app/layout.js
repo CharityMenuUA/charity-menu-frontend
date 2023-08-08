@@ -18,7 +18,7 @@ export const metadata = {
         template: '%s - Донат меню - платформа донатів на ЗСУ',
         default: 'Донат меню - платформа донатів на ЗСУ',
     },
-    description: 'Донат меню - платформа донатів на ЗСУ',
+    description: 'Платформа, на якій ти змжеш отримати приємні емоції, а Україна реальну допомогу.',
     viewport: "width=device-width, initial-scale=1"
 }
 

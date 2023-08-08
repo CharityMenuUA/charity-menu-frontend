@@ -9,6 +9,7 @@ import 'swiper/css/pagination'
 import style from './stepsSlider.module.scss'
 import Image from "next/image"
 import {useConfigContext} from "@/app/providers/config/ConfigProvider"
+import Link from "next/link"
 
 const StepsSlider = () => {
     const stepsList = [
@@ -140,10 +141,10 @@ const StepsSlider = () => {
         <>
             {sponsor && (
                 <div className={style.sponsor}>
-                    <div className={style.sponsor_logo}>
+                    <Link href={sponsor.link} className={style.sponsor_logo}>
                         <Image
                             alt="fund-logo"
-                            src={fund?.logo}
+                            src={sponsor?.logo}
                             width={250}
                             height={250}
                             quality={100}
@@ -151,7 +152,7 @@ const StepsSlider = () => {
                                 objectFit: 'contain',
                             }}
                         />
-                    </div>
+                    </Link>
                     <div className={style.line}/>
                     <div className={style.sponsor_info}>
                         <p>Партнер цього місяця</p>
@@ -266,9 +267,9 @@ const StepsSlider = () => {
             <div className={style.fund}>
                 <div className={style.fund_inner}>
 
-                    <div className={style.fund_logo}>
+                    <Link href={fund.link} className={style.fund_logo}>
                         <Image
-                            alt="fund-logo"
+                            alt={fund?.name}
                             src={fund?.logo}
                             width={250}
                             height={250}
@@ -277,13 +278,10 @@ const StepsSlider = () => {
                                 objectFit: 'contain',
                             }}
                         />
-                    </div>
+                    </Link>
 
                     <div className={style.fund_info}>
-                        <p>Зараз триває збір на фонд</p>
-                        <p>
-                            <strong>«{fund?.name}»</strong>
-                        </p>
+                        {fund?.title}
                     </div>
 
                 </div>
