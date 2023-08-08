@@ -39,10 +39,6 @@ const pages = {
         name: 'Реєстрація',
         href: 'register'
     },
-    partners: {
-        name: 'Партнери',
-        href: 'partners'
-    } ,
     reporting: {
         name: 'Звітність',
         href: 'reporting'

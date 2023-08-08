@@ -4,7 +4,7 @@ import Image from 'next/image'
 
 const TeamItem = (props) => {
     const {photo, name, position, contacts} = props
-    const {telegram, instagram, twitter, facebook} = contacts
+    const {telegram, instagram, twitter, facebook, linkedin} = contacts
     return (
         <div className={style.teamItem}>
             <div className={style.photo}>
@@ -71,7 +71,14 @@ const TeamItem = (props) => {
                             </svg>
                         </a>
                     )}
-
+                    {linkedin && (
+                        <a href={linkedin} className={style.socials_icon} target="_blank">
+                            <svg width="40" height="40" viewBox="0 0 40 40">
+                                <path
+                                    d="M28.7237 9H10.5763C9.70834 9 9 9.68422 9 10.5271V28.7729C9 29.6158 9.70834 30.3 10.5763 30.3H28.7237C29.5917 30.3 30.3 29.6158 30.3 28.7729V10.5271C30.3 9.68422 29.5917 9 28.7237 9ZM15.385 26.6806H12.1726V17.0619H15.385V26.6806ZM13.7788 15.743H13.7588C12.6814 15.743 11.983 14.9993 11.983 14.0771C11.983 13.1351 12.7013 12.4112 13.7987 12.4112C14.8962 12.4112 15.5746 13.1251 15.5945 14.0771C15.6045 15.0092 14.9061 15.743 13.7788 15.743ZM26.9878 26.6707H23.7753V21.5242C23.7753 20.2251 23.3064 19.3525 22.1491 19.3525C21.2612 19.3525 20.7325 19.9475 20.503 20.5226C20.4132 20.7309 20.3933 21.0184 20.3933 21.306V26.6806H17.1708C17.1708 26.6806 17.2107 17.9642 17.1708 17.0619H20.3833V18.4204C20.8123 17.7659 21.5705 16.8338 23.2765 16.8338C25.3915 16.8338 26.9778 18.2122 26.9778 21.1573L26.9878 26.6707Z"/>
+                            </svg>
+                        </a>
+                    )}
                 </div>
             </div>
         </div>

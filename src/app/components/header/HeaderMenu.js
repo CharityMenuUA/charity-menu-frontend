@@ -54,9 +54,6 @@ const HeaderMenu = (props) => {
                             <Link href={pages.contacts.href} className={style.link}>
                                 Контакти
                             </Link>
-                            <Link href={pages.partners.href} className={style.link}>
-                                Партнери
-                            </Link>
                             <Link href={pages.reporting.href} className={style.link}>
                                 Звітність
                             </Link>
