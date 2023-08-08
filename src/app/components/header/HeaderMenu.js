@@ -13,9 +13,7 @@ import pages from "@/app/components/breadcrumbs/routing"
 const HeaderMenu = (props) => {
 
     const {config} = useConfigContext()
-    // const {contacts: {telegram, instagram, twitter, facebook}} = config
-    // TODO Remove
-    const telegram = '#', instagram = '#', twitter = '#', facebook = '#';
+    const {contacts: {telegram, instagram, twitter, facebook}} = config
 
     const pathname = usePathname()
 
