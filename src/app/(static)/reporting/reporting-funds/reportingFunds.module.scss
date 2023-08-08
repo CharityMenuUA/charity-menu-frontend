@@ -1,8 +1,10 @@
 .reportingFunds {
   border-top: 1px solid #E0E0E0;
   width: calc(var(--width-wrapper) - 230px);
+  margin-top: 40px;
 
   @include respond-to(t) {
+    margin-top: 0;
     width: var(--width-wrapper);
   }
 
@@ -23,6 +25,13 @@
       font-size: 26px;
       line-height: 32px;
       font-weight: 700;
+    }
+
+    &_link {
+      transition: .3s;
+      @include hover {
+        opacity: 0.4;
+      }
     }
   }
 }
