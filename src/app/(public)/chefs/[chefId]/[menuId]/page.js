@@ -54,7 +54,7 @@ const MenuIdPage = async (props) => {
                     </div>
                     <ShareButtons/>
                 </div>
-                <Link href={`/chefs/${chef.id}`} className={style.chef}>
+                <Link href={`${pages.chefs.href}/${chef.id}`} className={style.chef}>
                     <div className={style.label}>
                         <span>Автор лоту</span>
                     </div>
@@ -80,7 +80,7 @@ const MenuIdPage = async (props) => {
                     </div>
                 </Link>
             </div>
-            <Link href={`/chefs/${chef.id}`} className={style.other_button}>
+            <Link href={`${pages.chefs.href}/${chef.id}`} className={style.other_button}>
                 Інші пропозиції автора
             </Link>
             <div className={style.popularRandom}>

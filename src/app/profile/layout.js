@@ -7,6 +7,7 @@ import {auth} from "@/app/providers/firebase/app"
 import {useEffect} from "react"
 import Link from "next/link"
 import Loader from "@/app/components/loader/Loader"
+import pages from "@/app/components/breadcrumbs/routing"
 
 const ProfileLayout = (props) => {
     const {children} = props
@@ -55,17 +56,17 @@ const ProfileLayout = (props) => {
             <h1 className={style.h1}>Мiй профіль</h1>
             <div className={style.layout}>
                 <div className={style.menu}>
-                    <Link href={'/profile'} className={`${style.link} ${pathname === "/profile" ? style.active : ""}`}>
+                    <Link href={pages.profile.href} className={`${style.link} ${pathname === "/profile" ? style.active : ""}`}>
                         Що я замовляв
                     </Link>
                     {profile?.chef && (
-                        <Link href={'/profile/ordered'}
+                        <Link href={pages.ordered.href}
                               className={`${style.link} ${pathname === "/profile/ordered" ? style.active : ""}`}>
                             Замовили в мене
                         </Link>
                     )}
                     <Link
-                        href={'/profile/settings'}
+                        href={pages.settings.href}
                         className={`${style.link} ${pathname === "/profile/settings" ? style.active : ""}`}
                     >
                         Контактні дані

@@ -33,7 +33,7 @@ const ChefItem = (props) => {
     const names = name.split(' ')
 
     return (
-        <Link href={`/chefs/${id}`} className={style.chefs}>
+        <Link href={`${pages.chefs.href}/${id}`} className={style.chefs}>
             <div className={style.photo}>
                 <Image
                     alt={name}

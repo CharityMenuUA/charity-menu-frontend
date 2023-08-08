@@ -9,6 +9,7 @@ import {setProfile} from "@/app/profile/actions"
 import {useUserContext} from "@/app/providers/firebase/UserProvider"
 import {useEffect} from "react"
 import {useRouter, useSearchParams} from "next/navigation"
+import pages from "@/app/components/breadcrumbs/routing"
 
 const RegisterCompletePage = () => {
     const router = useRouter()
@@ -48,7 +49,7 @@ const RegisterCompletePage = () => {
                     <form onSubmit={handleSubmit(onSubmit)} className={style.form}>
                         <Input name={"name"} register={register} errors={errors} label="Ім'я" required/>
                         <Checkbox name={"user_agree_to_terms"} register={register} errors={errors} required>
-                            Ознайомлений з <Link href={'/'}>Політиками</Link> та <Link href={'/'}>Офертами</Link>
+                            Ознайомлений з <Link href={pages.policy.href}>Політиками</Link> та <Link href={pages.policy.href}>Офертами</Link>
                         </Checkbox>
                         <button type={"submit"} className={style.submit} disabled={!userAgreeToTerms}>
                             Завершити реєстрацію
@@ -59,7 +60,7 @@ const RegisterCompletePage = () => {
                     <div className={style.text}>
                         Вже є акаунт?
                     </div>
-                    <Link href={'/login'} className={style.buttonWhite}>
+                    <Link href={pages.login.href} className={style.buttonWhite}>
                         Вхід
                     </Link>
                 </div>

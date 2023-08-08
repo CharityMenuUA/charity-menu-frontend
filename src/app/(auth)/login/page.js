@@ -70,7 +70,7 @@ const LoginPage = () => {
                                value: validate.password,
                            }}
                     />
-                    <Link href={"/forgot-password"} className={style.forgot}>
+                    <Link href={pages["forgot-password"].href} className={style.forgot}>
                         Я забув пароль
                     </Link>
                     {errors.common && (
@@ -87,7 +87,7 @@ const LoginPage = () => {
                 <div className={style.text}>
                     Ще немає акаунта?
                 </div>
-                <Link href={'/register'} className={style.buttonWhite}>
+                <Link href={pages.register.href} className={style.buttonWhite}>
                     Реєстрація
                 </Link>
             </div>

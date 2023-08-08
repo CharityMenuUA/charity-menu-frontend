@@ -41,7 +41,7 @@ const NewPasswordPage = () => {
                     <div className={style.text}>
                         Пригадали пароль?
                     </div>
-                    <Link href={'/login'} className={style.buttonWhite}>
+                    <Link href={pages.login.href} className={style.buttonWhite}>
                         Вхід
                     </Link>
                 </div>

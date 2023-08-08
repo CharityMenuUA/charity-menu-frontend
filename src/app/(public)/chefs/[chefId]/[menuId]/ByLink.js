@@ -25,7 +25,7 @@ const ByLink = (props) => {
                     купити
                 </button>
             ) : (
-                <Link href={`/login?next=${linkToCreateOrder({chefId, menuId})}`} className={className}>
+                <Link href={`${pages.login.href}?next=${linkToCreateOrder({chefId, menuId})}`} className={className}>
                     купити
                 </Link>
             )}

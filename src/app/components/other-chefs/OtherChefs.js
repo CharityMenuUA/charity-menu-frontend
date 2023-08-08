@@ -3,6 +3,7 @@ import ChefItem from '@/app/components/chef-item/ChefItem'
 import Link from 'next/link'
 import PropTypes from 'prop-types'
 import {getChefs} from "@/app/components/actions"
+import pages from "@/app/components/breadcrumbs/routing"
 
 
 const OtherChefs = async (props) => {
@@ -17,7 +18,7 @@ const OtherChefs = async (props) => {
                     <ChefItem key={chef.id} {...chef} />
                 ))}
             </div>
-            <Link href={'/chefs'} className={style.button}>
+            <Link href={pages.chefs.href} className={style.button}>
                 більше авторів
             </Link>
         </section>
