@@ -7,15 +7,17 @@ const ReportingFunds = ({ reports }) => {
     return (
         <div className={style.reportingFunds}>
             {reports.map((report, reportKey) => {
-                const { recipient: { logo }, amount } = report;
+                const { recipient: { logo, link }, amount } = report;
                 return (
                     <div className={style.reportingFunds_item} key={reportKey}>
-                        <Image
-                            src={logo}
-                            alt="fund-logo"
-                            width={150}
-                            height={150}
-                        />
+                        <a href={link} target="_blank" className={style.reportingFunds_item_link}>
+                            <Image
+                                src={logo}
+                                alt="fund-logo"
+                                width={150}
+                                height={150}
+                            />
+                        </a>
 
                         <strong className={style.reportingFunds_item_count}>₴ {numberWithSpaces(amount)}</strong>
                     </div>

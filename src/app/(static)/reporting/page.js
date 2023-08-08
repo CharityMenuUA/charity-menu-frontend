@@ -22,14 +22,14 @@ const ReportingPage = async () => {
                     </h1>
                 </div>
 
-                <ReportingFunds
-                    reports={reports}
-                />
-
                 <ReportingTotal
                     authorsQuantity={authorsQuantity}
                     clientsQuantity={clientsQuantity}
                     totalAmount={totalAmount}
+                />
+
+                <ReportingFunds
+                    reports={reports}
                 />
             </div>
         </div>
