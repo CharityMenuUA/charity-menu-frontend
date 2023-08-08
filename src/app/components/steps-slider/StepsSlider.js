@@ -136,7 +136,7 @@ const StepsSlider = () => {
 
     const configContext = useConfigContext()
     const {config: {fund, sponsor}} = configContext
-    console.log(sponsor)
+
     return (
         <>
             {sponsor && (
