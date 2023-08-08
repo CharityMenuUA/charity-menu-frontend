@@ -16,76 +16,61 @@ const createUrl = (path, options) => {
 // get a list of records based on sort, filter, and pagination
 export const getList = async (resource, options) => {
     const url = createUrl(`${BACKEND_API}/${resource}`, options)
-    try {
-        return await fetch(url, {
-            next: {revalidate: 0},
-            ...options,
-        })
-    } catch (err) {
-        throw new Error(err.message)
-    }
+
+    return fetch(url, {
+        next: {revalidate: 0},
+        ...options,
+    }).then(data => data.json()).catch(console.error)
 }
 
 // get a list of records based on sort, filter, and pagination
 export const get = async (resource, options) => {
     const url = createUrl(`${BACKEND_API}/${resource}`, options)
 
-    try {
-        return await fetch(url, {
-            next: {revalidate: 0},
-            ...options,
-        })
-    } catch (err) {
-        throw new Error(err.message)
-    }
+    return fetch(url, {
+        next: {revalidate: 0},
+        ...options,
+    }).then(data => data.json()).catch(console.error)
 }
 
 export const create = async (resource, options) => {
     const url = createUrl(`${BACKEND_API}/${resource}`, options)
+
     options.headers = {...options.headers, "Content-Type": "application/json"}
-    try {
-        return await fetch(url, {
-            method: 'POST',
-            ...options,
-            body: JSON.stringify(options.body),
-            headers: {
-                "Content-Type": "application/json",
-                ...options.headers,
-            }
-        })
-    } catch (err) {
-        throw new Error(err.message)
-    }
+
+    return fetch(url, {
+        method: 'POST',
+        ...options,
+        body: JSON.stringify(options.body),
+        headers: {
+            "Content-Type": "application/json",
+            ...options.headers,
+        }
+    }).then(data => data.json()).catch(console.error)
 }
 
 export const update = async (resource, options) => {
     const url = createUrl(`${BACKEND_API}/${resource}`, options)
-    try {
-        return await fetch(url, {
-            method: 'PUT',
-            ...options,
-            body: JSON.stringify(options.body),
-            headers: {
-                "Content-Type": "application/json",
-                ...options.headers,
-            }
-        })
-    } catch (err) {
-        throw new Error(err.message)
-    }
+
+    return fetch(url, {
+        method: 'PUT',
+        ...options,
+        body: JSON.stringify(options.body),
+        headers: {
+            "Content-Type": "application/json",
+            ...options.headers,
+        }
+    }).then(data => data.json()).catch(console.error)
 }
 
 // get a single record by id
 export const getOne = async (resource, id, options) => {
     const url = createUrl(`${BACKEND_API}/${resource}/${id}`, options)
-    try {
-        return await fetch(url, {
-            next: {revalidate: 0},
-            ...options,
-        })
-    } catch (err) {
-        throw new Error(err.message)
-    }
+
+    return fetch(url, {
+        next: {revalidate: 0},
+        ...options,
+    }).then(data => data.json()).catch(console.error)
 }
 
 const dataProvider = {
