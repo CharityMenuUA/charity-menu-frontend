@@ -13,9 +13,9 @@ const LoginLayout = (props) => {
 
     useEffect(() => {
         if (user && !user?.emailVerified) {
-            router.push(`/register-email-confirm?${next.toString()}`)
+            router.push(`/register-email-confirm?next=${next.toString()}`)
         } else if (user && !profile) {
-            router.push(`/register-complete?${next.toString()}`)
+            router.push(`/register-complete?next=${next.toString()}`)
         } else if (user && profile) {
             router.push(next)
         }

@@ -22,9 +22,9 @@ const ProfileLayout = (props) => {
         if (!loading && !user) {
             router.push(`/login?next=${pathname}`)
         } else if (!loading && (user && !profile)) {
-            router.push(`/register-complete?${next.toString()}`)
+            router.push(`/register-complete?next=${next.toString()}`)
         } else if (!loading && !user?.emailVerified) {
-            router.push(`/register-email-confirm?${next.toString()}`)
+            router.push(`/register-email-confirm?next=${next.toString()}`)
         }
     }, [loading, pathname, profile, router, user])
 
