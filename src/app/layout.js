@@ -6,7 +6,8 @@ import UserProvider from '@/app/providers/firebase/UserProvider'
 import ConfigProvider from "@/app/providers/config/ConfigProvider"
 import {get} from "@/helpers/dataProvider"
 import Breadcrumbs from "@/app/components/breadcrumbs/Breadcrumbs"
-// import SuccessProvider from "@/app/providers/success/SuccessProvider"
+import SwitcherProvider from "@/app/components/switcher/Switcher"
+import SuccessProvider from "@/app/providers/success/SuccessProvider"
 import ErrorBoundary from "@/app/components/error/ErrorBoundary"
 
 const unbounded = Unbounded({subsets: ['cyrillic', 'latin'], variable: '--font-unbounded'})
@@ -46,14 +47,16 @@ const RootLayout = async (props) => {
         <ErrorBoundary>
             <ConfigProvider config={config}>
                 <UserProvider>
-                    {/*<SuccessProvider>*/}
-                        <Header/>
-                        <main>
-                            <Breadcrumbs params={params}/>
-                            {children}
-                        </main>
-                        <Footer/>
-                    {/*</SuccessProvider>*/}
+                    <SuccessProvider>
+                        <SwitcherProvider>
+                            <Header/>
+                            <main>
+                                <Breadcrumbs params={params}/>
+                                {children}
+                            </main>
+                            <Footer/>
+                        </SwitcherProvider>
+                    </SuccessProvider>
                 </UserProvider>
             </ConfigProvider>
         </ErrorBoundary>
