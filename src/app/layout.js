@@ -39,27 +39,28 @@ const getConfig = async () => {
 
 const RootLayout = async (props) => {
     const {children, params} = props
-    const config = await getConfig()
+    // const config = await getConfig()
 
     return (
         <html lang="en">
         <body className={`${unbounded.variable} ${openSans.variable}`}>
-        <ErrorBoundary>
-            <ConfigProvider config={config}>
-                <UserProvider>
-                    <SuccessProvider>
-                        <SwitcherProvider>
-                            <Header/>
-                            <main>
-                                <Breadcrumbs params={params}/>
-                                {children}
-                            </main>
-                            <Footer/>
-                        </SwitcherProvider>
-                    </SuccessProvider>
-                </UserProvider>
-            </ConfigProvider>
-        </ErrorBoundary>
+        <div>Тест</div>
+        {/*<ErrorBoundary>*/}
+        {/*    <ConfigProvider config={config}>*/}
+        {/*        <UserProvider>*/}
+        {/*            <SuccessProvider>*/}
+        {/*                <SwitcherProvider>*/}
+        {/*                    <Header/>*/}
+        {/*                    <main>*/}
+        {/*                        <Breadcrumbs params={params}/>*/}
+        {/*                        {children}*/}
+        {/*                    </main>*/}
+        {/*                    <Footer/>*/}
+        {/*                </SwitcherProvider>*/}
+        {/*            </SuccessProvider>*/}
+        {/*        </UserProvider>*/}
+        {/*    </ConfigProvider>*/}
+        {/*</ErrorBoundary>*/}
         </body>
         </html>
     )
