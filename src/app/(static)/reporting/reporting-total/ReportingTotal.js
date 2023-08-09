@@ -28,7 +28,7 @@ const ReportingTotal = ({ authorsQuantity, clientsQuantity, totalAmount }) => {
                     {numberWithSpaces(authorsQuantity)}
                 </span>
                 <span className={style.reportingTotal_item_name}>
-                    Знаменистостей
+                    Авторів
                 </span>
             </div>
         </div>
