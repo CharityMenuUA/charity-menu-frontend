@@ -13,14 +13,25 @@ import ErrorBoundary from "@/app/components/error/ErrorBoundary"
 const unbounded = Unbounded({subsets: ['cyrillic', 'latin'], variable: '--font-unbounded'})
 const openSans = Open_Sans({subsets: ['cyrillic', 'latin'], variable: '--font-open-sans'})
 
-export const metadata = {
+const meta = {
     title: {
         template: '%s - Донат меню - платформа донатів на ЗСУ',
         default: 'Донат меню - платформа донатів на ЗСУ',
     },
     description: 'Платформа, на якій ти змжеш отримати приємні емоції, а Україна реальну допомогу.',
-    viewport: "width=device-width, initial-scale=1"
+    images: ['/preview.png']
 }
+
+export const metadata = {
+    viewport: "width=device-width, initial-scale=1",
+    metadataBase: new URL('https://acme.com'),
+    ...meta,
+    openGraph: {
+        ...meta,
+        type: 'website',
+    }
+}
+
 
 const getConfig = async () => {
     return get('/configs').catch((err) => console.error(err))
