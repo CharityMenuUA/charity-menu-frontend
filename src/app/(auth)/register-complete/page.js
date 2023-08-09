@@ -49,7 +49,7 @@ const RegisterCompletePage = () => {
                     <form onSubmit={handleSubmit(onSubmit)} className={style.form}>
                         <Input name={"name"} register={register} errors={errors} label="Ім'я" required/>
                         <Checkbox name={"user_agree_to_terms"} register={register} errors={errors} required>
-                            Ознайомлений з <Link href={pages.policy.href}>Політиками</Link> та <Link href={pages.policy.href}>Офертами</Link>
+                            Погоджуюсь з умовами <Link href={pages.policy.href}>Оферти та Політики</Link>
                         </Checkbox>
                         <button type={"submit"} className={style.submit} disabled={!userAgreeToTerms}>
                             Завершити реєстрацію

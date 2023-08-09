@@ -32,6 +32,8 @@ const SettingsPage = () => {
             return () => clearTimeout(timer)
         }
     }, [success])
+    const maxDate = new Date()
+    maxDate.setYear(new Date().getFullYear() - 16)
     return (
         <div className={style.wrap}>
             <div className={style.block}>
@@ -44,7 +46,8 @@ const SettingsPage = () => {
                            required
                            disabled
                     />
-                    <Input name={"dateOfBirth"} register={register} errors={errors} label="Дата народження"
+                    <Input name={"dateOfBirth"} max={maxDate.toLocaleDateString('fr-ca')} register={register} errors={errors}
+                           label="Дата народження"
                            type="date"/>
                     <div className={style.text}>
                         Соціальні мережі

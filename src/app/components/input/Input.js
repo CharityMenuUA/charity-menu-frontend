@@ -6,7 +6,20 @@ import _ from 'lodash'
 
 const Input = (props) => {
     const {fields} = useConfigContext()
-    const {label, name, register, onChange, onBlur, type = 'text', disabled, value, required, errors, pattern} = props
+    const {
+        label,
+        name,
+        register,
+        onChange,
+        onBlur,
+        type = 'text',
+        disabled,
+        value,
+        required,
+        errors,
+        pattern,
+        max
+    } = props
     const error = _.get(errors, name)
     const regexName = name.split('.').slice(-1)[0]
     const regex = fields?.[regexName]?.regex
@@ -20,6 +33,7 @@ const Input = (props) => {
                     className={style.input}
                     placeholder={label}
                     disabled={disabled}
+                    max={max}
                     {...register(name, {
                         value: value,
                         required: required && (typeof required === "string" ? required : `Заповніть поле ${label ? `"${label}"` : ""}`),
