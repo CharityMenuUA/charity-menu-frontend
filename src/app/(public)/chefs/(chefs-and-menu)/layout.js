@@ -9,4 +9,4 @@ const ChefsLayout = async ({children}) => {
     )
 }
 
-export default ChefsLayout;
+export default ChefsLayout

@@ -7,8 +7,6 @@ import {chefsSortValues, menuSortValues} from "@/app/(public)/chefs/(chefs-and-m
 import {getChef, getMenu} from "@/app/(public)/chefs/(chefs-and-menu)/actions"
 import StepsSlider from "@/app/components/steps-slider/StepsSlider"
 import HomeFaq from "@/app/(public)/(Homepage)/HomeFaq"
-import SwitcherProvider from "@/app/components/switcher/Switcher"
-
 
 const HomePage = async () => {
 
@@ -19,7 +17,7 @@ const HomePage = async () => {
     const {menuItems: menuPopularItems} = await getPopularMenuItem()
 
     return (
-        <SwitcherProvider>
+        <>
             <HomeChefsAndOffers chefs={chefs} menuItems={menuItems}/>
             <StepsSlider/>
             <div className={style.popularRandom}>
@@ -27,7 +25,7 @@ const HomePage = async () => {
                 <RandomMenuItem/>
             </div>
             <HomeFaq/>
-        </SwitcherProvider>
+        </>
     )
 }
 

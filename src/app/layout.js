@@ -8,6 +8,7 @@ import {get} from "@/helpers/dataProvider"
 import Breadcrumbs from "@/app/components/breadcrumbs/Breadcrumbs"
 import SuccessProvider from "@/app/providers/success/SuccessProvider"
 import ErrorBoundary from "@/app/components/error/ErrorBoundary"
+import SwitcherProvider from "@/app/components/switcher/Switcher"
 
 const unbounded = Unbounded({subsets: ['cyrillic', 'latin'], variable: '--font-unbounded'})
 const openSans = Open_Sans({subsets: ['cyrillic', 'latin'], variable: '--font-open-sans'})
@@ -46,14 +47,16 @@ const RootLayout = async (props) => {
         <ErrorBoundary>
             <ConfigProvider config={config}>
                 <UserProvider>
-                    <SuccessProvider>
-                        <Header/>
-                        <main>
-                            <Breadcrumbs params={params}/>
-                            {children}
-                        </main>
-                        <Footer/>
-                    </SuccessProvider>
+                    <SwitcherProvider>
+                        <SuccessProvider>
+                            <Header/>
+                            <main>
+                                <Breadcrumbs params={params}/>
+                                {children}
+                            </main>
+                            <Footer/>
+                        </SuccessProvider>
+                    </SwitcherProvider>
                 </UserProvider>
             </ConfigProvider>
         </ErrorBoundary>
