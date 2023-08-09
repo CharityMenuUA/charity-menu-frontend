@@ -1,10 +1,10 @@
 'use client'
-
+import {Suspense} from 'react'
 import {useUserContext} from "@/app/providers/firebase/UserProvider"
 import {useRouter, useSearchParams} from 'next/navigation'
 import {useEffect} from "react"
 
-const LoginLayout = (props) => {
+const LoginLayoutSearch = (props) => {
     const search = useSearchParams()
     const next = search.get('next') || '/profile'
     const {children} = props
@@ -25,6 +25,14 @@ const LoginLayout = (props) => {
         <>
             {children}
         </>
+    )
+}
+
+const LoginLayout = (props) => {
+    return (
+        <Suspense fallback={props.children}>
+            <LoginLayoutSearch {...props}/>
+        </Suspense>
     )
 }
 

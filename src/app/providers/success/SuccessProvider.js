@@ -3,12 +3,12 @@
 import {usePathname, useRouter, useSearchParams} from "next/navigation"
 import Popup from "@/app/components/popup/Popup"
 import ReactPortal from "@/app/components/portal/ReactPortal"
-import {useEffect, useState} from "react"
+import {Suspense, useEffect, useState} from "react"
 import style from "@/app/components/by-popup/style.module.scss"
 import Link from "next/link"
 import pages from "@/app/components/breadcrumbs/routing"
 
-const SuccessProvider = ({children}) => {
+const SuccessProviderSearch = ({children}) => {
     const search = useSearchParams()
     const [isOpen, setIsOpen] = useState(false)
     const pathname = usePathname()
@@ -85,6 +85,14 @@ const SuccessProvider = ({children}) => {
                 )}
             </ReactPortal>
         </>
+    )
+}
+
+const SuccessProvider = (props) => {
+    return (
+        <Suspense fallback={props.children}>
+            <SuccessProviderSearch {...props}/>
+        </Suspense>
     )
 }
 
