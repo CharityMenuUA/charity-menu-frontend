@@ -2,6 +2,7 @@ import Chefs from "./Chefs"
 import Menu from "./Menu"
 import {getChef, getMenu} from "@/app/(public)/chefs/(chefs-and-menu)/actions"
 import {chefsSortValues, menuSortValues} from "@/app/(public)/chefs/(chefs-and-menu)/sortValues"
+import SwitcherProvider from "@/app/components/switcher/Switcher"
 
 const ChefsPage = async () => {
 
@@ -11,10 +12,10 @@ const ChefsPage = async () => {
     const menu = await getMenu({sortBy: menuSortBy, direction: menuDirection})
 
     return (
-        <>
+        <SwitcherProvider>
             <Chefs data={chefs}/>
             <Menu data={menu}/>
-        </>
+        </SwitcherProvider>
     )
 }
 export default ChefsPage
