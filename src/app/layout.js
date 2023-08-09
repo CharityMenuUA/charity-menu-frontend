@@ -14,10 +14,7 @@ const unbounded = Unbounded({subsets: ['cyrillic', 'latin'], variable: '--font-u
 const openSans = Open_Sans({subsets: ['cyrillic', 'latin'], variable: '--font-open-sans'})
 
 const meta = {
-    title: {
-        template: '%s - Донат меню - платформа донатів на ЗСУ',
-        default: 'Донат меню - платформа донатів на ЗСУ',
-    },
+    title: "Донат меню - платформа донатів на ЗСУ",
     description: 'Платформа, на якій ти змжеш отримати приємні емоції, а Україна реальну допомогу.',
     images: ['/preview.png']
 }
