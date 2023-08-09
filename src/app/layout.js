@@ -42,21 +42,20 @@ const RootLayout = async (props) => {
         <html lang="en">
         <body className={`${unbounded.variable} ${openSans.variable}`}>
         <ErrorBoundary>
-            123
-            {/*<ConfigProvider config={config}>*/}
-            {/*    <UserProvider>*/}
-            {/*        <SwitcherProvider>*/}
-            {/*            <SuccessProvider>*/}
-            {/*                <Header/>*/}
-            {/*                <main>*/}
-            {/*                    <Breadcrumbs params={params}/>*/}
-            {/*                    {children}*/}
-            {/*                </main>*/}
-            {/*                <Footer/>*/}
-            {/*            </SuccessProvider>*/}
-            {/*        </SwitcherProvider>*/}
-            {/*    </UserProvider>*/}
-            {/*</ConfigProvider>*/}
+            <ConfigProvider config={config}>
+                <UserProvider>
+                    <SwitcherProvider>
+                        <SuccessProvider>
+                            <Header/>
+                            <main>
+                                <Breadcrumbs params={params}/>
+                                {children}
+                            </main>
+                            <Footer/>
+                        </SuccessProvider>
+                    </SwitcherProvider>
+                </UserProvider>
+            </ConfigProvider>
         </ErrorBoundary>
         </body>
         </html>
