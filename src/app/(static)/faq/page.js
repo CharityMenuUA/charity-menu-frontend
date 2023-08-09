@@ -2,11 +2,12 @@
 
 import style from './faq.module.scss';
 import {useState} from "react";
-import faqList from './data.json';
+import {useConfigContext} from "@/app/providers/config/ConfigProvider"
 
 const FaqPage = () => {
-
-    const [faqListState, setFaqListState] = useState(Array(faqList.length).fill(false));
+    const {config} = useConfigContext()
+    const {faq} = config || {faq: []}
+    const [faqListState, setFaqListState] = useState(new Array(faq.length).fill(false));
 
     const toggleQuestion = (index) => {
         setFaqListState((prevState) => {
@@ -25,7 +26,7 @@ const FaqPage = () => {
 
                 <div className={style.faqPage_cont}>
                     <ul className={style.faqPage_list}>
-                        {faqList.map((faqItem, faqItemIndex) => {
+                        {faq.map((faqItem, faqItemIndex) => {
                             const {question, answer} = faqItem;
                             return (
                                 <li className={[

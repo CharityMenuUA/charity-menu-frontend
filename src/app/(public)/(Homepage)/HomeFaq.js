@@ -2,9 +2,11 @@
 
 import style from './homepage.module.scss'
 import DropdownList from "@/app/components/dropdown-list/DropdownList"
-import faqList from './data.json'
+import {useConfigContext} from "@/app/providers/config/ConfigProvider"
 
 const HomeFaq = () => {
+    const {config} = useConfigContext()
+    const {faq} = config || {faq: []}
     return (
         <div className={style.faq}>
             <div className={style.faq_inner}>
@@ -12,7 +14,7 @@ const HomeFaq = () => {
                     <h2 className="h1">Часті запитання</h2>
                 </div>
 
-                <DropdownList list={faqList}/>
+                <DropdownList list={faq.slice(0, 5)}/>
             </div>
         </div>
     )
