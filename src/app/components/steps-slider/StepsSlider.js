@@ -263,28 +263,27 @@ const StepsSlider = () => {
                 </div>
             </div>
 
-            <a href={fund.link} className={style.fund} target={"_blank"}>
-                <div className={style.fund_inner}>
-
-                    <div className={style.fund_logo}>
-                        <Image
-                            alt={fund?.name}
-                            src={fund?.logo}
-                            width={250}
-                            height={250}
-                            quality={100}
-                            style={{
-                                objectFit: 'contain',
-                            }}
-                        />
+            {fund && (
+                <a href={fund.link} className={style.fund} target={"_blank"}>
+                    <div className={style.fund_inner}>
+                        <div className={style.fund_logo}>
+                            <Image
+                                alt={fund?.name}
+                                src={fund?.logo}
+                                width={250}
+                                height={250}
+                                quality={100}
+                                style={{
+                                    objectFit: 'contain',
+                                }}
+                            />
+                        </div>
+                        <div className={style.fund_info}>
+                            {fund?.title}
+                        </div>
                     </div>
-
-                    <div className={style.fund_info}>
-                        {fund?.title}
-                    </div>
-
-                </div>
-            </a>
+                </a>
+            )}
         </>
 
     )
