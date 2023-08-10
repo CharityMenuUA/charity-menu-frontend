@@ -18,7 +18,9 @@ const nextConfig = {
         FIREBASE_APPID: process.env.FIREBASE_APPID,
         FIREBASE_MEASUREMENTID: process.env.FIREBASE_MEASUREMENTID,
     },
+    swcMinify: true,
     images: {
+        unoptimized: true,
         formats: ['image/webp'],
         remotePatterns: [
             {
