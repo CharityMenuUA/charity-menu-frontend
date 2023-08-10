@@ -4,7 +4,7 @@ import style from "@/app/(auth)/auth.module.scss"
 import {auth} from "@/app/providers/firebase/app"
 import firebase from "firebase"
 
-const OtherSignInMethods = ({callback}) => {
+const OtherSignInMethods = ({callback, setError}) => {
     const signInWithGoogle = () => {
         const provider = new firebase.auth.GoogleAuthProvider()
         auth.signInWithPopup(provider)
@@ -12,6 +12,7 @@ const OtherSignInMethods = ({callback}) => {
                 if (typeof callback === "function") callback(result.credential)
             }).catch((err) => {
             console.error({...err})
+            setError(err)
         })
     }
     const signInWithFacebook = () => {
@@ -21,6 +22,7 @@ const OtherSignInMethods = ({callback}) => {
                 if (typeof callback === "function") callback(result.credential)
             }).catch((err) => {
             console.error({...err})
+            setError(err)
         })
     }
 
@@ -31,6 +33,7 @@ const OtherSignInMethods = ({callback}) => {
                 if (typeof callback === "function") callback(result.credential)
             }).catch((err) => {
             console.error({...err})
+            setError(err)
         })
     }
     return (

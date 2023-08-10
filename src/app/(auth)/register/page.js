@@ -64,7 +64,12 @@ const RegisterPage = () => {
                         <div className={style.text}>
                             Реєстрація за допомогою
                         </div>
-                        <OtherSignInMethods/>
+                        <OtherSignInMethods
+                            setError={(err) => setError('common', {
+                                type: err.code,
+                                message: err.message || err.code
+                            })}
+                        />
                     </div>
 
                     <form onSubmit={handleSubmit(onSubmit)} className={style.form}>

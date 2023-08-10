@@ -37,7 +37,7 @@ const LoginPage = () => {
             }
             default: {
                 console.error({...err})
-                setError('common', {type: err.code, message: err.code})
+                setError('common', {type: err.code, message: err.message || err.code})
             }
             }
         })
@@ -56,7 +56,12 @@ const LoginPage = () => {
                     <div className={style.text}>
                         Вхід за допомогою
                     </div>
-                    <OtherSignInMethods/>
+                    <OtherSignInMethods
+                        setError={(err) => setError('common', {
+                            type: err.code,
+                            message: err.message || err.code
+                        })}
+                    />
                 </div>
                 <form onSubmit={handleSubmit(onSubmit)} className={style.form}>
                     <div className={style.text}>
