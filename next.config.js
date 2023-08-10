@@ -8,6 +8,7 @@ const nextConfig = {
     experimental: {
         serverActions: true,
     },
+    output: 'standalone',
     env: {
         BACKEND_API: process.env.BACKEND_API,
         FIREBASE_APIKEY: process.env.FIREBASE_APIKEY,
