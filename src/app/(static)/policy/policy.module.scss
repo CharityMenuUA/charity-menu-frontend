@@ -1,5 +1,6 @@
 .policyPage {
   margin: 30px auto;
+  max-width: 100%;
 
   @include respond-to(t) {
     padding: 0 20px;
@@ -49,11 +50,7 @@
     }
 
     p {
-      padding-bottom: 30px;
 
-      @include respond-to(m) {
-        padding-bottom: 20px;
-      }
     }
 
     a {

@@ -64,7 +64,7 @@ const pages = {
         href: 'reporting'
     },
     policy: {
-        name: 'Оферта',
+        name: 'Оферта та Політика данних',
         href: 'policy'
     }
 }
