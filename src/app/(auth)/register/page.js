@@ -88,8 +88,8 @@ const RegisterPage = () => {
                                }}
                         />
                         <Checkbox name={"user_agree_to_terms"} register={register} errors={errors} required>
-                            Погоджуюсь з умовами <Link href={`${pages.policy.href}#offer`}>Оферти</Link> та <Link
-                            href={`${pages.policy.href}#policy`}>Політики</Link>
+                            Погоджуюсь з умовами <a target="_blank" href={`${pages.policy.href}#offer`}>Оферти</a> та <a target="_blank"
+                            href={`${pages.policy.href}#policy`}>Політики</a>
                         </Checkbox>
                         {errors.common && (
                             <div className={style.error}>
