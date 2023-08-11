@@ -37,7 +37,7 @@ const Offer = () => {
                 </p>
                 <p></p>
                 <p><b>Платформа</b> &mdash; вебсайт за посиланням: <a
-                    href="https://donatemenu.com">https://www.donatemenu.com</a>, та весь контент, що він містить.</p>
+                    href="https://www.donatemenu.com">https://www.donatemenu.com</a>, та весь контент, що він містить.</p>
                 <p><b>Оферта</b> &mdash; це публічна оферта, що розташована в мережі Інтернет за наступним
                     посиланням: <a
                         href="https://www.donatemenu.com/policy#offer">https://www.donatemenu.com/policy</a>.</p>

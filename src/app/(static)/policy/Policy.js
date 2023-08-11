@@ -59,7 +59,7 @@ const Policy = () => {
                     (&ldquo;Компанія&rdquo;, &ldquo;Ми&rdquo;, &ldquo;Нас&rdquo;, &ldquo;Нам&rdquo;, &ldquo;Наші&rdquo;).
                 </p>
                 <p><b>1.3. Платформа</b> &ndash; вебсайт за посиланням: <a
-                    href="https://donatemenu.com">https://www.donatemenu.com</a> та весь контент, що він містить.
+                    href="https://www.donatemenu.com">https://www.donatemenu.com</a> та весь контент, що він містить.
                 </p>
                 <p><b>1.4. Послуги</b> &mdash; інформаційні послуги Компанії, зміст яких полягає у створенні
                     простору, де Користувач матиме змогу самостійно розміщувати Пропозиції, які готовий виконати за
