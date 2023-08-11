@@ -60,7 +60,7 @@ const HeaderMenu = (props) => {
                             </Link>
                         </div>
                         <Link href={pages.policy.href} className={style.oferta}>
-                            Оферта
+                            Оферта та Політика
                         </Link>
                     </div>
                     <div className={style.socials}>

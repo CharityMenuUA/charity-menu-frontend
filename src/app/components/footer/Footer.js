@@ -21,7 +21,7 @@ const Footer = () => {
             </div>
             <div className={style.right}>
                 <Link href={pages.policy.href}>
-                    Оферта
+                    Оферта та Політика
                 </Link>
             </div>
         </div>

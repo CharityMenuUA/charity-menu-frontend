@@ -1,5 +1,5 @@
 .policyPage {
-  margin: 30px auto;
+  margin: 0 auto;
   max-width: 100%;
 
   @include respond-to(t) {
@@ -8,6 +8,8 @@
   }
 
   &_inner {
+    margin-bottom: 60px;
+
     width: calc(var(--width-wrapper) - 345px);
 
     @include respond-to(t) {
