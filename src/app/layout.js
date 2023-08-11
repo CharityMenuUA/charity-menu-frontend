@@ -21,7 +21,7 @@ const meta = {
 
 export const metadata = {
     viewport: "width=device-width, initial-scale=1",
-    metadataBase: new URL('https://acme.com'),
+    metadataBase: new URL('https://www.donatemenu.com/'),
     ...meta,
     openGraph: {
         ...meta,
