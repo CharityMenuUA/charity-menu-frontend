@@ -35,6 +35,7 @@ const getConfig = async () => {
 }
 
 const RootLayout = async (props) => {
+
     const {children, params} = props
     const config = await getConfig()
 
