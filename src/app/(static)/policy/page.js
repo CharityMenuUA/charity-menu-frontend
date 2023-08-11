@@ -1,11 +1,11 @@
 import style from "./policy.module.scss"
-import Oferta from "@/app/(static)/policy/Oferta"
 import Policy from "@/app/(static)/policy/Policy"
+import Offer from "@/app/(static)/policy/Offer"
 
 const PolicyPage = () => {
     return (
         <div className={style.policyPage}>
-            <Oferta/>
+            <Offer/>
             <Policy/>
         </div>
     )
