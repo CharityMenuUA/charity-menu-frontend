@@ -8,7 +8,7 @@ import {useMemo} from "react"
 const ShareButtons = (props) => {
     const {url} = props
 
-    const shareUrl = useMemo(() => url || window.location, [url])
+    const shareUrl = useMemo(() => url || (process.browser && window.location), [url])
 
     return (
         <div className={style.links}>
