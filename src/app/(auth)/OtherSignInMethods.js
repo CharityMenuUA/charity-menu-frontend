@@ -15,16 +15,17 @@ const OtherSignInMethods = ({callback, setError}) => {
             setError(err)
         })
     }
-    const signInWithFacebook = () => {
-        const provider = new firebase.auth.FacebookAuthProvider()
-        auth.signInWithPopup(provider)
-            .then((result) => {
-                if (typeof callback === "function") callback(result.credential)
-            }).catch((err) => {
-            console.error({...err})
-            setError(err)
-        })
-    }
+
+    // const signInWithFacebook = () => {
+    //     const provider = new firebase.auth.FacebookAuthProvider()
+    //     auth.signInWithPopup(provider)
+    //         .then((result) => {
+    //             if (typeof callback === "function") callback(result.credential)
+    //         }).catch((err) => {
+    //         console.error({...err})
+    //         setError(err)
+    //     })
+    // }
 
     const signInWithTwitter = () => {
         const provider = new firebase.auth.TwitterAuthProvider()
@@ -45,14 +46,16 @@ const OtherSignInMethods = ({callback, setError}) => {
                         fill="#00AAEC" id="Twitter_1_"/>
                 </svg>
             </button>
-            <button type={'button'} className={style.button} onClick={signInWithFacebook}>
-                <svg width="15" height="30" viewBox="0 0 15 30" fill="none"
-                >
-                    <path
-                        d="M14.396 14.9711H9.94681V30H3.20597V14.9711H0V9.68936H3.20597V6.27146C3.20597 3.8273 4.46515 0 10.0068 0L15 0.0192611V5.1461H11.3771C10.7829 5.1461 9.94726 5.41986 9.94726 6.58579V9.69427H14.9849L14.396 14.9711Z"
-                        fill="#3B5998"/>
-                </svg>
-            </button>
+
+            {/*<button type={'button'} className={style.button} onClick={signInWithFacebook}>*/}
+            {/*    <svg width="15" height="30" viewBox="0 0 15 30" fill="none"*/}
+            {/*    >*/}
+            {/*        <path*/}
+            {/*            d="M14.396 14.9711H9.94681V30H3.20597V14.9711H0V9.68936H3.20597V6.27146C3.20597 3.8273 4.46515 0 10.0068 0L15 0.0192611V5.1461H11.3771C10.7829 5.1461 9.94726 5.41986 9.94726 6.58579V9.69427H14.9849L14.396 14.9711Z"*/}
+            {/*            fill="#3B5998"/>*/}
+            {/*    </svg>*/}
+            {/*</button>*/}
+
             <button type={'button'} className={style.button} onClick={signInWithGoogle}>
                 <svg width="30" height="30" viewBox="0 0 30 30" fill="none"
                 >
