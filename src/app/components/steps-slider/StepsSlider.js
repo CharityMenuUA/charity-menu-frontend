@@ -13,7 +13,7 @@ import {useConfigContext} from "@/app/providers/config/ConfigProvider"
 const StepsSlider = () => {
     const stepsList = [
         {
-            title: 'Вибираєш та купуєш ло із меню зірки',
+            title: 'Вибираєш та купуєш пропозицію із меню автора',
             icon: <svg width="160" height="160" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <circle cx="80" cy="80" r="79.5" fill="white" stroke="url(#paint0_linear_347_3258)"/>
                 <path
@@ -55,7 +55,7 @@ const StepsSlider = () => {
             </svg>,
         },
         {
-            title: 'Автор виконує цей лот для тебе',
+            title: 'Автор виконує цю пропозицію для тебе',
             icon: <svg width="160" height="160" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <circle cx="80" cy="80" r="79.5" fill="white" stroke="url(#paint0_linear_347_3259)"/>
                 <path
