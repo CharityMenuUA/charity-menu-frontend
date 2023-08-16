@@ -55,7 +55,7 @@ const SelectSort = (props) => {
                         {options.map(({value, name}) => (
                             <div
                                 onClick={() => onChange({target: {value}})}
-                                className={style.option}
+                                className={`${style.option} ${active?.value === value ? style.active : ''}`}
                                 key={value}
                             >
                                 {name}

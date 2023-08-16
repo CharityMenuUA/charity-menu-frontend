@@ -253,6 +253,10 @@
         background: #F2F2F2;
         color: #000;
       }
+      &.active {
+        background: #F2F2F2;
+        color: #000;
+      }
     }
   }
 
@@ -335,6 +339,10 @@
       padding: 20px 20px;
 
       @include hover {
+        background: #F2F2F2;
+        color: #000;
+      }
+      &.active {
         background: #F2F2F2;
         color: #000;
       }
