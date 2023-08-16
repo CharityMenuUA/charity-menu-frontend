@@ -1,5 +1,6 @@
 .h1 {
   @extend %h1-title;
+  width: min(100%,var(--width-wrapper-large));
 }
 
 .menu_info {

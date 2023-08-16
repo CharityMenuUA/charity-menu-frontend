@@ -9,7 +9,7 @@ import {useSwitcherContext} from "@/app/components/switcher/Switcher"
 
 
 const getLink = (cur, value) => {
-    if (cur === pages.chefs.href && value) {
+    if (cur === pages.authors.href && value) {
         return {
             name: pages.menu.name,
             href: `${pages.menu.href}`

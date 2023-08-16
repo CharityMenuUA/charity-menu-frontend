@@ -18,7 +18,7 @@ const OtherChefs = async (props) => {
                     <ChefItem key={chef.id} {...chef} />
                 ))}
             </div>
-            <Link href={pages.chefs.href} className={style.button}>
+            <Link href={pages.authors.href} className={style.button}>
                 більше авторів
             </Link>
         </section>

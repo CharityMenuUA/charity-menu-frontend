@@ -7,13 +7,16 @@ import Link from "next/link"
 import Checkbox from "@/app/components/input/Checkbox"
 import {setProfile} from "@/app/profile/actions"
 import {useUserContext} from "@/app/providers/firebase/UserProvider"
-import {useEffect} from "react"
+import {useEffect, useState} from "react"
 import {useRouter, useSearchParams} from "next/navigation"
 import pages from "@/app/components/breadcrumbs/routing"
+import Loader from "@/app/components/loader/Loader"
 
 const RegisterCompletePage = () => {
     const router = useRouter()
     const {user, loading, profile, updateUser} = useUserContext()
+    const [formLoading, setFormLoading] = useState(false)
+
     const search = useSearchParams()
     const next = search.get('next') || '/profile'
     const {handleSubmit, register, watch, formState: {errors}} = useForm()
@@ -32,10 +35,12 @@ const RegisterCompletePage = () => {
 
     const onSubmit = (data) => {
         const {name} = data
-
+        setFormLoading(true)
         setProfile(user?.accessToken, {name}).catch((err) => {
             console.error({...err})
+            setFormLoading(false)
         }).then(() => {
+            setFormLoading(false)
             updateUser().catch(console.error)
         })
     }
@@ -53,8 +58,8 @@ const RegisterCompletePage = () => {
                             target="_blank"
                             href={`${pages.policy.href}#policy`}>Політики</a>
                         </Checkbox>
-                        <button type={"submit"} className={style.submit} disabled={!userAgreeToTerms}>
-                            Завершити реєстрацію
+                        <button type={"submit"} className={style.submit} disabled={!userAgreeToTerms || formLoading}>
+                            {formLoading ? <Loader/> : 'Завершити реєстрацію'}
                         </button>
                     </form>
                 </div>

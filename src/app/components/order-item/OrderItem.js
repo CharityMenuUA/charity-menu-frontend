@@ -53,7 +53,7 @@ const OrderItem = (props) => {
                             <div className={style.label}>
                                 Автор
                             </div>
-                            <Link href={`${pages.chefs.href}/${order.chefId}`} className={style.chef}>
+                            <Link href={`${pages.authors.href}/${order.chefId}`} className={style.chef}>
                                 <div className={style.photo}>
                                     <Image
                                         alt={order.chefName || ''}
@@ -92,7 +92,7 @@ const OrderItem = (props) => {
                     </div>
 
                     {!ordered ? (
-                        <Link href={`${pages.chefs.href}/${order.chefId}/${order.menuItemId}`} className={style.button}>
+                        <Link href={`${pages.authors.href}/${order.chefId}/${order.menuItemId}`} className={style.button}>
                             Сторінка пропозиції
                         </Link>
                     ) : (

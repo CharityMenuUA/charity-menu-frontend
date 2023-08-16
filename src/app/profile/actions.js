@@ -18,7 +18,7 @@ export const updateProfile = async (accessToken, data) => {
 }
 
 export const getProfile = async (accessToken) => {
-    return  get(`/profile`, {
+    return get(`/profile`, {
         headers: {"Authorization": `Bearer ${accessToken}`},
     }).catch((err) => console.error(err))
 }
@@ -84,7 +84,7 @@ export const getOrderedOrders = async (accessToken) => {
 }
 
 export const setCompleted = async (accessToken, orderId) => {
-    return  create(`/profile/chef/orders/${orderId}`, {
+    return create(`/profile/chef/orders/${orderId}`, {
         headers: {
             "Authorization": `Bearer ${accessToken}`
         },

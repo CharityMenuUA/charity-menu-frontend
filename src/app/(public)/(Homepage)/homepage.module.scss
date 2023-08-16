@@ -48,8 +48,11 @@
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
-  justify-content: center;
+  justify-content: flex-start;
 
+  @include respond-to(t) {
+    justify-content: center;
+  }
   @include respond-to(m) {
     margin-bottom: 40px;
   }
