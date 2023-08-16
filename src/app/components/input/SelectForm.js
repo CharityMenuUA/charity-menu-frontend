@@ -51,7 +51,7 @@ const SelectForm = (props) => {
                         {options.map(({value, name}) => (
                             <div
                                 onClick={() => onChange({target: {value}})}
-                                className={style.optionForm}
+                                className={`${style.optionForm} ${active?.value === value ? style.active : ''}`}
                                 key={value}
                             >
                                 {name}
