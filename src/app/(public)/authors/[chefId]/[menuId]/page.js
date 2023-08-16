@@ -1,7 +1,7 @@
 import style from './style.module.scss'
 import OtherChefs from '@/app/components/other-chefs/OtherChefs'
-import ShareButtons from '@/app/(public)/chefs/[chefId]/[menuId]/ShareButtons'
-import ByLink from '@/app/(public)/chefs/[chefId]/[menuId]/ByLink'
+import ShareButtons from '@/app/(public)/authors/[chefId]/[menuId]/ShareButtons'
+import ByLink from '@/app/(public)/authors/[chefId]/[menuId]/ByLink'
 import Link from 'next/link'
 import Image from 'next/image'
 import PopularMenuItems from "@/app/components/popular-menu-items/PopularMenuItems"
@@ -55,7 +55,7 @@ const MenuIdPage = async (props) => {
                     </div>
                     <ShareButtons/>
                 </div>
-                <Link href={`${pages.chefs.href}/${chef.id}`} className={style.chef}>
+                <Link href={`${pages.authors.href}/${chef.id}`} className={style.chef}>
                     <div className={style.label}>
                         <span>Автор лоту</span>
                     </div>
@@ -81,7 +81,7 @@ const MenuIdPage = async (props) => {
                     </div>
                 </Link>
             </div>
-            <Link href={`${pages.chefs.href}/${chef.id}`} className={style.other_button}>
+            <Link href={`${pages.authors.href}/${chef.id}`} className={style.other_button}>
                 Інші пропозиції автора
             </Link>
             <div className={style.popularRandom}>

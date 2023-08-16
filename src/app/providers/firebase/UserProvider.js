@@ -29,7 +29,7 @@ const UserProvider = ({children}) => {
         if (auth.currentUser) {
             await auth.currentUser.getIdToken(true).then(async (accessToken) => {
                 const profile = await getProfile(accessToken).catch(console.error)
-                if (profile.email) setProfile(profile)
+                if (profile?.email) setProfile(profile)
                 setUser({...auth.currentUser, accessToken})
                 setLoading(false)
             })

@@ -1,5 +1,5 @@
 'use client'
-import style from '@/app/(public)/chefs/[chefId]/[menuId]/style.module.scss'
+import style from '@/app/(public)/authors/[chefId]/[menuId]/style.module.scss'
 import {FacebookShareButton, TelegramShareButton, TwitterShareButton} from 'react-share'
 import PropTypes from "prop-types"
 import {useMemo} from "react"

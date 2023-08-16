@@ -3,13 +3,13 @@ const pages = {
         name: 'Головна',
         href: '',
     },
-    chefs: {
+    authors: {
         name: 'Всі автори',
-        href: 'chefs'
+        href: 'authors'
     },
     menu: {
         name: 'Всі пропозиції',
-        href: 'chefs?menu=1'
+        href: 'authors?menu=1'
     },
     profile: {
         name: 'Мiй профіль',

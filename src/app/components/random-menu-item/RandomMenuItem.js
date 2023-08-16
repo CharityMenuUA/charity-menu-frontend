@@ -6,6 +6,7 @@ import Image from "next/image"
 import {SwitchTransition, CSSTransition} from "react-transition-group"
 import Link from "next/link"
 import Loader from "@/app/components/loader/Loader"
+import pages from "@/app/components/breadcrumbs/routing"
 
 
 const RandomMenuItem = () => {
@@ -42,7 +43,7 @@ const RandomMenuItem = () => {
                         }}>
                             {item?.menuItem ? (
                                 <Link
-                                    href={`/chefs/${item?.chef?.id}/${item?.menuItem?.id}`}
+                                    href={`${pages.authors.href}/${item?.chef?.id}/${item?.menuItem?.id}`}
                                     className={style.menuItem}
                                 >
                                     <div className={style.photo}>

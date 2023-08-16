@@ -1,50 +1,49 @@
 "use client"
 
-import style from './style.module.scss'
-import MenuItem from '@/app/components/menu-item/MenuItem'
 import {useSwitcherContext} from "@/app/components/switcher/Switcher"
+import style from "@/app/(public)/authors/(chefs-and-menu)/style.module.scss"
+import ChefItem from "@/app/components/chef-item/ChefItem"
 import {useEffect, useState} from "react"
-import {getMenu} from "@/app/(public)/chefs/(chefs-and-menu)/actions"
+import {getChef} from "@/app/(public)/authors/(chefs-and-menu)/actions"
 import SearchInput from "@/app/components/input/SearchInput"
 import SelectSort from "@/app/components/input/SelectSort"
-import {menuSortValues} from "@/app/(public)/chefs/(chefs-and-menu)/sortValues"
+import {chefsSortValues} from "@/app/(public)/authors/(chefs-and-menu)/sortValues"
 
 
-const Menu = (props) => {
+const Chefs = (props) => {
     const {data} = props
     const {value} = useSwitcherContext()
-    const [menuItems, setMenuItems] = useState(data.menuItems)
+    const [chefItems, setChefItems] = useState(data.chefs)
     const [currentPage, setCurrentPage] = useState(0)
     const [totalPages, setTotalPages] = useState(data.totalPages)
     const [search, setSearch] = useState('')
-    const sortValues = menuSortValues
+    const sortValues = chefsSortValues
 
     const [sort, setSort] = useState(sortValues[0].value)
 
     useEffect(() => {
-        if (value) {
+        if (!value) {
             const [sortBy, direction] = sort.split('-')
-            getMenu({...(search ? {name: search} : {}), sortBy, direction}).then((data) => {
-                if (data.menuItems) {
-                    setMenuItems(data.menuItems)
+            getChef({...(search ? {name: search} : {}), sortBy, direction}).then((data) => {
+                if (data.chefs) {
+                    setChefItems(data.chefs)
                 }
                 setTotalPages(data.totalPages)
                 setCurrentPage(0)
-
             })
         } else {
             setCurrentPage(0)
             setSearch('')
         }
-    }, [value, search, sort, data.menuItems])
+    }, [value, search, sort, data.chefs])
 
-    if (!value) return
+    if (value) return false
 
     const getMore = async () => {
         const [sortBy, direction] = sort.split('-')
-        getMenu({pageNumber: currentPage + 1, ...(search ? {name: search} : {}), sortBy, direction}).then((data) => {
-            if (data.menuItems) {
-                setMenuItems((prevState) => [...prevState, ...data.menuItems])
+        getChef({pageNumber: currentPage + 1, ...(search ? {name: search} : {}), sortBy, direction}).then((data) => {
+            if (data.chefs) {
+                setChefItems((prevState) => [...prevState, ...data.chefs])
             }
             setCurrentPage(currentPage + 1)
         })
@@ -71,11 +70,11 @@ const Menu = (props) => {
                     <SelectSort name={"sort"} value={sort} options={sortValues} onChange={onChangeSort}/>
                 </div>
             </div>
-            {menuItems.length ? (
+            {chefItems.length ? (
                 <>
-                    <div className={style.menuList}>
-                        {menuItems.map(({menuItem, chef}, key) => (
-                            <MenuItem key={key} {...menuItem} chefName={chef.name} chefPhoto={chef.photo}/>
+                    <div className={style.chefList}>
+                        {chefItems.map((chef) => (
+                            <ChefItem key={chef.id} {...chef}/>
                         ))}
                     </div>
                     {totalPages - 1 > currentPage && (
@@ -89,8 +88,7 @@ const Menu = (props) => {
                     Нічого за запитом <b>“{search}”</b>
                 </div>
             )}
-
         </>
     )
 }
-export default Menu
+export default Chefs

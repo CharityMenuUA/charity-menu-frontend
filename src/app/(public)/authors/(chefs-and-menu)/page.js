@@ -1,7 +1,7 @@
 import Chefs from "./Chefs"
 import Menu from "./Menu"
-import {getChef, getMenu} from "@/app/(public)/chefs/(chefs-and-menu)/actions"
-import {chefsSortValues, menuSortValues} from "@/app/(public)/chefs/(chefs-and-menu)/sortValues"
+import {getChef, getMenu} from "@/app/(public)/authors/(chefs-and-menu)/actions"
+import {chefsSortValues, menuSortValues} from "@/app/(public)/authors/(chefs-and-menu)/sortValues"
 
 const ChefsPage = async () => {
 
