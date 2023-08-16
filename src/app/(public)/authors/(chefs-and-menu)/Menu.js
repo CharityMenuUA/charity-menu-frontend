@@ -16,10 +16,14 @@ const Menu = (props) => {
     const [menuItems, setMenuItems] = useState(data.menuItems)
     const [currentPage, setCurrentPage] = useState(0)
     const [totalPages, setTotalPages] = useState(data.totalPages)
-    const [search, setSearch] = useState('')
+    const [search, setSearch] = useState(localStorage?.getItem('menu_search') || '')
     const sortValues = menuSortValues
+    const [sort, setSort] = useState(localStorage?.getItem('menu_sort') || sortValues[0].value)
 
-    const [sort, setSort] = useState(sortValues[0].value)
+    useEffect(() => {
+        localStorage.setItem('menu_sort', sort)
+        localStorage.setItem('menu_search', search)
+    }, [sort, search])
 
     useEffect(() => {
         if (value) {
