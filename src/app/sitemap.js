@@ -3,7 +3,7 @@ import {getList} from "@/helpers/dataProvider"
 
 
 const sitemap = async () => {
-    const url = "https://www.donatemenu.com"
+    const url = "www.donatemenu.com"
 
     const menuIds = []
     const chefIds = []
@@ -39,7 +39,7 @@ const sitemap = async () => {
         ...chefUrls,
         ...menuUrls,
     ].map(({url}) => ({
-        url: url.replace(/\/\//gi, '/'),
+        url: `https://${url.replace(/\/\//gi, '/')}`,
         lastModified: new Date(),
     }))
 }
