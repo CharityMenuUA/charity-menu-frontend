@@ -2,10 +2,12 @@ const pages = {
     '': {
         name: 'Головна',
         href: '',
+        sitemap: true
     },
     authors: {
         name: 'Всі автори',
-        href: 'authors'
+        href: 'authors',
+        sitemap: true
     },
     menu: {
         name: 'Всі пропозиції',
@@ -25,23 +27,28 @@ const pages = {
     },
     team: {
         name: 'Команда',
-        href: 'team'
+        href: 'team',
+        sitemap: true
     },
     contacts: {
         name: 'Контакти',
-        href: 'contacts'
+        href: 'contacts',
+        sitemap: true
     },
     faq: {
         name: 'FAQ',
-        href: 'faq'
+        href: 'faq',
+        sitemap: true
     },
     login: {
         name: 'Вхід',
-        href: 'login'
+        href: 'login',
+        sitemap: true
     },
     register: {
         name: 'Реєстрація',
-        href: 'register'
+        href: 'register',
+        sitemap: true
     },
     "register-email-confirm": {
         name: 'Підтвердження пошти',
@@ -61,11 +68,13 @@ const pages = {
     },
     reporting: {
         name: 'Звітність',
-        href: 'reporting'
+        href: 'reporting',
+        sitemap: true
     },
     policy: {
         name: 'Оферта та Політика данних',
-        href: 'policy'
+        href: 'policy',
+        sitemap: true
     }
 }
 

@@ -3,7 +3,7 @@ import {getList} from "@/helpers/dataProvider"
 
 
 const sitemap = async () => {
-    const url = "https://www.donatemenu.com/"
+    const url = "https://www.donatemenu.com"
 
     const menuIds = []
     const chefIds = []
@@ -22,26 +22,26 @@ const sitemap = async () => {
         })
     })
 
-    const staticUrls = Object.values(pages).map(({href}) => ({
-        url: `${url}${href}`.replace(/\/\//gi, '/'),
-        lastModified: new Date(),
-    })).filter(({url}) => url.indexOf('profile') === -1 && url.indexOf('register-') === -1 &&  url.indexOf('password') === -1)
+    const staticUrls = Object.values(pages).filter(({sitemap}) => sitemap).map(({href}) => ({
+        url: `${url}${href ? `/${href}` : ''}`,
+    }))
 
     const chefUrls = chefIds.map((id) => ({
-        url: `${url}${pages.authors.href}/${id}`.replace(/\/\//gi, '/'),
-        lastModified: new Date(),
+        url: `${url}/${pages.authors.href}/${id}`
     }))
 
     const menuUrls = menuIds.map(({id, chef}) => ({
-        url: `${url}${pages.authors.href}/${chef}/${id}`.replace(/\/\//gi, '/'),
-        lastModified: new Date(),
+        url: `${url}/${pages.authors.href}/${chef}/${id}`
     }))
 
     return [
         ...staticUrls,
         ...chefUrls,
         ...menuUrls,
-    ]
+    ].map(({url}) => ({
+        url: url.replace(/\/\//gi, '/'),
+        lastModified: new Date(),
+    }))
 }
 
 export default sitemap
