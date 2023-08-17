@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /profile
+Disallow: /forgot-password
+Disallow: /new-password
+Disallow: /register-complete
+Disallow: /register-email-confirm
+Sitemap: https://www.donatemenu.com/sitemap.xml

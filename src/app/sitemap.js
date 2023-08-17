@@ -25,7 +25,7 @@ const sitemap = async () => {
     const staticUrls = Object.values(pages).map(({href}) => ({
         url: `${url}${href}`.replace(/\/\//gi, '/'),
         lastModified: new Date(),
-    }))
+    })).filter(({url}) => url.indexOf('profile') === -1 && url.indexOf('register-') === -1 &&  url.indexOf('password') === -1)
 
     const chefUrls = chefIds.map((id) => ({
         url: `${url}${pages.authors.href}/${id}`.replace(/\/\//gi, '/'),
