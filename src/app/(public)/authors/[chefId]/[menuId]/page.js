@@ -57,7 +57,7 @@ const MenuIdPage = async (props) => {
                 </div>
                 <Link href={`${pages.authors.href}/${chef.id}`} className={style.chef}>
                     <div className={style.label}>
-                        <span>Автор лоту</span>
+                        <span>Автор пропозиції</span>
                     </div>
                     <div className={style.photo}>
                         <Image
