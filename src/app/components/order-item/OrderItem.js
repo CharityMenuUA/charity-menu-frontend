@@ -42,6 +42,14 @@ const OrderItem = (props) => {
                 <div className={style.content}>
                     <div>
                         <div className={style.label}>
+                            Номер замовлення
+                        </div>
+                        <div className={style.text}>
+                            {order.id}
+                        </div>
+                    </div>
+                    <div>
+                        <div className={style.label}>
                             Ціна
                         </div>
                         <div className={style.amount}>
