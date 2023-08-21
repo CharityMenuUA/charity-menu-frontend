@@ -45,7 +45,7 @@ const OrderItem = (props) => {
                             Номер замовлення
                         </div>
                         <div className={style.text}>
-                            ₴{order.id}
+                            {order.id}
                         </div>
                     </div>
                     <div>
