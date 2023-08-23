@@ -26,9 +26,11 @@ export const generateMetadata = async (props) => {
 const MenuIdPage = async (props) => {
     const {params: {chefId, menuId}} = props
     const menu = await getMenuItem({menuId})
+    console.log(menu)
     if (!menu?.id) return notFound()
     const chef = await getChef({chefId})
     if (!chef.id) return notFound()
+    if (menu?.chefId !== chef.id) return notFound()
     const {menuItems} = await getPopularMenuItem()
     const {title} = menu
 
