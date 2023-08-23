@@ -9,6 +9,7 @@ import RandomMenuItem from "@/app/components/random-menu-item/RandomMenuItem"
 import {pluralize} from "@/app/components/helpers/pluralLots"
 import {getChef, getMenuItem, getPopularMenuItem} from "@/app/components/actions"
 import pages from "@/app/components/breadcrumbs/routing"
+import {notFound} from "next/navigation"
 
 
 export const generateMetadata = async (props) => {
@@ -25,7 +26,9 @@ export const generateMetadata = async (props) => {
 const MenuIdPage = async (props) => {
     const {params: {chefId, menuId}} = props
     const menu = await getMenuItem({menuId})
+    if (!menu?.id) return notFound()
     const chef = await getChef({chefId})
+    if (!chef.id) return notFound()
     const {menuItems} = await getPopularMenuItem()
     const {title} = menu
 
