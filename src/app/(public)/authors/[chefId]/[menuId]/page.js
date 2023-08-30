@@ -32,20 +32,42 @@ const MenuIdPage = async (props) => {
     if (!chef.id) return notFound()
     if (menu?.chefId !== chef.id) return notFound()
     const {menuItems} = await getPopularMenuItem()
-    const {title} = menu
+
+    const {title, active, available, availablePerDay, availableTotal} = menu
 
     return (
         <>
             <h1 className={style.h1}>{title}</h1>
             <div className={style.menu_info}>
                 <div className={style.price}>
-                    <span>₴{menu.price}</span>
-                    {menu.available ? (
-                        <ByLink menuId={menuId} chefId={chefId} className={style.button}/>
-                    ) : (
-                        <button className={style.button} disabled={true}>
-                            Недоступно
-                        </button>
+                    <div className={style.priceInfo}>
+                        <span>₴{menu.price}</span>
+                        {available ? (
+                            <ByLink menuId={menuId} chefId={chefId} className={style.button}/>
+                        ) : (
+                            <button className={style.button} disabled={true}>
+                                Недоступно
+                            </button>
+                        )}
+                    </div>
+                    {active && (
+                        <div className={style.availableWrap}>
+                            {available && !!availableTotal && (
+                                <div className={style.available}>
+                                    Доступно всього: <b>{availableTotal}</b>
+                                </div>
+                            )}
+                            {available && !!availablePerDay && (
+                                <div className={style.available}>
+                                    Доступно сьогодні: <b>{availablePerDay}</b>
+                                </div>
+                            )}
+                            {!available && (
+                                <div className={style.available}>
+                                    На сьогодні ліміт вичерпано.
+                                </div>
+                            )}
+                        </div>
                     )}
                 </div>
                 <div className={style.description}

@@ -1,6 +1,6 @@
 .h1 {
   @extend %h1-title;
-  width: min(100%,var(--width-wrapper-large));
+  width: min(100%, var(--width-wrapper-large));
 }
 
 .menu_info {
@@ -64,6 +64,7 @@
       transform: rotate(-90deg);
       white-space: nowrap;
     }
+
     @include respond-to(m) {
       display: none;
     }
@@ -159,14 +160,36 @@
 
 .price {
   grid-area: price;
-  padding: 54px 30px 54px 38px;
+  padding: 30px 30px 30px 38px;
   background: var(--color-white);
   border: 1px solid #E0E0E0;
   border-radius: 40px;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
   gap: 20px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+
+  .priceInfo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+  }
+
+  .available {
+    width: 100%;
+    font-size: 12px;
+  }
+
+  .availableWrap {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
 
   @include respond-to(m) {
     padding: 20px 20px 20px 30px;
@@ -259,6 +282,6 @@
   gap: 55px;
   @include respond-to(t) {
     flex-direction: column;
-   align-items: center;
+    align-items: center;
   }
 }
