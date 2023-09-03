@@ -5,6 +5,7 @@ import pages from "@/app/components/breadcrumbs/routing"
 
 const Accumulated = (props) => {
     const {amount} = props
+    if (!amount) return
     return (
         <Link href={pages.reporting.href} className={style.accumulated}>
             Зібрано <span>{amount || 0} грн</span>
