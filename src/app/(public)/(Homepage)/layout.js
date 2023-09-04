@@ -7,8 +7,8 @@ const ChefsLayout = async ({children}) => {
     const accumulated = await getAccumulated()
     return (
         <>
-            <Accumulated amount={accumulated.amount}/>
             <div className={style.homepage}>
+                <Accumulated amount={accumulated.amount}/>
                 <section className={style.head}>
                     <h1>
                         Класні люди склали меню і ти можеш зробити замовлення просто зараз.
