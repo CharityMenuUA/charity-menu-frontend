@@ -5,10 +5,10 @@
 
   .head {
     width: min(100%, var(--width-wrapper));
-    margin: 0 auto 60px;
+    margin: 60px auto 60px;
     text-align: center;
     @include respond-to(m) {
-      margin: 0 auto 40px;
+      margin: 30px auto 40px;
     }
   }
 
