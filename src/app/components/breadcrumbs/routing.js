@@ -1,79 +1,79 @@
 const pages = {
     '': {
         name: 'Головна',
-        href: '',
+        href: '/',
         sitemap: true
     },
     authors: {
         name: 'Всі автори',
-        href: 'authors',
+        href: '/authors',
         sitemap: true
     },
     menu: {
         name: 'Всі пропозиції',
-        href: 'authors?menu=1'
+        href: '/authors?menu=1'
     },
     profile: {
         name: 'Мiй профіль',
-        href: 'profile'
+        href: '/profile'
     },
     settings: {
         name: 'Налаштування',
-        href: 'profile/settings'
+        href: '/profile/settings'
     },
     ordered: {
         name: 'Замовили в мене',
-        href: 'profile/ordered'
+        href: '/profile/ordered'
     },
     team: {
         name: 'Команда',
-        href: 'team',
+        href: '/team',
         sitemap: true
     },
     contacts: {
         name: 'Контакти',
-        href: 'contacts',
+        href: '/contacts',
         sitemap: true
     },
     faq: {
         name: 'FAQ',
-        href: 'faq',
+        href: '/faq',
         sitemap: true
     },
     login: {
         name: 'Вхід',
-        href: 'login',
+        href: '/login',
         sitemap: true
     },
     register: {
         name: 'Реєстрація',
-        href: 'register',
+        href: '/register',
         sitemap: true
     },
     "register-email-confirm": {
         name: 'Підтвердження пошти',
-        href: 'register-email-confirm'
+        href: '/register-email-confirm'
     },
     "register-complete": {
         name: 'Завершення реєстрації',
-        href: 'register-complete'
+        href: '/register-complete'
     },
     "new-password": {
         name: 'Новий пароль',
-        href: 'new-password'
+        href: '/new-password'
     },
     "forgot-password": {
         name: 'Забули пароль?',
-        href: 'forgot-password'
+        href: '/forgot-password'
     },
     reporting: {
         name: 'Звітність',
-        href: 'reporting',
+        href: '/reporting',
         sitemap: true
     },
     policy: {
         name: 'Оферта та Політика данних',
-        href: 'policy',
+        href: '/policy',
         sitemap: true
     }
 }
