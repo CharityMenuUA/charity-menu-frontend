@@ -1,6 +1,7 @@
 "use client"
 
-import firebase from 'firebase'
+import firebase from "firebase/app"
+import "firebase/auth"
 
 const firebaseConfig = {
     apiKey: process.env.FIREBASE_APIKEY,
@@ -12,11 +13,12 @@ const firebaseConfig = {
     measurementId: process.env.FIREBASE_MEASUREMENTID,
 }
 
-const FIREBASE_APP_CHECK_KEY = process.env.FIREBASE_APP_CHECK_KEY
-
-export const app = firebase.initializeApp(firebaseConfig)
+if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig)
+}
 
 export const auth = firebase.auth()
+
 
 
 

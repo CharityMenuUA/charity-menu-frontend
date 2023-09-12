@@ -9,6 +9,7 @@ import Breadcrumbs from "@/app/components/breadcrumbs/Breadcrumbs"
 import SuccessProvider from "@/app/providers/success/SuccessProvider"
 import ErrorBoundary from "@/app/components/error/ErrorBoundary"
 import SwitcherProvider from "@/app/components/switcher/Switcher"
+import Script from "next/script"
 
 const unbounded = Unbounded({subsets: ['cyrillic', 'latin'], variable: '--font-unbounded'})
 const openSans = Open_Sans({subsets: ['cyrillic', 'latin'], variable: '--font-open-sans'})
@@ -57,6 +58,14 @@ const RootLayout = async (props) => {
                 </UserProvider>
             </ConfigProvider>
         </ErrorBoundary>
+        <Script strategy="lazyOnload" async src="https://www.googletagmanager.com/gtag/js?id=G-5V9YXQJLCN"/>
+        <Script strategy="lazyOnload" id={"google-analytics"}>{`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-5V9YXQJLCN');
+        `}</Script>
         </body>
         </html>
     )
