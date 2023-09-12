@@ -2,7 +2,7 @@
 
 import style from "@/app/(auth)/auth.module.scss"
 import {auth} from "@/app/providers/firebase/app"
-import firebase from "firebase"
+import firebase from "firebase/app"
 
 const OtherSignInMethods = ({callback, setError}) => {
     const signInWithGoogle = () => {
