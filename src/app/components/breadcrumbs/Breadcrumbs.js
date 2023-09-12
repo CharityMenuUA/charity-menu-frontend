@@ -7,7 +7,6 @@ import {getChef, getMenuItem} from "@/app/components/actions"
 import pages from "@/app/components/breadcrumbs/routing"
 import {useSwitcherContext} from "@/app/components/switcher/Switcher"
 
-
 const getLink = (cur, value) => {
     if (cur === pages.authors.href && value) {
         return {
@@ -49,16 +48,20 @@ const Breadcrumbs = () => {
         return [...acc, link]
     }, [])
 
+
     if (links[2] && links[2].name === params?.chefId && chef?.name) links[2].name = chef?.name
 
     if (links[3] && links[3].name === params?.menuId && menu?.title) links[3].name = menu?.title
 
     if (pathname === '/') return
 
+    const clearPath = (href) => `/${href.split('/').filter(Boolean).join('/')}`
     return (
         <div className={style.breadcrumbs}>
             {links.map(({href, name}, key) => (
-                <Link key={key} href={href}> {!!key && '/'} {name} </Link>
+                <Link key={key} href={clearPath(href)}>
+                    {!!key && '/'} {name}
+                </Link>
             ))}
         </div>
     )
