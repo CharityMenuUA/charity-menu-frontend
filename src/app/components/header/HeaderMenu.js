@@ -40,7 +40,7 @@ const HeaderMenu = (props) => {
                     <div className={style.container}>
                         <HeaderLogo className={style.logo}/>
                         <div className={style.text}>
-                            Платформа, на якій ти змжеш отримати приємні емоції, а Україна реальну допомогу.
+                            Платформа, на якій ти зможеш отримати приємні емоції, а Україна реальну допомогу.
                         </div>
                         {config?.supportLink && (
                             <SupportButton link={config.supportLink}/>
