@@ -16,7 +16,7 @@ const openSans = Open_Sans({subsets: ['cyrillic', 'latin'], variable: '--font-op
 
 const meta = {
     title: "Донат меню - платформа донатів на ЗСУ",
-    description: 'Платформа, на якій ти змжеш отримати приємні емоції, а Україна реальну допомогу.',
+    description: 'Платформа, на якій ти зможеш отримати приємні емоції, а Україна реальну допомогу.',
     images: ['/preview.png']
 }
 
