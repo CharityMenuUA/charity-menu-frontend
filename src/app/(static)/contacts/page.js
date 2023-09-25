@@ -5,7 +5,7 @@ import {useConfigContext} from "@/app/providers/config/ConfigProvider"
 
 
 const ContactsPage = () => {
-    const {config: {contacts: {phone, telegram, email, instagram, twitter, facebook}}} = useConfigContext()
+    const {config: {contacts: {phone, telegram, email, instagram, twitter, facebook, tiktok}}} = useConfigContext()
 
     return (
         <div className={style.contacts}>
@@ -59,9 +59,17 @@ const ContactsPage = () => {
                         </div>
                     </div>
                 )}
+                {tiktok && (
+                    <div className={style.item}>
+                        <div className={style.label}>TikTok</div>
+                        <div className={style.text}>
+                            <a href={tiktok} target="_blank">{new URL(tiktok).host}</a>
+                        </div>
+                    </div>
+                )}
             </div>
         </div>
     )
 }
 
-export default ContactsPage;
+export default ContactsPage
