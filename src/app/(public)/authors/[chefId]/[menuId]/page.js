@@ -87,8 +87,10 @@ const MenuIdPage = async (props) => {
                         )}
                     </div>
                     <div className={style.description}
-                         style={{backgroundImage: `url("${menu.image || '/menu-def-image.png'}")`}}>
-                        <div>
+                         style={{backgroundImage: `url("${menu.image || '/menu-def-image.png'}")`}}
+                    >
+                        <span itemProp="image" content={`url("${menu.image || '/menu-def-image.png'}")`}/>
+                        <div itemProp="description">
                             {menu.description || '?'}
                         </div>
                     </div>
