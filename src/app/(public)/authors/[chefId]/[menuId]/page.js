@@ -80,7 +80,7 @@ const MenuIdPage = async (props) => {
                     <div>
                         поділитись
                     </div>
-                    <ShareButtons/>
+                    <ShareButtons title={title}/>
                 </div>
                 <Link href={`${pages.authors.href}/${chef.id}`} className={style.chef}>
                     <div className={style.label}>

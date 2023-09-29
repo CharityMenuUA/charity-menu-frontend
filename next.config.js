@@ -22,7 +22,7 @@ const nextConfig = {
     swcMinify: true,
     images: {
         unoptimized: true,
-        formats: ['image/webp'],
+        formats: ['image/avif', 'image/webp'],
         remotePatterns: [
             {
                 protocol: "https",
