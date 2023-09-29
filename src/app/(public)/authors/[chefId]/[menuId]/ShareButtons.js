@@ -16,6 +16,7 @@ const ShareButtons = (props) => {
                 <TwitterShareButton
                     url={shareUrl}
                     title={title}
+                    hashtags={['#DonateMenu']}
                 >
                     <svg width="40" height="40" viewBox="0 0 40 40">
                         <path
@@ -25,7 +26,7 @@ const ShareButtons = (props) => {
                 </TwitterShareButton>
             </div>
             <div className={style.link}>
-                <FacebookShareButton className={style.link} url={shareUrl} quote={title}>
+                <FacebookShareButton className={style.link} url={shareUrl} quote={title} hashtag="#DonateMenu">
                     <svg width="40" height="40" viewBox="0 0 40 40">
                         <path
                             d="M22.12 14.1C22.12 13.19 22.72 12.98 23.14 12.98H25.73V9.00003H22.16C18.2 8.99003 17.29 11.95 17.29 13.85V16.5H15V20.6H17.29V32.2H22.11V20.6H25.36L25.78 16.5H22.11V14.09L22.12 14.1Z"
