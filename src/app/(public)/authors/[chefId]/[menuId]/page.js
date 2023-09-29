@@ -16,10 +16,22 @@ export const generateMetadata = async (props) => {
     const {params: {menuId, chefId}} = props
     const menu = await getMenuItem({menuId})
     const chef = await getChef({chefId})
-
+    const meta = {
+        title: `${chef.name} пропонує "${menu.title}" за ₴${menu.price} для ЗСУ`,
+        description: menu.description,
+        images: menu.image || '/menu-def-image.png',
+    }
     return {
         title: `${chef.name} пропонує "${menu.title}" за ₴${menu.price} для ЗСУ`,
-        description: menu.description
+        description: menu.description,
+        openGraph: {
+            ...meta,
+            type: 'website',
+        },
+        twitter: {
+            ...meta,
+            card: "summary_large_image"
+        }
     }
 }
 
@@ -43,7 +55,8 @@ const MenuIdPage = async (props) => {
                     <div className={style.price}>
                         <div className={style.priceInfo}>
                             <span itemProp="offers" itemScope itemType="https://schema.org/Offer">
-                                <span itemProp="priceCurrency" content="UAH" >₴</span><span itemProp="price">{menu.price}</span>
+                                <span itemProp="priceCurrency" content="UAH">₴</span><span
+                                itemProp="price">{menu.price}</span>
                             </span>
                             {available ? (
                                 <ByLink menuId={menuId} chefId={chefId} className={style.button}/>
@@ -85,7 +98,8 @@ const MenuIdPage = async (props) => {
                         </div>
                         <ShareButtons title={title}/>
                     </div>
-                    <Link href={`${pages.authors.href}/${chef.id}`} className={style.chef}  itemScope itemProp="brand" itemType="https://schema.org/Person">
+                    <Link href={`${pages.authors.href}/${chef.id}`} className={style.chef} itemScope itemProp="brand"
+                          itemType="https://schema.org/Person">
                         <div className={style.label}>
                             <span>Автор пропозиції</span>
                         </div>

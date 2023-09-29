@@ -32,8 +32,16 @@ const getChefIdAccumulated = async (params) => {
 export const generateMetadata = async (props) => {
     const {params: {chefId}} = props
     const chef = await getChef({chefId})
+    const meta = {
+        title: `${chef.name} має для вас ${pluralize(chef.menuItemsNumber, ['пропозиція', 'пропозиції', 'пропозицій'])}.`,
+        images: [chef.photo],
+    }
     return {
-        title: `${chef.name} має для вас ${pluralize(chef.menuItemsNumber, ['пропозиція', 'пропозиції', 'пропозицій'])}.`
+        ...meta,
+        openGraph: {
+            ...meta,
+            type: 'website',
+        }
     }
 }
 
@@ -88,7 +96,7 @@ const ChefIdPage = async (props) => {
                         </div>
                         <div className={style.links}>
                             {instagram && (
-                                <a target={'_blank'} href={instagram} className={style.link} itemProp="sameAs" >
+                                <a target={'_blank'} href={instagram} className={style.link} itemProp="sameAs">
                                     <svg width="40" height="40" viewBox="0 0 40 40">
                                         <path
                                             d="M25.5 9H14.5C11.42 9 9 11.42 9 14.5V25.5C9 28.58 11.42 31 14.5 31H25.5C28.58 31 31 28.58 31 25.5V14.5C31 11.42 28.58 9 25.5 9ZM28.8 25.5C28.8 27.37 27.37 28.8 25.5 28.8H14.5C12.63 28.8 11.2 27.37 11.2 25.5V14.5C11.2 12.63 12.63 11.2 14.5 11.2H25.5C27.37 11.2 28.8 12.63 28.8 14.5V25.5Z"
@@ -164,7 +172,7 @@ const ChefIdPage = async (props) => {
                     <Accumulated amount={accumulated.amount}/>
                 </div>
                 <h2 className="h2">Що може зробити {chef.name}</h2>
-                <div className={style.orders_list}  itemScope itemType="https://schema.org/ItemList">
+                <div className={style.orders_list} itemScope itemType="https://schema.org/ItemList">
                     {menu.map((item) => (
                         <MenuItem key={item.id} {...item} chefName={chef.name} chefPhoto={chef.photo}/>
                     ))}
