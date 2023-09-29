@@ -250,6 +250,11 @@
         transition: all .3s;
       }
 
+      button {
+        all: unset;
+        cursor: pointer;
+        display: block;
+      }
       svg {
         width: 40px;
         fill: white;
