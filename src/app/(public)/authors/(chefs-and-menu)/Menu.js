@@ -9,17 +9,20 @@ import SearchInput from "@/app/components/input/SearchInput"
 import SelectSort from "@/app/components/input/SelectSort"
 import {menuSortValues} from "@/app/(public)/authors/(chefs-and-menu)/sortValues"
 
-
 const Menu = (props) => {
     const {data} = props
     const {value} = useSwitcherContext()
     const [menuItems, setMenuItems] = useState(data.menuItems)
     const [currentPage, setCurrentPage] = useState(0)
     const [totalPages, setTotalPages] = useState(data.totalPages)
-    const [search, setSearch] = useState(localStorage?.getItem('menu_search') || '')
+    const [search, setSearch] = useState((process.browser && localStorage?.getItem('menu_search')) || '')
     const sortValues = menuSortValues
-    const [sort, setSort] = useState(localStorage?.getItem('menu_sort') || sortValues[0].value)
+    const [sort, setSort] = useState((process.browser && localStorage?.getItem('menu_sort')) || sortValues[0].value)
+    const [isClient, setIsClient] = useState(false)
 
+    useEffect(() => {
+        setIsClient(true)
+    }, [])
     useEffect(() => {
         localStorage.setItem('menu_sort', sort)
         localStorage.setItem('menu_search', search)
@@ -64,20 +67,24 @@ const Menu = (props) => {
     return (
         <>
             <div className={style.search}>
-                <SearchInput
-                    name={'name'}
-                    value={search}
-                    placeholder={'Введіть запит'}
-                    onChange={onSearch}
-                    onClear={() => setSearch('')}
-                />
-                <div className={style.sort}>
-                    <SelectSort name={"sort"} value={sort} options={sortValues} onChange={onChangeSort}/>
-                </div>
+                {isClient && (
+                    <>
+                        <SearchInput
+                            name={'name'}
+                            value={search}
+                            placeholder={'Введіть запит'}
+                            onChange={onSearch}
+                            onClear={() => setSearch('')}
+                        />
+                        <div className={style.sort}>
+                            <SelectSort name={"sort"} value={sort} options={sortValues} onChange={onChangeSort}/>
+                        </div>
+                    </>
+                )}
             </div>
             {menuItems.length ? (
                 <>
-                    <div className={style.menuList}  itemScope itemType="https://schema.org/ItemList">
+                    <div className={style.menuList} itemScope itemType="https://schema.org/ItemList">
                         {menuItems.map(({menuItem, chef}, key) => (
                             <MenuItem key={key} {...menuItem} chefName={chef.name} chefPhoto={chef.photo}/>
                         ))}

@@ -21,6 +21,7 @@ const FaqPage = () => {
         <div className={style.faqPage}>
             <div className={style.faqPage_inner}>
                 <div className={style.faqPage_head}>
+                    <title>Часті запитання</title>
                     <h1>Часті запитання</h1>
                 </div>
 
