@@ -13,7 +13,7 @@ const OtherChefs = async (props) => {
     return (
         <section className={style.chefs}>
             <h2 className="h2">Інші автори</h2>
-            <div className={style.chefs_list}>
+            <div className={style.chefs_list} itemScope itemType="https://schema.org/ItemList">
                 {filterChefs.map((chef) => (
                     <ChefItem key={chef.id} {...chef} />
                 ))}

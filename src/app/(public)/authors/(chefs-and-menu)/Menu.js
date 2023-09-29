@@ -77,7 +77,7 @@ const Menu = (props) => {
             </div>
             {menuItems.length ? (
                 <>
-                    <div className={style.menuList}>
+                    <div className={style.menuList}  itemScope itemType="https://schema.org/ItemList">
                         {menuItems.map(({menuItem, chef}, key) => (
                             <MenuItem key={key} {...menuItem} chefName={chef.name} chefPhoto={chef.photo}/>
                         ))}

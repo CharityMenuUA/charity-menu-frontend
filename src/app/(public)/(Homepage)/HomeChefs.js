@@ -11,7 +11,7 @@ const HomeChefs = (props) => {
     if (value) return false
 
     return (
-        <div className={style.chefList}>
+        <div className={style.chefList} itemScope itemType="https://schema.org/ItemList">
             {chefs.map((chef) => (
                 <ChefItem key={chef.id} {...chef}/>
             ))}

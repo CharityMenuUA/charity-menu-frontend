@@ -10,7 +10,7 @@ const HomeMenu = (props) => {
     if (!value) return
 
     return (
-        <div className={style.menuList}>
+        <div className={style.menuList} itemScope itemType="https://schema.org/ItemList">
             {menuItems.map(({menuItem, chef}) => (
                 <MenuItem key={menuItem.id} {...menuItem} chefName={chef.name} chefPhoto={chef.photo}/>
             ))}

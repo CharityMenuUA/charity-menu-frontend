@@ -34,7 +34,7 @@ const ChefItem = (props) => {
     const names = name.split(' ')
 
     return (
-        <Link href={`${pages.authors.href}/${id}`} className={style.chefs}>
+        <Link href={`${pages.authors.href}/${id}`} className={style.chefs} itemScope itemProp="itemListElement" itemType="https://schema.org/Person" >
             <div className={style.photo}>
                 <Image
                     alt={name}
@@ -45,10 +45,11 @@ const ChefItem = (props) => {
                     style={{
                         objectFit: 'cover',
                     }}
+                    itemProp="image"
                 />
             </div>
             <div className={style.content}>
-                <div className={style.name}>
+                <div className={style.name} itemProp="name">
                     {names.map((name, key) => (
                         <Fragment key={key}>
                             {!!key && (<>&nbsp;</>)}
