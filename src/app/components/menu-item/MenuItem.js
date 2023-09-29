@@ -12,7 +12,7 @@ const MenuItem = (props) => {
         <div className={`${style.item} ${min ? style.min : ''} ${available ? '' : style.available}`}
              itemProp="itemListElement" itemScope itemType="https://schema.org/Product">
             <span itemProp="image" content={`url("${image || '/menu-def-image.png'}")`}/>
-            <Link href={`${pages.authors.href}/${chefId}/${id}`} className={style.link}>
+            <Link href={`${pages.authors.href}/${chefId}/${id}`} className={style.link} itemProp="url">
                 <div className={style.photo}>
                     <Image
                         alt={chefName || chefNameAlt}
