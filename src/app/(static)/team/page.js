@@ -13,8 +13,8 @@ const TeamPage = () => {
         <div className={style.teamPage}>
             <div className={style.teamPage_inner}>
                 <div className={style.teamPage_head}>
+                    <title>Команда</title>
                     <h1>Команда</h1>
-
                 </div>
 
                 <div className={style.teamPage_grid}>
@@ -31,7 +31,6 @@ const TeamPage = () => {
                         )
                     })}
                 </div>
-
             </div>
         </div>
     )

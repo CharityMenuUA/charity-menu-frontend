@@ -26,7 +26,8 @@ const ByLink = (props) => {
                     купити
                 </button>
             ) : (
-                <Link href={`${pages.login.href}?next=${linkToCreateOrder({chefId, menuId})}`} className={className}>
+                <Link rel="nofollow" href={`${pages.login.href}?next=${linkToCreateOrder({chefId, menuId})}`}
+                      className={className}>
                     купити
                 </Link>
             )}

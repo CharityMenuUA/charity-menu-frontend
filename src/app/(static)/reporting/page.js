@@ -17,6 +17,7 @@ const ReportingPage = async () => {
         <div className={style.reportingPage}>
             <div className={style.reportingPage_inner}>
                 <div className={style.reportingPage_head}>
+                    <title>Звітність</title>
                     <h1>
                         Звітність
                     </h1>

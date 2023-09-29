@@ -40,7 +40,7 @@ const RootLayout = async (props) => {
     const config = await getConfig()
 
     return (
-        <html lang="en">
+        <html lang="uk">
         <body className={`${unbounded.variable} ${openSans.variable}`}>
         <ErrorBoundary>
             <ConfigProvider config={config}>

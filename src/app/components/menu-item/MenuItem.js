@@ -7,10 +7,12 @@ import ByLink from '@/app/(public)/authors/[chefId]/[menuId]/ByLink'
 import pages from "@/app/components/breadcrumbs/routing"
 
 const MenuItem = (props) => {
-    const {id, chefId, chefNameAlt, chefName, chefPhoto, title, price, min, available} = props
+    const {id, chefId, image, chefNameAlt, chefName, chefPhoto, title, price, min, available} = props
     return (
-        <div className={`${style.item} ${min ? style.min : ''} ${available ? '' : style.available}`}>
-            <Link href={`${pages.authors.href}/${chefId}/${id}`} className={style.link}>
+        <div className={`${style.item} ${min ? style.min : ''} ${available ? '' : style.available}`}
+             itemProp="itemListElement" itemScope itemType="https://schema.org/Product">
+            <span itemProp="image" content={`url("${image || '/menu-def-image.png'}")`}/>
+            <Link href={`${pages.authors.href}/${chefId}/${id}`} className={style.link} itemProp="url">
                 <div className={style.photo}>
                     <Image
                         alt={chefName || chefNameAlt}
@@ -23,20 +25,21 @@ const MenuItem = (props) => {
                     />
                 </div>
                 {chefName && (
-                    <div className={style.name}>
-                        {chefName}
+                    <div className={style.name} itemProp="brand" itemType="https://schema.org/Person" itemScope>
+                        <span itemProp="name">{chefName}</span>
                     </div>
                 )}
                 {chefNameAlt && (
-                    <div className={`${style.name} ${style.mob}`}>
-                        {chefNameAlt}
+                    <div className={`${style.name} ${style.mob}`}
+                         itemProp="brand" itemType="https://schema.org/Person" itemScope>
+                        <span itemProp="name">{chefNameAlt}</span>
                     </div>
                 )}
-                <div className={style.title}>
+                <div className={style.title} itemProp="name">
                     {title}
                 </div>
-                <div className={style.price}>
-                    ₴{price}
+                <div className={style.price} itemProp="offers" itemScope itemType="https://schema.org/Offer">
+                    <span itemProp="priceCurrency" content="UAH">₴</span><span itemProp="price">{price}</span>
                 </div>
             </Link>
             {!min && available && (

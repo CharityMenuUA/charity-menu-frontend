@@ -9,6 +9,7 @@ const ContactsPage = () => {
 
     return (
         <div className={style.contacts}>
+            <title>Контакти</title>
             <h1>Контакти</h1>
             <div className={style.items_wrap}>
                 {phone && (

@@ -6,7 +6,7 @@ const TeamItem = (props) => {
     const {photo, name, position, contacts} = props
     const {telegram, instagram, twitter, facebook, linkedin} = contacts
     return (
-        <div className={style.teamItem}>
+        <div className={style.teamItem}  itemScope itemProp="itemListElement" itemType="https://schema.org/Person">
             <div className={style.photo}>
                 <Image
                     alt={name}
@@ -17,14 +17,15 @@ const TeamItem = (props) => {
                     style={{
                         objectFit: 'cover',
                     }}
+                    itemProp="image"
                 />
             </div>
             <div className={style.content}>
-                <div className={style.name}>
+                <div className={style.name}  itemProp="name">
                     {name}
                 </div>
 
-                <div className={style.position}>
+                <div className={style.position} itemProp="description">
                     {position}
                 </div>
 

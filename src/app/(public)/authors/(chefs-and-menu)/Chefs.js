@@ -16,10 +16,14 @@ const Chefs = (props) => {
     const [chefItems, setChefItems] = useState(data.chefs)
     const [currentPage, setCurrentPage] = useState(0)
     const [totalPages, setTotalPages] = useState(data.totalPages)
-    const [search, setSearch] = useState(localStorage?.getItem('chefs_search') || '')
+    const [search, setSearch] = useState((process.browser && localStorage?.getItem('chefs_search')) || '')
     const sortValues = chefsSortValues
-    const [sort, setSort] = useState(localStorage?.getItem('chefs_sort') || sortValues[0].value)
+    const [sort, setSort] = useState((process.browser && localStorage?.getItem('chefs_sort')) || sortValues[0].value)
+    const [isClient, setIsClient] = useState(false)
 
+    useEffect(() => {
+        setIsClient(true)
+    }, [])
     useEffect(() => {
         localStorage.setItem('chefs_sort', sort)
         localStorage.setItem('chefs_search', search)
@@ -63,16 +67,20 @@ const Chefs = (props) => {
     return (
         <>
             <div className={style.search}>
-                <SearchInput
-                    name={'name'}
-                    value={search}
-                    placeholder={'Введіть запит'}
-                    onChange={onSearch}
-                    onClear={() => setSearch('')}
-                />
-                <div className={style.sort}>
-                    <SelectSort name={"sort"} value={sort} options={sortValues} onChange={onChangeSort}/>
-                </div>
+                {isClient && (
+                    <>
+                        <SearchInput
+                            name={'name'}
+                            value={search}
+                            placeholder={'Введіть запит'}
+                            onChange={onSearch}
+                            onClear={() => setSearch('')}
+                        />
+                        <div className={style.sort}>
+                            <SelectSort name={"sort"} value={sort} options={sortValues} onChange={onChangeSort}/>
+                        </div>
+                    </>
+                )}
             </div>
             {chefItems.length ? (
                 <>

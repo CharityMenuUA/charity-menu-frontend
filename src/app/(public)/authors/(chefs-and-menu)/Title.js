@@ -7,6 +7,7 @@ const Title = () => {
     const {value} = useSwitcherContext()
     return (
         <>
+            {/*<title>{value ? "Всі пропозиції" : "Всі автори"}</title>*/}
             <h1 className={style.h1}>{value ? "Всі пропозиції" : "Всі автори"}</h1>
             <Switcher/>
         </>
