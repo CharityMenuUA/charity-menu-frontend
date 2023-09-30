@@ -11,7 +11,8 @@ const pages = {
     },
     menu: {
         name: 'Всі пропозиції',
-        href: '/authors/menu'
+        href: '/authors/menu',
+        sitemap: true
     },
     profile: {
         name: 'Мiй профіль',

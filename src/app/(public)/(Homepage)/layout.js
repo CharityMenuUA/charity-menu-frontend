@@ -1,7 +1,7 @@
 import Accumulated from "@/app/components/accumulated/Accumulated"
 import {getAccumulated} from "@/app/(public)/(Homepage)/actions"
 import style from "@/app/(public)/(Homepage)/homepage.module.scss"
-import {Switcher} from "@/app/components/switcher/Switcher"
+import {SwitcherLink} from "@/app/components/switcher/SwitcherLink"
 
 const ChefsLayout = async ({children}) => {
     const accumulated = await getAccumulated()
@@ -17,7 +17,7 @@ const ChefsLayout = async ({children}) => {
                         Благодійний проект, гроші з якого йдуть на допомогу Україні.
                     </div>
                 </section>
-                <Switcher/>
+                <SwitcherLink from={'/'} to={'/menu'}/>
                 {children}
             </div>
         </>

@@ -8,7 +8,6 @@ import {get} from "@/helpers/dataProvider"
 import Breadcrumbs from "@/app/components/breadcrumbs/Breadcrumbs"
 import SuccessProvider from "@/app/providers/success/SuccessProvider"
 import ErrorBoundary from "@/app/components/error/ErrorBoundary"
-import SwitcherProvider from "@/app/components/switcher/Switcher"
 import Script from "next/script"
 import SaveStateProvider from "@/app/providers/save-state/SaveStateItemsProvider"
 
@@ -46,18 +45,16 @@ const RootLayout = async (props) => {
         <ErrorBoundary>
             <ConfigProvider config={config}>
                 <UserProvider>
-                    <SwitcherProvider>
-                        <SuccessProvider>
-                            <Header/>
-                            <main>
-                                <Breadcrumbs params={params}/>
-                                <SaveStateProvider>
-                                    {children}
-                                </SaveStateProvider>
-                            </main>
-                            <Footer/>
-                        </SuccessProvider>
-                    </SwitcherProvider>
+                    <SuccessProvider>
+                        <Header/>
+                        <main>
+                            <Breadcrumbs params={params}/>
+                            <SaveStateProvider>
+                                {children}
+                            </SaveStateProvider>
+                        </main>
+                        <Footer/>
+                    </SuccessProvider>
                 </UserProvider>
             </ConfigProvider>
         </ErrorBoundary>

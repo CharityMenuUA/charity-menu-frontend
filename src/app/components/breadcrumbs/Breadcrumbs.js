@@ -5,15 +5,8 @@ import Link from "next/link"
 import {useEffect, useState} from "react"
 import {getChef, getMenuItem} from "@/app/components/actions"
 import pages from "@/app/components/breadcrumbs/routing"
-import {useSwitcherContext} from "@/app/components/switcher/Switcher"
 
-const getLink = (cur, value) => {
-    if (cur === pages.authors.href && value) {
-        return {
-            name: pages.menu.name,
-            href: `${pages.menu.href}`
-        }
-    }
+const getLink = (cur) => {
     if (pages[cur]) {
         return {
             name: pages[cur].name,
@@ -29,7 +22,6 @@ const getLink = (cur, value) => {
 const Breadcrumbs = () => {
     const pathname = usePathname()
     const params = useParams()
-    const {value} = useSwitcherContext()
     const [chef, setChef] = useState()
     const [menu, setMenu] = useState()
     const {chefId, menuId} = params
@@ -43,7 +35,7 @@ const Breadcrumbs = () => {
 
     const links = pathList.reduce((acc, cur) => {
         const prevLink = acc[acc.length - 1]
-        const link = getLink(cur, value)
+        const link = getLink(cur)
         link.href = `${prevLink?.href || ''}${link.href}`
         return [...acc, link]
     }, [])
@@ -53,7 +45,7 @@ const Breadcrumbs = () => {
 
     if (links[3] && links[3].name === params?.menuId && menu?.title) links[3].name = menu?.title
 
-    if (pathname === '/') return
+    if (pathname === '/' || pathname === '/menu') return
 
     const clearPath = (href) => `/${href.split('/').filter(Boolean).join('/')}`
     return (
