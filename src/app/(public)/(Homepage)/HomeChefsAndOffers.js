@@ -15,7 +15,7 @@ const HomeChefsAndOffers = (props) => {
                 <HomeChefs chefs={chefs}/>
                 <HomeMenu menuItems={menuItems}/>
             </div>
-            <Link href={value ? `${pages.authors.href}?menu=1` : pages.authors.href} className={style.button_more}>
+            <Link href={value ? pages.menu.href : pages.authors.href} className={style.button_more}>
                 {value ? 'Усі пропозиції' : 'Усі автори'} &nbsp;
                 <svg width="13" height="12" viewBox="0 0 13 12" fill="none">
                     <path

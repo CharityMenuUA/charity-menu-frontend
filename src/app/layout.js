@@ -10,6 +10,7 @@ import SuccessProvider from "@/app/providers/success/SuccessProvider"
 import ErrorBoundary from "@/app/components/error/ErrorBoundary"
 import SwitcherProvider from "@/app/components/switcher/Switcher"
 import Script from "next/script"
+import SaveStateProvider from "@/app/providers/save-state/SaveStateItemsProvider"
 
 const unbounded = Unbounded({subsets: ['cyrillic', 'latin'], variable: '--font-unbounded'})
 const openSans = Open_Sans({subsets: ['cyrillic', 'latin'], variable: '--font-open-sans'})
@@ -50,7 +51,9 @@ const RootLayout = async (props) => {
                             <Header/>
                             <main>
                                 <Breadcrumbs params={params}/>
-                                {children}
+                                <SaveStateProvider>
+                                    {children}
+                                </SaveStateProvider>
                             </main>
                             <Footer/>
                         </SuccessProvider>

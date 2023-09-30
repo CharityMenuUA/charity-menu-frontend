@@ -2,68 +2,61 @@
 
 import style from './style.module.scss'
 import MenuItem from '@/app/components/menu-item/MenuItem'
-import {useSwitcherContext} from "@/app/components/switcher/Switcher"
-import {useEffect, useState} from "react"
+import {useEffect, useRef, useState} from "react"
 import {getMenu} from "@/app/(public)/authors/(chefs-and-menu)/actions"
 import SearchInput from "@/app/components/input/SearchInput"
 import SelectSort from "@/app/components/input/SelectSort"
 import {menuSortValues} from "@/app/(public)/authors/(chefs-and-menu)/sortValues"
+import {useMenuContext} from "@/app/providers/save-state/SaveStateItemsProvider"
 
 const Menu = (props) => {
     const {data} = props
-    const {value} = useSwitcherContext()
-    const [menuItems, setMenuItems] = useState(data.menuItems)
-    const [currentPage, setCurrentPage] = useState(0)
-    const [totalPages, setTotalPages] = useState(data.totalPages)
-    const [search, setSearch] = useState((process.browser && localStorage?.getItem('menu_search')) || '')
-    const sortValues = menuSortValues
-    const [sort, setSort] = useState((process.browser && localStorage?.getItem('menu_sort')) || sortValues[0].value)
-    const [isClient, setIsClient] = useState(false)
+    const context = useMenuContext()
+    const {items, sort, page: currentPage, search, setMenu} = context
 
+    const menuItems = (!items.length && !search) ? data.menuItems : items
+    const [totalPages, setTotalPages] = useState(data.totalPages)
+    const sortValues = menuSortValues
+    const [isClient, setIsClient] = useState(false)
+    const searchRef = useRef('')
     useEffect(() => {
         setIsClient(true)
     }, [])
-    useEffect(() => {
-        localStorage.setItem('menu_sort', sort)
-        localStorage.setItem('menu_search', search)
-    }, [sort, search])
 
     useEffect(() => {
-        if (value) {
-            const [sortBy, direction] = sort.split('-')
-            getMenu({...(search ? {name: search} : {}), sortBy, direction}).then((data) => {
-                if (data.menuItems) {
-                    setMenuItems(data.menuItems)
-                }
-                setTotalPages(data.totalPages)
-                setCurrentPage(0)
-
-            })
-        } else {
-            setCurrentPage(0)
-            setSearch('')
-        }
-    }, [value, search, sort, data.menuItems])
-
-    if (!value) return
+        setMenu(sort, search, currentPage, menuItems)
+    }, [currentPage, menuItems, search, setMenu, sort])
 
     const getMore = async () => {
         const [sortBy, direction] = sort.split('-')
         getMenu({pageNumber: currentPage + 1, ...(search ? {name: search} : {}), sortBy, direction}).then((data) => {
             if (data.menuItems) {
-                setMenuItems((prevState) => [...prevState, ...data.menuItems])
+                setMenu(sort, search, currentPage + 1, [...menuItems, ...data.menuItems])
             }
-            setCurrentPage(currentPage + 1)
         })
     }
 
+    const changeFilterSort = (sort, search) => {
+        const [sortBy, direction] = sort.split('-')
+        searchRef.current = search
+        setMenu(sort, search, currentPage, menuItems)
+        if (isClient) getMenu({...(search ? {name: search} : {}), sortBy, direction}).then((data) => {
+            if (search === searchRef.current) {
+                setMenu(sort, search, 0, data.menuItems)
+            }
+            setTotalPages(data.totalPages)
+        })
+    }
+
+
     const onSearch = (e) => {
-        setSearch(e.target.value)
+        changeFilterSort(sort, e.target.value)
     }
 
     const onChangeSort = (e) => {
-        setSort(e.target.value)
+        changeFilterSort(e.target.value, search)
     }
+
     return (
         <>
             <div className={style.search}>
@@ -74,7 +67,7 @@ const Menu = (props) => {
                             value={search}
                             placeholder={'Введіть запит'}
                             onChange={onSearch}
-                            onClear={() => setSearch('')}
+                            onClear={() => onSearch({target: {value: ''}})}
                         />
                         <div className={style.sort}>
                             <SelectSort name={"sort"} value={sort} options={sortValues} onChange={onChangeSort}/>
@@ -100,7 +93,6 @@ const Menu = (props) => {
                     Нічого за запитом <b>“{search}”</b>
                 </div>
             )}
-
         </>
     )
 }

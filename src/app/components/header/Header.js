@@ -60,12 +60,12 @@ const Header = () => {
                     )}
 
 
-                    <Link href={`${pages.authors.href}?menu=1`} type={'button'} className={style.offers}>
+                    <Link href={pages.menu.href} type={'button'} className={style.offers}>
                         Пропозиції
                     </Link>
                 </div>
             </header>
-            <Link href={`${pages.authors.href}?menu=1`} type={'button'} className={style.offersMob}>
+            <Link href={pages.menu.href} type={'button'} className={style.offersMob}>
                 Пропозиції
             </Link>
         </>
