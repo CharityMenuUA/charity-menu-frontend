@@ -1,21 +1,25 @@
 'use client'
 import style from './homepage.module.scss'
 import Link from 'next/link'
-import {useSwitcherContext} from "@/app/components/switcher/Switcher"
 import HomeChefs from "@/app/(public)/(Homepage)/HomeChefs"
 import HomeMenu from "@/app/(public)/(Homepage)/HomeMenu"
 import pages from "@/app/components/breadcrumbs/routing"
+import {usePathname} from "next/navigation"
 
 const HomeChefsAndOffers = (props) => {
     const {chefs, menuItems} = props
-    const {value} = useSwitcherContext()
+    const pathname = usePathname()
+    const value = pathname === "/menu"
     return (
         <>
             <div className={style.content}>
-                <HomeChefs chefs={chefs}/>
-                <HomeMenu menuItems={menuItems}/>
+                {value ? (
+                    <HomeMenu menuItems={menuItems}/>
+                ) : (
+                    <HomeChefs chefs={chefs}/>
+                )}
             </div>
-            <Link href={value ? `${pages.authors.href}?menu=1` : pages.authors.href} className={style.button_more}>
+            <Link href={value ? pages.menu.href : pages.authors.href} className={style.button_more}>
                 {value ? 'Усі пропозиції' : 'Усі автори'} &nbsp;
                 <svg width="13" height="12" viewBox="0 0 13 12" fill="none">
                     <path

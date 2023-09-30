@@ -1,4 +1,4 @@
-import Title from "@/app/(public)/authors/(chefs-and-menu)/Title"
+import Title from "./Title"
 
 const ChefsLayout = async ({children}) => {
     return (

@@ -1,17 +1,19 @@
 "use client"
 
 import style from './style.module.scss'
-import {Switcher, useSwitcherContext} from "@/app/components/switcher/Switcher"
+import {usePathname} from "next/navigation"
+import {SwitcherLink} from "@/app/components/switcher/SwitcherLink"
 
 const Title = () => {
-    const {value} = useSwitcherContext()
+    const pathname = usePathname()
+    const value = pathname === "/authors/menu"
     return (
         <>
-            {/*<title>{value ? "Всі пропозиції" : "Всі автори"}</title>*/}
             <h1 className={style.h1}>{value ? "Всі пропозиції" : "Всі автори"}</h1>
-            <Switcher/>
+            <SwitcherLink from={"/authors"} to={"/authors/menu"}/>
         </>
     )
 }
 
 export default Title
+
