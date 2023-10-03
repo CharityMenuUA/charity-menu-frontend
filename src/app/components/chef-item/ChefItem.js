@@ -34,7 +34,7 @@ const ChefItem = (props) => {
     const names = name.split(' ')
 
     return (
-        <Link href={`${pages.authors.href}/${id}`} className={style.chefs} itemScope itemProp="itemListElement" itemType="https://schema.org/Person" >
+        <Link href={`${pages.authors.href}/${id}`} className={style.chefs} itemScope itemProp="itemListElement" itemType="https://schema.org/ListItem  https://schema.org/Person" >
             <div className={style.photo}>
                 <Image
                     alt={name}

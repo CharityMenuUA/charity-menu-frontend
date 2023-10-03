@@ -6,7 +6,7 @@ const TeamItem = (props) => {
     const {photo, name, position, contacts} = props
     const {telegram, instagram, twitter, facebook, linkedin} = contacts
     return (
-        <div className={style.teamItem}  itemScope itemProp="itemListElement" itemType="https://schema.org/Person">
+        <div className={style.teamItem}  itemScope itemProp="itemListElement" itemType="https://schema.org/ListItem  https://schema.org/Person">
             <div className={style.photo}>
                 <Image
                     alt={name}

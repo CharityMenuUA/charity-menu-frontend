@@ -7,12 +7,14 @@ import ByLink from '@/app/(public)/authors/[chefId]/[menuId]/ByLink'
 import pages from "@/app/components/breadcrumbs/routing"
 
 const MenuItem = (props) => {
-    const {id, chefId, image, chefNameAlt, chefName, chefPhoto, title, price, min, available} = props
+    const {id, chefId, image, chefNameAlt, chefName, chefPhoto, title, price, min, available, position} = props
     return (
         <div className={`${style.item} ${min ? style.min : ''} ${available ? '' : style.available}`}
-             itemProp="itemListElement" itemScope itemType="https://schema.org/Product">
+             itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem https://schema.org/Product">
             <span itemProp="image" content={`url("${image || '/menu-def-image.png'}")`}/>
-            <Link href={`${pages.authors.href}/${chefId}/${id}`} className={style.link} itemProp="url">
+            <span itemProp="position" content={`${position}`}/>
+            <Link href={`${pages.authors.href}/${chefId}/${id}`} className={style.link}>
+                <span itemProp="url" content={`${pages.authors.href}/${chefId}/${id}`}/>
                 <div className={style.photo}>
                     <Image
                         alt={chefName || chefNameAlt}
@@ -26,12 +28,14 @@ const MenuItem = (props) => {
                 </div>
                 {chefName && (
                     <div className={style.name} itemProp="brand" itemType="https://schema.org/Person" itemScope>
+                        <span itemProp="url" content={`${pages.authors.href}/${chefId}`}/>
                         <span itemProp="name">{chefName}</span>
                     </div>
                 )}
                 {chefNameAlt && (
-                    <div className={`${style.name} ${style.mob}`}
-                         itemProp="brand" itemType="https://schema.org/Person" itemScope>
+                    <div className={`${style.name} ${style.mob}`} itemProp="brand" itemType="https://schema.org/Person"
+                         itemScope>
+                        <span itemProp="url" content={`${pages.authors.href}/${chefId}`}/>
                         <span itemProp="name">{chefNameAlt}</span>
                     </div>
                 )}
