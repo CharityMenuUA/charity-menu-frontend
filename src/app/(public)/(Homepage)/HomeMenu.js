@@ -7,8 +7,8 @@ const HomeMenu = (props) => {
     const {menuItems} = props
     return (
         <div className={style.menuList} itemScope itemType="https://schema.org/ItemList">
-            {menuItems.map(({menuItem, chef}) => (
-                <MenuItem key={menuItem.id} {...menuItem} chefName={chef.name} chefPhoto={chef.photo}/>
+            {menuItems.map(({menuItem, chef}, key) => (
+                <MenuItem position={key + 1} key={menuItem.id} {...menuItem} chefName={chef.name} chefPhoto={chef.photo}/>
             ))}
         </div>
     )

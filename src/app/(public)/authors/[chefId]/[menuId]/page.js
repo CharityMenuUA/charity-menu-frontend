@@ -49,7 +49,7 @@ const MenuIdPage = async (props) => {
 
     return (
         <>
-            <div itemScope itemType="https://schema.org/Product">
+            <div itemScope itemType="https://schema.org/Order https://schema.org/Product">
                 <h1 className={style.h1} itemProp="name">{title}</h1>
                 <div className={style.menu_info}>
                     <div className={style.price}>
@@ -100,7 +100,7 @@ const MenuIdPage = async (props) => {
                         </div>
                         <ShareButtons title={title}/>
                     </div>
-                    <Link href={`${pages.authors.href}/${chef.id}`} className={style.chef} itemScope itemProp="brand"
+                    <Link href={`${pages.authors.href}/${chef.id}`} className={style.chef} itemScope itemProp="broker"
                           itemType="https://schema.org/Person">
                         <div className={style.label}>
                             <span>Автор пропозиції</span>

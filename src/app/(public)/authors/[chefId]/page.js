@@ -6,6 +6,7 @@ import {notFound} from 'next/navigation'
 import Image from 'next/image'
 import Accumulated from '@/app/components/accumulated/Accumulated'
 import {pluralize} from "@/app/components/helpers/pluralLots"
+import pages from "@/app/components/breadcrumbs/routing"
 
 
 const getChef = async (params) => {
@@ -56,7 +57,8 @@ const ChefIdPage = async (props) => {
     const {instagram, facebook, twitter, tiktok, youtube, telegram, name, description, photo} = chef
     return (
         <div>
-            <section className={style.head} itemScope itemProp="Person" itemType="https://schema.org/Person">
+            <section className={style.head} itemScope itemProp="broker" itemType="https://schema.org/Person">
+                <span itemProp="url" content={`${pages.authors.href}/${chefId}`}/>
                 <h1 className={style.h1} itemProp="name">{name}</h1>
                 <div className={style.tdb}>
                     <Accumulated amount={accumulated.amount}/>
@@ -174,8 +176,8 @@ const ChefIdPage = async (props) => {
                 </div>
                 <h2 className="h2">Що може зробити {chef.name}</h2>
                 <div className={style.orders_list} itemScope itemType="https://schema.org/ItemList">
-                    {menu.map((item) => (
-                        <MenuItem key={item.id} {...item} chefName={chef.name} chefPhoto={chef.photo}/>
+                    {menu.map((item, key) => (
+                        <MenuItem  position={key + 1} key={item.id} {...item} chefName={chef.name} chefPhoto={chef.photo}/>
                     ))}
                 </div>
             </section>
