@@ -6,7 +6,7 @@ import MenuItem from "@/app/components/menu-item/MenuItem"
 const MenuItems = (props) => {
     const {menuItems} = props
     return (
-        <div className={style.content} itemScope itemType="https://schema.org/ItemList">
+        <div className={style.content} itemScope itemType="https://schema.org/Thing">
             {menuItems.map(({menuItem, chef}, key) => (
                 <MenuItem position={key + 1} key={menuItem.id} min {...menuItem} chefNameAlt={chef.name} chefPhoto={chef.photo}/>
             ))}
