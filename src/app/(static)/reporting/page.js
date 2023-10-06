@@ -8,6 +8,11 @@ const getStatistics = async () => {
     return get('/statistics').catch((err) => console.error(err))
 }
 
+export const metadata = {
+    title: 'Звітність про роботу нашої платформи',
+    description: 'Перегляньте статистику донатів нашої платформи. Дізнайтеся, скільки грошей було зібрано та скільки людей внесли свій вклад у підтримку ЗСУ',
+}
+
 const ReportingPage = async () => {
     const statistics = await getStatistics()
     const {reports} = statistics
@@ -17,7 +22,6 @@ const ReportingPage = async () => {
         <div className={style.reportingPage}>
             <div className={style.reportingPage_inner}>
                 <div className={style.reportingPage_head}>
-                    <title>Звітність</title>
                     <h1>
                         Звітність
                     </h1>
