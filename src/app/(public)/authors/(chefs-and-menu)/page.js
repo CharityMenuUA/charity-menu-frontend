@@ -5,7 +5,7 @@ import {chefsSortValues} from "@/app/(public)/authors/(chefs-and-menu)/sortValue
 
 const meta = {
     title: 'Всі автори - Ваші спільники у справі підтримки ЗСУ',
-    description: 'Перегляньте список авторів, які приєднуються до нашої платформи та створюють пропозиції, щоб допомогти ЗСУ.',
+    description: 'Перегляньте список авторів, які приєдналися до нашої платформи та створили пропозиції, щоб допомогти ЗСУ.',
 }
 export const metadata = {
     ...meta,

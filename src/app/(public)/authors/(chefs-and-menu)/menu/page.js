@@ -4,7 +4,7 @@ import Menu from "@/app/(public)/authors/(chefs-and-menu)/Menu"
 
 
 const meta = {
-    title: 'Всі пропозиції - Оберіть приємні емоції за Ваш донат',
+    title: 'Всі пропозиції - оберіть як саме Ви допоможете Україні',
     description: 'Ознайомтесь з усіма доступними пропозиціями, які ви можете отримати, задонативши на ЗСУ.',
 }
 export const metadata = {
