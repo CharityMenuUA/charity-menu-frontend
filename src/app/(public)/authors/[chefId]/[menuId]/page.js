@@ -38,7 +38,6 @@ export const generateMetadata = async (props) => {
 const MenuIdPage = async (props) => {
     const {params: {chefId, menuId}} = props
     const menu = await getMenuItem({menuId})
-    console.log(menu)
     if (!menu?.id) return notFound()
     const chef = await getChef({chefId})
     if (!chef.id) return notFound()
@@ -57,6 +56,11 @@ const MenuIdPage = async (props) => {
                             <span itemProp="offers" itemScope itemType="https://schema.org/Offer">
                                 <span itemProp="priceCurrency" content="UAH">₴</span><span
                                 itemProp="price">{menu.price}</span>
+                                {available ? (
+                                    <span itemProp="availability" content="https://schema.org/InStock"/>
+                                ) : (
+                                    <span itemProp="availability" content="https://schema.org/OutOfStock"/>
+                                )}
                             </span>
                             {available ? (
                                 <ByLink menuId={menuId} chefId={chefId} className={style.button}/>
@@ -100,7 +104,7 @@ const MenuIdPage = async (props) => {
                         </div>
                         <ShareButtons title={title}/>
                     </div>
-                    <Link href={`${pages.authors.href}/${chef.id}`} className={style.chef} itemScope itemProp="broker"
+                    <Link href={`${pages.authors.href}/${chef.id}`} className={style.chef} itemScope itemProp="offeredBy"
                           itemType="https://schema.org/Person">
                         <div className={style.label}>
                             <span>Автор пропозиції</span>

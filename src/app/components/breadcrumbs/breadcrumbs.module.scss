@@ -11,4 +11,7 @@
   @include respond-to(m) {
     margin-top: 20px;
   }
+  li {
+    display: inline;
+  }
 }
