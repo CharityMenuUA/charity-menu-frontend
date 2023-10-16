@@ -7,7 +7,21 @@ import ByLink from '@/app/(public)/authors/[chefId]/[menuId]/ByLink'
 import pages from "@/app/components/breadcrumbs/routing"
 
 const MenuItem = (props) => {
-    const {id, chefId, image, chefNameAlt, chefName, chefPhoto, title, price, min, available, position} = props
+    const {
+        id,
+        chefId,
+        image,
+        chefNameAlt,
+        chefName,
+        chefPhoto,
+        title,
+        price,
+        min,
+        available,
+        position,
+        description
+    } = props
+
     return (
         <div className={`${style.item} ${min ? style.min : ''} ${available ? '' : style.available}`}
              itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem https://schema.org/Product">
@@ -27,13 +41,13 @@ const MenuItem = (props) => {
                     />
                 </div>
                 {chefName && (
-                    <div className={style.name} itemProp="brand" itemType="https://schema.org/Person" itemScope>
+                    <div className={style.name} itemProp="offeredBy" itemType="https://schema.org/Person" itemScope>
                         <span itemProp="url" content={`${pages.authors.href}/${chefId}`}/>
                         <span itemProp="name">{chefName}</span>
                     </div>
                 )}
                 {chefNameAlt && (
-                    <div className={`${style.name} ${style.mob}`} itemProp="brand" itemType="https://schema.org/Person"
+                    <div className={`${style.name} ${style.mob}`} itemProp="offeredBy" itemType="https://schema.org/Person"
                          itemScope>
                         <span itemProp="url" content={`${pages.authors.href}/${chefId}`}/>
                         <span itemProp="name">{chefNameAlt}</span>
@@ -42,8 +56,16 @@ const MenuItem = (props) => {
                 <div className={style.title} itemProp="name">
                     {title}
                 </div>
+                {description && (
+                    <span itemProp="description" content={description}/>
+                )}
                 <div className={style.price} itemProp="offers" itemScope itemType="https://schema.org/Offer">
                     <span itemProp="priceCurrency" content="UAH">₴</span><span itemProp="price">{price}</span>
+                    {available ? (
+                        <span itemProp="availability" content="https://schema.org/InStock"/>
+                    ) : (
+                        <span itemProp="availability" content="https://schema.org/OutOfStock"/>
+                    )}
                 </div>
             </Link>
             {!min && available && (

@@ -34,7 +34,7 @@ export const generateMetadata = async (props) => {
     const {params: {chefId}} = props
     const chef = await getChef({chefId})
     const meta = {
-        title: `${chef.name} має для вас ${pluralize(chef.menuItemsNumber, ['пропозиція', 'пропозиції', 'пропозицій'])}.`,
+        title: `${chef.name} має для вас ${pluralize(chef.menuItemsNumber, ['пропозицію', 'пропозиції', 'пропозицій'])}.`,
         description: chef.description,
         images: [chef.photo],
     }

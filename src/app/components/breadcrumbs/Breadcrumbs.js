@@ -49,13 +49,17 @@ const Breadcrumbs = () => {
 
     const clearPath = (href) => `/${href.split('/').filter(Boolean).join('/')}`
     return (
-        <div className={style.breadcrumbs}>
+        <ul className={style.breadcrumbs} itemScope itemType="https://schema.org/BreadcrumbList">
             {links.map(({href, name}, key) => (
-                <Link key={key} href={clearPath(href)}>
-                    {!!key && '/'} {name}
-                </Link>
+                <li key={key}  itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
+                    <Link href={clearPath(href)} itemProp="item">
+                        {!!key && ' / '} {name}
+                        <span itemProp="name" content={name}/>
+                        <span itemProp="position" content={`${key + 1}`}/>
+                    </Link>
+                </li>
             ))}
-        </div>
+        </ul>
     )
 }
 
