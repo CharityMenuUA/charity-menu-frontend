@@ -1,1 +1,1 @@
-export const linkToCreateOrder = ({chefId, menuId}) => `/chefs/${chefId}/${menuId}`
+export const linkToCreateOrder = ({chefId, menuId}) => `/authors/${chefId}/${menuId}`
