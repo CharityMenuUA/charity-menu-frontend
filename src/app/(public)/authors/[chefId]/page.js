@@ -20,7 +20,7 @@ const getChef = async (params) => {
 const getMenu = async (params) => {
     const {chefId} = params
     try {
-        return getList(`/chefs/${chefId}/menu`)
+        return getList(`/authors/${chefId}/menu`)
     } catch {
         return notFound()
     }
