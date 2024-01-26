@@ -3,8 +3,18 @@
   border: 1px solid #E0E0E0;
   border-radius: 20px;
 
-  &.noactive {
+  &.SUBMITTED {
     background: var(--color-button-grey);
+    border-color: var(--color-black);
+  }
+  &.ACTIVE {
+    //background: var(--color-button-grey);
+  }
+  &.CLOSED {
+    background: var(--color-button-grey);
+  }
+  &.CLOSED_REJECTED {
+    background: var(--color-gradient);
   }
 }
 

@@ -5,7 +5,7 @@ import Link from "next/link"
 import {useConfigContext} from "@/app/providers/config/ConfigProvider"
 import PropTypes from "prop-types"
 import pages from "@/app/components/breadcrumbs/routing"
-import {updateMenu} from "@/app/profile/actions"
+import {updateMenuClose, updateMenuOpen} from "@/app/profile/actions"
 import {useUserContext} from "@/app/providers/firebase/UserProvider"
 
 const MenuProfileItem = (props) => {
@@ -15,16 +15,22 @@ const MenuProfileItem = (props) => {
     const [isOpen, setIsOpen] = useState(false)
 
     const onChangeActivate = async () => {
-        updateMenu(user.accessToken, {...menuItem, active: !menuItem.active}).then(() => {
-            update()
-        })
+        if (menuItem.active) {
+            updateMenuClose(user.accessToken, menuItem.id).then(() => {
+                update()
+            })
+        } else {
+            updateMenuOpen(user.accessToken, menuItem.id).then(() => {
+                update()
+            })
+        }
     }
 
     return (
-        <div className={`${style.order} ${!menuItem.active ? style.noactive : ''}`}>
+        <div className={`${style.order} ${style[menuItem.state]}`}>
             <div className={style.title} onClick={() => setIsOpen(!isOpen)}>
                 <div>
-                    {menuItem.title}
+                    {menuItem.title} ({menuItem.state})
                 </div>
                 {isOpen ? (
                     <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
@@ -84,9 +90,11 @@ const MenuProfileItem = (props) => {
                             Редагувати
                         </Link>
 
-                        <button type={"button"} onClick={onChangeActivate} className={style.button}>
-                            {menuItem.active ? "Призупинити" : "Активувати"}
-                        </button>
+                        {(menuItem.state === "CLOSED" || menuItem.state === "ACTIVE") && (
+                            <button type={"button"} onClick={onChangeActivate} className={style.button}>
+                                {menuItem.state === "ACTIVE" ? "Призупинити" : "Активувати"}
+                            </button>
+                        )}
                     </div>
                     <Link href={`${pages.authors.href}/${menuItem.chefId}/${menuItem.id}`}
                           className={style.buttonBlack}>
