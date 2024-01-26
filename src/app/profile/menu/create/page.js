@@ -105,7 +105,7 @@ const ProfileMenuCreatePage = () => {
                     <br/>
                     <div className={style.text}>
                         Пропозицію буде відправлено на модерацію. <br/>
-                        Після перевірки вона буде опублікована.
+                        Після перевірки пропозиція буде опублікована.
                     </div>
 
                     <button type={"submit"} className={style.submit} disabled={loading}>

@@ -123,7 +123,7 @@ const ProfileMenuCreatePage = (props) => {
                     <br/>
                     <div className={style.text}>
                         Зміни будуть відправлено на модерацію. <br/>
-                        Після перевірки вона буде опублікована.
+                        Після перевірки пропозиція буде опублікована.
                     </div>
 
                     <button type={"submit"} className={style.submit} disabled={loading}>
