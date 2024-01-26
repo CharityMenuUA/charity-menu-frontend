@@ -16,6 +16,9 @@
   }
   &.CLOSED_REJECTED {
     background: var(--color-gradient);
+    .label {
+      color: var(--color-black);
+    }
   }
 }
 
