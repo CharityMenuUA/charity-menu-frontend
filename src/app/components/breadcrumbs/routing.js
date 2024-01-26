@@ -26,6 +26,18 @@ const pages = {
         name: 'Замовили в мене',
         href: '/profile/ordered'
     },
+    profile_menu: {
+        name: 'Мої пропозиції',
+        href: '/profile/menu'
+    },
+    profile_menu_create: {
+        name: 'Створити пропозицію',
+        href: '/profile/menu/create'
+    },
+    profile_menu_update: {
+        name: 'Створити пропозицію',
+        href: '/profile/menu/update'
+    },
     team: {
         name: 'Команда',
         href: '/team',

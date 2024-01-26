@@ -7,6 +7,7 @@ import {useUserContext} from "@/app/providers/firebase/UserProvider"
 import {updateProfile} from "@/app/profile/actions"
 import {useEffect, useState} from "react"
 import Loader from "@/app/components/loader/Loader"
+import ImageUpload from "@/app/components/input/ImageUpload"
 
 
 const SettingsPage = () => {
@@ -24,6 +25,15 @@ const SettingsPage = () => {
         }).catch(console.error)
     }
 
+    const onSubmitPhoto = async () => {
+        // setLoading(true)
+        // await setPhoto(user?.accessToken, data).then(async () => {
+        //     setLoading(false)
+        //     setSuccess(true)
+        //     await updateUser()
+        // }).catch(console.error)
+    }
+
     useEffect(() => {
         if (success) {
             const timer = setTimeout(() => {
@@ -38,6 +48,7 @@ const SettingsPage = () => {
         <div className={style.wrap}>
             <div className={style.block}>
                 <form onSubmit={handleSubmit(onSubmit)}>
+                    <ImageUpload name="photo" label="Photo" image={profile.photo} onSubmit={onSubmitPhoto}/>
                     <div className={style.text}>
                         Контактні дані
                     </div>
@@ -46,7 +57,8 @@ const SettingsPage = () => {
                            required
                            disabled
                     />
-                    <Input name={"dateOfBirth"} max={maxDate.toLocaleDateString('fr-ca')} register={register} errors={errors}
+                    <Input name={"dateOfBirth"} max={maxDate.toLocaleDateString('fr-ca')} register={register}
+                           errors={errors}
                            label="Дата народження"
                            type="date"/>
                     <div className={style.text}>
@@ -56,6 +68,7 @@ const SettingsPage = () => {
                     <Input name={"facebook"} register={register} errors={errors} label="Facebook"/>
                     <Input name={"twitter"} register={register} errors={errors} label="Twitter"/>
                     <Input name={"tiktok"} register={register} errors={errors} label="Tiktok"/>
+                    <Input name={"youtube"} register={register} errors={errors} label="YouTube"/>
                     <div className={style.text}>
                         Дані Нової пошти
                     </div>

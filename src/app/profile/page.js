@@ -25,7 +25,7 @@ const ProfilePage = () => {
     if (isLoading) return <Loader/>
 
     if (!orders?.paid?.orders?.length && !orders?.completed?.orders?.length) {
-        return (<Empty/>)
+        return (<Empty text="Поки що замовлень немає"/>)
     }
     return (
         <div>

@@ -1,10 +1,8 @@
 import style from "@/app/profile/profile.module.scss"
 
-const Empty = () => (
+const Empty = ({text}) => (
     <div className={style.empty}>
-               <span>
-                    Поки що замовлень немає
-               </span>
+        <span>{text}</span>
         <svg width="160" height="160" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="80" cy="80" r="79.5" fill="white" stroke="url(#paint0_linear_199_4918)"/>
             <path

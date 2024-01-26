@@ -6,9 +6,10 @@ import {useUserContext} from "@/app/providers/firebase/UserProvider"
 import OrderItem from "@/app/components/order-item/OrderItem"
 import Empty from "@/app/profile/empty"
 import Loader from "@/app/components/loader/Loader"
+import NotFound from "@/app/not-found"
 
 const OrderedPage = () => {
-    const {user} = useUserContext()
+    const {user, profile, loading} = useUserContext()
 
     const [isLoading, setLoading] = useState(true)
     const [orders, setOrders] = useState({})
@@ -24,10 +25,12 @@ const OrderedPage = () => {
         loadData()
     }, [loadData])
 
-    if (isLoading) return <Loader/>
+    if (isLoading || loading) return <Loader/>
+
+    if (!profile.chefId) return <NotFound/>
 
     if (!orders?.paid?.orders?.length && !orders?.completed?.orders?.length) {
-        return (<Empty/>)
+        return (<Empty text={"Поки що замовлень немає"}/>)
     }
 
     return (
