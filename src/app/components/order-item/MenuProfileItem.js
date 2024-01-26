@@ -26,14 +26,22 @@ const MenuProfileItem = (props) => {
         }
     }
 
+    const statusText = {
+        "ACTIVE": 'Активна',
+        "CLOSED": 'Закрита',
+        "SUBMITTED": 'На верифікації ',
+        "CLOSED_REJECTED": 'Не пройшла верифікацію',
+    }
+
     return (
         <div className={`${style.order} ${style[menuItem.state]}`}>
             <div className={style.title} onClick={() => setIsOpen(!isOpen)}>
                 <div>
-                    {menuItem.title} ({menuItem.state})
+                    {menuItem.title}
+                    <div className={style.label}>({statusText[menuItem.state] || menuItem.state})</div>
                 </div>
                 {isOpen ? (
-                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" style={{minWidth: '40px'}}>
                         <path d="M30 20L10 20" stroke="black"/>
                     </svg>
                 ) : (

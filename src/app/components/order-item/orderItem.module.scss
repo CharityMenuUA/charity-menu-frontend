@@ -5,7 +5,8 @@
 
   &.SUBMITTED {
     background: var(--color-button-grey);
-    border-color: var(--color-black);
+    border-color: var(--color-b-50);
+    color: var(--color-b-50);
   }
   &.ACTIVE {
     //background: var(--color-button-grey);
