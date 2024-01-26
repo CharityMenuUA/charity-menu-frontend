@@ -118,8 +118,8 @@ export const createMenu = async (accessToken, data) => {
     })
 }
 
-export const updateMenu = async (accessToken, data) => {
-    return update(`/profile/chef/menu-item`, {
+export const updateMenu = async (accessToken, data, menuId) => {
+    return update(`/profile/chef/menu-item/${menuId}`, {
         headers: {
             "Authorization": `Bearer ${accessToken}`
         },

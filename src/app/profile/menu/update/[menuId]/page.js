@@ -32,9 +32,9 @@ const ProfileMenuCreatePage = (props) => {
     useEffect(() => {
         getMenuItem(menuId).then((data) => {
             setLoading(false)
-            const fields = Object.keys(getValues())
+
             Object.keys(data).forEach((key) => {
-                if (data[key] && fields.includes(key)) setValue(key, data[key])
+                setValue(key, data[key])
             })
         })
     }, [getValues, menuId, setValue, user.accessToken])
@@ -49,7 +49,7 @@ const ProfileMenuCreatePage = (props) => {
                 price: parseFloat(data.price),
                 dailyLimit: parseFloat(data.dailyLimit),
                 totalLimit: parseFloat(data.totalLimit),
-            }).then(() => {
+            }, menuId).then(() => {
                 setLoading(false)
                 setSuccess(true)
             }).catch(() => {
