@@ -10,10 +10,12 @@ import Checkbox from "@/app/components/input/Checkbox"
 import Loader from "@/app/components/loader/Loader"
 import {useUserContext} from "@/app/providers/firebase/UserProvider"
 import {getMenuItem, updateMenu} from "@/app/profile/actions"
+import pages from "@/app/components/breadcrumbs/routing"
+import {useRouter} from "next/navigation"
 
 const ProfileMenuCreatePage = (props) => {
     const {params: {menuId}} = props
-
+    const router = useRouter()
     const {user, profile} = useUserContext()
 
     const {handleSubmit, register, formState: {errors}, getValues, setValue, watch, setError, clearErrors} = useForm({
@@ -27,7 +29,6 @@ const ProfileMenuCreatePage = (props) => {
     const {config} = useConfigContext()
 
     const [loading, setLoading] = useState(true)
-    const [success, setSuccess] = useState(false)
 
     useEffect(() => {
         getMenuItem(menuId).then((data) => {
@@ -50,11 +51,9 @@ const ProfileMenuCreatePage = (props) => {
                 dailyLimit: parseFloat(data.dailyLimit),
                 totalLimit: parseFloat(data.totalLimit),
             }, menuId).then(() => {
-                setLoading(false)
-                setSuccess(true)
+                router.push(pages.profile_menu.href)
             }).catch(() => {
                 setLoading(false)
-                setSuccess(false)
             })
         }
     }
@@ -118,15 +117,18 @@ const ProfileMenuCreatePage = (props) => {
                             {errors.deliveryTypes.message}
                         </div>
                     )}
+
+
+                    <br/>
+                    <br/>
+                    <div className={style.text}>
+                        Зміни будуть відправлено на модерацію. <br/>
+                        Після перевірки вона буде опублікована.
+                    </div>
+
                     <button type={"submit"} className={style.submit} disabled={loading}>
                         {loading ? <Loader/> : "Зберегти"}
                     </button>
-
-                    {success && (
-                        <div className={style.success}>
-                            Дані відправлено на модерацію та будуть опубліковані після перевірки
-                        </div>
-                    )}
                 </form>
             </div>
         </div>

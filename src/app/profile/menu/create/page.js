@@ -10,8 +10,11 @@ import Checkbox from "@/app/components/input/Checkbox"
 import Loader from "@/app/components/loader/Loader"
 import {useUserContext} from "@/app/providers/firebase/UserProvider"
 import {createMenu} from "@/app/profile/actions"
+import pages from "@/app/components/breadcrumbs/routing"
+import {useRouter} from "next/navigation"
 
 const ProfileMenuCreatePage = () => {
+    const router = useRouter()
     const {user, profile} = useUserContext()
     const {handleSubmit, register, formState: {errors}, setValue, watch, setError, clearErrors} = useForm({
         defaultValues: {
@@ -21,7 +24,6 @@ const ProfileMenuCreatePage = () => {
     })
     const {config} = useConfigContext()
     const [loading, setLoading] = useState(false)
-    const [success, setSuccess] = useState(false)
     const onSubmit = async (data) => {
         if (!deliveryTypes.length) {
             setError('deliveryTypes', {type: 'required', message: 'Повинен бути вибраний хочаб один тип доставки'})
@@ -33,11 +35,9 @@ const ProfileMenuCreatePage = () => {
                 dailyLimit: parseFloat(data.dailyLimit),
                 totalLimit: parseFloat(data.totalLimit),
             }).then(() => {
-                setLoading(false)
-                setSuccess(true)
+                router.push(pages.profile_menu.href)
             }).catch(() => {
                 setLoading(false)
-                setSuccess(false)
             })
         }
     }
@@ -101,15 +101,16 @@ const ProfileMenuCreatePage = () => {
                             {errors.deliveryTypes.message}
                         </div>
                     )}
+                    <br/>
+                    <br/>
+                    <div className={style.text}>
+                        Пропозицію буде відправлено на модерацію. <br/>
+                        Після перевірки вона буде опублікована.
+                    </div>
+
                     <button type={"submit"} className={style.submit} disabled={loading}>
                         {loading ? <Loader/> : "Зберегти"}
                     </button>
-
-                    {success && (
-                        <div className={style.success}>
-                            Дані відправлено на модерацію та будуть опубліковані після перевірки
-                        </div>
-                    )}
                 </form>
             </div>
         </div>
