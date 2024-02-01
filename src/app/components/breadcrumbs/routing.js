@@ -1,5 +1,5 @@
 const pages = {
-    '': {
+    home: {
         name: 'Головна',
         href: '/',
         sitemap: true
