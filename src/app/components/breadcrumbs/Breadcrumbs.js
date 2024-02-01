@@ -40,6 +40,8 @@ const Breadcrumbs = () => {
         return [...acc, link]
     }, [])
 
+    console.log(links)
+
 
     if (links[2] && links[2].name === params?.chefId && chef?.name) links[2].name = chef?.name
 

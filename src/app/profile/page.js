@@ -43,7 +43,6 @@ const ProfilePage = () => {
 
             )}
             {!!orders?.completed?.orders?.length && (
-                // {!!orders?.paid?.orders?.length && (
                 <>
                     <div className={style.subtitle}>
                         Виконані

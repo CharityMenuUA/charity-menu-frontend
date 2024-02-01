@@ -14,13 +14,16 @@ const ProfileMenuPage = () => {
     const {user, profile, loading} = useUserContext()
     const [isLoading, setLoading] = useState(true)
     const [menu, setMenu] = useState({})
-
     const loadData = useCallback(() => {
         if (profile?.chefId) {
-            if (user?.accessToken) getMenu(user.accessToken).then((data) => {
-                if (data?.menu) setMenu(data.menu)
-                setLoading(false)
-            })
+            if (user?.accessToken) {
+                console.log(1)
+                getMenu(user.accessToken).then((data) => {
+                    console.log(2, data)
+                    if (data?.menu) setMenu(data.menu)
+                    setLoading(false)
+                })
+            }
         }
     }, [profile.chefId, user.accessToken])
 

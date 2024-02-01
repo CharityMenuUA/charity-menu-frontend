@@ -90,7 +90,7 @@ const MenuProfileItem = (props) => {
                             Тип доставки
                         </div>
                         <div className={style.amount}>
-                            {menuItem.deliveryTypes.map((field) => fields[field].label).join(', ')}
+                            {menuItem.deliveryTypes.map((field) => fields[field]?.label || field).join(', ')}
                         </div>
                     </div>
                     <div className={style.buttonFlex}>
