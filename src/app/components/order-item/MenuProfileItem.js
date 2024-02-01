@@ -11,7 +11,7 @@ import {useUserContext} from "@/app/providers/firebase/UserProvider"
 const MenuProfileItem = (props) => {
     const {menuItem, update} = props
     const {user} = useUserContext()
-    const {fields} = useConfigContext()
+    const {config: {deliveryFields = []}} = useConfigContext()
     const [isOpen, setIsOpen] = useState(false)
 
     const onChangeActivate = async () => {
@@ -90,7 +90,7 @@ const MenuProfileItem = (props) => {
                             Тип доставки
                         </div>
                         <div className={style.amount}>
-                            {menuItem.deliveryTypes.map((field) => fields[field]?.label || field).join(', ')}
+                            {menuItem.deliveryTypes.map((type) => deliveryFields.find((e) => e.deliveryType === type)?.label || type).join(', ')}
                         </div>
                     </div>
                     <div className={style.buttonFlex}>

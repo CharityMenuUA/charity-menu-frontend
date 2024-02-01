@@ -17,9 +17,7 @@ const ProfileMenuPage = () => {
     const loadData = useCallback(() => {
         if (profile?.chefId) {
             if (user?.accessToken) {
-                console.log(1)
                 getMenu(user.accessToken).then((data) => {
-                    console.log(2, data)
                     if (data?.menu) setMenu(data.menu)
                     setLoading(false)
                 })
