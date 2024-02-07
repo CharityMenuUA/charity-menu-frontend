@@ -87,6 +87,14 @@ const MenuProfileItem = (props) => {
                     </div>
                     <div>
                         <div className={style.label}>
+                            Кількість доступних
+                        </div>
+                        <div className={style.amount}>
+                            {menuItem.availableTotal || '-'}
+                        </div>
+                    </div>
+                    <div>
+                        <div className={style.label}>
                             Тип доставки
                         </div>
                         <div className={style.amount}>
@@ -98,7 +106,7 @@ const MenuProfileItem = (props) => {
                             Редагувати
                         </Link>
 
-                        {(menuItem.state === "CLOSED" || menuItem.state === "ACTIVE") && (
+                        {(menuItem.state === "CLOSED" || menuItem.state === "ACTIVE") && menuItem.availableTotal && (
                             <button type={"button"} onClick={onChangeActivate} className={style.button}>
                                 {menuItem.state === "ACTIVE" ? "Призупинити" : "Активувати"}
                             </button>
@@ -120,6 +128,7 @@ MenuProfileItem.propTypes = {
         description: PropTypes.string,
         dailyLimit: PropTypes.number,
         totalLimit: PropTypes.number,
+        availableTotal: PropTypes.number,
         active: PropTypes.bool,
         deliveryTypes: PropTypes.arrayOf(PropTypes.string),
         update: PropTypes.func

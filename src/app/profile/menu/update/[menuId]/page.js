@@ -29,6 +29,7 @@ const ProfileMenuCreatePage = (props) => {
     const {config} = useConfigContext()
 
     const [loading, setLoading] = useState(true)
+    const [menuData, setMenuData] = useState()
 
     useEffect(() => {
         getMenuItem(menuId).then((data) => {
@@ -37,6 +38,7 @@ const ProfileMenuCreatePage = (props) => {
             Object.keys(data).forEach((key) => {
                 setValue(key, data[key])
             })
+            setMenuData(data)
         })
     }, [getValues, menuId, setValue, user.accessToken])
 
@@ -80,6 +82,17 @@ const ProfileMenuCreatePage = (props) => {
         value: /\d/,
         message: 'Має бути цілим числом'
     }
+
+    const onChangeTotalLimit = (e) => {
+        if (menuData?.totalLimit && menuData?.availableTotal) {
+            const used = menuData.totalLimit - menuData.availableTotal
+            if (e.target.value <= used) {
+                setError('totalLimit', {message: `Число не може бути меньше ніж вже використано (${used})`})
+            } else {
+                clearErrors('totalLimit')
+            }
+        }
+    }
     return (
         <div className={style.wrap}>
             <div className={style.block}>
@@ -95,7 +108,7 @@ const ProfileMenuCreatePage = (props) => {
                            errors={errors}
                            label="Кількість на день" required/>
                     <Input name={"totalLimit"} type={"number"} pattern={numberPattern} register={register}
-                           errors={errors}
+                           errors={errors} onChange={onChangeTotalLimit}
                            label="Кількість всього" required/>
                     <div className={style.text}>
                         Тип доставки
@@ -117,8 +130,6 @@ const ProfileMenuCreatePage = (props) => {
                             {errors.deliveryTypes.message}
                         </div>
                     )}
-
-
                     <br/>
                     <br/>
                     <div className={style.text}>
