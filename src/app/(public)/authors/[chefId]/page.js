@@ -7,6 +7,7 @@ import Image from 'next/image'
 import Accumulated from '@/app/components/accumulated/Accumulated'
 import {pluralize} from "@/app/components/helpers/pluralLots"
 import pages from "@/app/components/breadcrumbs/routing"
+import Fund from "@/app/components/steps-slider/fund/Fund"
 
 
 const getChef = async (params) => {
@@ -54,7 +55,7 @@ const ChefIdPage = async (props) => {
     if (!chef.id) return notFound()
     const menu = await getMenu({chefId})
     const accumulated = await getChefIdAccumulated({chefId})
-    const {instagram, facebook, twitter, tiktok, youtube, telegram, name, description, photo} = chef
+    const {instagram, facebook, twitter, tiktok, youtube, telegram, name, description, photo, fund} = chef
     return (
         <div>
             <section className={style.head} itemScope itemProp="broker" itemType="https://schema.org/Person">
@@ -177,10 +178,12 @@ const ChefIdPage = async (props) => {
                 <h2 className="h2">Що може зробити {chef.name}</h2>
                 <div className={style.orders_list} itemScope itemType="https://schema.org/ItemList">
                     {menu.map((item, key) => (
-                        <MenuItem  position={key + 1} key={item.id} {...item} chefName={chef.name} chefPhoto={chef.photo}/>
+                        <MenuItem position={key + 1} key={item.id} {...item} chefName={chef.name}
+                                  chefPhoto={chef.photo}/>
                     ))}
                 </div>
             </section>
+            {fund && (<Fund fund={fund}/>)}
             <OtherChefs excludeId={chefId}/>
         </div>
     )

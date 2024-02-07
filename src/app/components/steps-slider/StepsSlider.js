@@ -9,6 +9,7 @@ import 'swiper/css/pagination'
 import style from './stepsSlider.module.scss'
 import Image from "next/image"
 import {useConfigContext} from "@/app/providers/config/ConfigProvider"
+import Fund from "@/app/components/steps-slider/fund/Fund"
 
 const StepsSlider = () => {
     const stepsList = [
@@ -263,27 +264,7 @@ const StepsSlider = () => {
                 </div>
             </div>
 
-            {fund && (
-                <a href={fund.link} className={style.fund} target={"_blank"}>
-                    <div className={style.fund_inner}>
-                        <div className={style.fund_logo}>
-                            <Image
-                                alt={fund?.name}
-                                src={fund?.logo}
-                                width={250}
-                                height={250}
-                                quality={100}
-                                style={{
-                                    objectFit: 'contain',
-                                }}
-                            />
-                        </div>
-                        <div className={style.fund_info}>
-                            {fund?.title}
-                        </div>
-                    </div>
-                </a>
-            )}
+            {fund && (<Fund fund={fund}/>)}
         </>
 
     )
