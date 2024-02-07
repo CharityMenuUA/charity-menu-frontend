@@ -27,7 +27,7 @@ const ImageUpload = (props) => {
                                 objectFit: 'cover',
                             }}/>
                         </div>
-                        <button onClick={onClear} className={styles.delete}>Видалити</button>
+                        <button onClick={onClear} className={styles.delete}>Замінити</button>
                     </div>
                 ) : (
                     <label className={styles.labelWrap}>
