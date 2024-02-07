@@ -38,10 +38,6 @@ const Breadcrumbs = () => {
         })
     })
 
-
-    console.log(123, pathList, links)
-
-
     if (links[2] && links[2].name === params?.chefId && chef?.name) links[2].name = chef?.name
 
     if (links[3] && links[3].name === params?.menuId && menu?.title) links[3].name = menu?.title

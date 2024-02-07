@@ -254,6 +254,7 @@
         background: #F2F2F2;
         color: #000;
       }
+
       &.active {
         background: #F2F2F2;
         color: #000;
@@ -343,6 +344,7 @@
         background: #F2F2F2;
         color: #000;
       }
+
       &.active {
         background: #F2F2F2;
         color: #000;
@@ -365,4 +367,63 @@
   margin-left: 20px;
   margin-right: 20px;
   margin-top: 5px;
+}
+
+
+.image {
+  label {
+    cursor: pointer;
+  }
+  .labelWrap {
+    width: 100%;
+    border: 1px dashed #808080;
+    border-radius: 20px;
+    padding: 20px;
+    transition: all .2s;
+    font-size: 16px;
+    font-family: var(--font-unbounded);
+    font-weight: 700;
+    background: #fff;
+    appearance: none;
+    text-align: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    @include respond-to(m) {
+      flex-direction: column;
+    }
+
+    p {
+      font-size: 12px;
+      font-weight: normal;
+    }
+
+    svg {
+      width: 28px;
+      height: auto;
+      fill: #808080;
+    }
+  }
+
+  .text {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .img {
+    width: 170px;
+    height: 170px;
+    border-radius: 30px;
+  }
+
+  .delete {
+    @extend %button;
+    width: 100%;
+    @include respond-to(t) {
+      height: 60px;
+      font-size: 16px;
+    }
+  }
 }

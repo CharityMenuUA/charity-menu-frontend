@@ -9,7 +9,14 @@ export const setProfile = async (accessToken, data) => {
     }).catch((err) => console.error(err))
 }
 
+export const setChef = async (accessToken) => {
+    return create(`/profile/chef`, {
+        headers: {"Authorization": `Bearer ${accessToken}`},
+    }).catch((err) => console.error(err))
+}
+
 export const updateProfile = async (accessToken, data) => {
+    console.log(data)
     return update(`/profile`, {
         body: data,
         headers: {"Authorization": `Bearer ${accessToken}`},
@@ -17,10 +24,15 @@ export const updateProfile = async (accessToken, data) => {
 }
 
 export const setPhoto = async (accessToken, data) => {
-    return create(`/profile/photo`, {
+    console.log(data)
+    return fetch(`${process.env.BACKEND_API}/profile/photo`, {
+        method: 'POST',
         body: data,
-        headers: {"Authorization": `Bearer ${accessToken}`},
-    }).catch((err) => console.error(err))
+        headers: {
+            "Authorization": `Bearer ${accessToken}`,
+            "Content-Type": "multipart/form-data"
+        }
+    }).then(data => data.json()).catch(console.error)
 }
 
 export const getProfile = async (accessToken) => {

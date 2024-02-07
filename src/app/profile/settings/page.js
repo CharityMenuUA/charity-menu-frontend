@@ -4,17 +4,19 @@ import {useForm} from "react-hook-form"
 import Input from "@/app/components/input/Input"
 import style from "@/app/(auth)/auth.module.scss"
 import {useUserContext} from "@/app/providers/firebase/UserProvider"
-import {updateProfile} from "@/app/profile/actions"
+import {setChef, setPhoto, updateProfile} from "@/app/profile/actions"
 import {useEffect, useState} from "react"
 import Loader from "@/app/components/loader/Loader"
 import ImageUpload from "@/app/components/input/ImageUpload"
+import Textarea from "@/app/components/input/Textarea"
 
 
 const SettingsPage = () => {
     const {user, profile, updateUser} = useUserContext()
     const [loading, setLoading] = useState(false)
     const [success, setSuccess] = useState(false)
-    const {handleSubmit, register, formState: {errors}} = useForm({defaultValues: profile})
+    const [errorChef, setErrorChef] = useState('')
+    const {handleSubmit, register, formState: {errors}, setValue, watch} = useForm({defaultValues: profile})
 
     const onSubmit = async (data) => {
         setLoading(true)
@@ -25,13 +27,19 @@ const SettingsPage = () => {
         }).catch(console.error)
     }
 
-    const onSubmitPhoto = async () => {
-        // setLoading(true)
-        // await setPhoto(user?.accessToken, data).then(async () => {
-        //     setLoading(false)
-        //     setSuccess(true)
-        //     await updateUser()
-        // }).catch(console.error)
+    const onSubmitPhoto = async (data) => {
+        console.log('data', data)
+        setLoading(true)
+        await setPhoto(user?.accessToken, data).then(async () => {
+            setLoading(false)
+            setSuccess(true)
+            await updateUser()
+        }).catch(console.error)
+    }
+
+    const onClearPhoto = () => {
+        console.log('onClearPhoto')
+        setValue('photo', '')
     }
 
     useEffect(() => {
@@ -42,17 +50,46 @@ const SettingsPage = () => {
             return () => clearTimeout(timer)
         }
     }, [success])
+
+    const onClickNewChef = async () => {
+        setLoading(true)
+        await setChef(user?.accessToken,).then((e) => {
+            if (e.errorMessage) {
+                setErrorChef(e.errorMessage)
+                setTimeout(() => setErrorChef(''), 5000)
+            } else {
+                setErrorChef('')
+            }
+            setLoading(false)
+        }).catch((e) => {
+            console.log('Error', e)
+            setLoading(false)
+        })
+    }
+
     const maxDate = new Date()
+
     maxDate.setYear(new Date().getFullYear() - 16)
+
+    const photo = watch('photo')
+
     return (
         <div className={style.wrap}>
             <div className={style.block}>
                 <form onSubmit={handleSubmit(onSubmit)}>
-                    <ImageUpload name="photo" label="Photo" image={profile.photo} onSubmit={onSubmitPhoto}/>
+                    <ImageUpload
+                        name="photo"
+                        title="Завантажте зображення профілю"
+                        description={"JPG, PNG. Максимальний розмір 10 Мб."}
+                        image={photo}
+                        onSubmit={onSubmitPhoto}
+                        onClear={onClearPhoto}
+                    />
                     <div className={style.text}>
-                        Контактні дані
+                        Дані профілю
                     </div>
                     <Input name={"name"} register={register} errors={errors} label="Ім'я" required/>
+                    <Textarea name={"description"} register={register} errors={errors} label="Про себе" required/>
                     <Input name={"email"} register={register} errors={errors} label="Email" type="email"
                            required
                            disabled
@@ -86,8 +123,29 @@ const SettingsPage = () => {
                             Дані збережено
                         </div>
                     )}
+
+
                 </form>
             </div>
+            {!profile?.chef && (
+                <div className={style.block}>
+                    <div className={style.text}>
+                        Ви можете подати заявку, щоб стати <b>автором</b> та запропонувати користувачам скористатися
+                        вашими <b>пропозиціями</b> за донат.
+                    </div>
+                    <div className={style.minitext}>
+                        Необхідно заповнити контактні дані та хоча б одну соціальну мережу.
+                    </div>
+                    <button type={"button"} onClick={onClickNewChef} className={style.submit} disabled={loading}>
+                        {loading ? <Loader/> : "Стати автором"}
+                    </button>
+                    {errorChef && (
+                        <div className={style.errorPopup}>
+                            {errorChef}
+                        </div>
+                    )}
+                </div>
+            )}
         </div>
     )
 }
