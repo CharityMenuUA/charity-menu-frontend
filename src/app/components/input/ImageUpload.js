@@ -22,7 +22,11 @@ const ImageUpload = (props) => {
             <div className={styles.image}>
                 {image ? (
                     <div className={styles.labelWrap}>
-                        <Image src={image} width={100} height={100} alt={"Profile"} className={styles.img}/>
+                        <div className={styles.img}>
+                            <Image src={image} fill alt={"Profile"} style={{
+                                objectFit: 'cover',
+                            }}/>
+                        </div>
                         <button onClick={onClear} className={styles.delete}>Видалити</button>
                     </div>
                 ) : (
