@@ -183,7 +183,9 @@ const ChefIdPage = async (props) => {
                     ))}
                 </div>
             </section>
-            {fund && (<Fund fund={fund}/>)}
+            <section className={style.orders}>
+                {fund && (<Fund fund={fund}/>)}
+            </section>
             <OtherChefs excludeId={chefId}/>
         </div>
     )
