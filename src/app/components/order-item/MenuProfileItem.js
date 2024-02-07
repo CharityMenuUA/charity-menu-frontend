@@ -29,7 +29,7 @@ const MenuProfileItem = (props) => {
     const statusText = {
         "ACTIVE": 'Активна',
         "CLOSED": 'Закрита',
-        "SUBMITTED": 'На верифікації ',
+        "SUBMITTED": 'На верифікації',
         "CLOSED_REJECTED": 'Не пройшла верифікацію',
     }
 

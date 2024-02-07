@@ -35,7 +35,6 @@ const SettingsPage = () => {
     }
 
     const onSubmitPhoto = async (data) => {
-        console.log('data', data)
         setLoading(true)
         await setPhoto(user?.accessToken, data).then(async () => {
             setLoading(false)
@@ -45,7 +44,6 @@ const SettingsPage = () => {
     }
 
     const onClearPhoto = () => {
-        console.log('onClearPhoto')
         setValue('photo', '')
     }
 

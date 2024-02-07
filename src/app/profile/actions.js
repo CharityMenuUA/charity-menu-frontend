@@ -16,7 +16,6 @@ export const setChef = async (accessToken) => {
 }
 
 export const updateProfile = async (accessToken, data) => {
-    console.log(data)
     return update(`/profile`, {
         body: data,
         headers: {"Authorization": `Bearer ${accessToken}`},
