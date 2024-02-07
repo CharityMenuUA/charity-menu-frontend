@@ -61,7 +61,7 @@ const ProfileMenuCreatePage = () => {
         }
     }
     const numberPattern = {
-        value: /\d/,
+        value: /^[1-9]\d*$/,
         message: 'Має бути цілим числом'
     }
     return (

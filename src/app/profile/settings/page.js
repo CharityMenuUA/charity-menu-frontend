@@ -16,7 +16,14 @@ const SettingsPage = () => {
     const [loading, setLoading] = useState(false)
     const [success, setSuccess] = useState(false)
     const [errorChef, setErrorChef] = useState('')
-    const {handleSubmit, register, formState: {errors}, setValue, watch} = useForm({defaultValues: profile})
+    const {handleSubmit, register, formState: {errors}, setValue, watch, reset} = useForm({defaultValues: profile})
+
+    useEffect(() => {
+        reset((formValues) => ({
+            ...formValues,
+            ...profile,
+        }))
+    }, [reset, profile])
 
     const onSubmit = async (data) => {
         setLoading(true)
@@ -134,7 +141,7 @@ const SettingsPage = () => {
                         вашими <b>пропозиціями</b> за донат.
                     </div>
                     <div className={style.minitext}>
-                        Необхідно заповнити контактні дані та хоча б одну соціальну мережу.
+                        Необхідно заповнити дані профілю та хоча б одну соціальну мережу.
                     </div>
                     <button type={"button"} onClick={onClickNewChef} className={style.submit} disabled={loading}>
                         {loading ? <Loader/> : "Стати автором"}

@@ -24,13 +24,11 @@ export const updateProfile = async (accessToken, data) => {
 }
 
 export const setPhoto = async (accessToken, data) => {
-    console.log(data)
     return fetch(`${process.env.BACKEND_API}/profile/photo`, {
         method: 'POST',
         body: data,
         headers: {
             "Authorization": `Bearer ${accessToken}`,
-            "Content-Type": "multipart/form-data"
         }
     }).then(data => data.json()).catch(console.error)
 }
