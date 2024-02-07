@@ -60,16 +60,18 @@ const SettingsPage = () => {
 
     const onClickNewChef = async () => {
         setLoading(true)
-        await setChef(user?.accessToken,).then((e) => {
+        await setChef(user?.accessToken,).then(async (e) => {
             if (e.errorMessage) {
                 setErrorChef(e.errorMessage)
                 setTimeout(() => setErrorChef(''), 5000)
             } else {
                 setErrorChef('')
             }
+            await updateUser()
             setLoading(false)
-        }).catch((e) => {
+        }).catch(async (e) => {
             console.log('Error', e)
+            await updateUser()
             setLoading(false)
         })
     }
