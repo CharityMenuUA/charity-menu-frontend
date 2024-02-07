@@ -10,7 +10,6 @@ const MenuItem = (props) => {
     const {
         id,
         chefId,
-        image,
         chefNameAlt,
         chefName,
         chefPhoto,
@@ -18,17 +17,11 @@ const MenuItem = (props) => {
         price,
         min,
         available,
-        position,
-        description
     } = props
 
     return (
-        <div className={`${style.item} ${min ? style.min : ''} ${available ? '' : style.available}`}
-             itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem https://schema.org/Product">
-            <span itemProp="image" content={`${image || '/menu-def-image.png'}`}/>
-            <span itemProp="position" content={`${position}`}/>
+        <div className={`${style.item} ${min ? style.min : ''} ${available ? '' : style.available}`}>
             <Link href={`${pages.authors.href}/${chefId}/${id}`} className={style.link}>
-                <span itemProp="url" content={`${pages.authors.href}/${chefId}/${id}`}/>
                 <div className={style.photo}>
                     <Image
                         alt={chefName || chefNameAlt}
@@ -41,31 +34,20 @@ const MenuItem = (props) => {
                     />
                 </div>
                 {chefName && (
-                    <div className={style.name} itemProp="offeredBy" itemType="https://schema.org/Person" itemScope>
-                        <span itemProp="url" content={`${pages.authors.href}/${chefId}`}/>
-                        <span itemProp="name">{chefName}</span>
+                    <div className={style.name}>
+                        <span>{chefName}</span>
                     </div>
                 )}
                 {chefNameAlt && (
-                    <div className={`${style.name} ${style.mob}`} itemProp="offeredBy" itemType="https://schema.org/Person"
-                         itemScope>
-                        <span itemProp="url" content={`${pages.authors.href}/${chefId}`}/>
-                        <span itemProp="name">{chefNameAlt}</span>
+                    <div className={`${style.name} ${style.mob}`}>
+                        <span>{chefNameAlt}</span>
                     </div>
                 )}
-                <div className={style.title} itemProp="name">
+                <div className={style.title}>
                     {title}
                 </div>
-                {description && (
-                    <span itemProp="description" content={description}/>
-                )}
-                <div className={style.price} itemProp="offers" itemScope itemType="https://schema.org/Offer">
-                    <span itemProp="priceCurrency" content="UAH">₴</span><span itemProp="price">{price}</span>
-                    {available ? (
-                        <span itemProp="availability" content="https://schema.org/InStock"/>
-                    ) : (
-                        <span itemProp="availability" content="https://schema.org/OutOfStock"/>
-                    )}
+                <div className={style.price}>
+                    <span>₴</span><span>{price}</span>
                 </div>
             </Link>
             {!min && available && (
