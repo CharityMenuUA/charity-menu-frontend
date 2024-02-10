@@ -1,9 +1,16 @@
+"use client"
+
 import Image from "next/image"
 import style from './reportingFunds.module.scss'
 import numberWithSpaces from "@/helpers/numberWithSpaces"
+import {Swiper, SwiperSlide} from "swiper/react"
+import {Pagination} from "swiper/modules"
+
+import './swiper.scss'
+import 'swiper/css'
+import 'swiper/css/pagination'
 
 const ReportingFunds = ({reports}) => {
-
     return (
         <div className={style.reportingFunds}>
             {reports.map((report, reportKey) => {
@@ -19,16 +26,28 @@ const ReportingFunds = ({reports}) => {
                             />
                         </a>
                         <div className={style.attachments}>
-                            {attachments?.length && attachments.map((src, key) => (
-                                <a key={key} href={src} target="_blank">
-                                    <Image
-                                        src={src}
-                                        alt="fund-logo"
-                                        width={150}
-                                        height={150}
-                                    />
-                                </a>
-                            ))}
+                            <Swiper
+                                modules={[Pagination]}
+                                pagination={{
+                                    clickable: true,
+                                }}
+                            >
+
+                                {attachments?.length && [...attachments, ...attachments, ...attachments,].map((src, key) => (
+                                    <SwiperSlide key={key}>
+                                        <a href={src} target="_blank" className={style.slide}>
+                                            <Image
+                                                src={src}
+                                                alt="fund-logo"
+                                                width={150}
+                                                height={150}
+                                            />
+                                        </a>
+                                    </SwiperSlide>
+                                ))}
+                            </Swiper>
+
+
                         </div>
                         <div>
                             <p className={style.reportingFunds_item_count}>₴ {numberWithSpaces(amount)}</p>

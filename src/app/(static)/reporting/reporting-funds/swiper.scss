@@ -1,0 +1,13 @@
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  padding-bottom: 40px;
+  &:first-child {
+    &:last-child {
+      padding: 0;
+    }
+  }
+}
