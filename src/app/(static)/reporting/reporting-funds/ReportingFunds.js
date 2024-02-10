@@ -27,12 +27,12 @@ const ReportingFunds = ({reports}) => {
                         </a>
                         <div className={style.attachments}>
                             <Swiper
+                                spaceBetween={30}
                                 modules={[Pagination]}
                                 pagination={{
                                     clickable: true,
                                 }}
                             >
-
                                 {attachments?.length && attachments.map((src, key) => (
                                     <SwiperSlide key={key}>
                                         <a href={src} target="_blank" className={style.slide}>
@@ -46,8 +46,6 @@ const ReportingFunds = ({reports}) => {
                                     </SwiperSlide>
                                 ))}
                             </Swiper>
-
-
                         </div>
                         <div>
                             <p className={style.reportingFunds_item_count}>₴ {numberWithSpaces(amount)}</p>
