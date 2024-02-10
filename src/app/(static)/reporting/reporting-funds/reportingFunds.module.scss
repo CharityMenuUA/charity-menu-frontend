@@ -25,13 +25,21 @@
       font-size: 26px;
       line-height: 32px;
       font-weight: 700;
+      flex: 0 0 auto;
     }
 
     &_link {
+      flex: 0 0 auto;
       transition: .3s;
       @include hover {
         opacity: 0.4;
       }
     }
   }
+}
+.attachments {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
