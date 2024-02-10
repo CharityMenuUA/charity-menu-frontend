@@ -28,6 +28,15 @@
       flex: 0 0 auto;
     }
 
+    &_date {
+      font-size: 16px;
+      line-height: 32px;
+      flex: 0 0 auto;
+      color: var(--color-text);
+      margin-top: 10px;
+      text-align: right;
+    }
+
     &_link {
       flex: 0 0 auto;
       transition: .3s;
@@ -37,6 +46,7 @@
     }
   }
 }
+
 .attachments {
   display: flex;
   flex-wrap: wrap;

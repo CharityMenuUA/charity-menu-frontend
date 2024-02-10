@@ -7,7 +7,7 @@ const ReportingFunds = ({reports}) => {
     return (
         <div className={style.reportingFunds}>
             {reports.map((report, reportKey) => {
-                const {recipient: {logo, link}, amount, attachments} = report
+                const {recipient: {logo, link}, transferDate, amount, attachments} = report
                 return (
                     <div className={style.reportingFunds_item} key={reportKey}>
                         <a href={link} target="_blank" className={style.reportingFunds_item_link}>
@@ -30,7 +30,10 @@ const ReportingFunds = ({reports}) => {
                                 </a>
                             ))}
                         </div>
-                        <strong className={style.reportingFunds_item_count}>₴ {numberWithSpaces(amount)}</strong>
+                        <div>
+                            <p className={style.reportingFunds_item_count}>₴ {numberWithSpaces(amount)}</p>
+                            <p className={style.reportingFunds_item_date}>{transferDate}</p>
+                        </div>
                     </div>
                 )
             })}
