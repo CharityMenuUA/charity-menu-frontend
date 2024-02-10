@@ -33,7 +33,6 @@ const AttachmentsSlider = ({attachments}) => {
                                 )}
                             </div>
                         )}
-
                     </div>
                 </SwiperSlide>
             ))}
