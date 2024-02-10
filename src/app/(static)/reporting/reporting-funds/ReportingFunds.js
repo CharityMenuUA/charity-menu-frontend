@@ -33,7 +33,7 @@ const ReportingFunds = ({reports}) => {
                                 }}
                             >
 
-                                {attachments?.length && [...attachments, ...attachments, ...attachments,].map((src, key) => (
+                                {attachments?.length && attachments.map((src, key) => (
                                     <SwiperSlide key={key}>
                                         <a href={src} target="_blank" className={style.slide}>
                                             <Image
