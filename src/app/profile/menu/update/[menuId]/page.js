@@ -44,7 +44,7 @@ const ProfileMenuCreatePage = (props) => {
 
     const onSubmit = async (data) => {
         if (!deliveryTypes.length) {
-            setError('deliveryTypes', {type: 'required', message: 'Повинен бути вибраний хочаб один тип доставки'})
+            setError('deliveryTypes', {type: 'required', message: 'Повинен бути вибраний хоча б один тип доставки.'})
         } else {
             setLoading(true)
             updateMenu(user.accessToken, {
@@ -132,7 +132,7 @@ const ProfileMenuCreatePage = (props) => {
                     )}
                     <br/>
                     <br/>
-                    <div className={style.text}>
+                    <div className={style.minitext}>
                         Зміни будуть відправлено на модерацію. <br/>
                         Після перевірки пропозиція буде опублікована.
                     </div>
