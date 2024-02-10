@@ -68,7 +68,7 @@ const SettingsPage = () => {
             await updateUser()
             setLoading(false)
         }).catch(async (e) => {
-            console.log('Error', e)
+            console.error(e)
             await updateUser()
             setLoading(false)
         })
@@ -137,7 +137,8 @@ const SettingsPage = () => {
             {!profile?.chef && (
                 <div className={style.block}>
                     <div className={style.text}>
-                        Подайте заявку, щоб стати <b>автором</b> і додати власні <b>пропозиції</b>, які користувачі сайту зможуть придбати за донат.
+                        Подайте заявку, щоб стати <b>автором</b> і додати власні <b>пропозиції</b>, які користувачі
+                        сайту зможуть придбати за донат.
                     </div>
                     <div className={style.minitext}>
                         Необхідно заповнити дані профілю та хоча б одну соціальну мережу.
