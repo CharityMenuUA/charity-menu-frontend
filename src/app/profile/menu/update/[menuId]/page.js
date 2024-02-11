@@ -87,7 +87,7 @@ const ProfileMenuCreatePage = (props) => {
         if (menuData?.totalLimit && menuData?.availableTotal) {
             const used = menuData.totalLimit - menuData.availableTotal
             if (e.target.value <= used) {
-                setError('totalLimit', {message: `Число не може бути меньше ніж вже використано (${used})`})
+                setError('totalLimit', {message: `Загальна кількість пропозицій не може бути меншою за кількість придбаних (${used})`})
             } else {
                 clearErrors('totalLimit')
             }
