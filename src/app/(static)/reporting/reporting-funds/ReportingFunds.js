@@ -4,11 +4,13 @@ import Image from "next/image"
 import style from './reportingFunds.module.scss'
 import numberWithSpaces from "@/helpers/numberWithSpaces"
 import {Swiper, SwiperSlide} from "swiper/react"
-import {Pagination} from "swiper/modules"
+import {Navigation, Pagination} from "swiper/modules"
 
 import './swiper.scss'
 import 'swiper/css'
 import 'swiper/css/pagination'
+import 'swiper/css/navigation'
+
 
 const ReportingFunds = ({reports}) => {
     return (
@@ -28,7 +30,8 @@ const ReportingFunds = ({reports}) => {
                         <div className={style.attachments}>
                             <Swiper
                                 spaceBetween={30}
-                                modules={[Pagination]}
+                                navigation={true}
+                                modules={[Pagination, Navigation]}
                                 pagination={{
                                     clickable: true,
                                 }}
