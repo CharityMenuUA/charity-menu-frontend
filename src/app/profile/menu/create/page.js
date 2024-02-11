@@ -77,10 +77,10 @@ const ProfileMenuCreatePage = () => {
                            errors={errors} label="Ціна" required/>
                     <Input name={"dailyLimit"} type={"number"} pattern={numberPattern} register={register}
                            errors={errors}
-                           label="Кількість на день" required/>
+                           label="Доступно пропозицій на день" required/>
                     <Input name={"totalLimit"} type={"number"} pattern={numberPattern} register={register}
                            errors={errors}
-                           label="Кількість всього" required/>
+                           label="Загальна кількість пропозицій" required/>
                     <div className={style.text}>
                         Тип доставки
                     </div>

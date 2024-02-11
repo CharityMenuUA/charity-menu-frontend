@@ -71,7 +71,7 @@ const MenuProfileItem = (props) => {
                     </div>
                     <div>
                         <div className={style.label}>
-                            Кількість на день
+                            Доступно на день
                         </div>
                         <div className={style.amount}>
                             {menuItem.dailyLimit || '-'}
@@ -79,7 +79,7 @@ const MenuProfileItem = (props) => {
                     </div>
                     <div>
                         <div className={style.label}>
-                            Кількість всього
+                            Загальна кількість
                         </div>
                         <div className={style.amount}>
                             {menuItem.totalLimit || '-'}
@@ -87,7 +87,7 @@ const MenuProfileItem = (props) => {
                     </div>
                     <div>
                         <div className={style.label}>
-                            Кількість доступних
+                            Залишилось
                         </div>
                         <div className={style.amount}>
                             {menuItem.availableTotal || '-'}
