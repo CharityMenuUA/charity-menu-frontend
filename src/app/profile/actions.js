@@ -1,6 +1,6 @@
 'use server'
 
-import {create, update, get} from "@/helpers/dataProvider"
+import {create, update, get, getOne} from "@/helpers/dataProvider"
 
 export const setProfile = async (accessToken, data) => {
     return create(`/profile`, {
@@ -9,6 +9,11 @@ export const setProfile = async (accessToken, data) => {
     }).catch((err) => console.error(err))
 }
 
+export const setChef = async (accessToken) => {
+    return create(`/profile/chef`, {
+        headers: {"Authorization": `Bearer ${accessToken}`},
+    }).catch((err) => console.error(err))
+}
 
 export const updateProfile = async (accessToken, data) => {
     return update(`/profile`, {
@@ -17,11 +22,22 @@ export const updateProfile = async (accessToken, data) => {
     }).catch((err) => console.error(err))
 }
 
+export const setPhoto = async (accessToken, data) => {
+    return fetch(`${process.env.BACKEND_API}/profile/photo`, {
+        method: 'POST',
+        body: data,
+        headers: {
+            "Authorization": `Bearer ${accessToken}`,
+        }
+    }).then(data => data.json()).catch(console.error)
+}
+
 export const getProfile = async (accessToken) => {
     return get(`/profile`, {
         headers: {"Authorization": `Bearer ${accessToken}`},
     }).catch((err) => console.error(err))
 }
+
 export const getOrders = async (accessToken) => {
     try {
         const paid = await get(`/profile/orders`, {
@@ -52,7 +68,6 @@ export const getOrders = async (accessToken) => {
     }
 }
 
-
 export const getOrderedOrders = async (accessToken) => {
     try {
         const paid = await get(`/profile/chef/orders`, {
@@ -81,6 +96,58 @@ export const getOrderedOrders = async (accessToken) => {
             completed: []
         }
     }
+}
+
+export const getMenu = async (accessToken) => {
+    try {
+        const menu = await get(`/profile/chef/menu-item`, {
+            headers: {
+                "Authorization": `Bearer ${accessToken}`
+            },
+        })
+        return {menu}
+    } catch (err) {
+        return {
+            menu: [],
+        }
+    }
+}
+
+
+export const getMenuItem = async (menuId) => {
+    return getOne(`/menu-items/`, menuId)
+}
+
+export const createMenu = async (accessToken, data) => {
+    return create(`/profile/chef/menu-item`, {
+        headers: {
+            "Authorization": `Bearer ${accessToken}`
+        },
+        body: data,
+    })
+}
+
+export const updateMenu = async (accessToken, data, menuId) => {
+    return update(`/profile/chef/menu-item/${menuId}`, {
+        headers: {
+            "Authorization": `Bearer ${accessToken}`
+        },
+        body: data,
+    })
+}
+export const updateMenuOpen = async (accessToken, menuId) => {
+    return update(`/profile/chef/menu-item/${menuId}/open`, {
+        headers: {
+            "Authorization": `Bearer ${accessToken}`
+        },
+    })
+}
+export const updateMenuClose = async (accessToken, menuId) => {
+    return update(`/profile/chef/menu-item/${menuId}/close`, {
+        headers: {
+            "Authorization": `Bearer ${accessToken}`
+        },
+    })
 }
 
 export const setCompleted = async (accessToken, orderId) => {

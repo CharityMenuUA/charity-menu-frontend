@@ -4,7 +4,7 @@ import MenuItems from "@/app/components/popular-menu-items/MenuItems"
 
 const PopularMenuItems = ({menuItems = []}) => {
     return (
-        <div className={style.popular}  itemScope itemType="https://schema.org/ItemList">
+        <div className={style.popular}>
             <h2>Популярні пропозиції</h2>
             {!!menuItems.length && (
                 <MenuItems min menuItems={menuItems}/>

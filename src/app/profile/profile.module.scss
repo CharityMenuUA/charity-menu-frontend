@@ -95,3 +95,8 @@
   gap: 30px;
   flex-direction: column;
 }
+
+.createBtn {
+  @extend %button;
+  margin: 0 auto 50px;
+}

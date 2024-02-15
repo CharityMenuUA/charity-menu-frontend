@@ -56,21 +56,32 @@ const ProfileLayout = (props) => {
             <h1 className={style.h1}>Мiй профіль</h1>
             <div className={style.layout}>
                 <div className={style.menu}>
-                    <Link href={pages.profile.href} className={`${style.link} ${pathname === "/profile" ? style.active : ""}`}>
-                        Що я замовляв
-                    </Link>
+                    {profile?.chef && (
+                        <Link href={pages.profile_menu.href}
+                              className={`${style.link} ${pathname === pages.profile_menu.href ? style.active : ""}`}>
+                            Мої пропозиції
+                        </Link>
+                    )}
                     {profile?.chef && (
                         <Link href={pages.ordered.href}
-                              className={`${style.link} ${pathname === "/profile/ordered" ? style.active : ""}`}>
+                              className={`${style.link} ${pathname === pages.ordered.href ? style.active : ""}`}>
                             Замовили в мене
                         </Link>
                     )}
+                    <div>
+                        <br/>
+                    </div>
+                    <Link href={pages.profile.href}
+                          className={`${style.link} ${pathname === pages.profile.href ? style.active : ""}`}>
+                        Що я замовляв
+                    </Link>
                     <Link
                         href={pages.settings.href}
-                        className={`${style.link} ${pathname === "/profile/settings" ? style.active : ""}`}
+                        className={`${style.link} ${pathname === pages.settings.href ? style.active : ""}`}
                     >
-                        Контактні дані
+                        Редагувати профіль
                     </Link>
+
                     <div onClick={signOutClick} className={style.link}>
                         Вийти
                     </div>

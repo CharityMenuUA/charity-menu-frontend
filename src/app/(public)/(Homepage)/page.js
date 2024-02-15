@@ -7,6 +7,7 @@ import {chefsSortValues} from "@/app/(public)/authors/(chefs-and-menu)/sortValue
 import {getChef} from "@/app/(public)/authors/(chefs-and-menu)/actions"
 import StepsSlider from "@/app/components/steps-slider/StepsSlider"
 import HomeFaq from "@/app/(public)/(Homepage)/HomeFaq"
+import HomeAttachments from "@/app/(public)/(Homepage)/HomeAttachments"
 
 const HomePage = async () => {
 
@@ -18,6 +19,7 @@ const HomePage = async () => {
         <>
             <HomeChefsAndOffers chefs={chefs}/>
             <StepsSlider/>
+            <HomeAttachments/>
             <div className={style.popularRandom}>
                 <PopularMenuItems menuItems={menuPopularItems}/>
                 <RandomMenuItem/>

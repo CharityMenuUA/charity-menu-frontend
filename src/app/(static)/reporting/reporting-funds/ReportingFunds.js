@@ -1,13 +1,22 @@
-import Image from "next/image";
-import style from './reportingFunds.module.scss';
-import numberWithSpaces from "@/helpers/numberWithSpaces";
+"use client"
 
-const ReportingFunds = ({ reports }) => {
+import Image from "next/image"
+import style from './reportingFunds.module.scss'
+import numberWithSpaces from "@/helpers/numberWithSpaces"
+import {Swiper, SwiperSlide} from "swiper/react"
+import {Navigation, Pagination} from "swiper/modules"
 
+import './swiper.scss'
+import 'swiper/css'
+import 'swiper/css/pagination'
+import 'swiper/css/navigation'
+
+
+const ReportingFunds = ({reports}) => {
     return (
         <div className={style.reportingFunds}>
             {reports.map((report, reportKey) => {
-                const { recipient: { logo, link }, amount } = report;
+                const {recipient: {logo, link}, transferDate, amount, attachments} = report
                 return (
                     <div className={style.reportingFunds_item} key={reportKey}>
                         <a href={link} target="_blank" className={style.reportingFunds_item_link}>
@@ -18,8 +27,33 @@ const ReportingFunds = ({ reports }) => {
                                 height={150}
                             />
                         </a>
-
-                        <strong className={style.reportingFunds_item_count}>₴ {numberWithSpaces(amount)}</strong>
+                        <div className={style.attachments}>
+                            <Swiper
+                                spaceBetween={30}
+                                navigation={true}
+                                modules={[Pagination, Navigation]}
+                                pagination={{
+                                    clickable: true,
+                                }}
+                            >
+                                {attachments?.length && attachments.map((src, key) => (
+                                    <SwiperSlide key={key}>
+                                        <a href={src} target="_blank" className={style.slide}>
+                                            <Image
+                                                src={src}
+                                                alt="fund-logo"
+                                                width={150}
+                                                height={150}
+                                            />
+                                        </a>
+                                    </SwiperSlide>
+                                ))}
+                            </Swiper>
+                        </div>
+                        <div>
+                            <p className={style.reportingFunds_item_count}>₴ {numberWithSpaces(amount)}</p>
+                            <p className={style.reportingFunds_item_date}>{transferDate}</p>
+                        </div>
                     </div>
                 )
             })}
@@ -27,4 +61,4 @@ const ReportingFunds = ({ reports }) => {
     )
 }
 
-export default ReportingFunds;
+export default ReportingFunds

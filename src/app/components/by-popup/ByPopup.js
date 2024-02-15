@@ -95,7 +95,7 @@ const ByPopup = (props) => {
                                     errors={errors}
                                     name={`deliveryDetails.${e.field}`}
                                     label={e.label || e.field}
-                                    required
+                                    required={e.required || false}
                                 />
                             </div>
                         ))

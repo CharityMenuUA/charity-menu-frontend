@@ -40,7 +40,9 @@ const Header = () => {
                     {profile ? (
                         <Link href={pages.profile.href} className={style.login}>
                             {profile?.photo ? (
-                                <Image src={profile?.photo} alt={'Profile'} width={60} height={60}/>
+                                <Image src={profile?.photo} alt={'Profile'} fill style={{
+                                    objectFit: 'cover',
+                                }}/>
                             ) : (
                                 <svg viewBox="0 0 40 40">
                                     <path

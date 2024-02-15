@@ -25,13 +25,39 @@
       font-size: 26px;
       line-height: 32px;
       font-weight: 700;
+      flex: 0 0 auto;
+      white-space: nowrap;
+    }
+
+    &_date {
+      font-size: 16px;
+      line-height: 32px;
+      flex: 0 0 auto;
+      color: var(--color-text);
+      margin-top: 10px;
+      text-align: center;
+      white-space: nowrap;
     }
 
     &_link {
+      flex: 0 0 auto;
       transition: .3s;
       @include hover {
         opacity: 0.4;
       }
     }
+  }
+}
+
+.attachments {
+  width: 100%;
+  max-width: 100vw;
+  overflow: hidden;
+
+  .slide {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }

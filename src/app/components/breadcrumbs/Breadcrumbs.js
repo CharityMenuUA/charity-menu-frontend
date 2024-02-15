@@ -6,19 +6,6 @@ import {useEffect, useState} from "react"
 import {getChef, getMenuItem} from "@/app/components/actions"
 import pages from "@/app/components/breadcrumbs/routing"
 
-const getLink = (cur) => {
-    if (pages[cur]) {
-        return {
-            name: pages[cur].name,
-            href: `${pages[cur].href}/`
-        }
-    }
-    return {
-        name: cur,
-        href: `${cur}/`
-    }
-}
-
 const Breadcrumbs = () => {
     const pathname = usePathname()
     const params = useParams()
@@ -31,15 +18,25 @@ const Breadcrumbs = () => {
         if (menuId) getMenuItem({menuId}).then((e) => setMenu(e))
     }, [chefId, menuId])
 
-    const pathList = pathname.split('/')
+    const pathList = pathname.split('/').filter((path) => path)
 
-    const links = pathList.reduce((acc, cur) => {
-        const prevLink = acc[acc.length - 1]
-        const link = getLink(cur)
-        link.href = `${prevLink?.href || ''}${link.href}`
-        return [...acc, link]
-    }, [])
 
+    const links = [
+        {
+            href: pages.home.href,
+            name: pages.home.name,
+        }
+    ]
+
+    const pagesArray = Object.values(pages)
+
+    pathList.forEach((name, key) => {
+        const href = `/${pathList.slice(0, key + 1).join('/')}`
+        links.push({
+            href,
+            name: pagesArray.find((e) => e.href === href)?.name || name
+        })
+    })
 
     if (links[2] && links[2].name === params?.chefId && chef?.name) links[2].name = chef?.name
 
@@ -47,12 +44,11 @@ const Breadcrumbs = () => {
 
     if (pathname === '/' || pathname === '/menu') return
 
-    const clearPath = (href) => `/${href.split('/').filter(Boolean).join('/')}`
     return (
         <ul className={style.breadcrumbs} itemScope itemType="https://schema.org/BreadcrumbList">
             {links.map(({href, name}, key) => (
-                <li key={key}  itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-                    <Link href={clearPath(href)} itemProp="item">
+                <li key={key} itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
+                    <Link href={href} itemProp="item">
                         {!!key && ' / '} {name}
                         <span itemProp="name" content={name}/>
                         <span itemProp="position" content={`${key + 1}`}/>

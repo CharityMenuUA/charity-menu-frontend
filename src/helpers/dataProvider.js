@@ -36,7 +36,7 @@ export const get = async (resource, options) => {
 export const create = async (resource, options) => {
     const url = createUrl(`${BACKEND_API}/${resource}`, options)
 
-    options.headers = {...options.headers, "Content-Type": "application/json"}
+    options.headers = {"Content-Type": "application/json", ...options.headers}
 
     return fetch(url, {
         method: 'POST',

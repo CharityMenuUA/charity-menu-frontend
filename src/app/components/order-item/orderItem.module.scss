@@ -2,6 +2,41 @@
   background: #FFFFFF;
   border: 1px solid #E0E0E0;
   border-radius: 20px;
+
+  &.SUBMITTED {
+    background: var(--color-button-grey);
+    border-color: var(--color-b-50);
+    color: var(--color-b-50);
+  }
+
+  &.ACTIVE {
+    //background: var(--color-button-grey);
+  }
+
+  &.CLOSED {
+    background: var(--color-button-grey);
+  }
+
+  &.CLOSED_REJECTED {
+    position: relative;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.4);
+
+    &:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--color-gradient);
+      z-index: -1;
+    }
+
+    .label {
+      color: var(--color-black);
+    }
+  }
 }
 
 .title {
@@ -78,4 +113,10 @@
   &:before {
     background: #000;
   }
+}
+
+.buttonFlex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
 }

@@ -35,6 +35,7 @@ const Input = (props) => {
                     disabled={disabled}
                     max={max}
                     {...register(name, {
+                        onChange,
                         value: value,
                         required: required && (typeof required === "string" ? required : `Заповніть поле ${label ? `"${label}"` : ""}`),
                         pattern: (pattern?.value || regex) && {
