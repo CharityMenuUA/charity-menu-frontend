@@ -101,6 +101,8 @@ const SettingsPage = () => {
                            required
                            disabled
                     />
+                    <Input name={"phoneNumber"} register={register} errors={errors} label="Телефон" type="tel"/>
+                    <Input name={"city"} register={register} errors={errors} label="Місто"/>
                     <Input name={"dateOfBirth"} max={maxDate.toLocaleDateString('fr-ca')} register={register}
                            errors={errors}
                            label="Дата народження"
@@ -117,8 +119,6 @@ const SettingsPage = () => {
                         Дані Нової пошти
                     </div>
                     <Input name={"fullName"} register={register} errors={errors} label="ПІБ"/>
-                    <Input name={"phoneNumber"} register={register} errors={errors} label="Телефон" type="tel"/>
-                    <Input name={"city"} register={register} errors={errors} label="Місто"/>
                     <Input name={"novaPoshta"} register={register} errors={errors} label="Відділення Нової пошти"/>
 
                     <button type={"submit"} className={style.submit} disabled={loading}>
