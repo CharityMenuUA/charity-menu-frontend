@@ -16,7 +16,15 @@ const SettingsPage = () => {
     const [loading, setLoading] = useState(false)
     const [success, setSuccess] = useState(false)
     const [errorChef, setErrorChef] = useState('')
-    const {handleSubmit, register, formState: {errors}, setValue, watch, reset} = useForm({defaultValues: profile})
+    const {
+        handleSubmit,
+        register,
+        formState: {errors},
+        setValue,
+        getValues,
+        watch,
+        reset
+    } = useForm({defaultValues: profile})
 
     useEffect(() => {
         reset((formValues) => ({
@@ -57,20 +65,23 @@ const SettingsPage = () => {
     }, [success])
 
     const onClickNewChef = async () => {
+        const data = getValues()
         setLoading(true)
-        await setChef(user?.accessToken,).then(async (e) => {
-            if (e.errorMessage) {
-                setErrorChef(e.errorMessage)
-                setTimeout(() => setErrorChef(''), 5000)
-            } else {
-                setErrorChef('')
-            }
-            await updateUser()
-            setLoading(false)
-        }).catch(async (e) => {
-            console.error(e)
-            await updateUser()
-            setLoading(false)
+        await updateProfile(user?.accessToken, data).then(async () => {
+            await setChef(user?.accessToken).then(async (e) => {
+                if (e.errorMessage) {
+                    setErrorChef(e.errorMessage)
+                    setTimeout(() => setErrorChef(''), 5000)
+                } else {
+                    setErrorChef('')
+                }
+                await updateUser()
+                setLoading(false)
+            }).catch(async (e) => {
+                console.error(e)
+                await updateUser()
+                setLoading(false)
+            })
         })
     }
 
@@ -96,7 +107,7 @@ const SettingsPage = () => {
                         Дані профілю
                     </div>
                     <Input name={"name"} register={register} errors={errors} label="Ім'я" required/>
-                    <Textarea name={"description"} register={register} errors={errors} label="Про себе" required/>
+                    <Textarea name={"description"} register={register} errors={errors} label="Про себе"/>
                     <Input name={"email"} register={register} errors={errors} label="Email" type="email"
                            required
                            disabled
@@ -130,12 +141,10 @@ const SettingsPage = () => {
                             Дані збережено
                         </div>
                     )}
-
-
                 </form>
             </div>
             {!profile?.chef && (
-                <div className={style.block}>
+                <div className={style.block} id="author">
                     <div className={style.text}>
                         Подайте заявку, щоб стати <b>автором</b> і додати власні <b>пропозиції</b>, які користувачі
                         сайту зможуть придбати за донат.
