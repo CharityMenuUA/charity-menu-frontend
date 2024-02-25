@@ -66,8 +66,8 @@ const SettingsPage = () => {
 
     const onClickNewChef = async () => {
         const data = getValues()
+        setLoading(true)
         await updateProfile(user?.accessToken, data).then(async () => {
-            setLoading(true)
             await setChef(user?.accessToken).then(async (e) => {
                 if (e.errorMessage) {
                     setErrorChef(e.errorMessage)
