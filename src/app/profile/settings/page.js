@@ -65,7 +65,8 @@ const SettingsPage = () => {
     }, [success])
 
     const onClickNewChef = async () => {
-        onSubmit(getValues()).then(async () => {
+        const data = getValues()
+        await updateProfile(user?.accessToken, data).then(async () => {
             setLoading(true)
             await setChef(user?.accessToken).then(async (e) => {
                 if (e.errorMessage) {
@@ -106,7 +107,7 @@ const SettingsPage = () => {
                         Дані профілю
                     </div>
                     <Input name={"name"} register={register} errors={errors} label="Ім'я" required/>
-                    <Textarea name={"description"} register={register} errors={errors} label="Про себе" required/>
+                    <Textarea name={"description"} register={register} errors={errors} label="Про себе"/>
                     <Input name={"email"} register={register} errors={errors} label="Email" type="email"
                            required
                            disabled
