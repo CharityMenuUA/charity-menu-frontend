@@ -8,9 +8,9 @@ import {getChef} from "@/app/(public)/authors/(chefs-and-menu)/actions"
 import StepsSlider from "@/app/components/steps-slider/StepsSlider"
 import HomeFaq from "@/app/(public)/(Homepage)/HomeFaq"
 import HomeAttachments from "@/app/(public)/(Homepage)/HomeAttachments"
+import HomeBecomeAuthorButton from "@/app/(public)/(Homepage)/HomeBecomeAuthorButton"
 
 const HomePage = async () => {
-
     const [chefsSortBy, chefsDirection] = chefsSortValues[0].value.split('-')
     const {chefs} = await getChef({pageSize: 10, sortBy: chefsSortBy, direction: chefsDirection})
     const {menuItems: menuPopularItems} = await getPopularMenuItem()
@@ -18,12 +18,19 @@ const HomePage = async () => {
     return (
         <>
             <HomeChefsAndOffers chefs={chefs}/>
+
             <StepsSlider/>
+
+
             <HomeAttachments/>
+
             <div className={style.popularRandom}>
                 <PopularMenuItems menuItems={menuPopularItems}/>
                 <RandomMenuItem/>
             </div>
+
+            <HomeBecomeAuthorButton/>
+
             <HomeFaq/>
         </>
     )

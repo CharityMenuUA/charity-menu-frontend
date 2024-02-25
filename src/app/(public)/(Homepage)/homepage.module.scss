@@ -98,6 +98,20 @@
   }
 }
 
+.becomeAuthor {
+  width: min(100%, 900px);
+  border-radius: 40px;
+  border: 1px solid #BDBDBD;
+  transition: all 0.5s;
+  margin: 40px auto;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  text-align: center;
+  font-size: 21px;
+}
 .attachments {
   width: min(100%, var(--width-wrapper-large));
   margin: auto;

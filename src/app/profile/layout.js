@@ -81,7 +81,14 @@ const ProfileLayout = (props) => {
                     >
                         Редагувати профіль
                     </Link>
-
+                    {!profile?.chef && (
+                        <Link
+                            href={`${pages.settings.href}#author`}
+                            className={`${style.link}`}
+                        >
+                            Стати автором
+                        </Link>
+                    )}
                     <div onClick={signOutClick} className={style.link}>
                         Вийти
                     </div>
