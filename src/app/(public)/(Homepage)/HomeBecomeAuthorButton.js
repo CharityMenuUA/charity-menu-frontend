@@ -8,7 +8,7 @@ const HomeBecomeAuthorButton = () => {
     return (
         <div className={style.becomeAuthor}>
             <h3>Стань автором, щоб додавати власні пропозиції на сайті.</h3>
-            <Link href={'/profile/settings#authors'} className={style.button_more}>
+            <Link href={'/profile/settings#author'} className={style.button_more}>
                 стати автором
             </Link>
         </div>
