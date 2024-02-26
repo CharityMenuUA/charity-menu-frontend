@@ -18,19 +18,13 @@ const HomePage = async () => {
     return (
         <>
             <HomeChefsAndOffers chefs={chefs}/>
-
             <StepsSlider/>
-
-
             <HomeAttachments/>
-
             <div className={style.popularRandom}>
                 <PopularMenuItems menuItems={menuPopularItems}/>
                 <RandomMenuItem/>
             </div>
-
             <HomeBecomeAuthorButton/>
-
             <HomeFaq/>
         </>
     )

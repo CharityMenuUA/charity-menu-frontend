@@ -7,6 +7,8 @@ import {menuSortValues} from "@/app/(public)/authors/(chefs-and-menu)/sortValues
 import {getMenu} from "@/app/(public)/authors/(chefs-and-menu)/actions"
 import StepsSlider from "@/app/components/steps-slider/StepsSlider"
 import HomeFaq from "@/app/(public)/(Homepage)/HomeFaq"
+import HomeBecomeAuthorButton from "@/app/(public)/(Homepage)/HomeBecomeAuthorButton"
+import HomeAttachments from "@/app/(public)/(Homepage)/HomeAttachments"
 
 const HomeWithMenuPage = async () => {
     const [menuSortBy, menuDirection] = menuSortValues[0].value.split('-')
@@ -17,10 +19,12 @@ const HomeWithMenuPage = async () => {
         <>
             <HomeChefsAndOffers menuItems={menuItems}/>
             <StepsSlider/>
+            <HomeAttachments/>
             <div className={style.popularRandom}>
                 <PopularMenuItems menuItems={menuPopularItems}/>
                 <RandomMenuItem/>
             </div>
+            <HomeBecomeAuthorButton/>
             <HomeFaq/>
         </>
     )
