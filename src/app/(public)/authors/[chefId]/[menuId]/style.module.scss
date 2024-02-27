@@ -281,12 +281,14 @@
 
 .popularRandom {
   width: min(100%, var(--width-wrapper-large));
-  margin: auto;
+  margin: 100px auto;
   display: flex;
   justify-content: center;
   gap: 55px;
+
   @include respond-to(t) {
     flex-direction: column;
     align-items: center;
+    margin: 40px auto;
   }
 }

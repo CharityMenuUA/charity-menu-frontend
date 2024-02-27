@@ -9,6 +9,7 @@ import {pluralize} from "@/app/components/helpers/pluralLots"
 import pages from "@/app/components/breadcrumbs/routing"
 import Fund from "@/app/components/steps-slider/fund/Fund"
 import AttachmentsSlider from "@/app/(public)/authors/[chefId]/AttachmentsSlider"
+import StepsSliderMin from "@/app/components/steps-slider/StepsSliderMin"
 
 
 const getChef = async (params) => {
@@ -191,9 +192,10 @@ const ChefIdPage = async (props) => {
             )}
             {attachments && (
                 <section className={style.orders}>
-                  <AttachmentsSlider attachments={attachments}/>
+                    <AttachmentsSlider attachments={attachments}/>
                 </section>
             )}
+            <StepsSliderMin/>
             <OtherChefs excludeId={chefId}/>
         </div>
     )
