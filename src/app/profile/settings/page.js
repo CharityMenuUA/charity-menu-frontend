@@ -73,7 +73,7 @@ const SettingsPage = () => {
         setLoading(true)
         await updateProfile(user?.accessToken, data).then(async () => {
             await setChef(user?.accessToken).then(async (e) => {
-                if (e && e.errorMessage) {
+                if (e?.errorMessage) {
                     setErrorChef(e.errorMessage)
                     setTimeout(() => setErrorChef(''), 5000)
                 } else {
