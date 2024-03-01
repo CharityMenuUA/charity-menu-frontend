@@ -203,3 +203,9 @@
     }
   }
 }
+
+.slider {
+  @include respond-to(m) {
+    padding: 0 10px;
+  }
+}

@@ -4,16 +4,16 @@
 }
 
 .swiper-slide {
-  padding: 0 50px 40px;
-  @include respond-to(m) {
-    padding: 0 0 40px;
-  }
-
-  &:first-child {
-    &:last-child {
-      padding: 0;
-    }
-  }
+  //padding: 0 50px 40px;
+  //@include respond-to(m) {
+  //  padding: 0 0 40px;
+  //}
+  //
+  //&:first-child {
+  //  &:last-child {
+  //    padding: 0;
+  //  }
+  //}
 }
 
 @include respond-to(m) {

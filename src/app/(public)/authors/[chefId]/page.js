@@ -195,7 +195,9 @@ const ChefIdPage = async (props) => {
                     <AttachmentsSlider attachments={attachments}/>
                 </section>
             )}
-            <StepsSliderMin/>
+            <section className={style.slider}>
+                <StepsSliderMin/>
+            </section>
             <OtherChefs excludeId={chefId}/>
         </div>
     )
