@@ -79,10 +79,10 @@ const SettingsPage = () => {
                     setTimeout(() => setErrorChef(''), 5000)
                 } else {
                     setErrorChef('')
+                    setOpenPopup(true)
                 }
                 await updateUser()
                 setLoading(false)
-                setOpenPopup(true)
             }).catch(async (e) => {
                 console.error(e)
                 await updateUser()
