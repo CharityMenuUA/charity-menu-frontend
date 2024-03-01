@@ -140,7 +140,9 @@ const MenuIdPage = async (props) => {
                     Інші пропозиції автора
                 </Link>
             </section>
-            <StepsSliderMin/>
+            <section className={style.slider}>
+                <StepsSliderMin/>
+            </section>
             <div className={style.popularRandom}>
                 <PopularMenuItems menuItems={menuItems}/>
                 <RandomMenuItem/>
