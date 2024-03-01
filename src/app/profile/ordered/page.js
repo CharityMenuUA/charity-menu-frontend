@@ -1,4 +1,5 @@
 'use client'
+
 import style from '../profile.module.scss'
 import {getOrderedOrders} from "@/app/profile/actions"
 import {useCallback, useEffect, useState} from "react"
@@ -6,7 +7,7 @@ import {useUserContext} from "@/app/providers/firebase/UserProvider"
 import OrderItem from "@/app/components/order-item/OrderItem"
 import Empty from "@/app/profile/empty"
 import Loader from "@/app/components/loader/Loader"
-import NotFound from "@/app/not-found"
+import {notFound} from "next/navigation"
 
 const OrderedPage = () => {
     const {user, profile, loading} = useUserContext()
@@ -27,7 +28,7 @@ const OrderedPage = () => {
 
     if (isLoading || loading) return <Loader/>
 
-    if (!profile.chefId) return <NotFound/>
+    if (!profile.chefId) return notFound()
 
     if (!orders?.paid?.orders?.length && !orders?.completed?.orders?.length) {
         return (<Empty text={"Поки що замовлень немає"}/>)

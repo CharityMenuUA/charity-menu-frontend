@@ -2,6 +2,10 @@
   width: min(100%, var(--width-wrapper-large));
   margin: 100px auto 40px;
 
+  &:last-child {
+    margin: 100px auto 100px;
+  }
+
   &_inner {
     background-color: var(--color-white);
     border-radius: 40px;
@@ -23,6 +27,12 @@
       left: 50%;
       transform: translateX(-50%) rotate(-45deg);
       background-color: #ffffff;
+    }
+
+    &.single {
+      &:after {
+        display: none;
+      }
     }
   }
 
@@ -169,7 +179,7 @@
   border-radius: 40px;
   border: 1px solid #BDBDBD;
   transition: all .5s;
-  margin: 40px auto;
+  margin: 40px auto 100px;
 
   @include hover {
     box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);

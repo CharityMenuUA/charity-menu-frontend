@@ -3,18 +3,23 @@
 import {useForm} from "react-hook-form"
 import Input from "@/app/components/input/Input"
 import style from "@/app/(auth)/auth.module.scss"
+import stylePopup from "@/app/components/by-popup/style.module.scss"
 import {useUserContext} from "@/app/providers/firebase/UserProvider"
 import {setChef, setPhoto, updateProfile} from "@/app/profile/actions"
 import {useEffect, useState} from "react"
 import Loader from "@/app/components/loader/Loader"
 import ImageUpload from "@/app/components/input/ImageUpload"
 import Textarea from "@/app/components/input/Textarea"
+import pages from "@/app/components/breadcrumbs/routing"
+import Popup from "@/app/components/popup/Popup"
+import Link from "next/link"
 
 
 const SettingsPage = () => {
     const {user, profile, updateUser} = useUserContext()
     const [loading, setLoading] = useState(false)
     const [success, setSuccess] = useState(false)
+    const [openPopup, setOpenPopup] = useState(false)
     const [errorChef, setErrorChef] = useState('')
     const {
         handleSubmit,
@@ -77,6 +82,7 @@ const SettingsPage = () => {
                 }
                 await updateUser()
                 setLoading(false)
+                setOpenPopup(true)
             }).catch(async (e) => {
                 console.error(e)
                 await updateUser()
@@ -91,6 +97,9 @@ const SettingsPage = () => {
 
     const photo = watch('photo')
 
+    const onClose = () => {
+        setOpenPopup(false)
+    }
     return (
         <div className={style.wrap}>
             <div className={style.block}>
@@ -161,6 +170,21 @@ const SettingsPage = () => {
                         </div>
                     )}
                 </div>
+            )}
+            {openPopup && (
+                <Popup onClose={onClose}>
+                    <div className={stylePopup.block}>
+                        <h1 className={stylePopup.h1_inside}>
+                            Вітаємо!
+                        </h1>
+                        <div className={style.text}>
+                            Тепер ти автор на Donate Menu! Залишилось придумати і додати пропозицію!
+                        </div>
+                        <Link href={pages.profile_menu_create.href} className={`${style.createBtn}`}>
+                            Створити пропозицію
+                        </Link>
+                    </div>
+                </Popup>
             )}
         </div>
     )

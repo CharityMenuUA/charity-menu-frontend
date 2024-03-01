@@ -10,6 +10,7 @@ import {pluralize} from "@/app/components/helpers/pluralLots"
 import {getChef, getMenuItem, getPopularMenuItem} from "@/app/components/actions"
 import pages from "@/app/components/breadcrumbs/routing"
 import {notFound} from "next/navigation"
+import StepsSliderMin from "@/app/components/steps-slider/StepsSliderMin"
 
 
 export const generateMetadata = async (props) => {
@@ -47,7 +48,7 @@ const MenuIdPage = async (props) => {
     const {title, active, available, availablePerDay, availableTotal} = menu
 
     return (
-        <>
+        <div>
             <div itemScope itemType="https://schema.org/Order https://schema.org/Product">
                 <h1 className={style.h1} itemProp="name">{title}</h1>
                 <div className={style.menu_info}>
@@ -104,7 +105,8 @@ const MenuIdPage = async (props) => {
                         </div>
                         <ShareButtons title={title}/>
                     </div>
-                    <Link href={`${pages.authors.href}/${chef.id}`} className={style.chef} itemScope itemProp="offeredBy"
+                    <Link href={`${pages.authors.href}/${chef.id}`} className={style.chef} itemScope
+                          itemProp="offeredBy"
                           itemType="https://schema.org/Person">
                         <div className={style.label}>
                             <span>Автор пропозиції</span>
@@ -133,15 +135,18 @@ const MenuIdPage = async (props) => {
                     </Link>
                 </div>
             </div>
-            <Link href={`${pages.authors.href}/${chef.id}`} className={style.other_button}>
-                Інші пропозиції автора
-            </Link>
+            <section>
+                <Link href={`${pages.authors.href}/${chef.id}`} className={style.other_button}>
+                    Інші пропозиції автора
+                </Link>
+            </section>
+            <StepsSliderMin/>
             <div className={style.popularRandom}>
                 <PopularMenuItems menuItems={menuItems}/>
                 <RandomMenuItem/>
             </div>
             <OtherChefs excludeId={chefId}/>
-        </>
+        </div>
     )
 }
 
