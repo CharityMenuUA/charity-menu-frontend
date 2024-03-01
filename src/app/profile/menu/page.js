@@ -1,4 +1,5 @@
 'use client'
+
 import style from '../profile.module.scss'
 import {getMenu} from "@/app/profile/actions"
 import {useCallback, useEffect, useState} from "react"
@@ -7,7 +8,6 @@ import Empty from "@/app/profile/empty"
 import Loader from "@/app/components/loader/Loader"
 import Link from "next/link"
 import pages from "@/app/components/breadcrumbs/routing"
-import NotFound from "@/app/not-found"
 import MenuProfileItem from "@/app/components/order-item/MenuProfileItem"
 
 const ProfileMenuPage = () => {
@@ -20,9 +20,13 @@ const ProfileMenuPage = () => {
                 getMenu(user.accessToken).then((data) => {
                     if (data?.menu) setMenu(data.menu)
                     setLoading(false)
+                }).catch(() => {
+                    setLoading(false)
                 })
+                return null
             }
         }
+        setLoading(false)
     }, [profile.chefId, user.accessToken])
 
     useEffect(() => {
@@ -30,8 +34,6 @@ const ProfileMenuPage = () => {
     }, [loadData])
 
     if (isLoading || loading) return <Loader/>
-
-    if (!profile.chefId) return <NotFound/>
 
     return (
         <div>
