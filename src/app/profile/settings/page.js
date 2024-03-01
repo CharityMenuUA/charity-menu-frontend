@@ -68,13 +68,12 @@ const SettingsPage = () => {
             return () => clearTimeout(timer)
         }
     }, [success])
-
     const onClickNewChef = async () => {
         const data = getValues()
         setLoading(true)
         await updateProfile(user?.accessToken, data).then(async () => {
             await setChef(user?.accessToken).then(async (e) => {
-                if (e.errorMessage) {
+                if (e && e.errorMessage) {
                     setErrorChef(e.errorMessage)
                     setTimeout(() => setErrorChef(''), 5000)
                 } else {
