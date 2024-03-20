@@ -11,6 +11,7 @@ import Fund from "@/app/components/steps-slider/fund/Fund"
 import AttachmentsSlider from "@/app/(public)/authors/[chefId]/AttachmentsSlider"
 import StepsSliderMin from "@/app/components/steps-slider/StepsSliderMin"
 
+export const revalidate = 10
 
 const getChef = async (params) => {
     const {chefId} = params

@@ -7,17 +7,19 @@ import {useEffect, useState} from "react"
 import {useRouter, useSearchParams} from "next/navigation"
 import pages from "@/app/components/breadcrumbs/routing"
 
+export const revalidate = 10
+
 const RegisterEmailConfirmPage = () => {
     const [isSend, setIsSend] = useState(false)
     const [time, setTime] = useState(0)
     const {user, loading, updateUser} = useUserContext()
     const router = useRouter()
-    const search = useSearchParams()
-    const next = search.get('next') || '/profile'
     const minutes = 5
 
 
     useEffect(() => {
+        const search = new URLSearchParams(window.location.search)
+        const next = search.get('next') || '/profile'
         if (!loading) {
             if (!user) {
                 router.push(`/login?${search.toString()}`)
@@ -25,7 +27,7 @@ const RegisterEmailConfirmPage = () => {
                 return router.push(next)
             }
         }
-    }, [loading, next, router, search, user])
+    }, [loading, router, user])
 
     useEffect(() => {
         if (isSend) {

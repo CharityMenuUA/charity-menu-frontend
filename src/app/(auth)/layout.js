@@ -5,13 +5,13 @@ import {useRouter, useSearchParams} from 'next/navigation'
 import {useEffect} from "react"
 
 const LoginLayout = (props) => {
-    const search = useSearchParams()
-    const next = search.get('next') || '/profile'
     const {children} = props
     const {user, profile} = useUserContext()
     const router = useRouter()
 
     useEffect(() => {
+        const search = new URLSearchParams(window.location.search)
+        const next = search.get('next') || '/profile'
         if (user && !user?.emailVerified) {
             router.push(`/register-email-confirm?next=${next.toString()}`)
         } else if (user && !profile) {
@@ -19,7 +19,7 @@ const LoginLayout = (props) => {
         } else if (user && profile) {
             router.push(next)
         }
-    }, [next, profile, router, user])
+    }, [profile, router, user])
 
     return (
         <>

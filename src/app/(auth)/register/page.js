@@ -14,6 +14,8 @@ import Loader from "@/app/components/loader/Loader"
 import {useConfigContext} from "@/app/providers/config/ConfigProvider"
 import pages from "@/app/components/breadcrumbs/routing"
 
+export const revalidate = 10
+
 const RegisterPage = () => {
     const {updateUser} = useUserContext()
     const {config} = useConfigContext()

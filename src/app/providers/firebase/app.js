@@ -13,11 +13,11 @@ const firebaseConfig = {
     measurementId: process.env.FIREBASE_MEASUREMENTID,
 }
 
-if (!firebase.apps.length) {
+if (!firebase.apps.length && process.browser) {
     firebase.initializeApp(firebaseConfig)
 }
 
-export const auth = firebase.auth()
+export const auth = process.browser ? firebase.auth() : {}
 
 
 

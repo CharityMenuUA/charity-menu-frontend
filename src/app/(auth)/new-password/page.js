@@ -7,6 +7,8 @@ import Link from "next/link"
 import validate from "@/app/components/input/validate"
 import pages from "@/app/components/breadcrumbs/routing"
 
+export const revalidate = 10
+
 const NewPasswordPage = () => {
     const {handleSubmit, register, formState: {errors}} = useForm()
     const onSubmit = (data) => {

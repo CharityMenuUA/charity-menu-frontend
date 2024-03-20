@@ -12,18 +12,19 @@ import {useRouter, useSearchParams} from "next/navigation"
 import pages from "@/app/components/breadcrumbs/routing"
 import Loader from "@/app/components/loader/Loader"
 
+export const revalidate = 10
+
 const RegisterCompletePage = () => {
     const router = useRouter()
     const {user, loading, profile, updateUser} = useUserContext()
     const [formLoading, setFormLoading] = useState(false)
-
-    const search = useSearchParams()
-    const next = search.get('next') || '/profile'
     const {handleSubmit, register, watch, formState: {errors}} = useForm()
 
     const userAgreeToTerms = watch("user_agree_to_terms", false)
 
     useEffect(() => {
+        const search = new URLSearchParams(window.location.search)
+        const next = search.get('next') || '/profile'
         if (!loading) {
             if (!user) {
                 router.push(`/login?${search.toString()}`)
@@ -31,7 +32,7 @@ const RegisterCompletePage = () => {
                 return router.push(next)
             }
         }
-    }, [loading, next, profile, router, search, user])
+    }, [loading, profile, router, user])
 
     const onSubmit = (data) => {
         const {name} = data
