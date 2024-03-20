@@ -10,7 +10,7 @@ import Link from "next/link"
 import pages from "@/app/components/breadcrumbs/routing"
 import MenuProfileItem from "@/app/components/order-item/MenuProfileItem"
 
-export const revalidate = 10
+export const revalidate = 0
 
 const ProfileMenuPage = () => {
     const {user, profile, loading} = useUserContext()

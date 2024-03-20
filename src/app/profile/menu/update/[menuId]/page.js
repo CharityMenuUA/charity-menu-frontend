@@ -13,7 +13,7 @@ import {getMenuItem, updateMenu} from "@/app/profile/actions"
 import pages from "@/app/components/breadcrumbs/routing"
 import {useRouter} from "next/navigation"
 
-export const revalidate = 10
+export const revalidate = 0
 
 const ProfileMenuCreatePage = (props) => {
     const {params: {menuId}} = props

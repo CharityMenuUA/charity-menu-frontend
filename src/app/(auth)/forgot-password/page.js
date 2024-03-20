@@ -9,7 +9,7 @@ import Loader from "@/app/components/loader/Loader"
 import {useState} from "react"
 import pages from "@/app/components/breadcrumbs/routing"
 
-export const revalidate = 10
+export const revalidate = 0
 
 const ForgotPasswordPage = () => {
     const {handleSubmit, register, formState: {errors}, setError} = useForm()

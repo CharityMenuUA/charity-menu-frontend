@@ -12,7 +12,7 @@ import pages from "@/app/components/breadcrumbs/routing"
 import {notFound} from "next/navigation"
 import StepsSliderMin from "@/app/components/steps-slider/StepsSliderMin"
 
-export const revalidate = 10
+export const revalidate = 0
 
 export const generateMetadata = async (props) => {
     const {params: {menuId, chefId}} = props

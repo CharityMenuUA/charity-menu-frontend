@@ -14,7 +14,7 @@ import SaveStateProvider from "@/app/providers/save-state/SaveStateItemsProvider
 const unbounded = Unbounded({subsets: ['cyrillic', 'latin'], variable: '--font-unbounded'})
 const openSans = Open_Sans({subsets: ['cyrillic', 'latin'], variable: '--font-open-sans'})
 
-export const revalidate = 10;
+export const revalidate = 0;
 
 const meta = {
     title: "Донат меню - платформа донатів на ЗСУ",

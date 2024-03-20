@@ -7,7 +7,7 @@ export const getPopularMenuItem = async () => {
             pageSize: 4,
             sortBy: "POPULARITY"
         },
-        next: {revalidate: 10}
+        next: {revalidate: 0}
     })
 }
 

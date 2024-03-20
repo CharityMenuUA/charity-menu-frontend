@@ -7,7 +7,7 @@ import OrderItem from "@/app/components/order-item/OrderItem"
 import Empty from "@/app/profile/empty"
 import Loader from "@/app/components/loader/Loader"
 
-export const revalidate = 10
+export const revalidate = 0
 
 const ProfilePage = () => {
     const {user} = useUserContext()
