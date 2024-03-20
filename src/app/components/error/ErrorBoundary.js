@@ -27,7 +27,7 @@ class ErrorBoundary extends React.Component {
                     <div className={style.text}>
                         Щось пішло не так.
                     </div>
-                    <button onClick={() => reset()} className={style.link}>
+                    <button onClick={() => location.reload()} className={style.link}>
                         Оновити сторінку
                     </button>
                 </div>
