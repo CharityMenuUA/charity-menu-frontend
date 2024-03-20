@@ -18,7 +18,6 @@ export const getList = async (resource, options) => {
     const url = createUrl(`${BACKEND_API}/${resource}`, options)
 
     return fetch(url, {
-        next: {revalidate: 10},
         ...options,
     }).then(data => data.json()).catch(console.error)
 }
@@ -28,7 +27,6 @@ export const get = async (resource, options) => {
     const url = createUrl(`${BACKEND_API}/${resource}`, options)
 
     return fetch(url, {
-        next: {revalidate: 10},
         ...options,
     }).then(data => data.json()).catch(console.error)
 }
@@ -68,7 +66,6 @@ export const getOne = async (resource, id, options) => {
     const url = createUrl(`${BACKEND_API}/${resource}/${id}`, options)
 
     return fetch(url, {
-        next: {revalidate: 10},
         ...options,
     }).then(data => data.json()).catch(console.error)
 }
