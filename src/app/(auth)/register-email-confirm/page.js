@@ -7,7 +7,7 @@ import {useEffect, useState} from "react"
 import {useRouter, useSearchParams} from "next/navigation"
 import pages from "@/app/components/breadcrumbs/routing"
 
-export const revalidate = 10
+export const revalidate = 0
 
 const RegisterEmailConfirmPage = () => {
     const [isSend, setIsSend] = useState(false)

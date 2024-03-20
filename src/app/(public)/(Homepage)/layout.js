@@ -3,7 +3,7 @@ import {getAccumulated} from "@/app/(public)/(Homepage)/actions"
 import style from "@/app/(public)/(Homepage)/homepage.module.scss"
 import {SwitcherLink} from "@/app/components/switcher/SwitcherLink"
 
-export const revalidate = 10;
+export const revalidate = 0;
 
 const ChefsLayout = async ({children}) => {
     const accumulated = await getAccumulated()

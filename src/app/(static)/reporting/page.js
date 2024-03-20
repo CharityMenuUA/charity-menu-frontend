@@ -3,7 +3,7 @@ import {get} from "@/helpers/dataProvider"
 import ReportingTotal from "@/app/(static)/reporting/reporting-total/ReportingTotal"
 import style from './reporting.module.scss'
 
-export const revalidate = 10
+export const revalidate = 0
 
 const getStatistics = async () => {
     return get('/statistics').catch((err) => console.error(err))

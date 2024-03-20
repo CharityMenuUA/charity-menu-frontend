@@ -1,6 +1,6 @@
 import ContactsPage from "@/app/(static)/contacts/client-page"
 
-export const revalidate = 10
+export const revalidate = 0
 
 const meta = {
     title: 'Контакти - Ваші питання та пропозиції важливі для нас',

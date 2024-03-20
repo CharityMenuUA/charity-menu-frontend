@@ -2,7 +2,7 @@ import style from "./policy.module.scss"
 import Policy from "@/app/(static)/policy/Policy"
 import Offer from "@/app/(static)/policy/Offer"
 
-export const revalidate = 10
+export const revalidate = 0
 
 const meta = {
     title: 'Політика Збору та Обробки Даних',
