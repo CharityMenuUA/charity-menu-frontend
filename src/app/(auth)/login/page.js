@@ -12,6 +12,7 @@ import Loader from "@/app/components/loader/Loader"
 import {useState} from "react"
 import pages from "@/app/components/breadcrumbs/routing"
 
+export const revalidate = 10
 
 const LoginPage = () => {
     const {loading: userLoading} = useUserContext()

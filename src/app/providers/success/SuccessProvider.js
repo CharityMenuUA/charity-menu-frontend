@@ -9,14 +9,14 @@ import Link from "next/link"
 import pages from "@/app/components/breadcrumbs/routing"
 
 const SuccessProvider = ({children}) => {
-    const search = useSearchParams()
     const [isOpen, setIsOpen] = useState(false)
     const pathname = usePathname()
     const router = useRouter()
     useEffect(() => {
+        const search = new URLSearchParams(window.location.search)
         const success = search.get("success")
         if (success) setIsOpen(true)
-    }, [search])
+    }, [])
 
     const onClose = () => {
         setIsOpen(false)

@@ -13,6 +13,8 @@ import {createMenu} from "@/app/profile/actions"
 import pages from "@/app/components/breadcrumbs/routing"
 import {useRouter} from "next/navigation"
 
+export const revalidate = 10
+
 const ProfileMenuCreatePage = () => {
     const router = useRouter()
     const {user, profile} = useUserContext()

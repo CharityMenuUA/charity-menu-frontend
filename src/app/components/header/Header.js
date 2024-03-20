@@ -11,7 +11,6 @@ import {useUserContext} from "@/app/providers/firebase/UserProvider"
 import Image from "next/image"
 import pages from "@/app/components/breadcrumbs/routing"
 
-
 const Header = () => {
     const [isOpenMenuState, setOpenMenuState] = useState(false)
     const {config} = useConfigContext()

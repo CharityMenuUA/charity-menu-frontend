@@ -10,6 +10,8 @@ import HomeFaq from "@/app/(public)/(Homepage)/HomeFaq"
 import HomeBecomeAuthorButton from "@/app/(public)/(Homepage)/HomeBecomeAuthorButton"
 import HomeAttachments from "@/app/(public)/(Homepage)/HomeAttachments"
 
+export const revalidate = 10
+
 const HomeWithMenuPage = async () => {
     const [menuSortBy, menuDirection] = menuSortValues[0].value.split('-')
     const {menuItems} = await getMenu({pageSize: 7, sortBy: menuSortBy, direction: menuDirection})

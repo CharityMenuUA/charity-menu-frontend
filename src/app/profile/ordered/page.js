@@ -9,6 +9,8 @@ import Empty from "@/app/profile/empty"
 import Loader from "@/app/components/loader/Loader"
 import {notFound} from "next/navigation"
 
+export const revalidate = 10
+
 const OrderedPage = () => {
     const {user, profile, loading} = useUserContext()
 

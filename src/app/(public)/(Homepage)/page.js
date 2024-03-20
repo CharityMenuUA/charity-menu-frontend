@@ -10,6 +10,8 @@ import HomeFaq from "@/app/(public)/(Homepage)/HomeFaq"
 import HomeAttachments from "@/app/(public)/(Homepage)/HomeAttachments"
 import HomeBecomeAuthorButton from "@/app/(public)/(Homepage)/HomeBecomeAuthorButton"
 
+export const revalidate = 10;
+
 const HomePage = async () => {
     const [chefsSortBy, chefsDirection] = chefsSortValues[0].value.split('-')
     const {chefs} = await getChef({pageSize: 10, sortBy: chefsSortBy, direction: chefsDirection})

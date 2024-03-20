@@ -1,6 +1,6 @@
 "use client"
 import style from './randomMenuItem.module.scss'
-import {useState} from "react"
+import {useEffect, useState} from "react"
 import {getRandom} from "@/app/components/random-menu-item/actions"
 import Image from "next/image"
 import {SwitchTransition, CSSTransition} from "react-transition-group"
@@ -14,6 +14,13 @@ const RandomMenuItem = () => {
         menuItem: undefined,
         chef: undefined
     })
+
+    const [isClient, setIsClient] = useState(false)
+
+    useEffect(() => {
+        setIsClient(true)
+    }, [])
+
     const onClickGetRandom = async () => {
         setItem({
             animate: true,
@@ -36,49 +43,51 @@ const RandomMenuItem = () => {
             <h2>Любиш рандом?</h2>
             <div className={style.contentWrap}>
                 <div className={style.content}>
-                    <SwitchTransition mode="out-in">
-                        <CSSTransition timeout={100} key={item?.menuItem?.id || item.animate} classNames={{
-                            enter: style.enter,
-                            exit: style.exit,
-                        }}>
-                            {item?.menuItem ? (
-                                <Link
-                                    href={`${pages.authors.href}/${item?.chef?.id}/${item?.menuItem?.id}`}
-                                    className={style.menuItem}
-                                >
-                                    <div className={style.photo}>
-                                        <Image
-                                            alt={item?.chef?.name}
-                                            src={item?.chef?.photo}
-                                            fill
-                                            sizes="170px"
-                                            quality={100}
-                                            style={{
-                                                objectFit: 'cover',
-                                            }}
-                                        />
+                    {isClient && (
+                        <SwitchTransition mode="out-in">
+                            <CSSTransition timeout={100} key={item?.menuItem?.id || item.animate} classNames={{
+                                enter: style.enter,
+                                exit: style.exit,
+                            }}>
+                                {item?.menuItem ? (
+                                    <Link
+                                        href={`${pages.authors.href}/${item?.chef?.id}/${item?.menuItem?.id}`}
+                                        className={style.menuItem}
+                                    >
+                                        <div className={style.photo}>
+                                            <Image
+                                                alt={item?.chef?.name}
+                                                src={item?.chef?.photo}
+                                                fill
+                                                sizes="170px"
+                                                quality={100}
+                                                style={{
+                                                    objectFit: 'cover',
+                                                }}
+                                            />
+                                        </div>
+                                        <div className={style.name}>
+                                            {item?.chef?.name}
+                                        </div>
+                                        <div className={style.title}>
+                                            {item?.menuItem?.title}
+                                        </div>
+                                        <div className={style.price}>
+                                            ₴{item?.menuItem?.price}
+                                        </div>
+                                    </Link>
+                                ) : item.animate ? (
+                                    <div className={style.firstScreen}>
+                                        <Loader/>
                                     </div>
-                                    <div className={style.name}>
-                                        {item?.chef?.name}
+                                ) : (
+                                    <div className={style.firstScreen}>
+                                        ?
                                     </div>
-                                    <div className={style.title}>
-                                        {item?.menuItem?.title}
-                                    </div>
-                                    <div className={style.price}>
-                                        ₴{item?.menuItem?.price}
-                                    </div>
-                                </Link>
-                            ) : item.animate ? (
-                                <div className={style.firstScreen}>
-                                    <Loader/>
-                                </div>
-                            ) : (
-                                <div className={style.firstScreen}>
-                                    ?
-                                </div>
-                            )}
-                        </CSSTransition>
-                    </SwitchTransition>
+                                )}
+                            </CSSTransition>
+                        </SwitchTransition>
+                    )}
                 </div>
                 <button className={style.button} disabled={item.animate} onClick={onClickGetRandom}>
                     {item.animate ? (

@@ -5,9 +5,6 @@ const nextConfig = {
     sassOptions: {
         prependData: `@import "@/app/styles/mixins";`
     },
-    experimental: {
-        serverActions: true,
-    },
     output: 'standalone',
     env: {
         BACKEND_API: process.env.BACKEND_API,
