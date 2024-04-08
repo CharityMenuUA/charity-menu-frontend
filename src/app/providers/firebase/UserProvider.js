@@ -37,7 +37,7 @@ const UserProvider = ({children}) => {
             setUser(null)
             setLoading(false)
         }
-    }, [])
+    }, [auth.currentUser])
 
     useEffect(() => {
         if (auth?.currentUser) {
