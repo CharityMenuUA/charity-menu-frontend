@@ -3,7 +3,7 @@
 import {useEffect} from 'react'
 import style from "@/app/styles/not-found.module.scss"
 
-export default function GlobalError({error, reset = () => location.reload()}) {
+export default function GlobalError({error}) {
     useEffect(() => {
         console.error(error)
     }, [error])
@@ -15,7 +15,7 @@ export default function GlobalError({error, reset = () => location.reload()}) {
             <div className={style.text}>
                 Щось пішло не так.
             </div>
-            <button onClick={() => reset()} className={style.link}>
+            <button onClick={() => location.reload()} className={style.link}>
                 Оновити сторінку
             </button>
         </div>

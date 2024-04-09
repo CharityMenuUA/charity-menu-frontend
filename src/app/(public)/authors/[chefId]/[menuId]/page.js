@@ -11,6 +11,7 @@ import {getChef, getMenuItem, getPopularMenuItem} from "@/app/components/actions
 import pages from "@/app/components/breadcrumbs/routing"
 import {notFound} from "next/navigation"
 import StepsSliderMin from "@/app/components/steps-slider/StepsSliderMin"
+import AttachmentsSlider from "@/app/(public)/authors/[chefId]/AttachmentsSlider"
 
 export const revalidate = 0
 
@@ -45,9 +46,8 @@ const MenuIdPage = async (props) => {
     if (!chef.id) return notFound()
     if (menu?.chefId !== chef.id) return notFound()
     const {menuItems} = await getPopularMenuItem()
-
-    const {title, active, available, availablePerDay, availableTotal} = menu
-
+    const {title, active, available, availablePerDay, availableTotal, attachments} = menu
+    console.log(attachments)
     return (
         <div>
             <div itemScope itemType="https://schema.org/Order https://schema.org/Product">
@@ -141,6 +141,11 @@ const MenuIdPage = async (props) => {
                     Інші пропозиції автора
                 </Link>
             </section>
+            {attachments && (
+                <section className={style.attachments}>
+                    <AttachmentsSlider attachments={attachments}/>
+                </section>
+            )}
             <section className={style.slider}>
                 <StepsSliderMin/>
             </section>
