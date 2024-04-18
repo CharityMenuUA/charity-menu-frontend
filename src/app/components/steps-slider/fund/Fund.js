@@ -17,9 +17,7 @@ const Fund = ({fund}) => {
                         }}
                     />
                 </div>
-                <div className={style.fund_info}>
-                    {fund?.title}
-                </div>
+                <div className={style.fund_info} dangerouslySetInnerHTML={{__html: fund?.title}}/>
             </div>
         </a>
     )
