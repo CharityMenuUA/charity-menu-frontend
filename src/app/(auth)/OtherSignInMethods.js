@@ -3,19 +3,31 @@
 import style from "@/app/(auth)/auth.module.scss"
 import {auth} from "@/app/providers/firebase/app"
 import firebase from "firebase/app"
+import {useEffect} from "react"
 
 const OtherSignInMethods = ({callback, setError}) => {
-    const signInWithGoogle = () => {
+    const signInWithGoogle = async () => {
         const provider = new firebase.auth.GoogleAuthProvider()
-        auth.signInWithPopup(provider)
-            .then((result) => {
-                if (typeof callback === "function") callback(result.credential)
-            }).catch((err) => {
-            console.error({...err})
-            setError(err)
-        })
+        await auth.signInWithRedirect(provider)
     }
 
+    useEffect(() => {
+        auth.getRedirectResult().then(async (userCred) => {
+            console.log(userCred)
+            // if (typeof callback === "function") callback(result.credential)
+        })
+    }, [])
+
+    // const signInWithGoogle = () => {
+    //     const provider = new firebase.auth.GoogleAuthProvider()
+    //     auth.signInWithPopup(provider)
+    //         .then((result) => {
+    //             if (typeof callback === "function") callback(result.credential)
+    //         }).catch((err) => {
+    //         console.error({...err})
+    //         setError(err)
+    //     })
+    // }
     // const signInWithFacebook = () => {
     //     const provider = new firebase.auth.FacebookAuthProvider()
     //     auth.signInWithPopup(provider)
@@ -37,6 +49,7 @@ const OtherSignInMethods = ({callback, setError}) => {
             setError(err)
         })
     }
+
     return (
         <div className={style.buttons}>
             <button type={'button'} className={style.button} onClick={signInWithTwitter}>
