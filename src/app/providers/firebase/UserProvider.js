@@ -35,6 +35,7 @@ const UserProvider = ({children}) => {
             })
         } else {
             setUser(null)
+            setProfile(null)
             setLoading(false)
         }
     }, [auth.currentUser])
