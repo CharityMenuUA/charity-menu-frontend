@@ -11,13 +11,6 @@ const OtherSignInMethods = ({callback, setError}) => {
         await auth.signInWithRedirect(provider)
     }
 
-    useEffect(() => {
-        auth.getRedirectResult().then(async (userCred) => {
-            console.log(userCred)
-            // if (typeof callback === "function") callback(result.credential)
-        })
-    }, [])
-
     // const signInWithGoogle = () => {
     //     const provider = new firebase.auth.GoogleAuthProvider()
     //     auth.signInWithPopup(provider)
