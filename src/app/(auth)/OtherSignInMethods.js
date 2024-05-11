@@ -16,9 +16,10 @@ const OtherSignInMethods = ({callback, setError}) => {
         const ua = navigator.userAgent || navigator.vendor || window.opera
         const isInstagram = (ua.indexOf('Instagram') > -1) ? true : false
 
-        alert('Ви використовуєте браузер інстаграму. Нажаль цей браузер не підтримується. Перейдіть до браузеру телефона, або зайдіть через логін та пароль.')
 
         if (isInstagram) {
+            alert('Ви використовуєте браузер інстаграму. Нажаль цей браузер не підтримується. Перейдіть до браузеру телефона, або зайдіть через логін та пароль.')
+
             auth.signInWithRedirect(provider)
                 .catch((err) => {
                     console.error({...err})
