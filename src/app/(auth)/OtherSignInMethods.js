@@ -15,6 +15,9 @@ const OtherSignInMethods = ({callback, setError}) => {
 
         const ua = navigator.userAgent || navigator.vendor || window.opera
         const isInstagram = (ua.indexOf('Instagram') > -1) ? true : false
+
+        alert('Ви використовуєте браузер інстаграму. Нажаль цей браузер не підтримується. Перейдіть до браузеру телефона, або зайдіть через логін та пароль.')
+
         if (isInstagram) {
             auth.signInWithRedirect(provider)
                 .catch((err) => {
@@ -22,7 +25,7 @@ const OtherSignInMethods = ({callback, setError}) => {
                     setError(err)
                 })
         } else {
-            provider.setCustomParameters({prompt: 'select_account'});
+            provider.setCustomParameters({prompt: 'select_account'})
             auth.signInWithPopup(provider)
                 .then((result) => {
                     if (typeof callback === "function") callback(result.credential)
