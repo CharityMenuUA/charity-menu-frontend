@@ -3,17 +3,39 @@
 import style from "@/app/(auth)/auth.module.scss"
 import {auth} from "@/app/providers/firebase/app"
 import firebase from "firebase/app"
+import {useEffect} from "react"
 
 const OtherSignInMethods = ({callback, setError}) => {
+    // const signInWithGoogle = async () => {
+    //     const provider = new firebase.auth.GoogleAuthProvider()
+    // }
+
     const signInWithGoogle = () => {
         const provider = new firebase.auth.GoogleAuthProvider()
-        auth.signInWithPopup(provider)
-            .then((result) => {
-                if (typeof callback === "function") callback(result.credential)
-            }).catch((err) => {
-            console.error({...err})
-            setError(err)
-        })
+
+        const ua = navigator.userAgent || navigator.vendor || window.opera
+        const isInstagram = (ua.indexOf('Instagram') > -1) ? true : false
+
+
+        if (isInstagram) {
+            alert('Ви використовуєте вбудований браузер Instagram, який, на жаль, не підтримує вхід/реєстрацію через Google. Перейдіть до звичайного браузеру або спробуйте інший доступний на сайті спосіб.')
+
+            // auth.signInWithRedirect(provider)
+            //     .catch((err) => {
+            //         console.error({...err})
+            //         setError(err)
+            //     })
+        } else {
+            provider.setCustomParameters({prompt: 'select_account'})
+            auth.signInWithPopup(provider)
+                .then((result) => {
+                    if (typeof callback === "function") callback(result.credential)
+                })
+                .catch((err) => {
+                    console.error({...err})
+                    setError(err)
+                })
+        }
     }
 
     // const signInWithFacebook = () => {
@@ -37,6 +59,7 @@ const OtherSignInMethods = ({callback, setError}) => {
             setError(err)
         })
     }
+
     return (
         <div className={style.buttons}>
             <button type={'button'} className={style.button} onClick={signInWithTwitter}>

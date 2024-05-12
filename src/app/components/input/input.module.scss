@@ -421,13 +421,19 @@
     overflow: hidden;
     flex: 0 0 auto;
   }
+}
 
-  .delete {
-    @extend %button;
-    width: 100%;
-    @include respond-to(t) {
-      height: 60px;
-      font-size: 16px;
-    }
+.delete {
+  @extend %button;
+  width: 100%;
+  @include respond-to(t) {
+    height: 60px;
+    font-size: 16px;
   }
+}
+
+.cropper {
+  border-radius: 30px;
+  overflow: hidden;
+  margin-bottom: 20px;
 }
