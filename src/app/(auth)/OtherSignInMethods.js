@@ -18,13 +18,13 @@ const OtherSignInMethods = ({callback, setError}) => {
 
 
         if (isInstagram) {
-            alert('Ви використовуєте браузер інстаграму. Нажаль цей браузер не підтримується. Перейдіть до браузеру телефона, або зайдіть через логін та пароль.')
+            alert('Ви використовуєте вбудований браузер Instagram, який, на жаль, не підтримує вхід/реєстрацію через Google. Перейдіть до звичайного браузеру або спробуйте інший доступний на сайті спосіб.')
 
-            auth.signInWithRedirect(provider)
-                .catch((err) => {
-                    console.error({...err})
-                    setError(err)
-                })
+            // auth.signInWithRedirect(provider)
+            //     .catch((err) => {
+            //         console.error({...err})
+            //         setError(err)
+            //     })
         } else {
             provider.setCustomParameters({prompt: 'select_account'})
             auth.signInWithPopup(provider)
