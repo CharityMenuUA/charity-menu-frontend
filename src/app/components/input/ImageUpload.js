@@ -4,9 +4,9 @@ import PropTypes from "prop-types"
 import Image from "next/image"
 import {RiUpload2Line} from "react-icons/ri"
 import style from "@/app/components/input/input.module.scss"
-import Cropper, {ReactCropperElement} from "react-cropper"
+import Cropper from "react-cropper"
 import "cropperjs/dist/cropper.css"
-import {createRef, useEffect, useState} from "react"
+import {createRef, useState} from "react"
 
 function DataURIToBlob(dataURI) {
     const splitDataURI = dataURI.split(',')
@@ -83,7 +83,8 @@ const ImageUpload = (props) => {
                                 <p>{description}</p>
                             </div>
                             <RiUpload2Line/>
-                            <input {...register(name, {onChange})} name={name} type="file" accept="image/png, image/jpeg" hidden/>
+                            <input {...register(name, {onChange})} name={name} type="file"
+                                   accept="image/png, image/jpeg" hidden/>
                         </label>
                     )}
                 </div>
