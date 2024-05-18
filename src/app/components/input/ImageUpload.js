@@ -6,7 +6,7 @@ import {RiUpload2Line} from "react-icons/ri"
 import style from "@/app/components/input/input.module.scss"
 import Cropper, {ReactCropperElement} from "react-cropper"
 import "cropperjs/dist/cropper.css"
-import {createRef, useState} from "react"
+import {createRef, useEffect, useState} from "react"
 
 function DataURIToBlob(dataURI) {
     const splitDataURI = dataURI.split(',')
@@ -41,7 +41,7 @@ const ImageUpload = (props) => {
     }
     const getCropData = () => {
         if (typeof cropperRef.current?.cropper !== "undefined") {
-            const file = cropperRef.current?.cropper.getCroppedCanvas({maxWidth: 500, maxHeight: 500}).toDataURL()
+            const file = cropperRef.current?.cropper.getCroppedCanvas().toDataURL()
             const formData = new FormData()
             formData.append("file", DataURIToBlob(file))
             if (typeof onSubmit === "function") onSubmit(formData)
