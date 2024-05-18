@@ -4,7 +4,7 @@ import PropTypes from "prop-types"
 import Image from "next/image"
 import {RiUpload2Line} from "react-icons/ri"
 import style from "@/app/components/input/input.module.scss"
-import Cropper, {ReactCropperElement} from "react-cropper"
+import Cropper from "react-cropper"
 import "cropperjs/dist/cropper.css"
 import {createRef, useState} from "react"
 
@@ -41,7 +41,7 @@ const ImageUpload = (props) => {
     }
     const getCropData = () => {
         if (typeof cropperRef.current?.cropper !== "undefined") {
-            const file = cropperRef.current?.cropper.getCroppedCanvas({maxWidth: 500, maxHeight: 500}).toDataURL()
+            const file = cropperRef.current?.cropper.getCroppedCanvas().toDataURL()
             const formData = new FormData()
             formData.append("file", DataURIToBlob(file))
             if (typeof onSubmit === "function") onSubmit(formData)
@@ -83,7 +83,8 @@ const ImageUpload = (props) => {
                                 <p>{description}</p>
                             </div>
                             <RiUpload2Line/>
-                            <input {...register(name, {onChange})} name={name} type="file" accept="image/png, image/jpeg" hidden/>
+                            <input {...register(name, {onChange})} name={name} type="file"
+                                   accept="image/png, image/jpeg" hidden/>
                         </label>
                     )}
                 </div>
