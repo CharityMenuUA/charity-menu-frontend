@@ -15,7 +15,7 @@ const MenuProfileItem = (props) => {
     const [isOpen, setIsOpen] = useState(false)
 
     const onChangeActivate = async () => {
-        if (menuItem.active) {
+        if (menuItem.state === "ACTIVE") {
             updateMenuClose(user.accessToken, menuItem.id).then(() => {
                 update()
             })
