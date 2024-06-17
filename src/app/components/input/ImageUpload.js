@@ -42,7 +42,10 @@ const ImageUpload = (props) => {
     }
     const getCropData = async () => {
         if (typeof cropperRef.current?.cropper !== "undefined") {
-            const file = cropperRef.current?.cropper.getCroppedCanvas().toDataURL('image/jpeg')
+            const file = cropperRef.current?.cropper.getCroppedCanvas({
+                maxWidth: 1024 * 4,
+                maxHeight: 1024 * 4,
+            }).toDataURL('image/jpeg')
 
             const options = {
                 maxSizeMB: 10,
