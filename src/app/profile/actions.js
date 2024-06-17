@@ -22,15 +22,6 @@ export const updateProfile = async (accessToken, data) => {
     }).catch((err) => console.error(err))
 }
 
-export const setPhoto = async (accessToken, data) => {
-    return fetch(`${process.env.BACKEND_API}/profile/photo`, {
-        method: 'POST',
-        body: data,
-        headers: {
-            "Authorization": `Bearer ${accessToken}`,
-        }
-    }).then(data => data.json()).catch(console.error)
-}
 
 export const getProfile = async (accessToken) => {
     return get(`/profile`, {

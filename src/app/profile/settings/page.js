@@ -5,7 +5,7 @@ import Input from "@/app/components/input/Input"
 import style from "@/app/(auth)/auth.module.scss"
 import stylePopup from "@/app/components/by-popup/style.module.scss"
 import {useUserContext} from "@/app/providers/firebase/UserProvider"
-import {setChef, setPhoto, updateProfile} from "@/app/profile/actions"
+import {setChef, updateProfile} from "@/app/profile/actions"
 import {useEffect, useState} from "react"
 import Loader from "@/app/components/loader/Loader"
 import ImageUpload from "@/app/components/input/ImageUpload"
@@ -46,6 +46,17 @@ const SettingsPage = () => {
             setSuccess(true)
             await updateUser()
         }).catch(console.error)
+    }
+
+
+    const setPhoto = async (accessToken, data) => {
+        return fetch(`${process.env.BACKEND_API}/profile/photo`, {
+            method: 'POST',
+            body: data,
+            headers: {
+                "Authorization": `Bearer ${accessToken}`,
+            }
+        }).then(data => data.json()).catch(console.error)
     }
 
     const onSubmitPhoto = async (data) => {
