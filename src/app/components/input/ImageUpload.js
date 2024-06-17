@@ -7,6 +7,7 @@ import style from "@/app/components/input/input.module.scss"
 import Cropper from "react-cropper"
 import "cropperjs/dist/cropper.css"
 import {createRef, useState} from "react"
+import imageCompression from "browser-image-compression"
 
 function DataURIToBlob(dataURI) {
     const splitDataURI = dataURI.split(',')
@@ -39,13 +40,24 @@ const ImageUpload = (props) => {
         }
         reader.readAsDataURL(files[0])
     }
-    const getCropData = () => {
+    const getCropData = async () => {
         if (typeof cropperRef.current?.cropper !== "undefined") {
-            const file = cropperRef.current?.cropper.getCroppedCanvas().toDataURL()
-            const formData = new FormData()
-            formData.append("file", DataURIToBlob(file))
-            if (typeof onSubmit === "function") onSubmit(formData)
-            setCropImage('')
+            const file = cropperRef.current?.cropper.getCroppedCanvas().toDataURL('image/jpeg')
+
+            const options = {
+                maxSizeMB: 10,
+            }
+            try {
+                const compressedFile = await imageCompression(DataURIToBlob(file), options)
+
+                const formData = new FormData()
+                formData.append("file", compressedFile)
+                if (typeof onSubmit === "function") onSubmit(formData)
+                setCropImage('')
+
+            } catch (error) {
+                console.log(error)
+            }
         }
     }
 
@@ -59,6 +71,7 @@ const ImageUpload = (props) => {
                         style={{height: 300, width: "100%"}}
                         src={cropImage}
                         className={style.cropper}
+                        viewMode={1}
                     />
 
                     <button className={styles.delete} onClick={getCropData}>
@@ -70,7 +83,7 @@ const ImageUpload = (props) => {
                     {image ? (
                         <div className={styles.labelWrap}>
                             <div className={styles.img}>
-                                <Image src={`${image}?${Date.now()}`} fill alt={"Profile"} style={{
+                                <Image src={image} fill alt={"Profile"} style={{
                                     objectFit: 'cover',
                                 }}/>
                             </div>

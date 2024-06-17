@@ -117,7 +117,6 @@ const HeaderMenu = (props) => {
                             </a>
                         )}
                     </div>
-
                 </div>
 
             </div>
