@@ -1,6 +1,6 @@
 'use client'
-
-import {usePathname, useRouter, useSearchParams} from "next/navigation"
+import { sendGAEvent } from '@next/third-parties/google'
+import {usePathname, useRouter} from "next/navigation"
 import Popup from "@/app/components/popup/Popup"
 import ReactPortal from "@/app/components/portal/ReactPortal"
 import {useEffect, useState} from "react"
@@ -15,7 +15,10 @@ const SuccessProvider = ({children}) => {
     useEffect(() => {
         const search = new URLSearchParams(window.location.search)
         const success = search.get("success")
-        if (success) setIsOpen(true)
+        if (success) {
+            sendGAEvent('event', 'manual_event_PURCHASE')
+            setIsOpen(true)
+        }
     }, [])
 
     const onClose = () => {
