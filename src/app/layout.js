@@ -67,5 +67,4 @@ const RootLayout = async (props) => {
     )
 }
 
-
 export default RootLayout
