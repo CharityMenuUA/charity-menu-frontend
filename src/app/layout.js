@@ -44,6 +44,7 @@ const RootLayout = async (props) => {
         <html lang="uk">
         <body className={`${unbounded.variable} ${openSans.variable}`}>
         <GoogleAnalytics gaId="G-5V9YXQJLCN"/>
+        <GoogleAnalytics gaId="AW-16834446632"/>
         <GoogleConsent/>
         <ErrorBoundary>
             <ConfigProvider config={config}>
