@@ -8,8 +8,9 @@ import {get} from "@/helpers/dataProvider"
 import Breadcrumbs from "@/app/components/breadcrumbs/Breadcrumbs"
 import SuccessProvider from "@/app/providers/success/SuccessProvider"
 import ErrorBoundary from "@/app/components/error/ErrorBoundary"
-import Script from "next/script"
+import {GoogleAnalytics} from "@next/third-parties/google";
 import SaveStateProvider from "@/app/providers/save-state/SaveStateItemsProvider"
+import GoogleConsent from "@/app/components/GoogleConsent/GoogleConsent"
 
 const unbounded = Unbounded({subsets: ['cyrillic', 'latin'], variable: '--font-unbounded'})
 const openSans = Open_Sans({subsets: ['cyrillic', 'latin'], variable: '--font-open-sans'})
@@ -42,25 +43,8 @@ const RootLayout = async (props) => {
     return (
         <html lang="uk">
         <body className={`${unbounded.variable} ${openSans.variable}`}>
-        <Script strategy="beforeInteractive" async src="https://www.googletagmanager.com/gtag/js?id=G-5V9YXQJLCN"/>
-        <Script strategy="beforeInteractive" id={"google-analytics"}>{`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-
-            gtag('config', 'G-5V9YXQJLCN');
-        `}</Script>
-        <Script strategy="beforeInteractive" id={"google-tag"}>{`(function(w,d,s,l,i){w[l] = w[l] || [];w[l].push({'gtm.start':
-            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer','GTM-P44NS976');`}</Script>
-        <noscript>
-            <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P44NS976"
-                    height="0" width="0" style={{display: "none", visibility: "hidden"}}>
-
-            </iframe>
-        </noscript>
+        <GoogleAnalytics gaId="G-5V9YXQJLCN"/>
+        <GoogleConsent/>
         <ErrorBoundary>
             <ConfigProvider config={config}>
                 <UserProvider>

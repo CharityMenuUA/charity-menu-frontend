@@ -16,7 +16,7 @@ const SuccessProvider = ({children}) => {
         const search = new URLSearchParams(window.location.search)
         const success = search.get("success")
         if (success) {
-            sendGAEvent('event', 'manual_event_PURCHASE')
+            window.gtag('event', 'manual_event_PURCHASE');
             setIsOpen(true)
         }
     }, [])
