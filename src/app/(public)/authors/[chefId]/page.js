@@ -9,7 +9,7 @@ import {pluralize} from "@/app/components/helpers/pluralLots"
 import pages from "@/app/components/breadcrumbs/routing"
 import Fund from "@/app/components/steps-slider/fund/Fund"
 import AttachmentsSlider from "@/app/(public)/authors/[chefId]/AttachmentsSlider"
-import StepsSliderMin from "@/app/components/steps-slider/StepsSliderMin"
+import StepsSliderMin from "@/app/components/steps-slider/StepsSliderMinDeferred"
 
 export const revalidate = 300
 

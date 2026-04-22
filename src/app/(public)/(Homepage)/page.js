@@ -5,9 +5,9 @@ import RandomMenuItem from "@/app/components/random-menu-item/RandomMenuItem"
 import {getPopularMenuItem} from "@/app/components/actions"
 import {chefsSortValues} from "@/app/(public)/authors/(chefs-and-menu)/sortValues"
 import {getChef} from "@/app/(public)/authors/(chefs-and-menu)/actions"
-import StepsSlider from "@/app/components/steps-slider/StepsSlider"
+import StepsSlider from "@/app/components/steps-slider/StepsSliderDeferred"
 import HomeFaq from "@/app/(public)/(Homepage)/HomeFaq"
-import HomeAttachments from "@/app/(public)/(Homepage)/HomeAttachments"
+import HomeAttachments from "@/app/(public)/(Homepage)/HomeAttachmentsDeferred"
 import HomeBecomeAuthorButton from "@/app/(public)/(Homepage)/HomeBecomeAuthorButton"
 
 export const revalidate = 300
