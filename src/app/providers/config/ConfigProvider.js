@@ -27,8 +27,9 @@ const ConfigProvider = (props) => {
         }
         return fields
     }, [config])
+    const value = useMemo(() => ({config, fields}), [config, fields])
     return (
-        <ConfigContext.Provider value={{config, fields}}>
+        <ConfigContext.Provider value={value}>
             {children}
         </ConfigContext.Provider>
     )

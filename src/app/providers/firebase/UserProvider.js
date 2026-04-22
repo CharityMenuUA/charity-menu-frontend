@@ -1,6 +1,6 @@
 'use client'
 
-import {createContext, useCallback, useContext, useEffect, useState} from 'react'
+import {createContext, startTransition, useCallback, useContext, useEffect, useMemo, useState} from 'react'
 import {onAuthStateChanged} from "firebase/auth"
 import {auth} from '@/app/providers/firebase/app'
 import {getProfile} from "@/app/profile/actions"
@@ -23,6 +23,9 @@ const UserProvider = ({children}) => {
     // forceRefresh=true bypasses the Firebase token cache; only pass it when the
     // caller knows the token payload changed (e.g. after a profile update that
     // changes custom claims). Default path reuses the cached token.
+    // Auth-state updates are wrapped in startTransition so React treats them
+    // as non-urgent — user input (taps, scroll) stays responsive while the
+    // provider tree re-renders for a login/logout/token refresh.
     const updateUser = useCallback(async (forceRefresh = false) => {
         if (forceRefresh && auth.currentUser) {
             await auth.currentUser.reload()
@@ -31,14 +34,18 @@ const UserProvider = ({children}) => {
             try {
                 const accessToken = await auth.currentUser.getIdToken(forceRefresh === true)
                 const profile = await getProfile(accessToken).catch(console.error)
-                if (profile?.email) setProfile(profile)
-                setUser({...auth.currentUser, accessToken})
+                startTransition(() => {
+                    if (profile?.email) setProfile(profile)
+                    setUser({...auth.currentUser, accessToken})
+                })
             } finally {
                 setLoading(false)
             }
         } else {
-            setUser(null)
-            setProfile(null)
+            startTransition(() => {
+                setUser(null)
+                setProfile(null)
+            })
             setLoading(false)
         }
     }, [])
@@ -46,7 +53,9 @@ const UserProvider = ({children}) => {
     useEffect(() => {
         if (auth?.currentUser) {
             auth.currentUser.getIdToken().then((accessToken) => {
-                setUser({...auth.currentUser, accessToken})
+                startTransition(() => {
+                    setUser({...auth.currentUser, accessToken})
+                })
             })
         }
     }, [pathname])
@@ -76,7 +85,10 @@ const UserProvider = ({children}) => {
         }
     }, [updateUser])
 
-    const value = {loading, user, profile, updateUser}
+    const value = useMemo(
+        () => ({loading, user, profile, updateUser}),
+        [loading, user, profile, updateUser],
+    )
 
     return (
         <UserContext.Provider value={value}>

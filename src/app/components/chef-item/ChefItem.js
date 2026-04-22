@@ -11,18 +11,29 @@ import pages from "@/app/components/breadcrumbs/routing"
 const ChefItem = (props) => {
     const {id, photo, menuItemsNumber, name} = props
 
+    // Fits long words into the card by shrinking font-size. Previous version
+    // iterated with up to 16 layout reads/writes per word — with ~10 chefs on
+    // the homepage that was hundreds of forced layouts during hydration and
+    // drove mobile INP into the "Poor" bucket. Now: single read, proportional
+    // math, and deferred to after first paint via rAF so input response isn't
+    // blocked.
     const Span = ({children}) => {
         const ref = useRef()
 
         useEffect(() => {
-            const minText = (FS = 21) => {
-                if (FS < 5) return
-                if (ref.current.clientWidth > ref.current.parentElement.clientWidth) {
-                    ref.current.style.fontSize = `${FS - 1}px`
-                    minText(FS - 1)
+            const raf = requestAnimationFrame(() => {
+                const el = ref.current
+                const parent = el?.parentElement
+                if (!el || !parent) return
+                const needed = el.clientWidth
+                const available = parent.clientWidth
+                if (needed > available) {
+                    const ratio = available / needed
+                    const newSize = Math.max(5, Math.floor(21 * ratio))
+                    el.style.fontSize = `${newSize}px`
                 }
-            }
-            minText()
+            })
+            return () => cancelAnimationFrame(raf)
         }, [])
         return (
             <span ref={ref}>
