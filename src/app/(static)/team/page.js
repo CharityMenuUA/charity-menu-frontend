@@ -1,6 +1,6 @@
 import TeamPage from "@/app/(static)/team/client-page"
 
-export const revalidate = 0;
+export const revalidate = 3600
 
 const meta = {
     title: 'Команда - люди, які створили цей сайт',

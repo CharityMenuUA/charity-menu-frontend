@@ -2,7 +2,7 @@ import Chefs from "./Chefs"
 import {getChef} from "@/app/(public)/authors/(chefs-and-menu)/actions"
 import {chefsSortValues} from "@/app/(public)/authors/(chefs-and-menu)/sortValues"
 
-export const revalidate = 0
+export const revalidate = 300
 
 const meta = {
     title: 'Всі автори - Ваші спільники у справі підтримки ЗСУ',

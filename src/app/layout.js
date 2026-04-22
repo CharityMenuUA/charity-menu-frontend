@@ -15,8 +15,6 @@ import GoogleConsent from "@/app/components/GoogleConsent/GoogleConsent"
 const unbounded = Unbounded({subsets: ['cyrillic', 'latin'], variable: '--font-unbounded'})
 const openSans = Open_Sans({subsets: ['cyrillic', 'latin'], variable: '--font-open-sans'})
 
-export const revalidate = 0;
-
 const meta = {
     title: "Донат меню - платформа донатів на ЗСУ",
     description: 'Платформа, на якій ти зможеш отримати приємні емоції, а Україна реальну допомогу.',

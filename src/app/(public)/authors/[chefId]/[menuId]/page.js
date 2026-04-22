@@ -13,7 +13,7 @@ import {notFound} from "next/navigation"
 import StepsSliderMin from "@/app/components/steps-slider/StepsSliderMin"
 import AttachmentsSlider from "@/app/(public)/authors/[chefId]/AttachmentsSlider"
 
-export const revalidate = 0
+export const revalidate = 300
 
 export const generateMetadata = async (props) => {
     const {params: {menuId, chefId}} = props

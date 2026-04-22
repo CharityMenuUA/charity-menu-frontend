@@ -10,7 +10,6 @@ import {useState} from "react"
 import pages from "@/app/components/breadcrumbs/routing"
 import {firebaseAuthErrorToFormError} from "@/app/(auth)/firebaseErrors"
 
-export const revalidate = 0
 
 const ForgotPasswordPage = () => {
     const {handleSubmit, register, formState: {errors}, setError} = useForm()

@@ -8,6 +8,7 @@ import SearchInput from "@/app/components/input/SearchInput"
 import SelectSort from "@/app/components/input/SelectSort"
 import {chefsSortValues} from "@/app/(public)/authors/(chefs-and-menu)/sortValues"
 import {useAuthorsContext} from "@/app/providers/save-state/SaveStateItemsProvider"
+import useDebouncedCallback from "@/app/components/helpers/useDebouncedCallback"
 
 
 const Chefs = (props) => {
@@ -41,20 +42,22 @@ const Chefs = (props) => {
     }
 
 
-    const changeFilterSort = (sort, search) => {
+    const fetchWithFilter = useDebouncedCallback((sort, search) => {
         const [sortBy, direction] = sort.split('-')
+        getChef({...(search ? {name: search} : {}), sortBy, direction})
+            .then((data) => {
+                if (search === searchRef.current && data?.chefs) {
+                    setAuthors(sort, search, 0, data.chefs, 'updateMenu')
+                }
+                if (data?.totalPages !== undefined) setTotalPages(data.totalPages)
+            })
+            .catch(console.error)
+    }, 300)
+
+    const changeFilterSort = (sort, search) => {
         searchRef.current = search
         setAuthors(sort, search, currentPage, chefItems)
-        if (isClient) {
-            getChef({...(search ? {name: search} : {}), sortBy, direction})
-                .then((data) => {
-                    if (search === searchRef.current && data?.chefs) {
-                        setAuthors(sort, search, 0, data.chefs, 'updateMenu')
-                    }
-                    if (data?.totalPages !== undefined) setTotalPages(data.totalPages)
-                })
-                .catch(console.error)
-        }
+        if (isClient) fetchWithFilter(sort, search)
     }
 
 

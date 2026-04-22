@@ -14,7 +14,6 @@ import pages from "@/app/components/breadcrumbs/routing"
 import Popup from "@/app/components/popup/Popup"
 import Link from "next/link"
 
-export const revalidate = 0
 
 const SettingsPage = () => {
     const {user, profile, updateUser} = useUserContext()
