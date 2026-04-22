@@ -11,6 +11,7 @@ import validate from "@/app/components/input/validate"
 import Loader from "@/app/components/loader/Loader"
 import {useState} from "react"
 import pages from "@/app/components/breadcrumbs/routing"
+import {firebaseAuthErrorToFormError} from "@/app/(auth)/firebaseErrors"
 
 export const revalidate = 0
 
@@ -24,23 +25,8 @@ const LoginPage = () => {
         setLoading(true)
         auth.signInWithEmailAndPassword(email, password).catch((err) => {
             setLoading(false)
-
-            switch (err.code) {
-            case "auth/user-not-found" : {
-                console.error({...err})
-                setError('email', {type: 'user-not-found', message: 'Невірний email'})
-                break
-            }
-            case "auth/wrong-password": {
-                console.error({...err})
-                setError('password', {type: 'auth/wrong-password', message: 'Невірно невірний'})
-                break
-            }
-            default: {
-                console.error({...err})
-                setError('common', {type: err.code, message: err.message || err.code})
-            }
-            }
+            console.error({...err})
+            setError('common', firebaseAuthErrorToFormError(err))
         })
     }
 
@@ -58,10 +44,7 @@ const LoginPage = () => {
                         Вхід за допомогою
                     </div>
                     <OtherSignInMethods
-                        setError={(err) => setError('common', {
-                            type: err.code,
-                            message: err.message || err.code
-                        })}
+                        setError={(err) => setError('common', firebaseAuthErrorToFormError(err))}
                     />
                 </div>
                 <form onSubmit={handleSubmit(onSubmit)} className={style.form}>

@@ -8,6 +8,7 @@ import {auth} from "@/app/providers/firebase/app"
 import Loader from "@/app/components/loader/Loader"
 import {useState} from "react"
 import pages from "@/app/components/breadcrumbs/routing"
+import {firebaseAuthErrorToFormError} from "@/app/(auth)/firebaseErrors"
 
 export const revalidate = 0
 
@@ -26,17 +27,11 @@ const ForgotPasswordPage = () => {
             })
             .catch((err) => {
                 setLoading(false)
-
-                switch (err.code) {
-                case "auth/user-not-found" : {
-                    console.error({...err})
-                    setError('email', {type: 'user-not-found', message: 'Невірний email'})
-                    break
-                }
-                default: {
-                    console.error({...err})
-                    setError('common', {type: err.code, message: err.code})
-                }
+                console.error({...err})
+                if (err.code === "auth/user-not-found") {
+                    setError('email', firebaseAuthErrorToFormError(err))
+                } else {
+                    setError('common', firebaseAuthErrorToFormError(err))
                 }
             })
     }

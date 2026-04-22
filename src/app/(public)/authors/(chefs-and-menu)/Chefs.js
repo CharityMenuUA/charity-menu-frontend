@@ -31,11 +31,13 @@ const Chefs = (props) => {
 
     const getMore = async () => {
         const [sortBy, direction] = sort.split('-')
-        getChef({pageNumber: currentPage + 1, ...(search ? {name: search} : {}), sortBy, direction}).then((data) => {
-            if (data.chefs) {
-                setAuthors(sort, search, currentPage + 1, [...chefItems, ...data.chefs], 'setCurrentPage')
-            }
-        })
+        getChef({pageNumber: currentPage + 1, ...(search ? {name: search} : {}), sortBy, direction})
+            .then((data) => {
+                if (data?.chefs) {
+                    setAuthors(sort, search, currentPage + 1, [...chefItems, ...data.chefs], 'setCurrentPage')
+                }
+            })
+            .catch(console.error)
     }
 
 
@@ -43,12 +45,16 @@ const Chefs = (props) => {
         const [sortBy, direction] = sort.split('-')
         searchRef.current = search
         setAuthors(sort, search, currentPage, chefItems)
-        if (isClient) getChef({...(search ? {name: search} : {}), sortBy, direction}).then((data) => {
-            if (search === searchRef.current) {
-                setAuthors(sort, search, 0, data.chefs, 'updateMenu')
-            }
-            setTotalPages(data.totalPages)
-        })
+        if (isClient) {
+            getChef({...(search ? {name: search} : {}), sortBy, direction})
+                .then((data) => {
+                    if (search === searchRef.current && data?.chefs) {
+                        setAuthors(sort, search, 0, data.chefs, 'updateMenu')
+                    }
+                    if (data?.totalPages !== undefined) setTotalPages(data.totalPages)
+                })
+                .catch(console.error)
+        }
     }
 
 

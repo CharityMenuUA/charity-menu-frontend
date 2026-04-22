@@ -13,6 +13,7 @@ import {useState} from "react"
 import Loader from "@/app/components/loader/Loader"
 import {useConfigContext} from "@/app/providers/config/ConfigProvider"
 import pages from "@/app/components/breadcrumbs/routing"
+import {firebaseAuthErrorToFormError} from "@/app/(auth)/firebaseErrors"
 
 export const revalidate = 0
 
@@ -38,20 +39,13 @@ const RegisterPage = () => {
             })
             .catch((err) => {
                 setLoading(false)
-                switch (err.code) {
-                case "auth/email-already-in-use" : {
-                    setError('email', {type: 'email-already-in-use', message: 'Користувач з цією поштою вже існує'})
-                    break
-                }
-                case "auth/weak-password" : {
-                    setError('password', {type: 'weak-password', message: 'Слабкий пароль'})
-                    break
-                }
-
-                default: {
-                    console.error({...err})
-                    setError('common', {type: err.code, message: err.code})
-                }
+                console.error({...err})
+                if (err.code === "auth/email-already-in-use") {
+                    setError('email', firebaseAuthErrorToFormError(err))
+                } else if (err.code === "auth/weak-password") {
+                    setError('password', firebaseAuthErrorToFormError(err))
+                } else {
+                    setError('common', firebaseAuthErrorToFormError(err))
                 }
             })
     }
@@ -67,10 +61,7 @@ const RegisterPage = () => {
                             Реєстрація за допомогою
                         </div>
                         <OtherSignInMethods
-                            setError={(err) => setError('common', {
-                                type: err.code,
-                                message: err.message || err.code
-                            })}
+                            setError={(err) => setError('common', firebaseAuthErrorToFormError(err))}
                         />
                     </div>
 

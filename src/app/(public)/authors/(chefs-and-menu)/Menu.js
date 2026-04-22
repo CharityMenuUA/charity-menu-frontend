@@ -29,23 +29,29 @@ const Menu = (props) => {
 
     const getMore = async () => {
         const [sortBy, direction] = sort.split('-')
-        getMenu({pageNumber: currentPage + 1, ...(search ? {name: search} : {}), sortBy, direction}).then((data) => {
-            if (data.menuItems) {
-                setMenu(sort, search, currentPage + 1, [...menuItems, ...data.menuItems])
-            }
-        })
+        getMenu({pageNumber: currentPage + 1, ...(search ? {name: search} : {}), sortBy, direction})
+            .then((data) => {
+                if (data?.menuItems) {
+                    setMenu(sort, search, currentPage + 1, [...menuItems, ...data.menuItems])
+                }
+            })
+            .catch(console.error)
     }
 
     const changeFilterSort = (sort, search) => {
         const [sortBy, direction] = sort.split('-')
         searchRef.current = search
         setMenu(sort, search, currentPage, menuItems)
-        if (isClient) getMenu({...(search ? {name: search} : {}), sortBy, direction}).then((data) => {
-            if (search === searchRef.current) {
-                setMenu(sort, search, 0, data.menuItems)
-            }
-            setTotalPages(data.totalPages)
-        })
+        if (isClient) {
+            getMenu({...(search ? {name: search} : {}), sortBy, direction})
+                .then((data) => {
+                    if (search === searchRef.current && data?.menuItems) {
+                        setMenu(sort, search, 0, data.menuItems)
+                    }
+                    if (data?.totalPages !== undefined) setTotalPages(data.totalPages)
+                })
+                .catch(console.error)
+        }
     }
 
 
@@ -79,7 +85,7 @@ const Menu = (props) => {
                 <>
                     <div className={style.menuList} itemScope itemType="https://schema.org/ItemList">
                         {menuItems.map(({menuItem, chef}, key) => (
-                            <MenuItem  position={key + 1} key={key} {...menuItem} chefName={chef.name} chefPhoto={chef.photo}/>
+                            <MenuItem position={key + 1} key={menuItem.id} {...menuItem} chefName={chef.name} chefPhoto={chef.photo}/>
                         ))}
                     </div>
                     {totalPages - 1 > currentPage && (

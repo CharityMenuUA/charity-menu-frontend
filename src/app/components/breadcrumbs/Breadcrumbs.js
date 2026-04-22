@@ -14,8 +14,8 @@ const Breadcrumbs = () => {
     const {chefId, menuId} = params
 
     useEffect(() => {
-        if (chefId) getChef({chefId}).then((e) => setChef(e))
-        if (menuId) getMenuItem({menuId}).then((e) => setMenu(e))
+        if (chefId) getChef({chefId}).then(setChef).catch(console.error)
+        if (menuId) getMenuItem({menuId}).then(setMenu).catch(console.error)
     }, [chefId, menuId])
 
     const pathList = pathname.split('/').filter((path) => path)

@@ -4,6 +4,15 @@ const BACKEND_API = process.env.BACKEND_API
 
 export const dynamic = 'force-dynamic'
 
+export class HttpError extends Error {
+    constructor(response, url) {
+        super(`HTTP ${response.status} ${response.statusText || ''} — ${url}`)
+        this.name = 'HttpError'
+        this.status = response.status
+        this.url = url
+    }
+}
+
 const createUrl = (path, options) => {
     const url = new URL(normalizeUrl(path))
     if (options?.params) {
@@ -13,61 +22,66 @@ const createUrl = (path, options) => {
     }
     return url.toString()
 }
-// get a list of records based on sort, filter, and pagination
+
+// Single fetch entrypoint: checks response.ok, logs with context, and rethrows
+// so callers can react (error.js boundary on the server, .catch on the client).
+// Previously every helper ended in .catch(console.error) which silently returned
+// undefined and crashed destructuring callers.
+const request = async (url, init) => {
+    let response
+    try {
+        response = await fetch(url, init)
+    } catch (err) {
+        console.error(`[dataProvider] network error for ${init?.method || 'GET'} ${url}:`, err)
+        throw err
+    }
+    if (!response.ok) {
+        const err = new HttpError(response, url)
+        console.error(`[dataProvider] ${err.message}`)
+        throw err
+    }
+    return response.json()
+}
+
 export const getList = async (resource, options) => {
     const url = createUrl(`${BACKEND_API}/${resource}`, options)
-
-    return fetch(url, {
-        ...options,
-    }).then(data => data.json()).catch(console.error)
+    return request(url, options)
 }
 
-// get a list of records based on sort, filter, and pagination
 export const get = async (resource, options) => {
     const url = createUrl(`${BACKEND_API}/${resource}`, options)
-
-    return fetch(url, {
-        ...options,
-    }).then(data => data.json()).catch(console.error)
+    return request(url, options)
 }
 
-export const create = async (resource, options) => {
+export const create = async (resource, options = {}) => {
     const url = createUrl(`${BACKEND_API}/${resource}`, options)
-
-    options.headers = {"Content-Type": "application/json", ...options.headers}
-
-    return fetch(url, {
+    return request(url, {
+        ...options,
         method: 'POST',
-        ...options,
-        body: JSON.stringify(options.body),
+        body: options.body !== undefined ? JSON.stringify(options.body) : undefined,
         headers: {
             "Content-Type": "application/json",
             ...options.headers,
-        }
-    }).then(data => data.json()).catch(console.error)
+        },
+    })
 }
 
-export const update = async (resource, options) => {
+export const update = async (resource, options = {}) => {
     const url = createUrl(`${BACKEND_API}/${resource}`, options)
-
-    return fetch(url, {
-        method: 'PUT',
+    return request(url, {
         ...options,
-        body: JSON.stringify(options.body),
+        method: 'PUT',
+        body: options.body !== undefined ? JSON.stringify(options.body) : undefined,
         headers: {
             "Content-Type": "application/json",
             ...options.headers,
-        }
-    }).then(data => data.json()).catch(console.error)
+        },
+    })
 }
 
-// get a single record by id
 export const getOne = async (resource, id, options) => {
     const url = createUrl(`${BACKEND_API}/${resource}/${id}`, options)
-
-    return fetch(url, {
-        ...options,
-    }).then(data => data.json()).catch(console.error)
+    return request(url, options)
 }
 
 const dataProvider = {

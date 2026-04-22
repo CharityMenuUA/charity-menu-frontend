@@ -32,11 +32,13 @@ const ByPopup = (props) => {
     })
 
     useEffect(() => {
-        getMenuItem({menuId}).then((data) => {
-            if (data) {
-                setMenuItem(data)
-            }
-        })
+        getMenuItem({menuId})
+            .then((data) => {
+                if (data) {
+                    setMenuItem(data)
+                }
+            })
+            .catch(console.error)
     }, [menuId])
 
     useEffect(() => {
@@ -62,10 +64,12 @@ const ByPopup = (props) => {
             redirectUrl: `${window.location.origin}${pathname}?${search.toString()}`,
             ...data
         }
-        await createOrder(chefId, menuId, {body}, user?.accessToken).then((data) => {
-            const {paymentUrl} = data
-            if (paymentUrl) window.location.href = paymentUrl
-        })
+        try {
+            const result = await createOrder(chefId, menuId, {body}, user?.accessToken)
+            if (result?.paymentUrl) window.location.href = result.paymentUrl
+        } catch (err) {
+            console.error(err)
+        }
     }
 
     return (
