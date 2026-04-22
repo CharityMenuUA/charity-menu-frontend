@@ -31,6 +31,9 @@ const ByPopup = (props) => {
         shouldUnregister: true,
     })
 
+    const [submitting, setSubmitting] = useState(false)
+    const [submitError, setSubmitError] = useState(null)
+
     useEffect(() => {
         getMenuItem({menuId})
             .then((data) => {
@@ -56,6 +59,7 @@ const ByPopup = (props) => {
 
 
     const onSubmit = async (data) => {
+        if (submitting) return
         const {id: menuId, chefId} = menuItem
         const search = new URLSearchParams(window.location.search)
         search.set("success", "true")
@@ -64,11 +68,20 @@ const ByPopup = (props) => {
             redirectUrl: `${window.location.origin}${pathname}?${search.toString()}`,
             ...data
         }
+        setSubmitting(true)
+        setSubmitError(null)
         try {
             const result = await createOrder(chefId, menuId, {body}, user?.accessToken)
-            if (result?.paymentUrl) window.location.href = result.paymentUrl
+            if (result?.paymentUrl) {
+                window.location.href = result.paymentUrl
+                return
+            }
+            setSubmitError("Не вдалося створити замовлення. Спробуйте ще раз.")
         } catch (err) {
             console.error(err)
+            setSubmitError("Сервіс тимчасово недоступний. Спробуйте ще раз за кілька хвилин.")
+        } finally {
+            setSubmitting(false)
         }
     }
 
@@ -105,8 +118,13 @@ const ByPopup = (props) => {
                         ))
                     )}
                     <Textarea name={'comment'} register={register} errors={errors} label={'КОМЕНТАР ДО ЗАМОВЛЕННЯ'}/>
-                    <button type={"submit"} className={style.submit}>
-                        продовжити
+                    {submitError && (
+                        <div role="alert" style={{color: '#c00', margin: '12px 0', textAlign: 'center'}}>
+                            {submitError}
+                        </div>
+                    )}
+                    <button type={"submit"} className={style.submit} disabled={submitting}>
+                        {submitting ? 'Обробка...' : 'продовжити'}
                     </button>
                 </div>
             </form>
