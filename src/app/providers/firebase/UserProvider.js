@@ -18,27 +18,29 @@ const UserProvider = ({children}) => {
     const [profile, setProfile] = useState(null)
     const [loading, setLoading] = useState(true)
     const pathname = usePathname()
-    const reloadUser = async () => {
-        if (auth.currentUser) {
+
+    // forceRefresh=true bypasses the Firebase token cache; only pass it when the
+    // caller knows the token payload changed (e.g. after a profile update that
+    // changes custom claims). Default path reuses the cached token.
+    const updateUser = useCallback(async (forceRefresh = false) => {
+        if (forceRefresh && auth.currentUser) {
             await auth.currentUser.reload()
         }
-    }
-
-    const updateUser = useCallback(async (reload) => {
-        if (reload) await reloadUser()
         if (auth.currentUser) {
-            await auth.currentUser.getIdToken(true).then(async (accessToken) => {
+            try {
+                const accessToken = await auth.currentUser.getIdToken(forceRefresh === true)
                 const profile = await getProfile(accessToken).catch(console.error)
                 if (profile?.email) setProfile(profile)
                 setUser({...auth.currentUser, accessToken})
+            } finally {
                 setLoading(false)
-            })
+            }
         } else {
             setUser(null)
             setProfile(null)
             setLoading(false)
         }
-    }, [auth.currentUser])
+    }, [])
 
     useEffect(() => {
         if (auth?.currentUser) {
@@ -49,7 +51,9 @@ const UserProvider = ({children}) => {
     }, [pathname])
 
     useEffect(() => {
-        const unsubscribe = auth.onAuthStateChanged(updateUser)
+        // Firebase calls the listener with the User object; drop it so updateUser's
+        // default `forceRefresh=false` is preserved.
+        const unsubscribe = auth.onAuthStateChanged(() => updateUser())
         return () => unsubscribe()
     }, [updateUser])
 

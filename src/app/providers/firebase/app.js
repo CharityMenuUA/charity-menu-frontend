@@ -13,11 +13,13 @@ const firebaseConfig = {
     measurementId: process.env.FIREBASE_MEASUREMENTID,
 }
 
-if (!firebase.apps.length && process.browser) {
+const isBrowser = typeof window !== 'undefined'
+
+if (isBrowser && !firebase.apps.length) {
     firebase.initializeApp(firebaseConfig)
 }
 
-export const auth = process.browser ? firebase.auth() : {}
+export const auth = isBrowser ? firebase.auth() : {}
 
 
 
