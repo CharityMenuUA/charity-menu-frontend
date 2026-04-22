@@ -5,6 +5,7 @@ import Link from "next/link"
 import {useForm} from "react-hook-form"
 import Input from "@/app/components/input/Input"
 import {auth} from "@/app/providers/firebase/app"
+import {sendPasswordResetEmail} from "firebase/auth"
 import Loader from "@/app/components/loader/Loader"
 import {useState} from "react"
 import pages from "@/app/components/breadcrumbs/routing"
@@ -19,7 +20,7 @@ const ForgotPasswordPage = () => {
     const onSubmit = (data) => {
         const {email} = data
         setLoading(true)
-        auth.sendPasswordResetEmail(email)
+        sendPasswordResetEmail(auth, email)
             .then(() => {
                 setLoading(false)
                 setSuccess(true)

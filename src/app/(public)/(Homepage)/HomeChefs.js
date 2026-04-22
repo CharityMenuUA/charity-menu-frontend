@@ -1,4 +1,3 @@
-"use client"
 import style from './homepage.module.scss'
 import ChefItem from "@/app/components/chef-item/ChefItem"
 

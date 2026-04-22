@@ -6,6 +6,7 @@ import Input from "@/app/components/input/Input"
 import Link from "next/link"
 import OtherSignInMethods from "@/app/(auth)/OtherSignInMethods"
 import {auth} from "@/app/providers/firebase/app"
+import {createUserWithEmailAndPassword} from "firebase/auth"
 import Checkbox from "@/app/components/input/Checkbox"
 import {setProfile} from "@/app/profile/actions"
 import {useUserContext} from "@/app/providers/firebase/UserProvider"
@@ -27,7 +28,7 @@ const RegisterPage = () => {
     const onSubmit = async (data) => {
         const {email, password, name} = data
         setLoading(true)
-        await auth.createUserWithEmailAndPassword(email, password)
+        await createUserWithEmailAndPassword(auth, email, password)
             .then(async (userCredential) => {
                 await userCredential.user.getIdToken().then(async (accessToken) => {
                     setProfile(accessToken, {name}).catch((err) => {
