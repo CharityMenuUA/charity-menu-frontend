@@ -21,7 +21,7 @@ export const getChef = async (params) => {
 }
 
 export const createOrder = async (chefId, menuId, params, accessToken) => {
-    return await create(`/chefs/${chefId}/menu-item/${menuId}`, {
+    return await create(`/chefs/${chefId}/menu-item/${menuId}/order`, {
         ...params,
         headers: {
             "Authorization": `Bearer ${accessToken}`
