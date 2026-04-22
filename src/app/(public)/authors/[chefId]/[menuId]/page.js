@@ -10,7 +10,7 @@ import {pluralize} from "@/app/components/helpers/pluralLots"
 import {getChef, getMenuItem, getPopularMenuItem} from "@/app/components/actions"
 import pages from "@/app/components/breadcrumbs/routing"
 import {notFound} from "next/navigation"
-import StepsSliderMin from "@/app/components/steps-slider/StepsSliderMin"
+import StepsSliderMin from "@/app/components/steps-slider/StepsSliderMinDeferred"
 import AttachmentsSlider from "@/app/(public)/authors/[chefId]/AttachmentsSlider"
 
 export const revalidate = 300
