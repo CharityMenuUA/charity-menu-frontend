@@ -6,6 +6,7 @@ import Input from "@/app/components/input/Input"
 import {useForm} from "react-hook-form"
 import OtherSignInMethods from "@/app/(auth)/OtherSignInMethods"
 import {auth} from "@/app/providers/firebase/app"
+import {signInWithEmailAndPassword} from "firebase/auth"
 import {useUserContext} from "@/app/providers/firebase/UserProvider"
 import validate from "@/app/components/input/validate"
 import Loader from "@/app/components/loader/Loader"
@@ -22,7 +23,7 @@ const LoginPage = () => {
     const onSubmit = (data) => {
         const {email, password} = data
         setLoading(true)
-        auth.signInWithEmailAndPassword(email, password).catch((err) => {
+        signInWithEmailAndPassword(auth, email, password).catch((err) => {
             setLoading(false)
             console.error({...err})
             setError('common', firebaseAuthErrorToFormError(err))

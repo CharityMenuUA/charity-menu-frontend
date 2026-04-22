@@ -3,6 +3,7 @@
 import style from '../auth.module.scss'
 import {useUserContext} from "@/app/providers/firebase/UserProvider"
 import {auth} from "@/app/providers/firebase/app"
+import {sendEmailVerification, signOut} from "firebase/auth"
 import {useEffect, useState} from "react"
 import {useRouter, useSearchParams} from "next/navigation"
 import pages from "@/app/components/breadcrumbs/routing"
@@ -42,11 +43,13 @@ const RegisterEmailConfirmPage = () => {
         }
     }, [isSend, time, updateUser])
     const onClick = () => {
-        auth.currentUser.sendEmailVerification()
+        if (!auth.currentUser) return
+        sendEmailVerification(auth.currentUser)
             .then(() => {
                 setTime(60 * minutes)
                 setIsSend(true)
             })
+            .catch(console.error)
     }
     return (
         <div className={style.page}>
@@ -74,7 +77,7 @@ const RegisterEmailConfirmPage = () => {
                         Якщо ви невірно ввели електронну пошту, поверніться до реєстрації.
                     </div>
                     <button onClick={async () => {
-                        await auth.signOut()
+                        await signOut(auth)
                         router.push(pages.register.href)
                     }} className={style.buttonWhite}>
                         Реєстрація

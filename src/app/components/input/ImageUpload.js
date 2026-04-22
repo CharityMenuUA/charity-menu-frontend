@@ -4,8 +4,6 @@ import PropTypes from "prop-types"
 import Image from "next/image"
 import {RiUpload2Line} from "react-icons/ri"
 import style from "@/app/components/input/input.module.scss"
-import Cropper from "react-cropper"
-import "cropperjs/dist/cropper.css"
 import {createRef, useState} from "react"
 import imageCompression from "browser-image-compression"
 
@@ -25,6 +23,7 @@ const ImageUpload = (props) => {
     const {name, title, description, onSubmit, onClear, image} = props
     const {register} = useForm()
     const [cropImage, setCropImage] = useState('')
+    const [Cropper, setCropper] = useState(null)
     const cropperRef = createRef()
     const onChange = async (e) => {
         e.preventDefault()
@@ -33,6 +32,11 @@ const ImageUpload = (props) => {
             files = e.dataTransfer.files
         } else if (e.target) {
             files = e.target.files
+        }
+        // Load cropper lib on demand — ~80 KB only fetched when user picks a file.
+        if (!Cropper) {
+            const mod = await import('@/app/components/input/cropperModule')
+            setCropper(() => mod.default)
         }
         const reader = new FileReader()
         reader.onload = () => {
@@ -66,7 +70,7 @@ const ImageUpload = (props) => {
 
     return (
         <fieldset className={style.input_fieldset}>
-            {cropImage ? (
+            {cropImage && Cropper ? (
                 <div>
                     <Cropper
                         ref={cropperRef}
@@ -81,6 +85,8 @@ const ImageUpload = (props) => {
                         Зберегти
                     </button>
                 </div>
+            ) : cropImage ? (
+                <div style={{padding: 20, textAlign: 'center'}}>Завантаження редактора...</div>
             ) : (
                 <div className={styles.image}>
                     {image ? (

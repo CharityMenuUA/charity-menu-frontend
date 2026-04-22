@@ -1,6 +1,7 @@
 'use client'
 
 import {createContext, useCallback, useContext, useEffect, useState} from 'react'
+import {onAuthStateChanged} from "firebase/auth"
 import {auth} from '@/app/providers/firebase/app'
 import {getProfile} from "@/app/profile/actions"
 import {usePathname} from "next/navigation"
@@ -54,7 +55,7 @@ const UserProvider = ({children}) => {
         let settled = false
         // Firebase calls the listener with the User object; drop it so updateUser's
         // default `forceRefresh=false` is preserved.
-        const unsubscribe = auth.onAuthStateChanged(() => {
+        const unsubscribe = onAuthStateChanged(auth, () => {
             settled = true
             updateUser()
         })

@@ -1,4 +1,3 @@
-'use client'
 import style from './menuItem.module.scss'
 import PropTypes from 'prop-types'
 import Link from 'next/link'

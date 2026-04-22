@@ -1,7 +1,6 @@
 import style from './input.module.scss'
 import PropTypes from "prop-types"
 import {useConfigContext} from "@/app/providers/config/ConfigProvider"
-import _ from 'lodash'
 
 
 const Input = (props) => {
@@ -20,7 +19,7 @@ const Input = (props) => {
         pattern,
         max
     } = props
-    const error = _.get(errors, name)
+    const error = name.split('.').reduce((acc, key) => acc?.[key], errors)
     const regexName = name.split('.').slice(-1)[0]
     const regex = fields?.[regexName]?.regex
     return (

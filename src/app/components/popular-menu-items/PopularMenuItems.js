@@ -1,4 +1,3 @@
-"use client"
 import style from './popularMenuItems.module.scss'
 import MenuItems from "@/app/components/popular-menu-items/MenuItems"
 

@@ -8,9 +8,9 @@ import {get} from "@/helpers/dataProvider"
 import Breadcrumbs from "@/app/components/breadcrumbs/Breadcrumbs"
 import SuccessProvider from "@/app/providers/success/SuccessProvider"
 import ErrorBoundary from "@/app/components/error/ErrorBoundary"
-import {GoogleAnalytics} from "@next/third-parties/google";
 import SaveStateProvider from "@/app/providers/save-state/SaveStateItemsProvider"
 import GoogleConsent from "@/app/components/GoogleConsent/GoogleConsent"
+import {SpeedInsights} from "@vercel/speed-insights/next"
 
 const unbounded = Unbounded({subsets: ['cyrillic', 'latin'], variable: '--font-unbounded'})
 const openSans = Open_Sans({subsets: ['cyrillic', 'latin'], variable: '--font-open-sans'})
@@ -41,8 +41,6 @@ const RootLayout = async (props) => {
     return (
         <html lang="uk">
         <body className={`${unbounded.variable} ${openSans.variable}`}>
-        <GoogleAnalytics gaId="G-5V9YXQJLCN"/>
-        <GoogleAnalytics gaId="AW-16834446632"/>
         <GoogleConsent/>
         <ErrorBoundary>
             <ConfigProvider config={config}>
@@ -60,6 +58,7 @@ const RootLayout = async (props) => {
                 </UserProvider>
             </ConfigProvider>
         </ErrorBoundary>
+        <SpeedInsights/>
         </body>
         </html>
     )

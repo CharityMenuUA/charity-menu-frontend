@@ -1,4 +1,3 @@
-"use client"
 
 import Link from "next/link"
 import style from "@/app/(public)/(Homepage)/homepage.module.scss"
