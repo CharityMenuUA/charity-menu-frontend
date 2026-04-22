@@ -13,7 +13,6 @@ import {useState} from "react"
 import pages from "@/app/components/breadcrumbs/routing"
 import {firebaseAuthErrorToFormError} from "@/app/(auth)/firebaseErrors"
 
-export const revalidate = 0
 
 const LoginPage = () => {
     const {loading: userLoading} = useUserContext()

@@ -2,7 +2,7 @@ import {getMenu} from "@/app/(public)/authors/(chefs-and-menu)/actions"
 import {menuSortValues} from "@/app/(public)/authors/(chefs-and-menu)/sortValues"
 import Menu from "@/app/(public)/authors/(chefs-and-menu)/Menu"
 
-export const revalidate = 0
+export const revalidate = 300
 
 const meta = {
     title: 'Всі пропозиції - оберіть як саме Ви допоможете Україні',

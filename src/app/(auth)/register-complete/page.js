@@ -12,7 +12,6 @@ import {useRouter, useSearchParams} from "next/navigation"
 import pages from "@/app/components/breadcrumbs/routing"
 import Loader from "@/app/components/loader/Loader"
 
-export const revalidate = 0
 
 const RegisterCompletePage = () => {
     const router = useRouter()

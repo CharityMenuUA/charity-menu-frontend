@@ -15,7 +15,6 @@ import {useConfigContext} from "@/app/providers/config/ConfigProvider"
 import pages from "@/app/components/breadcrumbs/routing"
 import {firebaseAuthErrorToFormError} from "@/app/(auth)/firebaseErrors"
 
-export const revalidate = 0
 
 const RegisterPage = () => {
     const {updateUser} = useUserContext()

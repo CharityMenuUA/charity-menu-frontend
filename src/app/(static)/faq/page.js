@@ -1,6 +1,6 @@
 import FaqPage from "@/app/(static)/faq/client-page"
 
-export const revalidate = 0
+export const revalidate = 3600
 
 const meta = {
     title: 'Часті запитання - Все, що вам потрібно знати про нашу платформу донатів',

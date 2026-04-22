@@ -13,7 +13,6 @@ import {createMenu} from "@/app/profile/actions"
 import pages from "@/app/components/breadcrumbs/routing"
 import {useRouter} from "next/navigation"
 
-export const revalidate = 0
 
 const ProfileMenuCreatePage = () => {
     const router = useRouter()
