@@ -51,10 +51,28 @@ const UserProvider = ({children}) => {
     }, [pathname])
 
     useEffect(() => {
+        let settled = false
         // Firebase calls the listener with the User object; drop it so updateUser's
         // default `forceRefresh=false` is preserved.
-        const unsubscribe = auth.onAuthStateChanged(() => updateUser())
-        return () => unsubscribe()
+        const unsubscribe = auth.onAuthStateChanged(() => {
+            settled = true
+            updateUser()
+        })
+        // Safety net: if Firebase's auth state never resolves (mobile Safari
+        // with IndexedDB blocked, or any other stuck state), don't leave the
+        // app in loading=true forever. After 8 s of silence, treat the user as
+        // signed-out. If Firebase eventually catches up, the listener above
+        // will correct the state.
+        const safetyTimer = setTimeout(() => {
+            if (!settled) {
+                console.warn('[UserProvider] auth state did not resolve within 8s; treating as signed-out')
+                updateUser()
+            }
+        }, 8000)
+        return () => {
+            unsubscribe()
+            clearTimeout(safetyTimer)
+        }
     }, [updateUser])
 
     const value = {loading, user, profile, updateUser}
