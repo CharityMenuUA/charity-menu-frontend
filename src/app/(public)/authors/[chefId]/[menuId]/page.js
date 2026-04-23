@@ -1,6 +1,6 @@
 import style from './style.module.scss'
 import OtherChefs from '@/app/components/other-chefs/OtherChefs'
-import ShareButtons from '@/app/(public)/authors/[chefId]/[menuId]/ShareButtons'
+import ShareButtons from '@/app/(public)/authors/[chefId]/[menuId]/ShareButtonsDeferred'
 import ByLink from '@/app/(public)/authors/[chefId]/[menuId]/ByLink'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -11,7 +11,7 @@ import {getChef, getMenuItem, getPopularMenuItem} from "@/app/components/actions
 import pages from "@/app/components/breadcrumbs/routing"
 import {notFound} from "next/navigation"
 import StepsSliderMin from "@/app/components/steps-slider/StepsSliderMinDeferred"
-import AttachmentsSlider from "@/app/(public)/authors/[chefId]/AttachmentsSlider"
+import AttachmentsSlider from "@/app/(public)/authors/[chefId]/AttachmentsSliderDeferred"
 
 export const revalidate = 300
 
