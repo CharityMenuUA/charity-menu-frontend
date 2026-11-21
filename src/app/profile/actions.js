@@ -29,65 +29,23 @@ export const getProfile = async (accessToken) => {
     }).catch((err) => console.error(err))
 }
 
-export const getOrders = async (accessToken) => {
+// Fetches PAID and COMPLETED orders in parallel; falls back to empty lists on error.
+const getOrdersByState = async (resource, accessToken) => {
+    const fetchState = (state) => get(resource, {
+        params: {state},
+        headers: {"Authorization": `Bearer ${accessToken}`},
+    })
     try {
-        const paid = await get(`/profile/orders`, {
-            params: {
-                state: "PAID"
-            },
-            headers: {
-                "Authorization": `Bearer ${accessToken}`
-            },
-        })
-        const completed = await get(`/profile/orders`, {
-            params: {
-                state: "COMPLETED"
-            },
-            headers: {
-                "Authorization": `Bearer ${accessToken}`
-            },
-        })
-        return {
-            paid,
-            completed,
-        }
+        const [paid, completed] = await Promise.all([fetchState("PAID"), fetchState("COMPLETED")])
+        return {paid, completed}
     } catch (err) {
-        return {
-            paid: [],
-            completed: []
-        }
+        return {paid: [], completed: []}
     }
 }
 
-export const getOrderedOrders = async (accessToken) => {
-    try {
-        const paid = await get(`/profile/chef/orders`, {
-            params: {
-                state: "PAID"
-            },
-            headers: {
-                "Authorization": `Bearer ${accessToken}`
-            },
-        })
-        const completed = await get(`/profile/chef/orders`, {
-            params: {
-                state: "COMPLETED"
-            },
-            headers: {
-                "Authorization": `Bearer ${accessToken}`
-            },
-        })
-        return {
-            paid,
-            completed,
-        }
-    } catch (err) {
-        return {
-            paid: [],
-            completed: []
-        }
-    }
-}
+export const getOrders = async (accessToken) => getOrdersByState(`/profile/orders`, accessToken)
+
+export const getOrderedOrders = async (accessToken) => getOrdersByState(`/profile/chef/orders`, accessToken)
 
 export const getMenu = async (accessToken) => {
     try {

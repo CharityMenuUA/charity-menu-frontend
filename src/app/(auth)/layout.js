@@ -1,7 +1,8 @@
 'use client'
 
 import {useUserContext} from "@/app/providers/firebase/UserProvider"
-import {useRouter, useSearchParams} from 'next/navigation'
+import {useRouter} from 'next/navigation'
+import {getSafeNext, withNext} from "@/helpers/safeNext"
 import {useEffect} from "react"
 
 const LoginLayout = (props) => {
@@ -10,12 +11,11 @@ const LoginLayout = (props) => {
     const router = useRouter()
 
     useEffect(() => {
-        const search = new URLSearchParams(window.location.search)
-        const next = search.get('next') || '/profile'
+        const next = getSafeNext()
         if (user && !user?.emailVerified) {
-            router.push(`/register-email-confirm?next=${next.toString()}`)
+            router.push(withNext('/register-email-confirm', next))
         } else if (user && !profile) {
-            router.push(`/register-complete?next=${next.toString()}`)
+            router.push(withNext('/register-complete', next))
         } else if (user && profile) {
             router.push(next)
         }
