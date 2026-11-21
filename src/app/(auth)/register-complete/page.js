@@ -8,7 +8,8 @@ import Checkbox from "@/app/components/input/Checkbox"
 import {setProfile} from "@/app/profile/actions"
 import {useUserContext} from "@/app/providers/firebase/UserProvider"
 import {useEffect, useState} from "react"
-import {useRouter, useSearchParams} from "next/navigation"
+import {useRouter} from "next/navigation"
+import {getSafeNext} from "@/helpers/safeNext"
 import pages from "@/app/components/breadcrumbs/routing"
 import Loader from "@/app/components/loader/Loader"
 
@@ -23,7 +24,7 @@ const RegisterCompletePage = () => {
 
     useEffect(() => {
         const search = new URLSearchParams(window.location.search)
-        const next = search.get('next') || '/profile'
+        const next = getSafeNext(search.toString())
         if (!loading) {
             if (!user) {
                 router.push(`/login?${search.toString()}`)

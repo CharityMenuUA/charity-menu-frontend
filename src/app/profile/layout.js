@@ -9,6 +9,7 @@ import {useEffect} from "react"
 import Link from "next/link"
 import Loader from "@/app/components/loader/Loader"
 import pages from "@/app/components/breadcrumbs/routing"
+import {withNext} from "@/helpers/safeNext"
 
 const ProfileLayout = (props) => {
     const {children} = props
@@ -20,12 +21,13 @@ const ProfileLayout = (props) => {
     }
 
     useEffect(() => {
-        if (!loading && !user) {
-            router.push(`/login?next=${pathname}`)
-        } else if (!loading && (user && !profile)) {
-            router.push(`/register-complete?next=${next.toString()}`)
-        } else if (!loading && !user?.emailVerified) {
-            router.push(`/register-email-confirm?next=${next.toString()}`)
+        if (loading) return
+        if (!user) {
+            router.push(withNext('/login', pathname))
+        } else if (!user.emailVerified) {
+            router.push(withNext('/register-email-confirm', pathname))
+        } else if (!profile) {
+            router.push(withNext('/register-complete', pathname))
         }
     }, [loading, pathname, profile, router, user])
 
